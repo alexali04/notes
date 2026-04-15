@@ -1,4 +1,4 @@
-# Selected Background Topics
+# Background
 
 ## Probability and Measure Theory
 
@@ -16,3 +16,8 @@ Consider a non-empty set $\Omega$.
 
     The pair $(\Omega, \mathcal{S})$ is called a *measurable space*.
 
+!!! info "Definition: Measure"
+
+    Let $S$ be a $\sigma$-algebra on $\Omega$. A map $\mu: S \to [0, \infty]$ is called a measure if:
+    1. $\mu(\empty) = 0$.
+    2. $S_1, S_2, \dots,$ are pairwise-disjoint implies that $\mu(S_1 \cup S_1 \cup \dots) = \sum_{i} \mu(S_i)$.
