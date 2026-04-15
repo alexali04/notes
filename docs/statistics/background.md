@@ -24,6 +24,16 @@ This metric allows for very natural definitions of convergence and continuity.
     d(x_n, x) < \epsilon
     $$
 
+!!! info "Definition: Continuity"
+
+    Let $M = (M, d_M), N = (N, d_N)$ be metric spaces. A function $f: M \to N$ is **continuous** at a point $p \in M$ if for every $\epsilon > 0$, there exists a $\delta > 0$ such that:
+
+    $$
+    d_M(x, p) < \epsilon \implies d_N(f(x), f(p)) < \delta
+    $$
+
+An equivalent condition is that of **sequential continuity**. A function $f: M \to N$ is continuous at $p \in M$ if and only if the following property holds: if $x_1, x_2, \dots$ is a sequence in $M$ converging to $p$, then the sequence $f(x_1), f(x_2), \dots$ in $N$ converges to $f(p)$. 
+
 
 ## Probability and Measure Theory
 
