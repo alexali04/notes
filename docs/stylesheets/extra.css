@@ -147,3 +147,7 @@ h4::before {
   float: right;
   font-size: 1.2em;
 }
+
+.md-typeset .admonition {
+  font-size: inherit !important;
+}
