@@ -1,0 +1,1346 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://alexali04.github.io/notes/statistics/bayesian/model_construction/">
+      
+      
+        <link rel="prev" href="../introduction/">
+      
+      
+        <link rel="next" href="../../classical/distributions/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Model Construction and Statistical Inference - ML Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#model-construction-and-statistical-inference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="ML Notes" class="md-header__button md-logo" aria-label="ML Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ML Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Model Construction and Statistical Inference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ML Notes" class="md-nav__button md-logo" aria-label="ML Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ML Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Statistics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Statistics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../background/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Math Background
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bayesian
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bayesian
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Construction and Statistical Inference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Construction and Statistical Inference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MLE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MAP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bayesian-inference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bayesian Inference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#marginal-likelihood" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Marginal Likelihood
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#predictive-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Predictive Distribution
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classical
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Classical
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classical/distributions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probability Distributions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MLE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MAP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bayesian-inference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bayesian Inference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#marginal-likelihood" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Marginal Likelihood
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#predictive-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Predictive Distribution
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="model-construction-and-statistical-inference">Model Construction and Statistical Inference<a class="headerlink" href="#model-construction-and-statistical-inference" title="Permanent link">&para;</a></h1>
+<p>Often times machine learning is treating as a grab-bag of seemingly
+unrelated techniques: supervised learning, unsupervised learning,
+dimensionality reduction, etc. The differences between these techniques
+are trivial from a probabilistic perspective. Our approach for all of
+these problems is very simple. We begin with some dataset <span class="arithmatex">\(\mathcal{D}\)</span>.</p>
+<p>This dataset may be comprised of input-output pairs. For example, we may
+have <span class="arithmatex">\(\mathcal{D} = \{(x_i, y_i)\}_{i = 1}^N\)</span>. This called supervised
+learning.</p>
+<p>This dataset can also just be comprised of single data points, i.e.
+<span class="arithmatex">\(\mathcal{D} = \{x_i\}_{i = 1}^N\)</span>. The problem of finding the
+probability distribution which generated <span class="arithmatex">\(\mathcal{D}\)</span> is called density estimation. This is an example of unsupervised learning but is only trivially different from supervised learning when this probabilistic approach is taken.</p>
+<p>In each scenario, we begin by assuming a <em>causal story</em> for how our data was generated by specifying an <strong>observation model</strong>. In Bayes Rule, we have:</p>
+<div class="arithmatex">\[
+p(\theta \mid \mathcal{D}) = \frac{p(\mathcal{D} \mid \theta) p(\theta)}{p(\mathcal{D})}
+\]</div>
+<p>Here <span class="arithmatex">\(\theta\)</span> (occasionally written as <span class="arithmatex">\(a, w\)</span>) are the parameters of our observation model. For example, if we assume a linear observation model,
+we have:</p>
+<div class="arithmatex">\[
+y_i = a x_i + \epsilon_x
+\]</div>
+<p>where <span class="arithmatex">\(\epsilon_x\)</span> is some irreducible noise term.</p>
+<p>The process of inferring parameters like <span class="arithmatex">\(\theta\)</span> is called . This can
+be done by finding the joint distribution, <span class="arithmatex">\(p(D, \theta)\)</span>. Once we have
+the joint distribution, through the sum and product rules, we can
+recover the marginal and conditional distribution.</p>
+<div class="arithmatex">\[
+p(D) = \int p(D \mid \theta) p(\theta) d\theta
+$$
+$$
+p(D \mid \theta) = \frac{p(D, \theta)}{p(\theta)}
+\]</div>
+<p>Bayesian inference allows us to faithfully represent our uncertainty
+over the parameters <span class="arithmatex">\(\theta\)</span>. Even if we find a point estimate
+<span class="arithmatex">\(\hat{\theta}\)</span> which maximizes the likelihood of the data given
+<span class="arithmatex">\(\theta\)</span>, i.e. <span class="arithmatex">\(p(\mathcal{D} \mid \theta)\)</span>, given a limited amount of
+data, we still have uncertainty over the true value of <span class="arithmatex">\(\theta\)</span>.</p>
+<h2 id="mle">MLE<a class="headerlink" href="#mle" title="Permanent link">&para;</a></h2>
+<p><strong>MLE</strong> or <strong>Maximum Likelihood Estimation</strong> is a procedure for
+inferring the parameters of some model.</p>
+<p>Let <span class="arithmatex">\(\mathcal{D} = \{(x_i, y_i)\}_{i = 1}^n\)</span>. We begin by specifying an observation model that relates <span class="arithmatex">\(y_i\)</span> and <span class="arithmatex">\(x_i\)</span> through some function
+<span class="arithmatex">\(f(x, a) = ax\)</span>.</p>
+<p>::: centeredboxgreen
+<strong>Model Classes</strong></p>
+<p>The observation model is generally a - specific models within this model
+class are specified by some parameter value <span class="arithmatex">\(\theta\)</span>. We always assume
+that the ground truth is an element of this model class, i.e. <span class="arithmatex">\(y_i\)</span> and
+<span class="arithmatex">\(x_i\)</span> truly do have some linear relationship. For simplicity's sake, we
+'re using a linear model but in reality, we often want much more
+flexible models. We will examine this in further detail in the model
+selection section.
+:::</p>
+<p>So we have: $<span class="arithmatex">\(\begin{equation}
+\label{eq:obs_1}
+    y = ax + \epsilon_x
+\end{equation}\)</span>$ where <span class="arithmatex">\(\epsilon_x \sim \mathcal{N}(0, \sigma^2)\)</span> is our
+Gaussian noise term. We want to know how likely it is that our model
+could have generated this dataset. Specifically, the is defined as:
+$<span class="arithmatex">\(\begin{equation}
+\theta_{\text{ML}} = \mathop{\mathrm{arg\,max}}_{\theta} p(\mathcal{D} \mid \theta)
+\end{equation}\)</span>$</p>
+<p>We begin by computing the likelihood that the data was generated by our
+model, i.e. <span class="arithmatex">\(p(\mathcal{D} \mid \theta)\)</span>. Since the only random term in
+<span class="arithmatex">\((\ref{eq:obs_1})\)</span> is <span class="arithmatex">\(\epsilon_x\)</span>, the random variable <span class="arithmatex">\(y\)</span>'s
+distribution is just a displaced version of <span class="arithmatex">\(\epsilon_x\)</span>'s distribution.
+We have:</p>
+<div class="arithmatex">\[\begin{equation}
+    y \mid a, x, \sigma^2 \sim \mathcal{N}(y ; ax, \sigma^2)
+\end{equation}$$ $$\begin{equation}
+    p(y \mid x, a, \sigma^2) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \left \{ -\frac{1}{2 \sigma^2} (y - ax)^2 \right \}
+\end{equation}\]</div>
+<p>However, this is the likelihood of a single sample <span class="arithmatex">\((x_i, y_i)\)</span>. We want
+the likelihood of the entire dataset. Let
+<span class="arithmatex">\(\mathbf{y} = (y_1, \dots, y_n)^T, \mathbf{X} = (x_1, \dots, x_N)^T\)</span>. We
+can assume that <span class="arithmatex">\(\mathbf{y}\)</span> is <strong>conditionally independent</strong> on the
+parameters <span class="arithmatex">\(a, \sigma^2\)</span>.</p>
+<p>:::: centeredboxblue
+::: example
+<strong>Example: 1</strong>. <strong>Conditional Independence</strong></p>
+<p>Suppose we have a normal distribution <span class="arithmatex">\(\mathcal{N}(\mu, 1)\)</span>. The first
+sample I draw from this distribution has value <span class="arithmatex">\(1000000\)</span>. Does this
+influence your beliefs about the second sample I will draw? It should.
+Clearly, sample 1 and 2 are not completely independent.</p>
+<p>If the distribution is <span class="arithmatex">\(\mathcal{N}(1000001, 1)\)</span> and the first sample I
+draw is <span class="arithmatex">\(1000000\)</span>, does that influence your beliefs about the second
+sample? It shouldn't really. These samples are <strong>conditionally
+independent</strong> once the parameters of the distribution are known.
+:::
+::::</p>
+<p>We want to find the likelihood of the entire dataset,
+<span class="arithmatex">\(p(y_1, \dots y_n \mid x_1, \dots, x_n, \sigma^2, a) = p(\mathbf{y} \mid \mathbf{x}, a, \sigma^2)\)</span>.
+We have: $<span class="arithmatex">\(\begin{align}
+p(\mathbf{y} \mid a, \mathbf{X}, \sigma^2) &amp;= \prod_{i = 1}^n p(y_i \mid a, x_i, \sigma^2) \\
+&amp;= \prod_{i = 1}^n \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \left \{
+- \frac{1}{2 \sigma^2} (y_i - ax_i)^2
+\right \} \\
+&amp;= \frac{1}{(2 \pi \sigma^2)^{\frac{n}{2}}} \exp \left \{
+- \frac{1}{2 \sigma^2} \sum_{i = 1}^n (y_i^2 - 2 a x_i y_i + a^2 x_i^2)
+\right \} \\
+&amp;= \frac{1}{(2 \pi \sigma^2)^{\frac{n}{2}}} \exp \left \{
+- \frac{1}{2 \sigma^2} (\mathbf{y}^T \mathbf{y} - 2 a \mathbf{x}^T \mathbf{y} + a^2 \mathbf{x}^T \mathbf{x})
+\right \}
+\end{align}\)</span>$ A common trick is to take the log-likelihood (this
+could've been done earlier to convert the product to a sum but this also
+works). $<span class="arithmatex">\(\begin{align}
+    \log p(\mathbf{y} \mid a, \mathbf{X}, \sigma^2) = - \frac{n}{2} \log (2 \pi) - \frac{n}{2} \log (\sigma^2) - \frac{1}{2\sigma^2} (\mathbf{y}^T \mathbf{y} - 2 a \mathbf{x}^T \mathbf{y} + a^2 \mathbf{x}^T \mathbf{x})
+\end{align}\)</span>$ Now, by taking derivatives we can find maximum likelihood
+estimators. $<span class="arithmatex">\(\begin{align}
+    0 = \frac{\partial \log p(\mathbf{y} \mid a, \mathbf{X}, \sigma^2)}{\partial a} &amp;= \frac{d}{da} 2 a \mathbf{x}^T \mathbf{y} - \frac{d}{da} a^2 \mathbf{x}^T \mathbf{x} \\
+    2 a \mathbf{x}^T \mathbf{x} &amp;= 2 \mathbf{x}^T \mathbf{y}  \\
+   \Aboxed{a_{\text{ML}} &amp;= \frac{\mathbf{x}^T \mathbf{y}}{\mathbf{x}^T \mathbf{x}}}
+\end{align}\)</span>$ $<span class="arithmatex">\(\begin{align}
+    0 = \frac{\partial \log p(\mathbf{y} \mid a, \mathbf{X}, \sigma^2)}{\partial \sigma^2} &amp;= - \frac{n}{2 \sigma^2} + \frac{1}{2 \sigma^4} (\mathbf{y} - a \mathbf{x})^2 \\
+    \Aboxed{\sigma^2_{\text{ML}} &amp;= \frac{1}{n} (\mathbf{y} - a_{\text{ML}} \mathbf{x})^2}
+\end{align}\)</span>$</p>
+<p>:::: centeredboxgreen
+::: intuition
+<strong>Intuition Check: 1</strong>. <strong>Likelihood</strong></p>
+<p>The <strong>likelihood</strong>, <span class="arithmatex">\(p(D \mid a)\)</span> is the probability of observing some
+data points <span class="arithmatex">\(D\)</span> given a parameter setting <span class="arithmatex">\(a\)</span>. The <strong>maximum likelihood
+estimators</strong> are the values which maximize this, i.e.
+<span class="arithmatex">\(\hat{a} = \mathop{\mathrm{arg\,max}}_a p(D \mid a)\)</span>. Intuitively, if we
+set our parameters to a specific <span class="arithmatex">\(a_0\)</span> and our likelihood decreases, we
+know <span class="arithmatex">\(a_0\)</span> is unlikely to be the correct parameter setting (or
+equivalent to <span class="arithmatex">\(a\)</span> in the observation model). Maximizing likelihood is a
+<em>frequentist</em> method but isn't always the correct solution.
+:::
+::::</p>
+<p>The MLE for the coefficient in the linear regression problem is the
+standard result -
+<span class="arithmatex">\(\hat{a} = \frac{\text{Cov}(X, y)}{\mathop{\mathrm{Var}}(X)} = (X^T X)^{-1} X^T y\)</span>
+. The MLE for the variance of the noise term is the mean-squared-error -
+MSE can be written as the sum of bias + variance and since the bias of
+the error term is <span class="arithmatex">\(0\)</span> (as it has <span class="arithmatex">\(0\)</span> mean), the MSE is directly
+equivalent to the variance <span class="arithmatex">\(\sigma^2\)</span>.</p>
+<p>:::: centeredboxgreen
+::: intuition
+<strong>Intuition Check: 2</strong>. <strong>Likelihood</strong></p>
+<p>The likelihood can be written as
+<span class="arithmatex">\(p(\mathbf{y} \mid \mathbf{x}) = \prod_{i = 1}^n p(y_i \mid x_i)\)</span>
+:::
+::::</p>
+<h2 id="map">MAP<a class="headerlink" href="#map" title="Permanent link">&para;</a></h2>
+<p>Maximizing <span class="arithmatex">\(p(D \mid a)\)</span> as the likelihood is maximizing the probability
+of observing <span class="arithmatex">\(D\)</span> given <span class="arithmatex">\(a\)</span>. But we care about setting our parameters
+correctly, not just observing <span class="arithmatex">\(D\)</span>. <strong>Maximum a posteriori estimation</strong>
+is about maximizing the posterior probability, or the probability of the
+parameters given the data. Specifically, the MAP is:</p>
+<div class="arithmatex">\[\hat{a} = \mathop{\mathrm{arg\,max}}_a p(a | D) \propto \mathop{\mathrm{arg\,max}}_a p(D | a) p(a)$$
+$$= \mathop{\mathrm{arg\,max}}_a \log p(a | D) = \mathop{\mathrm{arg\,max}}_a \log p(D | a) + \mathop{\mathrm{arg\,max}}_a \log p(a)\]</div>
+<p>If we place a prior distribution over <span class="arithmatex">\(a \sim \mathcal{N}(0, \gamma^2)\)</span>,
+then we have:
+$<span class="arithmatex">\(p(a \mid \gamma^2, \mathbf{y}, X, \sigma^2) = p(\mathbf{y} \mid X, \sigma^2, a) \ p(a \mid \gamma^2)\)</span>$
+$<span class="arithmatex">\(\log p(a \mid D, \gamma^2) = \log p(\mathbf{y} \mid X, \sigma^2, a) + \log p(a \mid \gamma^2)\)</span>$</p>
+<p>We know the form of the log-likelihood as derived above.
+$<span class="arithmatex">\(\log p(a \mid \gamma^2) = \log
+\left ( \frac{1}{\sqrt{2 \pi \gamma^2}} \exp \left \{ - \frac{1}{2 \gamma^2} a^2    \right \} \right )\)</span>$
+$<span class="arithmatex">\(= - \frac{1}{2} \log (2\pi \gamma^2) - \frac{a^2}{2 \gamma^2}\)</span>$ So the
+log-posterior is:
+$<span class="arithmatex">\(\log p(a \mid D, \gamma^2) = - \frac{n}{2} \log (2 \pi \sigma^2)  - \frac{1}{2 \sigma^2}(\mathbf{y} - a \mathbf{x})^2 - \frac{1}{2} \log (2 \pi \gamma^2) - \frac{a^2}{2 \gamma^2}\)</span>$
+$<span class="arithmatex">\(\hat{a}_{\text{MAP}} = \mathop{\mathrm{arg\,min}}_a \frac{1}{2 \sigma^2} ((y - a \mathbf{x})^2 + \frac{\sigma^2}{\gamma^2} a^2)\)</span>$
+$<span class="arithmatex">\(= \mathop{\mathrm{arg\,min}}_a (y - a \mathbf{x})^2 + \lambda a^2\)</span>$</p>
+<p>:::: centeredboxred
+::: warning
+<strong>Warning: 1</strong>. <strong>MAP is not Bayesian</strong></p>
+<p>We've essentially recovered ridge regression from assuming Gaussian
+noise with a Gaussian prior. We can also recover Lasso regression from
+assuming Laplace noise with a Laplace prior. However, MAP Estimation is
+not a Bayesian method. The idea behind Bayesian inference is to
+construct a probability distribution over the set of possible values for
+<span class="arithmatex">\(a\)</span>. MAP does not marginalize over the prior distribution so it does not
+constitute a fully Bayesian treatment.
+:::
+::::</p>
+<h2 id="bayesian-inference">Bayesian Inference<a class="headerlink" href="#bayesian-inference" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>Prior</strong>: We begin with some prior distribution <span class="arithmatex">\(p(a)\)</span>. We have
+    some dataset <span class="arithmatex">\(D\)</span> so we can compute the likelihood <span class="arithmatex">\(p(D \mid a)\)</span> to
+    evaluate how well a particular setting of <span class="arithmatex">\(a\)</span> matches the dataset
+    (the probability of observing <span class="arithmatex">\(D\)</span> given <span class="arithmatex">\(a\)</span>).</p>
+</li>
+<li>
+<p><strong>Posterior</strong>: We can then compute the posterior distribution.
+    $<span class="arithmatex">\(p(a \mid D) \propto p(D \mid A) \ p(a)\)</span>$</p>
+</li>
+<li>
+<p><strong>Bayesian Model Average</strong>: Now, given our updated beliefs,
+    <span class="arithmatex">\(p(a \mid D)\)</span>, we want to compute the <strong>predictive distribution</strong>.
+    Take our linear regression example - we have some dataset <span class="arithmatex">\(D\)</span> which
+    you might think of as the training dataset. Now we have a new point
+    <span class="arithmatex">\(x_*\)</span> and want to use our beliefs to construct a predictive
+    distribution for <span class="arithmatex">\(y_*\)</span>. In computing the predictive distribution, we
+    again marginalize over the parameter <span class="arithmatex">\(a\)</span>.
+    $<span class="arithmatex">\(p(y_* \mid x_*, \hat{\sigma}^2, \hat{\gamma}^2, \mathbf{y}, X) = \int_a p(y_*, a \mid x_*, \hat{\sigma}^2, \hat{\gamma}^2, \mathbf{y}, X) \ da\)</span>$
+    $<span class="arithmatex">\(= \int_a p(y_* \mid x_*, a, \hat{\sigma}^2) \ p(a \mid \hat{\gamma}^2, \mathbf{y}, X) \ da\)</span>$</p>
+<p>The Bayesian Model Average essentially weights all of the
+predictions of <span class="arithmatex">\(y_*\)</span> with some weight setting <span class="arithmatex">\(a\)</span> by the posterior
+probability of <span class="arithmatex">\(a\)</span>. The posterior probability is the probability of
+<span class="arithmatex">\(a\)</span> after having observed the data (i.e. how well <span class="arithmatex">\(a\)</span> matches the
+data).</p>
+</li>
+</ol>
+<p>:::: centeredboxgreen
+::: intuition
+<strong>Intuition Check: 3</strong>. <strong>Marginalizing over the Posterior</strong></p>
+<p>Observe that when we were marginalizing over the data to obtain the
+model evidence, we marginalized over the prior distribution (so each
+likelihood was being weighted by our prior belief in it). When we
+marginalize over <span class="arithmatex">\(a\)</span> now, we're marginalizing over the posterior
+distribution. Now, each value of <span class="arithmatex">\(y_*\)</span> conditional on some value of <span class="arithmatex">\(a\)</span>
+is weighted by our updated belief in it, derived from the training data
+<span class="arithmatex">\(D\)</span>.</p>
+<p>The idea with Bayesian Model Averaging is to <em>not</em> bet everything on a
+single <span class="arithmatex">\(a\)</span> but to consider all possible parameter settings <span class="arithmatex">\(a\)</span> and also
+to assume that the parameters are not completely determined by the data.
+:::
+::::</p>
+<p>Generally, as the number of samples observed in <span class="arithmatex">\(D\)</span> increases, the
+posterior distribution becomes increasingly sharp, centered around the
+true parameter value <span class="arithmatex">\(\hat{a}\)</span>. This can be seen in the following
+diagram from Bishop (3.7). You can view the multi-variate Gaussian
+describing the prior / posterior as concentrating and sharpening around
+the true parameter value. Sequentially, we begin with a prior, derive a
+posterior and the posterior becomes the new prior - this is the <strong>online
+nature</strong> of sequential Bayesian learning.</p>
+<figure id="fig:plane" data-latex-placement="htp">
+<img src="Images/posterior_sharpening.png" style="width:8cm" />
+<figcaption>Posterior Concentration</figcaption>
+</figure>
+
+<p><strong>Bayesian Inference</strong> is the process of determining the posterior and
+thus, the Bayesian Model Average.</p>
+<p>:::: centeredboxblue
+::: example
+<strong>Example: 2</strong>. <strong>Frequentist vs Bayesian Urns</strong></p>
+<p>Suppose we have <span class="arithmatex">\(11\)</span> urns <span class="arithmatex">\(u_{[0, \dots, 10]}\)</span>. Each urn has <span class="arithmatex">\(10\)</span> balls.
+The <span class="arithmatex">\(i\)</span>th urn has <span class="arithmatex">\(i\)</span> black balls and <span class="arithmatex">\(10 - i\)</span> white balls. So the first
+urn has <span class="arithmatex">\(0\)</span> black balls, the <span class="arithmatex">\(10\)</span>th urn has <span class="arithmatex">\(10\)</span> black balls.</p>
+<p>You are blindfolded and are given an urn. You draw <span class="arithmatex">\(10\)</span> balls with
+replacement from the urn, one at a time. <span class="arithmatex">\(3\)</span> balls are black and <span class="arithmatex">\(7\)</span>
+balls are white. What is the probability of the next ball being black?
+Specifically, is the probability greater than, equal to, or less than
+<span class="arithmatex">\(30 \%\)</span>?</p>
+<p>The MLE solution is to say that you are in the <span class="arithmatex">\(3\)</span>rd urn and that the
+probability is equal to <span class="arithmatex">\(30\%\)</span>. However, this doesn't incorporate
+uncertainty about the fact that you may be in the <span class="arithmatex">\(4\)</span>th or <span class="arithmatex">\(5\)</span>th urn.
+This uncertainty is included in the Bayesian Model Average. In reality,
+the probability of the next ball being black is around <span class="arithmatex">\(34\%\)</span>.
+:::
+::::</p>
+<p>:::: centeredboxred
+::: warning
+<strong>Warning: 2</strong>. <strong>MLE isn't necessarily optimal</strong></p>
+<p><strong>Gaussian Mixture Models</strong> are extremely expressive - they're dense in
+the set of probability distributions and a mixture of <span class="arithmatex">\(4\)</span> or <span class="arithmatex">\(5\)</span>
+Gaussians is sufficient to model most classical statistical settings.</p>
+<p>Specifically, we can gain infinite likelihood with a mixture of two
+Gaussians. Note that this is density estimation so we're just predicting
+<span class="arithmatex">\(X\)</span>, rather than <span class="arithmatex">\(y\)</span> from <span class="arithmatex">\(X\)</span>.
+$<span class="arithmatex">\(p(D \mid \mu_1, \mu_2, \sigma_1^2, \sigma_2^2) = \prod_{i = 1}^n \frac{w_1}{\sqrt{2 \pi \sigma_1^2}} \exp \left \{ - \frac{1}{2 \sigma_1^2} (x_i - \mu_1)^2 \right \} + \frac{w_2}{\sqrt{2 \pi \sigma_2^2}} \exp \left \{ - \frac{1}{2 \sigma_2^2} (x_i - \mu_2)^2   \right \}\)</span>$</p>
+<p>By setting <span class="arithmatex">\(\mu_1 = x_j\)</span> and <span class="arithmatex">\(\sigma_1^2 \to 0\)</span>, we can get essentially
+infinite likelihood for <span class="arithmatex">\(x_j\)</span>. The other Gaussian provides probability
+mass to the other points to make this the product of infinity with other
+non-zero numbers to get essentially infinite likelihood. This doesn't
+mean that the model fits the data well - in fact, it fits it extremely
+poorly. This is an example of <strong>MLE overfitting</strong>. To solve this, models
+will often be re-initialized with the hope of falling into a local
+minimum rather than a global minimum. This suggests that MLE is not a
+good objective function at all for this specific case.
+:::
+::::</p>
+<h2 id="marginal-likelihood">Marginal Likelihood<a class="headerlink" href="#marginal-likelihood" title="Permanent link">&para;</a></h2>
+<p>There are <span class="arithmatex">\(3\)</span> different ways to approach any ML problem. In each case,
+we have some function <span class="arithmatex">\(f(x, w)\)</span> that we want to estimate by inferring
+information about <span class="arithmatex">\(w\)</span>.</p>
+<ol>
+<li>
+<p>Directly specific some loss function <span class="arithmatex">\(L\)</span> and minimize it with
+    respect to <span class="arithmatex">\(w\)</span>.</p>
+</li>
+<li>
+<p>Create a probabilistic story about how the data was generated
+    (observation model) to form a likelihood <span class="arithmatex">\(p(D \mid w)\)</span> and maximize
+    this with respect to <span class="arithmatex">\(w\)</span> (MLE or MAP).</p>
+</li>
+<li>
+<p>Take the Bayesian Approach. Compute the Bayesian Model Average,
+    integrating over all possible parameter settings, weighted by their
+    posterior probabilities for the predictive distribution.</p>
+</li>
+</ol>
+<p>Approaches <span class="arithmatex">\(1\)</span> and <span class="arithmatex">\(2\)</span> are very similar but the full Bayesian approach
+is very different. This function is very flexible - <span class="arithmatex">\(f(x, w)\)</span> can be
+done for regression / classification, unsupervised learning (as
+<strong>density estimation</strong>) and the procedure for doing these is only
+trivially different.</p>
+<p>In <strong>Bayesian Linear Regression</strong>, consider the general form of a
+<strong>Linear Gaussian Model</strong>: $<span class="arithmatex">\(y = \mathbf{w}^T \phi(x) + \epsilon(x)\)</span>$
+$<span class="arithmatex">\(\epsilon(x) \sim \mathcal{N}(0, \sigma^2)\)</span>$
+$<span class="arithmatex">\(\mathbf{w} \mid \alpha \sim \mathcal{N}(0, \alpha^2 I)\)</span>$</p>
+<p>Here, <span class="arithmatex">\(\phi(x)\)</span> is a vector of basis functions (for example,
+<span class="arithmatex">\(\phi(x) = [1, x, x^2, \dots, x^P]^T\)</span>). Clearly, <span class="arithmatex">\(y(x)\)</span> would be a
+non-linear function but would be linear in <span class="arithmatex">\(w\)</span>, the parameter we're
+trying to estimate so we still consider this a linear model.</p>
+<p>For a dataset <span class="arithmatex">\(\mathcal{D} = \{(x_i, y_i)\}_{i = 1}^n\)</span>, we want to find
+the marginal likelihood, <span class="arithmatex">\(p(\mathbf{y} \mid X, \sigma^2, \alpha^2)\)</span>.
+This is the denominator in Bayes equation, also known as the <strong>partition
+function</strong>.</p>
+<p>First, we marginalize over <span class="arithmatex">\(\mathbf{w}\)</span>. $<span class="arithmatex">\(\begin{equation}
+    p(\mathbf{y} \mid X, \sigma^2, \alpha^2) = \int p(\mathbf{y} \mid \mathbf{w}, X, \sigma^2) p(\mathbf{w} \mid \alpha) \ d\mathbf{w}
+\end{equation}\)</span>$</p>
+<p>The prior and likelihood are both normal: $<span class="arithmatex">\(\begin{equation}
+    = \int \mathcal{N}(\mathbf{w} ; 0, \alpha^2 I) \mathcal{N}(\mathbf{y} ; \bm{\Phi} \mathbf{w}, \sigma^2 I) \ d\mathbf{w}
+\end{equation}\)</span>$ $<span class="arithmatex">\(\begin{equation}
+    = c \int \exp \left \{- \frac{1}{2} \left ( \frac{\mathbf{w}^T \mathbf{w}}{\alpha^2} + \frac{(\mathbf{y} - \bm{\Phi} \mathbf{w})^T (\mathbf{y} - \bm{\Phi} \mathbf{w})}{\sigma^2}  \right )  \right \} \ d\mathbf{w}
+\end{equation}\)</span>$</p>
+<div class="arithmatex">\[\begin{equation}
+    = c \exp \left \{
+    - \frac{1}{2}
+    \left [
+    \frac{\bm{w}^T \bm{w}}{\alpha^2} +
+    \frac{1}{\sigma^2} (\bm{y}^T \bm{y} + \bm{w}^T \bm{\Phi}^T \bm{\Phi} \bm{w}  - 2 \bm{w}^T \bm{\Phi}^T \bm{y})
+    \right ]
+    \right \}
+\end{equation}\]</div>
+<div class="arithmatex">\[\begin{equation}
+\label{eq:lambda}
+    = c \exp \left \{
+    - \frac{1}{2}
+    \left [
+    \bm{w}^T (\frac{I}{\alpha^2} + \frac{\bm{\Phi}^T \bm{\Phi}}{\sigma^2}) \bm{w} + \frac{\bm{y}^T \bm{y}}{\sigma^2} - 2 \frac{\bm{w}^T \bm{\Phi}^T \bm{y}}{\sigma^2}
+    \right ]
+    \right \}
+\end{equation}\]</div>
+<p>Write the precision matrix,
+<span class="arithmatex">\(\Lambda = \frac{I}{\alpha^2} + \frac{\bm{\Phi}^T \bm{\Phi}}{\sigma^2}\)</span>.</p>
+<div class="arithmatex">\[\begin{equation}
+\label{eq:5}
+= c' \exp \left \{
+- \frac{1}{2}
+\left [
+\bm{w}^T \Lambda \bm{w} - 2 \frac{\bm{w}^T \bm{\Phi}^T \bm{y}}{\sigma^2}
+\right ]
+\right \}
+\end{equation}\]</div>
+<p>Now we can really complete the square. First, we need to figure out the
+mean vector. We have:</p>
+<div class="arithmatex">\[\begin{equation}
+(\bm{w} - \bm{\mu})^T \Lambda (\bm{w} - \bm{\mu}) = \bm{w}^T \Lambda \bm{w} + \bm{\mu}^T \Lambda \bm{\mu} - 2 \bm{w}^T \Lambda \bm{\mu}
+\end{equation}\]</div>
+<p>By inspection, we have: $<span class="arithmatex">\(\begin{equation}
+\Lambda \bm{\mu} = \frac{\bm{\Phi}^T \bm{y}}{\sigma^2}
+\end{equation}\)</span>$ $<span class="arithmatex">\(\begin{equation}
+    \bm{\mu} = \Lambda^{-1} \frac{\bm{\Phi}^T \bm{y}}{\sigma^2}
+\end{equation}\)</span>$</p>
+<p>Substituting in our mean vector, we have:</p>
+<div class="arithmatex">\[\begin{equation}
+(\bm{w} - \bm{\mu})^T \Lambda (\bm{w} - \bm{\mu}) = \bm{w}^T \Lambda \bm{w} + \frac{\bm{y}^T \bm{\Phi}}{\sigma^2} \Lambda^{-1} \Lambda \Lambda^{-1} \frac{\bm{\Phi}^T \bm{y}}{\sigma^2} - 2 \bm{w}^T \Lambda \Lambda^{-1} \frac{\bm{\Phi}^T \bm{y}}{\sigma^2}
+\end{equation}\]</div>
+<div class="arithmatex">\[\begin{equation}
+= \bm{w}^T \Lambda \bm{w} + \frac{\bm{y}^T \bm{\Phi}}{\sigma^2} \Lambda^{-1} \frac{\bm{\Phi}^T \bm{y}}{\sigma^2} - 2 \bm{w}^T \frac{\bm{\Phi}^T \bm{y}}{\sigma^2}
+\end{equation}$$ $$\begin{equation}
+(\bm{w} - \bm{\mu})^T \Lambda (\bm{w} - \bm{\mu}) - \frac{\bm{y}^T \bm{\Phi}}{\sigma^2} \Lambda^{-1} \frac{\bm{\Phi}^T \bm{y}}{\sigma^2} = \bm{w}^T \Lambda \bm{w} - 2 \bm{w}^T \frac{\bm{\Phi}^T \bm{y}}{\sigma^2}
+\end{equation}\]</div>
+<p>Substituting in and putting the product of our MVGs back into the
+integral, we have:</p>
+<div class="arithmatex">\[\begin{equation}
+p(\bm{y} \mid X, \sigma^2, \alpha^2, \bm{z}) = c' \int \exp  \left \{ - \frac{1}{2} \left [
+(\bm{w} - \bm{\mu})^T \Lambda (\bm{w} - \bm{\mu}) - \frac{\bm{y}^T \bm{\Phi}}{\sigma^2} \Lambda^{-1} \frac{\bm{\Phi}^T \bm{y}}{\sigma^2}
+\right ]
+\right \}
+\end{equation}\]</div>
+<div class="arithmatex">\[\begin{equation}
+= c'' \int \exp \left \{ - \frac{1}{2} (\bm{w} - \bm{\mu})^T \Lambda (\bm{w} - \bm{\mu}) \right \} d\bm{w}
+\end{equation}\]</div>
+<p>The exponential term is the unnormalized version of
+<span class="arithmatex">\(\mathcal{N}(\bm{w} ; \bm{\mu}, \Lambda^{-1})\)</span>. Since the integral over
+<span class="arithmatex">\(\bm{w}\)</span> must be normalized, this must integrate to the normalizing
+coefficient or:</p>
+<div class="arithmatex">\[\begin{equation}
+\int \exp \left \{ - \frac{1}{2} (\bm{w} - \bm{\mu})^T \Lambda (\bm{w} - \bm{\mu}) \right \} d\bm{w} = \frac{(2 \pi)^{\frac{D}{2}}}{\det (\Lambda)^{\frac{1}{2}}}
+\end{equation}\]</div>
+<p>So we get: $<span class="arithmatex">\(\begin{equation}
+p(\bm{y} \mid X, \sigma^2, \alpha^2, \bm{z}) = c'' \frac{(2 \pi)^{\frac{D}{2}}}{\det (\Lambda)^{\frac{1}{2}}}
+\end{equation}\)</span>$</p>
+<div class="arithmatex">\[\begin{equation}
+p(\bm{y} \mid X, \sigma^2, \alpha^2, \bm{z}) = \frac{\exp \left \{- \frac{1}{2} \left [ \frac{\bm{y}^T \bm{y}}{\sigma^2} - \frac{\bm{y}^T \bm{\Phi}}{\sigma^2} \Lambda^{-1} \frac{\bm{\Phi}^T \bm{y}}{\sigma^2}   \right ] \right \}}{(2 \pi \sigma^2)^\frac{n}{2} \det (\Lambda)^{\frac{1}{2}} (\alpha^2)^{\frac{D}{2}}}
+\end{equation}\]</div>
+<div class="arithmatex">\[\begin{equation}
+\label{eq:e7}
+= \frac{
+\exp \left \{
+- \frac{1}{2} \bm{y}^T \left [ \frac{I}{\sigma^2} - \frac{ \bm{\Phi}}{\sigma^2} \Lambda^{-1} \frac{\bm{\Phi}^T}{\sigma^2}   \right ] \bm{y}
+\right \}
+}{(2 \pi \sigma^2)^\frac{n}{2} \det (\Lambda)^{\frac{1}{2}} (\alpha^2)^{\frac{D}{2}}}
+\end{equation}\]</div>
+<p>Define
+<span class="arithmatex">\(\Lambda_0 = \frac{1}{\sigma^2} I - \frac{1}{\sigma^4} \bm{\Phi} \Lambda^{-1} \bm{\Phi}^T\)</span>.
+Then, the numerator for <a href="#eq:e7">[eq:e7]</a>{reference-type="ref"
+reference="eq:e7"} becomes the exponential for the unnormalized Gaussian
+distribution <span class="arithmatex">\(\mathcal{N}(0, \Lambda_0^{-1})\)</span>. First, by the Woodbury
+Matrix identity, we'll find the covariance matrix
+<span class="arithmatex">\(\Sigma = \Lambda_0^{-1}\)</span>. We have: $<span class="arithmatex">\(\begin{equation}
+    (A + UCV)^{-1} = A^{-1} - A^{-1} U (C^{-1} + V A^{-1} U)^{-1} V A^{-1}
+\end{equation}\)</span>$</p>
+<p>Define <span class="arithmatex">\(C = \frac{\Lambda^{-1}}{\sigma^4}\)</span>,
+<span class="arithmatex">\(U = - \bm{\Phi}, V = \bm{\Phi}^T, A = \frac{I}{\sigma^2}\)</span>. Then, we
+have: $<span class="arithmatex">\(\begin{equation}
+    \Lambda_0^{-1} = \sigma^2 I - \sigma^2 I \bm{\Phi} (\sigma^4 \Lambda - \sigma^2 \bm{\Phi}^T \bm{\Phi})^{-1} \bm{\Phi}^T \sigma^2 I
+\end{equation}\)</span>$</p>
+<p>Substitute in <span class="arithmatex">\(\Lambda\)</span>, we get: $<span class="arithmatex">\(\begin{align}
+    \Lambda_0^{-1} &amp;= \sigma^2 I + \sigma^2 \bm{\Phi} (\sigma^4 (\frac{I}{\alpha^2} + \frac{\bm{\Phi}^T \bm{\Phi}}{\sigma^2}) - \sigma^2 \bm{\Phi}^T
+    \bm{\Phi})^{-1} \bm{\Phi}^T \sigma^2 \\
+    &amp;= \sigma^2 I + \sigma^4 \bm{\Phi}( \frac{\sigma^4}{\alpha^2} I + \sigma^2 \bm{\phi}^T \bm{\Phi} - \sigma^2 \bm{\Phi}^T \bm{\Phi})^{-1} \bm{\Phi}^T \\
+    &amp;= \sigma^2 I + \sigma^4 \bm{\Phi} (\frac{\sigma^4}{\alpha^2} I)^{-1} \bm{\Phi}^T \\
+    &amp;= \sigma^2 I + \alpha^2 \bm{\Phi} \bm{\Phi}^T
+\end{align}\)</span>$</p>
+<p>This is the covariance matrix for the unnormalized probability
+distribution in the numerator. We will now find it's determinant. By the
+matrix determinant lemma, we have:</p>
+<div class="arithmatex">\[\begin{equation}
+    \det(A + UWV^T) = \det(W^{-1} + V^T A^{-1} U) \det(W) \det(A)
+\end{equation}$$ $$\begin{equation}
+    \det(\sigma^2 I + \bm{\Phi} \alpha^2 I \bm{\Phi}^T) = \det(\frac{I}{\alpha^2} + \bm{\Phi}^T \frac{I}{\sigma^2} \bm{\Phi}) \det(\alpha^2 I) \det (\sigma^2 I)
+\end{equation}\]</div>
+<p>Notice that
+<span class="arithmatex">\(\Lambda = \frac{I}{\alpha^2} + \frac{\bm{\Phi}^T \bm{\Phi}}{\sigma^2}\)</span>.
+So we can re-write: $<span class="arithmatex">\(\begin{equation}
+    \det(\Lambda_0^{-1}) = \det(\Lambda) (\alpha^2)^D (\sigma^2)^N
+\end{equation}\)</span>$ $<span class="arithmatex">\(\begin{equation}
+\label{eq:lambda_0}
+    \det(\Lambda_0^{-1})^{\frac{1}{2}} = \det(\Lambda)^{\frac{1}{2}}(\alpha^2)^{\frac{D}{2}} (\sigma^2)^{\frac{N}{2}}
+\end{equation}\)</span>$</p>
+<p>Recall our expression for the marginal likelihood (re-written here).</p>
+<div class="arithmatex">\[\begin{equation}
+     p(\bm{y} \mid X, \sigma^2, \alpha^2, \bm{z}) = \frac{
+\exp \left \{
+- \frac{1}{2} \bm{y}^T \left [ \frac{I}{\sigma^2} - \frac{ \bm{\Phi}}{\sigma^2} \Lambda^{-1} \frac{\bm{\Phi}^T}{\sigma^2}   \right ] \bm{y}
+\right \}
+}{(2 \pi)^{\frac{N}{2}} (\sigma^2)^\frac{n}{2} \det (\Lambda)^{\frac{1}{2}} (\alpha^2)^{\frac{D}{2}}}
+\end{equation}\]</div>
+<p>Substituting in our result from
+<a href="#eq:lambda_0">[eq:lambda_0]</a>{reference-type="ref"
+reference="eq:lambda_0"}, we get:</p>
+<div class="arithmatex">\[\begin{equation}
+    p(\bm{y} \mid X, \sigma^2, \alpha^2, \bm{z}) = \frac{
+\exp \left \{
+- \frac{1}{2} \bm{y}^T \Lambda_0 \bm{y}
+\right \}
+}{(2 \pi)^{\frac{N}{2}} \det(\Lambda_0^{-1})^{\frac{1}{2}}}
+\end{equation}\]</div>
+<p>In other words, this is a fully normalized Gaussian distribution, i.e.
+<span class="arithmatex">\(\mathbf{y} \mid X, \sigma^2, \alpha^2, \bm{z} \sim \mathcal{N}(0, \Lambda_0^{-1})\)</span>.</p>
+<p>Define <span class="arithmatex">\(\bm{\Sigma}_0 = \Lambda_0^{-1}\)</span> to be the covariance matrix of
+the marginal likelihood.</p>
+<p>Thus, the <strong>log marginal likelihood</strong> is:</p>
+<div class="arithmatex">\[\begin{equation}
+\log p(\mathbf{y} \mid \mathbf{z}, X, \alpha^2, \sigma^2) = - \frac{1}{2} \mathbf{y}^T \bm{\Sigma}_0 \mathbf{y} - \frac{1}{2} \log (\det(\bm{\Sigma}_0^{-1})) - \frac{N}{2} \log (2 \pi)
+\end{equation}\]</div>
+<p>This compartmentalizes nicely into a data fit and model complexity term.</p>
+<p>The data fit term is <span class="arithmatex">\(\mathbf{y}^T \bm{\Sigma}_0 \mathbf{y}\)</span> and the
+model complexity term is <span class="arithmatex">\(\log (\det(\bm{\Sigma}_0^{-1})\)</span>). The data fit
+term measures the discrepancy between the data your model expects (in
+the covariance matrix) and the data itself (in <span class="arithmatex">\(\mathbf{y}\)</span>). The
+determinant of the covariance matrix measures the volume of probability
+that can be explained by the model - so it penalizes more complex
+models. This is a built-in Occam's razor.</p>
+<p>We can perform <em>Marginal Likelihood Optimization</em> or <em>Type 2 MLE</em> to
+learn hyperparameters - this is much more efficient than grid search
+where the number of runs grows exponentially with the number of
+hyperparameters. It's very useful but doesn't answer the exact question
+we want - it answers the likelihood of the data under all parameter
+settings when we want the probability of the model class itself.</p>
+<h2 id="predictive-distribution">Predictive Distribution<a class="headerlink" href="#predictive-distribution" title="Permanent link">&para;</a></h2>
+<p>Let's say we have optimized the marginal likelihood to obtain point
+estimates <span class="arithmatex">\(\hat{\alpha}^2, \hat{\sigma}^2\)</span>. Our ultimate goal is to make
+predictions. With frequentist statistics, we make point estimate
+predictions but with a Bayesian toolbox, we can construct an entire
+distribution of predictions. We want to find
+<span class="arithmatex">\(p(y_* \mid \mathcal{D}, x_*, \hat{\sigma}^2, \hat{\alpha}^2)\)</span>. We can
+marginalize over the weights.</p>
+<div class="arithmatex">\[\begin{equation}
+    p(y_* \mid \mathcal{D}, x_*, \hat{\sigma}^2, \hat{\alpha}^2) = \int p(y_* \mid \mathbf{w}, x_*, \sigma^2) \ p(\mathbf{w} \mid \mathcal{D}, \hat{\alpha}^2) \ d\mathbf{w}
+\end{equation}\]</div>
+<p>First, we need to find the posterior distribution. We have:</p>
+<div class="arithmatex">\[\begin{equation}
+    p(\mathbf{w} \mid \mathcal{D}) \propto p(\mathcal{D} \mid \mathbf{w}) \ p(\mathbf{w} \mid \alpha)
+\end{equation}\]</div>
+<p>where <span class="arithmatex">\(\mathbf{w} \mid \alpha \sim \mathcal{N}(0, \alpha^2 I)\)</span>. However,
+we already found the posterior distribution as the integrand in the
+marginal likelihood. We found that
+<span class="arithmatex">\(\mathbf{w} \mid \mathcal{D} \sim N(\bm{\mu}, \Lambda^{-1})\)</span> where
+<span class="arithmatex">\(\bm{\mu} = \Lambda^{-1} \frac{\bm{\Phi}^T \mathbf{y}}{\sigma^2}\)</span> and
+<span class="arithmatex">\(\Lambda = \frac{I}{\alpha^2} + \frac{\bm{\Phi}^T \bm{\Phi}}{\sigma^2}\)</span>.
+In finding the predictive distribution, we can avoid computing the
+integral through the laws of total expectation and variance.</p>
+<div class="arithmatex">\[\begin{equation}
+    E[y_* \mid x_*, \hat{\sigma}^2, \hat{\alpha}^2, \mathcal{D}] = E_{\mathbf{w} \mid \hat{\alpha}^2, \mathcal{D}}[E[y_* \mid \mathbf{w}, x_*, \hat{\sigma}]]
+\end{equation}$$ $$\begin{equation}
+    E[y_* \mid \mathbf{w}, x_*, \hat{\sigma}] = E[\mathbf{w}^T \phi(x) + \mathcal{N}(0, \hat{\sigma}^2)] = \phi(x)^T E[\mathbf{w}]
+\end{equation}\]</div>
+<p>From the posterior mean, we know that: $<span class="arithmatex">\(\begin{equation}
+    \phi(x)^T E[\mathbf{w}] = \bm{\mu}^T \phi(x)
+\end{equation}\)</span>$</p>
+<p>The expectation of a scalar is a scalar so this is the predictive mean.
+For the predictive variance, we have: $<span class="arithmatex">\(\begin{equation}
+    \mathop{\mathrm{Var}}(y_* \mid x_*, \hat{\alpha}^2, \hat{\sigma}^2, \mathcal{D}) = E_{\mathbf{w} \mid \hat{\alpha}^2, \mathcal{D}}[\mathop{\mathrm{Var}}(y_* \mid x_*, \hat{\sigma}^2, \mathbf{w})] + \mathop{\mathrm{Var}}(E_{\mathbf{w} \mid \hat{\alpha}^2, \mathcal{D}}[y_* \mid x_*, \mathbf{w}, \hat{\sigma}^2])
+\end{equation}\)</span>$</p>
+<p>We have
+<span class="arithmatex">\(y_* \mid x_*, \hat{\sigma}^2, \mathbf{w} \sim \mathcal{N}(0, \hat{\sigma}^2)\)</span>
+so the variance is <span class="arithmatex">\(\hat{\sigma}^2\)</span> so the expectation of the variance
+is just <span class="arithmatex">\(\hat{\sigma}^2\)</span>. The variance of the expectation is just
+<span class="arithmatex">\(\mathop{\mathrm{Var}}[E_{\mathbf{w} \mid \hat{\alpha}^2, \mathcal{D}}[\mathbf{w}^T \phi(x_*) + \epsilon(x)]]\)</span>.
+The expectation just becomes <span class="arithmatex">\(\mathbf{w}^T \phi(x_*)\)</span>. The variance of
+this term is thus
+<span class="arithmatex">\(\phi(x_*)^T \mathop{\mathrm{Var}}[\mathbf{w}] \phi(x_*)\)</span>. However, the
+variance of this term is just the covariance matrix so we have:</p>
+<div class="arithmatex">\[\begin{equation}
+    y_* \mid x_*, \mathcal{D}, \hat{\sigma}^2, \hat{\alpha}^2 \sim \mathcal{N}(y(x_*) ; m_*, \nu_*)
+\end{equation}$$ $$\begin{equation}
+    m_* = \bm{\mu}^T \phi(x)
+\end{equation}$$ $$\begin{equation}
+    \nu_* = \hat{\sigma}^2 + \phi(x_*)^T \Lambda^{-1} \phi(x_*)
+\end{equation}\]</div>
+<p>:::: centeredboxblue
+::: example
+<strong>Example: 3</strong>. <strong>Sanity Check</strong></p>
+<p><span class="arithmatex">\(m_* = \bm{\mu} ^T \phi(x)\)</span>: this is a reasonable answer for our mean as
+it's the inner product of our posterior mean (expected values of
+parameter after having observed <span class="arithmatex">\(\mathcal{D}\)</span>) with our parameters. The
+variance <span class="arithmatex">\(\nu_* = \sigma^2 + \phi(x_*)^T \Lambda^{-1} \phi(x_*)\)</span> so we
+have noise variance <span class="arithmatex">\(\sigma^2\)</span> and the uncertainty over the parameters.</p>
+<p>Consider the extreme. Suppose we have a ton of noise, i.e.
+<span class="arithmatex">\(\sigma \to \infty\)</span>. Then, the posterior mean goes to <span class="arithmatex">\(0\)</span> and variance
+goes to <span class="arithmatex">\(\alpha^2 I\)</span>. This is the prior. In other words, if there's a
+ton of noise and we can't infer information from the likelihood, our
+posterior becomes our prior. If <span class="arithmatex">\(\alpha \to 0\)</span>, we have zero variance
+over weights and our distribution becomes peaked with mean <span class="arithmatex">\(0\)</span> and
+variance <span class="arithmatex">\(0\)</span>. Our prior is too strong.
+:::
+::::</p>
+<p>To summarize:</p>
+<ol>
+<li>
+<p>We find the predictive distribution by marginalizing over different
+    parameter settings and weighting them by the posterior probability.
+    $<span class="arithmatex">\(\begin{equation}
+        p(y(x_*) \mid \alpha^2, \sigma^2) = \int p(y(x_*) \mid \mathbf{w}, \sigma^2) p(\mathbf{w} \mid \alpha^2) \ d\mathbf{w}
+    \end{equation}\)</span>$</p>
+</li>
+<li>
+<p>We optimize the hyperparameters by maximizing the marginal
+    likelihood of the data. $<span class="arithmatex">\(\begin{equation}
+        \hat{\alpha}^2, \hat{\sigma}^2 = \mathop{\mathrm{arg\,max}}_{\alpha^2, \sigma^2} p(D \mid \alpha^2, \sigma^2) = \mathop{\mathrm{arg\,max}}_{\alpha^2, \sigma^2} \int p(D \mid w, \sigma^2) p(w \mid \alpha^2) \ d\mathbf{w}
+    \end{equation}\)</span>$</p>
+</li>
+<li>
+<p>We make predictions
+    <span class="arithmatex">\(p(y(x_*) \mid \hat{\alpha}^2, \hat{\sigma}^2), x_*, \mathcal{D}\)</span>.</p>
+</li>
+</ol>
+<p>However, this does not constitute a fully Bayesian treatment. Fully
+Bayesian methods do not optimize hyperparameters but rather marginalize
+over them (Bayesian Model Average). We don't bet everything on a single
+setting of parameters because we have uncertainty over our parameters
+even after we've observed data. In this procedure, we're optimizing
+<span class="arithmatex">\(\hat{\sigma}^2, \hat{\alpha}^2\)</span> and conditioning our predictive
+distribution on those values. But our posterior over <span class="arithmatex">\(\alpha^2\)</span>
+shouldn't be a point mass but rather a distribution.</p>
+<p>What we really want to find is <span class="arithmatex">\(p(y(x_*) \mid \mathbf{y}, X, x_*)\)</span>.</p>
+<div class="arithmatex">\[p(y(x_*) \mid \mathbf{y}, X, x_*) = \int p(y(x_*) \mid \alpha^2, \sigma^2) p(\alpha^2, \sigma^2 \mid D) \ d\alpha^2  \ d\sigma^2\]</div>
+<p>We apply our reasoning for marginalizing over <span class="arithmatex">\(\mathbf{w}\)</span> to also
+marginalize over <span class="arithmatex">\(\alpha^2, \sigma^2\)</span>. The posterior distribution over
+<span class="arithmatex">\(\alpha^2, \sigma^2\)</span> is thus:</p>
+<div class="arithmatex">\[p(\alpha^2, \sigma^2 \mid D) \propto p(D \mid \alpha^2, \sigma^2) p(\alpha^2, \sigma^2)\]</div>
+<p>The earlier <span class="arithmatex">\(3\)</span>-step procedure is a reasonably Bayesian approach as it's
+doing the BMA over low-level parameters <span class="arithmatex">\(\mathbf{w}\)</span> which are highly
+influential on our predictions. Optimizing the marginal likelihood also
+has a automatic model complexity penalty which has less risk of
+overfitting so it's not a completely non-Bayesian approach. This is
+called <strong>empirical Bayes</strong>.</p>
+<p>The prior distribution has hyperparameters and we theoretically want to marginalize over those. However, this just constitutes moving one layer up a hierarchy of priors, hyperparameters for the priors, hyperparameters for those hyperparameters, etc. When do we stop doing integration? Isn't there infinite recursion? The intuitive answer is that at some point, it doesn't matter too much. If <span class="arithmatex">\(w\)</span> are the parameters, <span class="arithmatex">\(\alpha^2, \sigma^2\)</span> are the hyper-parameters, so on and so forth, the setting of those don't influence our predictions as much as we have so much uncertainty.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
