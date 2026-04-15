@@ -6,8 +6,9 @@
 
 Consider a non-empty set $\Omega$.
 
-!!! info "Definition: $\sigma$-algebra"
-    A collection $\mathcal{S}$ of subsets of $\Omega$ for which:
+!!! info "Definition"
+
+    **$\sigma$-algebra**. A collection $\mathcal{S}$ of subsets of $\Omega$ for which:
 
     1. $\Omega \in \mathcal{S}$.
     2. $A \in \mathcal{S} \implies A^C \in \mathcal{S}$.

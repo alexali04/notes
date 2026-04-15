@@ -43,18 +43,13 @@
   .md-typeset .admonition.example > .admonition-title::before,
   .md-typeset .admonition.warning > .admonition-title::before,
   .md-typeset .admonition.quote > .admonition-title::before {
-    display: inline !important;
+    content: "" !important;
+    display: none !important;
     background: none !important;
     mask: none !important;
     -webkit-mask: none !important;
     mask-image: none !important;
     -webkit-mask-image: none !important;
-    width: auto !important;
-    height: auto !important;
-    vertical-align: baseline !important;
-    position: static !important;
-    margin-right: 0.3em;
-    font-weight: bold;
   }
 
   /* Also hide any inline SVG icons */
@@ -80,15 +75,34 @@
   }
 
   /* ============================================
-     ADMONITION ENVIRONMENTS
-       info       -> Definition
-       tip        -> Theorem
-       success    -> Proposition
-       question   -> Lemma
-       example    -> Example
-       warning    -> Corollary
-       quote      -> Proof
+     ADMONITION ENVIRONMENTS — counters via ::after
+     so numbers appear AFTER the title text:
+       "Definition 1.1: σ-algebra"
+       "Theorem 1.2: Carathéodory"
+
+     Usage in markdown:
+       !!! info "Definition: σ-algebra"
+       !!! tip "Theorem: Carathéodory Extension"
+       !!! question "Lemma: Borel-Cantelli"
+       !!! success "Proposition: Uniqueness"
+       !!! warning "Corollary: Monotone Convergence"
+       !!! example "Example: Lebesgue Measure"
+       !!! quote "Proof"
      ============================================ */
+
+  /* Shared ::after base styles */
+  .md-typeset .admonition.info > .admonition-title::after,
+  .md-typeset .admonition.tip > .admonition-title::after,
+  .md-typeset .admonition.success > .admonition-title::after,
+  .md-typeset .admonition.question > .admonition-title::after,
+  .md-typeset .admonition.example > .admonition-title::after,
+  .md-typeset .admonition.warning > .admonition-title::after {
+    font-weight: bold;
+    display: inline !important;
+    background: none !important;
+    mask: none !important;
+    -webkit-mask: none !important;
+  }
 
   /* --- Definition (info) --- */
   .md-typeset .admonition.info {
@@ -99,9 +113,9 @@
     background-color: rgba(0, 188, 212, 0.1);
   }
 
-  .md-typeset .admonition.info > .admonition-title::before {
+  .md-typeset .admonition.info > .admonition-title::after {
     counter-increment: definition;
-    content: counter(h2) "." counter(definition) "  " !important;
+    content: " " counter(h2) "." counter(definition);
   }
 
   /* --- Theorem (tip) --- */
@@ -113,9 +127,9 @@
     background-color: rgba(64, 81, 181, 0.1);
   }
 
-  .md-typeset .admonition.tip > .admonition-title::before {
+  .md-typeset .admonition.tip > .admonition-title::after {
     counter-increment: theorem;
-    content: counter(h2) "." counter(theorem) "  " !important;
+    content: " " counter(h2) "." counter(theorem);
   }
 
   /* --- Lemma (question) --- */
@@ -127,9 +141,9 @@
     background-color: rgba(124, 77, 255, 0.1);
   }
 
-  .md-typeset .admonition.question > .admonition-title::before {
+  .md-typeset .admonition.question > .admonition-title::after {
     counter-increment: lemma;
-    content: counter(h2) "." counter(lemma) "  " !important;
+    content: " " counter(h2) "." counter(lemma);
   }
 
   /* --- Proposition (success) --- */
@@ -141,9 +155,9 @@
     background-color: rgba(0, 200, 83, 0.1);
   }
 
-  .md-typeset .admonition.success > .admonition-title::before {
+  .md-typeset .admonition.success > .admonition-title::after {
     counter-increment: proposition;
-    content: counter(h2) "." counter(proposition) "  " !important;
+    content: " " counter(h2) "." counter(proposition);
   }
 
   /* --- Corollary (warning) --- */
@@ -155,9 +169,9 @@
     background-color: rgba(255, 145, 0, 0.1);
   }
 
-  .md-typeset .admonition.warning > .admonition-title::before {
+  .md-typeset .admonition.warning > .admonition-title::after {
     counter-increment: corollary;
-    content: counter(h2) "." counter(corollary) "  " !important;
+    content: " " counter(h2) "." counter(corollary);
   }
 
   /* --- Example (example) --- */
@@ -169,9 +183,9 @@
     background-color: rgba(124, 77, 255, 0.1);
   }
 
-  .md-typeset .admonition.example > .admonition-title::before {
+  .md-typeset .admonition.example > .admonition-title::after {
     counter-increment: example;
-    content: counter(h2) "." counter(example) "  " !important;
+    content: " " counter(h2) "." counter(example);
   }
 
   /* --- Proof (quote) --- */
@@ -184,9 +198,9 @@
     background-color: rgba(158, 158, 158, 0.1);
   }
 
-  /* No counter for proofs - just clear the icon */
-  .md-typeset .admonition.quote > .admonition-title::before {
-    content: "" !important;
+  /* No counter for proofs */
+  .md-typeset .admonition.quote > .admonition-title::after {
+    content: none;
   }
 
   /* QED square at end of proof */
