@@ -2,7 +2,7 @@
    AUTO-NUMBERED SECTIONS
    ============================================ */
 
-  body {
+   body {
     counter-reset: h2 definition theorem lemma proposition corollary example;
   }
 
@@ -33,8 +33,54 @@
   }
 
   /* ============================================
+     SHARED: Kill default admonition icons
+     ============================================ */
+
+  .md-typeset .admonition.info > .admonition-title::before,
+  .md-typeset .admonition.tip > .admonition-title::before,
+  .md-typeset .admonition.success > .admonition-title::before,
+  .md-typeset .admonition.question > .admonition-title::before,
+  .md-typeset .admonition.example > .admonition-title::before,
+  .md-typeset .admonition.warning > .admonition-title::before,
+  .md-typeset .admonition.quote > .admonition-title::before {
+    display: inline !important;
+    background: none !important;
+    mask: none !important;
+    -webkit-mask: none !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    width: auto !important;
+    height: auto !important;
+    vertical-align: baseline !important;
+    position: static !important;
+    margin-right: 0.3em;
+    font-weight: bold;
+  }
+
+  /* Also hide any inline SVG icons */
+  .md-typeset .admonition.info > .admonition-title svg,
+  .md-typeset .admonition.tip > .admonition-title svg,
+  .md-typeset .admonition.success > .admonition-title svg,
+  .md-typeset .admonition.question > .admonition-title svg,
+  .md-typeset .admonition.example > .admonition-title svg,
+  .md-typeset .admonition.warning > .admonition-title svg,
+  .md-typeset .admonition.quote > .admonition-title svg {
+    display: none !important;
+  }
+
+  /* Remove left padding that was reserved for icons */
+  .md-typeset .admonition.info > .admonition-title,
+  .md-typeset .admonition.tip > .admonition-title,
+  .md-typeset .admonition.success > .admonition-title,
+  .md-typeset .admonition.question > .admonition-title,
+  .md-typeset .admonition.example > .admonition-title,
+  .md-typeset .admonition.warning > .admonition-title,
+  .md-typeset .admonition.quote > .admonition-title {
+    padding-left: 0.6rem !important;
+  }
+
+  /* ============================================
      ADMONITION ENVIRONMENTS
-     Uses MkDocs admonition types:
        info       -> Definition
        tip        -> Theorem
        success    -> Proposition
@@ -43,17 +89,6 @@
        warning    -> Corollary
        quote      -> Proof
      ============================================ */
-
-  /* --- Hide default icons for all math environments --- */
-  .md-typeset .admonition.info > .admonition-title svg,
-  .md-typeset .admonition.tip > .admonition-title svg,
-  .md-typeset .admonition.success > .admonition-title svg,
-  .md-typeset .admonition.question > .admonition-title svg,
-  .md-typeset .admonition.example > .admonition-title svg,
-  .md-typeset .admonition.warning > .admonition-title svg,
-  .md-typeset .admonition.quote > .admonition-title svg {
-    display: none;
-  }
 
   /* --- Definition (info) --- */
   .md-typeset .admonition.info {
@@ -66,8 +101,7 @@
 
   .md-typeset .admonition.info > .admonition-title::before {
     counter-increment: definition;
-    content: counter(h2) "." counter(definition) " ";
-    font-weight: bold;
+    content: counter(h2) "." counter(definition) "  " !important;
   }
 
   /* --- Theorem (tip) --- */
@@ -81,8 +115,7 @@
 
   .md-typeset .admonition.tip > .admonition-title::before {
     counter-increment: theorem;
-    content: counter(h2) "." counter(theorem) " ";
-    font-weight: bold;
+    content: counter(h2) "." counter(theorem) "  " !important;
   }
 
   /* --- Lemma (question) --- */
@@ -96,8 +129,7 @@
 
   .md-typeset .admonition.question > .admonition-title::before {
     counter-increment: lemma;
-    content: counter(h2) "." counter(lemma) " ";
-    font-weight: bold;
+    content: counter(h2) "." counter(lemma) "  " !important;
   }
 
   /* --- Proposition (success) --- */
@@ -111,8 +143,7 @@
 
   .md-typeset .admonition.success > .admonition-title::before {
     counter-increment: proposition;
-    content: counter(h2) "." counter(proposition) " ";
-    font-weight: bold;
+    content: counter(h2) "." counter(proposition) "  " !important;
   }
 
   /* --- Corollary (warning) --- */
@@ -126,8 +157,7 @@
 
   .md-typeset .admonition.warning > .admonition-title::before {
     counter-increment: corollary;
-    content: counter(h2) "." counter(corollary) " ";
-    font-weight: bold;
+    content: counter(h2) "." counter(corollary) "  " !important;
   }
 
   /* --- Example (example) --- */
@@ -141,8 +171,7 @@
 
   .md-typeset .admonition.example > .admonition-title::before {
     counter-increment: example;
-    content: counter(h2) "." counter(example) " ";
-    font-weight: bold;
+    content: counter(h2) "." counter(example) "  " !important;
   }
 
   /* --- Proof (quote) --- */
@@ -155,7 +184,10 @@
     background-color: rgba(158, 158, 158, 0.1);
   }
 
-  /* No numbering for proofs */
+  /* No counter for proofs - just clear the icon */
+  .md-typeset .admonition.quote > .admonition-title::before {
+    content: "" !important;
+  }
 
   /* QED square at end of proof */
   .md-typeset .admonition.quote > p:last-child::after,
