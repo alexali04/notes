@@ -1,0 +1,8 @@
+body {
+  counter-reset: definition theorem;
+}
+
+.admonition.info .admonition-title::before {
+  counter-increment: definition;
+  content: counter(definition) ". ";
+}
