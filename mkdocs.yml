@@ -8,6 +8,8 @@ markdown_extensions:
       generic: true
   - admonition
   - pymdownx.details
+  - toc:
+      permalink: true
 
 
 extra_javascript:
