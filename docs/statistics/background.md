@@ -8,9 +8,11 @@
 
     A **metric space** is a pair $(M, d)$ consisting of a set of points $M$ and a metric $d: M \times M \to \mathbb{R}_{\geq 0}$. $d$ is symmetric, positive-definite, and satisfies the triangle-inequality.
 
-Examples:
-1. The real line $\mathbb{R}$ is a metric space under $d(x, y) = |x - y|$.
-2. $\mathbb{R}^2$ is a metric space where $d((x_1, y_1), (x_2, y_2)) = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2}$.
+!!! example "Examples: $\mathbb{R}^N$"
+
+    1. The real line $\mathbb{R}$ is a metric space under $d(x, y) = |x - y|$.
+
+    2. $\mathbb{R}^2$ is a metric space where $d((x_1, y_1), (x_2, y_2)) = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2}$.
 
 This metric allows for very natural definitions of convergence and continuity.
 
