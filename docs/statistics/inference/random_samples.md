@@ -3,7 +3,6 @@
 ## Basic Concepts
 
 !!! info "Definition: I.I.D. random Variables"
-
     A *random sample* of size $n$ from a population with distribution $f(x)$ is a collection of mutually independent random variables $X_1, \dots, X_n$ where each RV has marginal distribution $f(x)$. Alternatively, $X_1, \dots, X_n$ are called *independently and identically distributed random variables with probability distribution $p(x)$*.
 
 By independence, we have:
@@ -44,13 +43,14 @@ Examples: Max value in sample, min value in sample, average sample value, sample
 
 !!! tip "Theorem: MSE, Sample Variance"
 
-    a. $\hat{\mu} = \argmin_a \sum_{i = 1}^n (x_i - a)^2$.
+    a. $\hat{\mu} = \text{argmin}_a \sum_{i = 1}^n (x_i - a)^2$.
 
     The proof is simple. Taking partials w.r.t. $a$ to get:
 
     $$
     0 = \sum_{i = 1}^n (x_i - a)
     $$
+
     $$
     n a = \sum_{i = 1}^n x_i \implies a = \frac{1}{n} \sum_{i = 1}^n x_i
     $$
@@ -138,6 +138,7 @@ Examples: Max value in sample, min value in sample, average sample value, sample
     $$
     \mathbb{E}[\hat{\sigma}^2] = \mathbb{E}[\frac{1}{n - 1} \sum_{i = 1}^n (X_i - \hat{\mu})^2]
     $$
+
     $$
     = \frac{1}{n - 1} \mathbb{E}[\sum_{i = 1}^n (X_i - \hat{\mu})^2]
     $$
@@ -165,6 +166,8 @@ The use of $n - 1$ in the definition of $\hat{\sigma}^2$ may seem unintuitive, b
 
 !!! info "Definition: Order Statistics"
     The order statistics of a random sample $X_1, \dots, X_n$ are the sample values placed in ascending order, $X_{(1)}, \dots, X_{(n)}$ where if $i < j$, $X_{(i)} < X_{(j)}$.
+
+
 
 
 
