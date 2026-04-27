@@ -1,5 +1,0 @@
-# Probability Distributions
-
-## Discrete Distributions
-
-
