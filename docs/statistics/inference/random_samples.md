@@ -3,7 +3,6 @@
 ## Basic Concepts
 
 !!! info "Definition: I.I.D. random Variables"
-
   A *random sample* of size $n$ from a population with distribution $f(x)$ is a collection of mutually independent random variables $X_1, \dots, X_n$ where each RV has marginal distribution $f(x)$. Alternatively, $X_1, \dots, X_n$ are called *independently and identically distributed random variables with probability distribution $p(x)$*.
 
 By independence, we have:
@@ -21,7 +20,6 @@ $$
 ## Sums over Random Samples
 
 !!! info "Definition: Statistic"
-
   Let $X_1, \dots, X_n$ be a random sample (drawn with replacement) of size $n$ from a population. Let $T(x_1, \dots, x_n)$ be a functionn whose domain includes the sample space of $(X_1, \dots, X_n)$. The random variable (possibly a vector) $Y = T(X_1, \dots, X_n)$ is called a *statistic*. The distribution of $Y$ is called the *sampling distribution* of $Y$.
 
 The only restriction on a statistic is that it cannot be a function of a parameter.
@@ -29,13 +27,11 @@ The only restriction on a statistic is that it cannot be a function of a paramet
 Examples: Max value in sample, min value in sample, average sample value, sample variance.
 
 !!! example "Example: Sample Mean"
-
   $$
   \hat{\mu} = \frac{1}{n} \sum_{i = 1}^n X_i
   $$
 
 !!! example "Example: Sample Variance"
-
   $$
   \hat{\sigma}^2 = \frac{1}{n - 1} \sum_{i = 1}^n (X_i - \mu)^2
   $$
@@ -43,7 +39,6 @@ Examples: Max value in sample, min value in sample, average sample value, sample
   The sample standard deviation is then $\hat{\sigma}$.
 
 !!! tip "Theorem: MSE, Sample Variance"
-
   a. $\hat{\mu} = \argmin_a \sum_{i = 1}^n (x_i - a)^2$.
 
   The proof is simple. Taking partials w.r.t. $a$ to get:
@@ -78,7 +73,6 @@ Examples: Max value in sample, min value in sample, average sample value, sample
   $$
 
 !!! question "Lemma: Linearity"
-
   Let $X_1, \dots, X_n$ be a random sample from a population. Let $g(x)$ be a function such that $\mathbb{E}[g(X)], \text{Var}[g(X)]$ exist.
 
   Then,
@@ -120,7 +114,6 @@ Examples: Max value in sample, min value in sample, average sample value, sample
   $$
 
 !!! tip "Theorem: Sampling Distribution"
-
   Let $X_1, \dots, X_n$ be a random sample from a population with mean $\mu$ and variance $\sigma^2 < \infty$. Then,
 
   1. $\mathbb{E}[\hat{\mu}] = \mu$. The proof is simple:
@@ -166,10 +159,9 @@ The use of $n - 1$ in the definition of $\hat{\sigma}^2$ may seem unintuitive, b
 ## Order Statistics
 
 !!! info "Definition: Order Statistics"
+  The order statistics of a random sample $X_1, \dots, X_n$ are the sample values placed in ascending order, $X_{(1)}, \dots, X_{(n)}$ where if $i < j$, $X_{(i)} < X_{(j)}$.
 
-  The order statistics of a random sample $X_1, \dots, X_n$ are the sample values placed in ascending order, $X_{(1)}, \dots, X_{(n)}$ where if $i < j>, $X_{(i)} < X_{(j)}$.
 
-  
 
 
 
