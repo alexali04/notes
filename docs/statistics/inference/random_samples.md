@@ -1,6 +1,6 @@
 # Random Samples
 
-## Basic Concepts
+## Definition
 
 !!! info "Definition: I.I.D. random Variables"
     A *random sample* of size $n$ from a population with distribution $f(x)$ is a collection of mutually independent random variables $X_1, \dots, X_n$ where each RV has marginal distribution $f(x)$. Alternatively, $X_1, \dots, X_n$ are called *independently and identically distributed random variables with probability distribution $p(x)$*.
@@ -17,7 +17,7 @@ $$
 f(x_1, \dots, x_n \mid \theta) = \prod_{i = 1}^n f(x_i \mid \theta)
 $$
 
-## Sums over Random Samples
+## Sample Statistics
 
 !!! info "Definition: Statistic"
 
@@ -162,10 +162,53 @@ Examples: Max value in sample, min value in sample, average sample value, sample
 
 The use of $n - 1$ in the definition of $\hat{\sigma}^2$ may seem unintuitive, but we have shown why we use it - it is unbiased (in that in expectation, the sample parameter converges to the population parameter). This particular correction is called the *Bessel correction*.
 
-## Order Statistics
+## Convergence
 
-!!! info "Definition: Order Statistics"
-    The order statistics of a random sample $X_1, \dots, X_n$ are the sample values placed in ascending order, $X_{(1)}, \dots, X_{(n)}$ where if $i < j$, $X_{(i)} < X_{(j)}$.
+What happens as sample size approaches infinity? We want to observe the behavior of $\hat{\mu}_n$ as $n \to \infty$.
+
+!!! info "Definition: Convergence in Probability"
+    A sequence of random variables *converges in probability* to a random variables $X$ if for every $\epsilon > 0$,
+
+    $$
+    \lim_{n \to \infty} P(|X_n - X| \geq \epsilon) = 0
+    $$
+
+We are frequently concerned with scenarios where the limiting random variable is a constant.
+
+!!! tip "Theorem: Weak Law of Large Numbers"
+    Let $X_1, X_2, \dots$ be i.i.d. random variables where $\mathbb{E}[X_i] = \mu$, $\text{Var}(X_i) < \infty$. Define $\hat{\mu}_n = \frac{1}{n} \sum_{i = 1}^n X_i$. Then for every $\epsilon > 0$,
+
+    $$
+    \lim_{n \to \infty} P(|\hat{\mu}_n - \mu| > \epsilon) = 0
+    $$
+
+!!! quote "Proof: Weak LLN"
+
+    Chebychev's inequality: For every $\epsilon > 0$,
+
+    $$
+    P(|\hat{\mu}_n - \mu| \geq \epsilon) = P((\hat{\mu}_n - \mu)^2 \geq \epsilon^2)
+    $$
+
+    $$
+    \leq \frac{\mathbb{E}[(\hat{\mu}_n - \mu)^2]}{\epsilon^2}
+    $$
+
+    $$
+    = \frac{\text{Var}(\hat{\mu}_n)}{\epsilon^2}
+    $$
+
+    $$
+    = \frac{\sigma^2}{n \epsilon^2}
+    $$
+
+    Then, as $n \to \infty$, $P(|\hat{\mu}_n - \mu| \geq \epsilon) \to 0$.
+
+The Weak LLN states that as sample size approaches infinity, the sample mean converges in probability to the true mean.
+
+**Consistency** is a property of estimators where as $n \to \infty$, the sequence of estimators converges in probability to the true parameter value. 
+
+
 
 
 
