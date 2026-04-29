@@ -1,5 +1,7 @@
 # Random Samples
 
+Notes on Ch. 5 of Statistical Inference by Casella and Berger.
+
 ## Definition
 
 !!! info "Definition: I.I.D. random Variables"
@@ -166,8 +168,10 @@ The use of $n - 1$ in the definition of $\hat{\sigma}^2$ may seem unintuitive, b
 
 What happens as sample size approaches infinity? We want to observe the behavior of $\hat{\mu}_n$ as $n \to \infty$.
 
+### Convergence In Probability
+
 !!! info "Definition: Convergence in Probability"
-    A sequence of random variables *converges in probability* to a random variables $X$ if for every $\epsilon > 0$,
+    A sequence of random variables $X_1, X_2, \dots$ *converges in probability* to a random variables $X$ if for every $\epsilon > 0$,
 
     $$
     \lim_{n \to \infty} P(|X_n - X| \geq \epsilon) = 0
@@ -206,7 +210,76 @@ We are frequently concerned with scenarios where the limiting random variable is
 
 The Weak LLN states that as sample size approaches infinity, the sample mean converges in probability to the true mean.
 
-**Consistency** is a property of estimators where as $n \to \infty$, the sequence of estimators converges in probability to the true parameter value. 
+**Consistency** is a property of estimators where as $n \to \infty$, the sequence of estimators converges in probability to the true parameter value.
+
+!!! example "Example: Consistency of $S^2_n$"
+    Suppose we have a sequence $X_1, X_2, \dots$ of i.i.d. random variables with mean $\mu$ and finite variance $\sigma^2$. Given that:
+
+    $$
+    S^2_n = \frac{1}{n - 1} \sum_{i = 1}^n (X_i - \bar{\mu}_n)^2
+    $$
+
+    Can we prove a WLLN for $S_n^2$?
+
+    By Chebyshev, we have:
+
+    $$
+    P(|S^2_n - \sigma^2| \geq \epsilon) \leq \frac{\mathbb{E}[S^2_n - \sigma^2]^2}{\epsilon}
+    $$
+
+    $$
+    = \frac{\text{Var}(S^2_n)}{\epsilon}
+    $$
+
+    In other words, a sufficient condition for $S_n^2$ to converge in probability to $\sigma^2$ is for $\text{Var}(S^2_n) \to 0$ as $n \to \infty$.
+
+
+!!! tip "Theorem: Function Convergence"
+    Suppose $X_1, X_2, \dots$ converge in probability to $X$ and $h$ is a continuous function. Then, $h(X_1), h(X_2), \dots$ converges in probability to $h(X)$.
+
+
+### Almost Sure Convergence
+
+!!! info "Definition: Almost Sure Convergence"
+    A sequence of random variables $X_1, X_2, \dots$ **converges almost surely** to a random variable $X$ if for every $\epsilon > 0$,
+
+    $$
+    P(\lim_{n \to \infty} |X_n - X| < \epsilon) = 1
+    $$
+
+This type of convergence is stronger than convergence is probability (similar to pointwise convergence of a sequence).
+
+A rando variable is a real-valued function on a sample $S$ where $X_n(s)$ and $X(s)$ are functions defined over $S$. $X_n$ converges almost surely to $X$ if the functions $X_n(s)$ converges to $X(s)$ for all $s \in S$ except for $s \in N$ where $N \subset S$ and $P(N) = 0$.
+
+!!! example "Example: A.S. Convergence"
+    Let $S = [0, 1]$ with a uniform distribution. Define $X_n(s) = s + s^n$ and $X(s) = s$. For all $s \in [0, 1), s^n \to 0$ as $n \to \infty$ and $X_n(s) \to s = X(s)$. For the point $1$, $X_n(1) = 2$ for all $n$ so $X_n(1)$ doesn't converge to $1$. However, $P[0, 1) = 1$ so $X_n$ converges to $X$ almost surely.
+
+!!! example "Example: Convergence in Probability, not almost surely"
+    Again, let $S = [0, 1]$ with a uniform distribution. Define
+
+    $$
+    X_1(s) = s + I_{[0, 1]}(s)
+    $$
+
+    $$
+    X_2(s) = s + I_{[0, 1 / 2]}(s), X_3(s) = s + I_{[1/2, 1]}(s)
+    $$
+
+    $$
+    X_4(s) = s + I_{[0, 1 / 3]}(s), X_5(s) = s + I_{[1/3, 2/3]}(s), X_6(s) = s + I_{[2/3, 1]}(s)
+    $$
+
+    Let $X(s) = s$. As $n \to \infty$, $P(|X_n - X| \geq \epsilon)$ is the probability of $s$ being in successively smaller intervals (scaling like something $\frac{1}{n}$) which goes to $0$. However, there will always be some $s$ for which $X_n(s) \neq s$.
+
+
+!!! info "Definition: Convergence in Distribution"
+    A sequence of random variables $X_1, X_2, \dots$ *converges in distribution* to $X$ if
+
+    $$
+    \lim_{n \to \infty} F_{X_n}(s) = F_X(s)
+    $$
+
+    where $F_X(x)$ is continuous.
 
 
 
