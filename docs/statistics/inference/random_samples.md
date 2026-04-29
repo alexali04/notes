@@ -269,7 +269,15 @@ A rando variable is a real-valued function on a sample $S$ where $X_n(s)$ and $X
     X_4(s) = s + I_{[0, 1 / 3]}(s), X_5(s) = s + I_{[1/3, 2/3]}(s), X_6(s) = s + I_{[2/3, 1]}(s)
     $$
 
-    Let $X(s) = s$. As $n \to \infty$, $P(|X_n - X| \geq \epsilon)$ is the probability of $s$ being in successively smaller intervals (scaling like something $\frac{1}{n}$) which goes to $0$. However, there will always be some $s$ for which $X_n(s) \neq s$.
+    Let $X(s) = s$. The sequence $(X_n)$ iterates over the $[0, 1]$ interval several times. Each time, it's value is either $s$ or $1 + s$ assuming s happens to fall in a vanishingly small interval.
+
+    Convergence in probability looks at the limit of the probability. Specifically, $\lim_{n \to \infty} P(|X_n - X| \geq \epsilon)$. We can characterize $P(|X_n - X| \geq \epsilon)$ by observing that for each "pass" of the $[0, 1]$ interval that only $\frac{1}{n}$ interval will produce an estimate equal to $1 + s$. However, the number of intervals continues to grow so in the limit, this probability goes to $0$. Hence, we have convergence in probability.
+
+    However, we do not have a.s. convergence as the sequence doesn't even converge - there is no radius $\epsilon$ and point $N$ after which all points indexed by $n > N$ live entirely inside the $\epsilon$-ball. There will always be some point $s'$ such that $X_n(s') = 1 + s'$ (due to $s'$ always existing in of our intervals). 
+
+
+
+
 
 
 !!! info "Definition: Convergence in Distribution"
