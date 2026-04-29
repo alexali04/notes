@@ -177,6 +177,12 @@ What happens as sample size approaches infinity? We want to observe the behavior
     \lim_{n \to \infty} P(|X_n - X| \geq \epsilon) = 0
     $$
 
+    or
+
+    $$
+    \lim_{n \to \infty} P(|X_n - X| < \epsilon) = 1
+    $$
+
 We are frequently concerned with scenarios where the limiting random variable is a constant.
 
 !!! tip "Theorem: Weak Law of Large Numbers"
@@ -273,10 +279,23 @@ A rando variable is a real-valued function on a sample $S$ where $X_n(s)$ and $X
 
     Convergence in probability looks at the limit of the probability. Specifically, $\lim_{n \to \infty} P(|X_n - X| \geq \epsilon)$. We can characterize $P(|X_n - X| \geq \epsilon)$ by observing that for each "pass" of the $[0, 1]$ interval that only $\frac{1}{n}$ interval will produce an estimate equal to $1 + s$. However, the number of intervals continues to grow so in the limit, this probability goes to $0$. Hence, we have convergence in probability.
 
-    However, we do not have a.s. convergence as the sequence doesn't even converge - there is no radius $\epsilon$ and point $N$ after which all points indexed by $n > N$ live entirely inside the $\epsilon$-ball. There will always be some point $s'$ such that $X_n(s') = 1 + s'$ (due to $s'$ always existing in of our intervals). 
+    However, we do not have a.s. convergence as the sequence doesn't even converge - there is no radius $\epsilon$ and point $N$ after which all points indexed by $n > N$ live entirely inside the $\epsilon$-ball. There will always be some point $s'$ such that $X_n(s') = 1 + s'$ (due to $s'$ always existing in of our intervals).
 
+**Expanding the limit**: To better understand the difference, let's try writing out the definition. We will borrow some vocabulary from measure theory.
 
+Let $S' = \{s \in S: X_n(s) \to X(s)\}$. For each point $s \in S'$, you can pick any radius $\epsilon$. Then, there exists a point $N(\epsilon, s)$ (this is *personalized* to each $s$) such that for all $n \geq N(\epsilon, s)$, $|X_n(s) - X(s)| < \epsilon$. This is essentially point-wise convergence - for each input, a sequence of functions converges to a limiting value.
 
+Almost sure convergence says that $\mu(S') = 1$.
+
+Comparatively, convergence in probability concerns the entire set. Define $G_{\epsilon}^n = \{s \in S: |X_n(s) - X(s)| < \epsilon\}$. Convergence in probability states that for any $\epsilon > 0$, as $n \to \infty$, $\mu(G_{\epsilon}^n) \to 1$.
+
+In other words,
+- Convergence i.p.: As $n \to \infty$, the set of points close to $X$ *obtains* measure $1$.
+- A.s. Convergence: The set of points which converges *has* measure $1$.
+
+Applying this reasoning to our previous example, $X_n(s)$ converges i.p. because as $n \to \infty$, the interval gets chopped up into finer points as the "bad set"'s measure scales like $\frac{1}{n}$. Hence in the limit, the "good set"'s measure converges to $1$.
+
+However, the set of points which converges does not have measure $1$ because the set of points which converges is *empty*. For all $s$, there is no $N(\epsilon, s)$ past which $X_n(s)$ is always close to $X(s)$ as $X_n(s)$ always lands in the "bad interval" at least once per iteration of $[0, 1]$ causing it to jump outside of the $\epsilon$-ball.
 
 
 
