@@ -1,0 +1,153 @@
+body {
+  counter-reset: h2;
+}
+
+h2 {
+  counter-reset: h3;
+  counter-increment: h2;
+}
+
+h2::before {
+  content: counter(h2) ". ";
+}
+
+h3 {
+  counter-reset: h4;
+  counter-increment: h3;
+}
+
+h3::before {
+  content: counter(h2) "." counter(h3) ". ";
+}
+
+h4 {
+  counter-increment: h4;
+}
+
+h4::before {
+  content: counter(h2) "." counter(h3) "." counter(h4) ". ";
+}
+
+/* ============================================
+    SHARED: Kill default admonition icons
+    ============================================ */
+
+.md-typeset .admonition.info > .admonition-title::before,
+.md-typeset .admonition.tip > .admonition-title::before,
+.md-typeset .admonition.success > .admonition-title::before,
+.md-typeset .admonition.question > .admonition-title::before,
+.md-typeset .admonition.example > .admonition-title::before,
+.md-typeset .admonition.warning > .admonition-title::before,
+.md-typeset .admonition.quote > .admonition-title::before {
+  content: "" !important;
+  display: none !important;
+  background: none !important;
+  mask: none !important;
+  -webkit-mask: none !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+}
+
+/* Hide any inline SVG icons */
+.md-typeset .admonition.info > .admonition-title svg,
+.md-typeset .admonition.tip > .admonition-title svg,
+.md-typeset .admonition.success > .admonition-title svg,
+.md-typeset .admonition.question > .admonition-title svg,
+.md-typeset .admonition.example > .admonition-title svg,
+.md-typeset .admonition.warning > .admonition-title svg,
+.md-typeset .admonition.quote > .admonition-title svg {
+  display: none !important;
+}
+
+/* Remove left padding reserved for icons */
+.md-typeset .admonition.info > .admonition-title,
+.md-typeset .admonition.tip > .admonition-title,
+.md-typeset .admonition.success > .admonition-title,
+.md-typeset .admonition.question > .admonition-title,
+.md-typeset .admonition.example > .admonition-title,
+.md-typeset .admonition.warning > .admonition-title,
+.md-typeset .admonition.quote > .admonition-title {
+  padding-left: 0.6rem !important;
+}
+
+/* ============================================
+    ADMONITION STYLES
+    Numbering is handled by the Python hook.
+    CSS only controls colors and borders.
+    ============================================ */
+
+/* --- Definition (info) --- */
+.md-typeset .admonition.info {
+  border-left-color: #00bcd4;
+}
+
+.md-typeset .admonition.info > .admonition-title {
+  background-color: rgba(0, 188, 212, 0.1);
+}
+
+/* --- Theorem (tip) --- */
+.md-typeset .admonition.tip {
+  border-left-color: #4051b5;
+}
+
+.md-typeset .admonition.tip > .admonition-title {
+  background-color: rgba(64, 81, 181, 0.1);
+}
+
+/* --- Lemma (question) --- */
+.md-typeset .admonition.question {
+  border-left-color: #7c4dff;
+}
+
+.md-typeset .admonition.question > .admonition-title {
+  background-color: rgba(124, 77, 255, 0.1);
+}
+
+/* --- Proposition (success) --- */
+.md-typeset .admonition.success {
+  border-left-color: #00c853;
+}
+
+.md-typeset .admonition.success > .admonition-title {
+  background-color: rgba(0, 200, 83, 0.1);
+}
+
+/* --- Corollary (warning) --- */
+.md-typeset .admonition.warning {
+  border-left-color: #ff9100;
+}
+
+.md-typeset .admonition.warning > .admonition-title {
+  background-color: rgba(255, 145, 0, 0.1);
+}
+
+/* --- Example (example) --- */
+.md-typeset .admonition.example {
+  border-left-color: #7c4dff;
+}
+
+.md-typeset .admonition.example > .admonition-title {
+  background-color: rgba(124, 77, 255, 0.1);
+}
+
+/* --- Proof (quote) --- */
+.md-typeset .admonition.quote {
+  border-left-color: #9e9e9e;
+  font-style: normal;
+}
+
+.md-typeset .admonition.quote > .admonition-title {
+  background-color: rgba(158, 158, 158, 0.1);
+}
+
+/* QED square at end of proof */
+.md-typeset .admonition.quote > p:last-child::after,
+.md-typeset .admonition.quote > ol:last-child > li:last-child::after {
+  content: " ∎";
+  float: right;
+  font-size: 1.2em;
+}
+
+.md-typeset .admonition {
+  font-size: inherit !important;
+}

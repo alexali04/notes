@@ -1,0 +1,1134 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://alexali04.github.io/notes/statistics/inference/random_samples/">
+      
+      
+        <link rel="prev" href="../point_estimation/">
+      
+      
+        <link rel="next" href="../useful_formulas/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Random Samples - ML Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#random-samples" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="ML Notes" class="md-header__button md-logo" aria-label="ML Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ML Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Random Samples
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ML Notes" class="md-nav__button md-logo" aria-label="ML Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ML Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Statistics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Statistics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../background/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Math Background
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bayesian
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bayesian
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bayesian/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bayesian/model_construction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Construction and Statistical Inference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distributions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../point_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point Estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Random Samples
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Random Samples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Statistics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convergence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Convergence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convergence-in-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convergence In Probability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#almost-sure-convergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Almost Sure Convergence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convergence-in-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convergence In Distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../useful_formulas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Useful Formulas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Statistics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convergence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Convergence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convergence-in-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convergence In Probability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#almost-sure-convergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Almost Sure Convergence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convergence-in-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convergence In Distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="random-samples">Random Samples<a class="headerlink" href="#random-samples" title="Permanent link">&para;</a></h1>
+<p>Notes on Ch. 5 of Statistical Inference by Casella and Berger.</p>
+<h2 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Definition 1.1: I.I.D. random Variables</p>
+<p>A <em>random sample</em> of size <span class="arithmatex">\(n\)</span> from a population with distribution <span class="arithmatex">\(f(x)\)</span> is a collection of mutually independent random variables <span class="arithmatex">\(X_1, \dots, X_n\)</span> where each RV has marginal distribution <span class="arithmatex">\(f(x)\)</span>. Alternatively, <span class="arithmatex">\(X_1, \dots, X_n\)</span> are called <em>independently and identically distributed random variables with probability distribution <span class="arithmatex">\(p(x)\)</span></em>.</p>
+</div>
+<p>By independence, we have:</p>
+<div class="arithmatex">\[
+f(x_1, \dots, x_n) = \prod_{i = 1}^n f(x_i)
+\]</div>
+<p>If the population distribution is from a parametric family given by <span class="arithmatex">\(f(x \mid \theta)\)</span>,</p>
+<div class="arithmatex">\[
+f(x_1, \dots, x_n \mid \theta) = \prod_{i = 1}^n f(x_i \mid \theta)
+\]</div>
+<h2 id="sample-statistics">Sample Statistics<a class="headerlink" href="#sample-statistics" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Definition 2.1: Statistic</p>
+<p>Let <span class="arithmatex">\(X_1, \dots, X_n\)</span> be a random sample (drawn with replacement) of size <span class="arithmatex">\(n\)</span> from a population. Let <span class="arithmatex">\(T(x_1, \dots, x_n)\)</span> be a functionn whose domain includes the sample space of <span class="arithmatex">\((X_1, \dots, X_n)\)</span>. The random variable (possibly a vector) <span class="arithmatex">\(Y = T(X_1, \dots, X_n)\)</span> is called a <em>statistic</em>. The distribution of <span class="arithmatex">\(Y\)</span> is called the <em>sampling distribution</em> of <span class="arithmatex">\(Y\)</span>.</p>
+</div>
+<p>The only restriction on a statistic is that it cannot be a function of a parameter.</p>
+<p>Examples: Max value in sample, min value in sample, average sample value, sample variance.</p>
+<div class="admonition example">
+<p class="admonition-title">Example 2.1: Sample Mean</p>
+<div class="arithmatex">\[
+\hat{\mu} = \frac{1}{n} \sum_{i = 1}^n X_i
+\]</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example 2.2: Sample Variance</p>
+<div class="arithmatex">\[
+\hat{\sigma}^2 = \frac{1}{n - 1} \sum_{i = 1}^n (X_i - \mu)^2
+\]</div>
+<p>The sample standard deviation is then <span class="arithmatex">\(\hat{\sigma}\)</span>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 2.1: MSE, Sample Variance</p>
+<p>a. <span class="arithmatex">\(\hat{\mu} = \text{argmin}_a \sum_{i = 1}^n (x_i - a)^2\)</span>.</p>
+<p>The proof is simple. Taking partials w.r.t. <span class="arithmatex">\(a\)</span> to get:</p>
+<div class="arithmatex">\[
+0 = \sum_{i = 1}^n (x_i - a)
+\]</div>
+<div class="arithmatex">\[
+n a = \sum_{i = 1}^n x_i \implies a = \frac{1}{n} \sum_{i = 1}^n x_i
+\]</div>
+<p>b. <span class="arithmatex">\((n - 1) \hat{\sigma}^2 = \sum_{i = 1}^n (x_i - \hat{\mu})^2 = \sum_{i = 1}^n x_i^2 - n \hat{\mu}^2\)</span>.</p>
+<p>Proof:</p>
+<p>Let <span class="arithmatex">\(S = \sum_{i = 1}^n x_i\)</span>. Then, <span class="arithmatex">\(\hat{\mu} = \frac{1}{n} S\)</span>.</p>
+<div class="arithmatex">\[
+\sum_{i = 1}^n (x_i - \hat{\mu})^2 = \sum_{i = 1}^n x_i^2 + \hat{\mu}^2 - 2 \hat{\mu} x_i
+\]</div>
+<div class="arithmatex">\[
+= n \hat{\mu}^2 + \sum_{i = 1}^n x_i^2 - 2 \hat{\mu} \sum_{i = 1}^n x_i
+\]</div>
+<div class="arithmatex">\[
+= n \hat{\mu}^2 + \sum_{i = 1}^n x_i^2 - 2 n \hat{\mu}^2
+\]</div>
+<div class="arithmatex">\[
+= \sum_{i = 1}^n x_i^2 - n \hat{\mu}^2
+\]</div>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Lemma 2.1: Linearity</p>
+<p>Let <span class="arithmatex">\(X_1, \dots, X_n\)</span> be a random sample from a population. Let <span class="arithmatex">\(g(x)\)</span> be a function such that <span class="arithmatex">\(\mathbb{E}[g(X)], \text{Var}[g(X)]\)</span> exist.</p>
+<p>Then,</p>
+<div class="arithmatex">\[
+\mathbb{E}[\sum_{i = 1}^n g(X_i)] = n \mathbb{E}[g(X_1)]
+\]</div>
+<div class="arithmatex">\[
+\text{Var}[\sum_{i = 1}^n g(X_i)] = n \text{Var}(g(X_1))
+\]</div>
+<p>The first statement is true for any identically distributed collection of random variables by the linearity of expectation (it does not require independence). The second statement requires both identical distributions and independence.</p>
+<p>Linearity of expectation follows from the linearity of a sum. We will prove the second statement now.</p>
+<div class="arithmatex">\[
+\text{Var} \left ( \sum_{i = 1}^n g(X_i) \right ) = \mathbb{E} \left [ \sum_{i = 1}^n g(X_i) - \mathbb{E}[\sum_{i = 1}^n g(X_i)]\right ]^2
+\]</div>
+<div class="arithmatex">\[
+= \mathbb{E} \left [  \sum_{i = 1}^n \left ( g(X_i) - \mathbb{E}[g(X_i)] \right ) \right ]^2
+\]</div>
+<p>We've used linearity of expectation to take the sum over <span class="arithmatex">\(n\)</span> expectations of <span class="arithmatex">\(g(X_i)\)</span>.</p>
+<p>The outer-most expectation has a "hidden" index <span class="arithmatex">\(j\)</span> running over all samples. So there are <span class="arithmatex">\(n^2\)</span> terms total with <span class="arithmatex">\(n\)</span> corresponding to <span class="arithmatex">\(\mathbb{E}[g(X_i) - \mathbb{E}[g(X_i)]]^2 = \text{Var}(g(X_1))\)</span>. These are like the diagonals of our covariance matrix.</p>
+<p>The other <span class="arithmatex">\(n(n - 1)\)</span> terms are covariances and factorize like</p>
+<div class="arithmatex">\[
+\mathbb{E}[(g(X_i) - \mathbb{E}[g(X_i)]) (g(X_j) - \mathbb{E}[g(X_j)])] = \text{Cov}(g(X_i), g(X_j))
+\]</div>
+<p>However, since the different samples are independent, this covariance is equal to <span class="arithmatex">\(0\)</span>. So we wind up with</p>
+<div class="arithmatex">\[
+\text{Var} \left [\sum_{i = 1}^n g(X_i) \right ] = n \text{Var}(g(X_1))
+\]</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 2.2: Sampling Distribution</p>
+<p>Let <span class="arithmatex">\(X_1, \dots, X_n\)</span> be a random sample from a population with mean <span class="arithmatex">\(\mu\)</span> and variance <span class="arithmatex">\(\sigma^2 &lt; \infty\)</span>. Then,</p>
+<ol>
+<li><span class="arithmatex">\(\mathbb{E}[\hat{\mu}] = \mu\)</span>. The proof is simple:</li>
+</ol>
+<div class="arithmatex">\[
+\mathbb{E}[\hat{\mu}] = \frac{1}{n} \mathbb{E}[\sum_{i = 1}^n X_i] = \mu
+\]</div>
+<ol>
+<li><span class="arithmatex">\(\text{Var}(\hat{\mu}) = \frac{\sigma^2}{n}\)</span>.</li>
+</ol>
+<div class="arithmatex">\[
+\text{Var}(\hat{\mu}) = \frac{1}{n^2} \text{Var}(\sum_{i = 1}^n X_i) = \frac{\sigma^2}{n}
+\]</div>
+<ol>
+<li><span class="arithmatex">\(\mathbb{E}[\hat{\sigma}^2] = \sigma^2\)</span>.</li>
+</ol>
+<div class="arithmatex">\[
+\mathbb{E}[\hat{\sigma}^2] = \mathbb{E}[\frac{1}{n - 1} \sum_{i = 1}^n (X_i - \hat{\mu})^2]
+\]</div>
+<div class="arithmatex">\[
+= \frac{1}{n - 1} \mathbb{E}[\sum_{i = 1}^n (X_i - \hat{\mu})^2]
+\]</div>
+<p>By our previous theorem, we get:
+$$
+= \frac{1}{n - 1} \mathbb{E}[\sum_{i = 1}^n X_i^2 - n \hat{\mu}^2]
+$$
+$$
+= \frac{n}{n - 1} \mathbb{E}[X_i^2] - \mathbb{E}\hat{\mu}^2
+$$
+$$
+= \frac{n}{n - 1} (\mu^2 + \sigma^2 - (\mu^2 + \frac{\sigma^2}{n}))
+$$
+$$
+= \frac{n}{n - 1} (\sigma^2 - \frac{\sigma^2}{n})
+$$
+$$
+= \frac{n}{n - 1} \frac{(n - 1) \sigma^2}{n} = \sigma^2
+$$</p>
+</div>
+<p>The use of <span class="arithmatex">\(n - 1\)</span> in the definition of <span class="arithmatex">\(\hat{\sigma}^2\)</span> may seem unintuitive, but we have shown why we use it - it is unbiased (in that in expectation, the sample parameter converges to the population parameter). This particular correction is called the <em>Bessel correction</em>.</p>
+<h2 id="convergence">Convergence<a class="headerlink" href="#convergence" title="Permanent link">&para;</a></h2>
+<p>What happens as sample size approaches infinity? We want to observe the behavior of <span class="arithmatex">\(\hat{\mu}_n\)</span> as <span class="arithmatex">\(n \to \infty\)</span>.</p>
+<h3 id="convergence-in-probability">Convergence In Probability<a class="headerlink" href="#convergence-in-probability" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Definition 3.1: Convergence in Probability</p>
+<p>A sequence of random variables <span class="arithmatex">\(X_1, X_2, \dots\)</span> <em>converges in probability</em> to a random variables <span class="arithmatex">\(X\)</span> if for every <span class="arithmatex">\(\epsilon &gt; 0\)</span>,</p>
+<div class="arithmatex">\[
+\lim_{n \to \infty} P(|X_n - X| \geq \epsilon) = 0
+\]</div>
+<p>or</p>
+<div class="arithmatex">\[
+\lim_{n \to \infty} P(|X_n - X| &lt; \epsilon) = 1
+\]</div>
+</div>
+<p>We are frequently concerned with scenarios where the limiting random variable is a constant.</p>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 3.1: Weak Law of Large Numbers</p>
+<p>Let <span class="arithmatex">\(X_1, X_2, \dots\)</span> be i.i.d. random variables where <span class="arithmatex">\(\mathbb{E}[X_i] = \mu\)</span>, <span class="arithmatex">\(\text{Var}(X_i) &lt; \infty\)</span>. Define <span class="arithmatex">\(\hat{\mu}_n = \frac{1}{n} \sum_{i = 1}^n X_i\)</span>. Then for every <span class="arithmatex">\(\epsilon &gt; 0\)</span>,</p>
+<div class="arithmatex">\[
+\lim_{n \to \infty} P(|\hat{\mu}_n - \mu| &gt; \epsilon) = 0
+\]</div>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof: Weak LLN</p>
+<p>Chebychev's inequality: For every <span class="arithmatex">\(\epsilon &gt; 0\)</span>,</p>
+<div class="arithmatex">\[
+P(|\hat{\mu}_n - \mu| \geq \epsilon) = P((\hat{\mu}_n - \mu)^2 \geq \epsilon^2)
+\]</div>
+<div class="arithmatex">\[
+\leq \frac{\mathbb{E}[(\hat{\mu}_n - \mu)^2]}{\epsilon^2}
+\]</div>
+<div class="arithmatex">\[
+= \frac{\text{Var}(\hat{\mu}_n)}{\epsilon^2}
+\]</div>
+<div class="arithmatex">\[
+= \frac{\sigma^2}{n \epsilon^2}
+\]</div>
+<p>Then, as <span class="arithmatex">\(n \to \infty\)</span>, <span class="arithmatex">\(P(|\hat{\mu}_n - \mu| \geq \epsilon) \to 0\)</span>.</p>
+</div>
+<p>The Weak LLN states that as sample size approaches infinity, the sample mean converges in probability to the true mean.</p>
+<p><strong>Consistency</strong> is a property of estimators where as <span class="arithmatex">\(n \to \infty\)</span>, the sequence of estimators converges in probability to the true parameter value.</p>
+<div class="admonition example">
+<p class="admonition-title">Example 3.1: Consistency of <span class="arithmatex">\(S^2_n\)</span></p>
+<p>Suppose we have a sequence <span class="arithmatex">\(X_1, X_2, \dots\)</span> of i.i.d. random variables with mean <span class="arithmatex">\(\mu\)</span> and finite variance <span class="arithmatex">\(\sigma^2\)</span>. Given that:</p>
+<div class="arithmatex">\[
+S^2_n = \frac{1}{n - 1} \sum_{i = 1}^n (X_i - \bar{\mu}_n)^2
+\]</div>
+<p>Can we prove a WLLN for <span class="arithmatex">\(S_n^2\)</span>?</p>
+<p>By Chebyshev, we have:</p>
+<div class="arithmatex">\[
+P(|S^2_n - \sigma^2| \geq \epsilon) \leq \frac{\mathbb{E}[S^2_n - \sigma^2]^2}{\epsilon}
+\]</div>
+<div class="arithmatex">\[
+= \frac{\text{Var}(S^2_n)}{\epsilon}
+\]</div>
+<p>In other words, a sufficient condition for <span class="arithmatex">\(S_n^2\)</span> to converge in probability to <span class="arithmatex">\(\sigma^2\)</span> is for <span class="arithmatex">\(\text{Var}(S^2_n) \to 0\)</span> as <span class="arithmatex">\(n \to \infty\)</span>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 3.2: Function Convergence</p>
+<p>Suppose <span class="arithmatex">\(X_1, X_2, \dots\)</span> converge in probability to <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(h\)</span> is a continuous function. Then, <span class="arithmatex">\(h(X_1), h(X_2), \dots\)</span> converges in probability to <span class="arithmatex">\(h(X)\)</span>.</p>
+</div>
+<h3 id="almost-sure-convergence">Almost Sure Convergence<a class="headerlink" href="#almost-sure-convergence" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Definition 3.2: Almost Sure Convergence</p>
+<p>A sequence of random variables <span class="arithmatex">\(X_1, X_2, \dots\)</span> <strong>converges almost surely</strong> to a random variable <span class="arithmatex">\(X\)</span> if for every <span class="arithmatex">\(\epsilon &gt; 0\)</span>,</p>
+<div class="arithmatex">\[
+P(\lim_{n \to \infty} |X_n - X| &lt; \epsilon) = 1
+\]</div>
+</div>
+<p>This type of convergence is stronger than convergence is probability (similar to pointwise convergence of a sequence).</p>
+<p>A rando variable is a real-valued function on a sample <span class="arithmatex">\(S\)</span> where <span class="arithmatex">\(X_n(s)\)</span> and <span class="arithmatex">\(X(s)\)</span> are functions defined over <span class="arithmatex">\(S\)</span>. <span class="arithmatex">\(X_n\)</span> converges almost surely to <span class="arithmatex">\(X\)</span> if the functions <span class="arithmatex">\(X_n(s)\)</span> converges to <span class="arithmatex">\(X(s)\)</span> for all <span class="arithmatex">\(s \in S\)</span> except for <span class="arithmatex">\(s \in N\)</span> where <span class="arithmatex">\(N \subset S\)</span> and <span class="arithmatex">\(P(N) = 0\)</span>.</p>
+<div class="admonition example">
+<p class="admonition-title">Example 3.2: A.S. Convergence</p>
+<p>Let <span class="arithmatex">\(S = [0, 1]\)</span> with a uniform distribution. Define <span class="arithmatex">\(X_n(s) = s + s^n\)</span> and <span class="arithmatex">\(X(s) = s\)</span>. For all <span class="arithmatex">\(s \in [0, 1), s^n \to 0\)</span> as <span class="arithmatex">\(n \to \infty\)</span> and <span class="arithmatex">\(X_n(s) \to s = X(s)\)</span>. For the point <span class="arithmatex">\(1\)</span>, <span class="arithmatex">\(X_n(1) = 2\)</span> for all <span class="arithmatex">\(n\)</span> so <span class="arithmatex">\(X_n(1)\)</span> doesn't converge to <span class="arithmatex">\(1\)</span>. However, <span class="arithmatex">\(P[0, 1) = 1\)</span> so <span class="arithmatex">\(X_n\)</span> converges to <span class="arithmatex">\(X\)</span> almost surely.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example 3.3: Convergence in Probability, not almost surely</p>
+<p>Again, let <span class="arithmatex">\(S = [0, 1]\)</span> with a uniform distribution. Define</p>
+<div class="arithmatex">\[
+X_1(s) = s + I_{[0, 1]}(s)
+\]</div>
+<div class="arithmatex">\[
+X_2(s) = s + I_{[0, 1 / 2]}(s), X_3(s) = s + I_{[1/2, 1]}(s)
+\]</div>
+<div class="arithmatex">\[
+X_4(s) = s + I_{[0, 1 / 3]}(s), X_5(s) = s + I_{[1/3, 2/3]}(s), X_6(s) = s + I_{[2/3, 1]}(s)
+\]</div>
+<p>Let <span class="arithmatex">\(X(s) = s\)</span>. The sequence <span class="arithmatex">\((X_n)\)</span> iterates over the <span class="arithmatex">\([0, 1]\)</span> interval several times. Each time, it's value is either <span class="arithmatex">\(s\)</span> or <span class="arithmatex">\(1 + s\)</span> (whenever s hits the vanishingly small interval).</p>
+<p>Convergence in probability looks at the limit of the probability. Specifically, <span class="arithmatex">\(\lim_{n \to \infty} P(|X_n - X| \geq \epsilon)\)</span>. We can characterize <span class="arithmatex">\(P(|X_n - X| \geq \epsilon)\)</span> by observing that for each "pass" of the <span class="arithmatex">\([0, 1]\)</span> interval that only <span class="arithmatex">\(\frac{1}{n}\)</span> interval will produce an estimate equal to <span class="arithmatex">\(1 + s\)</span>. However, the number of intervals continues to grow so in the limit, this probability goes to <span class="arithmatex">\(0\)</span>. Hence, we have convergence in probability.</p>
+<p>However, we do not have a.s. convergence as the sequence doesn't even converge - there is no radius <span class="arithmatex">\(\epsilon\)</span> and point <span class="arithmatex">\(N\)</span> after which all points indexed by <span class="arithmatex">\(n &gt; N\)</span> live entirely inside the <span class="arithmatex">\(\epsilon\)</span>-ball.</p>
+</div>
+<p><strong>Expanding the limit</strong>: To better understand the difference, let's try writing out the definition. We will borrow some vocabulary from measure theory.</p>
+<p>Let <span class="arithmatex">\(S' = \{s \in S: X_n(s) \to X(s)\}\)</span>. For each point <span class="arithmatex">\(s \in S'\)</span>, you can pick any radius <span class="arithmatex">\(\epsilon\)</span>. Then, there exists a point <span class="arithmatex">\(N(\epsilon, s)\)</span> (this is <em>personalized</em> to each <span class="arithmatex">\(s\)</span>) such that for all <span class="arithmatex">\(n \geq N(\epsilon, s)\)</span>, <span class="arithmatex">\(|X_n(s) - X(s)| &lt; \epsilon\)</span>. This is essentially point-wise convergence - for each input, a sequence of functions converges to a limiting value.</p>
+<p>Almost sure convergence says that <span class="arithmatex">\(\mu(S') = 1\)</span>.</p>
+<p>Comparatively, convergence in probability concerns the entire set. Define <span class="arithmatex">\(G_{\epsilon}^n = \{s \in S: |X_n(s) - X(s)| &lt; \epsilon\}\)</span>. Convergence in probability states that for any <span class="arithmatex">\(\epsilon &gt; 0\)</span>, as <span class="arithmatex">\(n \to \infty\)</span>, <span class="arithmatex">\(\mu(G_{\epsilon}^n) \to 1\)</span>.</p>
+<p>In other words,</p>
+<ol>
+<li>Convergence i.p.: As <span class="arithmatex">\(n \to \infty\)</span>, the set of points close to <span class="arithmatex">\(X\)</span> <em>obtains</em> measure <span class="arithmatex">\(1\)</span>.</li>
+<li>A.s. Convergence: The set of points which converges <em>has</em> measure <span class="arithmatex">\(1\)</span>.</li>
+</ol>
+<p>Applying this reasoning to our previous example, <span class="arithmatex">\(X_n(s)\)</span> converges i.p. because as <span class="arithmatex">\(n \to \infty\)</span>, the interval gets chopped up into finer points as the measure of the "bad set" scales like <span class="arithmatex">\(\frac{1}{n}\)</span>. Hence in the limit, the "good set" measure converges to <span class="arithmatex">\(1\)</span>.</p>
+<p>However, the set of points which converges does not have measure <span class="arithmatex">\(1\)</span> because the set of points which converges point-wise is <em>empty</em>. For all <span class="arithmatex">\(s\)</span>, there is no <span class="arithmatex">\(N(\epsilon, s)\)</span> past which <span class="arithmatex">\(X_n(s)\)</span> is always close to <span class="arithmatex">\(X(s)\)</span> as <span class="arithmatex">\(X_n(s)\)</span> always lands in the "bad interval" at least once per iteration of <span class="arithmatex">\([0, 1]\)</span> causing it to jump outside of the <span class="arithmatex">\(\epsilon\)</span>-ball.</p>
+<p>With a.s. convergence, if you pick a <span class="arithmatex">\(s\)</span>, then past a certain point <span class="arithmatex">\(X_n(s)\)</span> is guaranteed to be close to <span class="arithmatex">\(X(s)\)</span> forever. This is convergence at the level of the sample path.</p>
+<p>With i.p. convergence, for each <span class="arithmatex">\(n\)</span>, you have a set <span class="arithmatex">\(G_{\epsilon}^n\)</span> consisting of good points which are near to <span class="arithmatex">\(X(s)\)</span> and this set will limit towards measure <span class="arithmatex">\(1\)</span>. However, continued <em>membership</em> of <span class="arithmatex">\(G_{\epsilon}^n\)</span> is not guaranteed - sample paths can drift out of the class as long as the measure of the bad set shrinks.</p>
+<h3 id="convergence-in-distribution">Convergence In Distribution<a class="headerlink" href="#convergence-in-distribution" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Definition 3.3: Convergence in Distribution</p>
+<p>A sequence of random variables <span class="arithmatex">\(X_1, X_2, \dots\)</span> <em>converges in distribution</em> to <span class="arithmatex">\(X\)</span> if</p>
+<div class="arithmatex">\[
+\lim_{n \to \infty} F_{X_n}(s) = F_X(s)
+\]</div>
+<p>where <span class="arithmatex">\(F_X(x)\)</span> is continuous.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 3.3: Slutsky's Theorem</p>
+<p>If <span class="arithmatex">\(X_n \to X\)</span> in distribution and <span class="arithmatex">\(Y_n \to a\)</span>, a constant in probability, then</p>
+</div>
+<ol>
+<li><span class="arithmatex">\(Y_n X_n \to aX\)</span> in distribution.</li>
+<li><span class="arithmatex">\(X_n + Y_n \to X + a\)</span> in distribution. </li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
