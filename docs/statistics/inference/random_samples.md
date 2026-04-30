@@ -279,7 +279,7 @@ A rando variable is a real-valued function on a sample $S$ where $X_n(s)$ and $X
 
     Convergence in probability looks at the limit of the probability. Specifically, $\lim_{n \to \infty} P(|X_n - X| \geq \epsilon)$. We can characterize $P(|X_n - X| \geq \epsilon)$ by observing that for each "pass" of the $[0, 1]$ interval that only $\frac{1}{n}$ interval will produce an estimate equal to $1 + s$. However, the number of intervals continues to grow so in the limit, this probability goes to $0$. Hence, we have convergence in probability.
 
-    However, we do not have a.s. convergence as the sequence doesn't even converge - there is no radius $\epsilon$ and point $N$ after which all points indexed by $n > N$ live entirely inside the $\epsilon$-ball. There will always be some point $s'$ such that $X_n(s') = 1 + s'$ (due to $s'$ always existing in of our intervals).
+    However, we do not have a.s. convergence as the sequence doesn't even converge - there is no radius $\epsilon$ and point $N$ after which all points indexed by $n > N$ live entirely inside the $\epsilon$-ball.
 
 **Expanding the limit**: To better understand the difference, let's try writing out the definition. We will borrow some vocabulary from measure theory.
 
@@ -302,7 +302,7 @@ With a.s. convergence, if you pick a $s$, then past a certain point $X_n(s)$ is 
 
 With i.p. convergence, for each $n$, you have a set $G_{\epsilon}^n$ consisting of good points which are near to $X(s)$ and this set will limit towards measure $1$. However, continued *membership* of $G_{\epsilon}^n$ is not guaranteed - sample paths can drift out of the class as long as the measure of the bad set shrinks.
 
-
+### Convergence In Distribution
 
 !!! info "Definition: Convergence in Distribution"
     A sequence of random variables $X_1, X_2, \dots$ *converges in distribution* to $X$ if
@@ -313,6 +313,11 @@ With i.p. convergence, for each $n$, you have a set $G_{\epsilon}^n$ consisting 
 
     where $F_X(x)$ is continuous.
 
+!!! tip "Theorem: Slutsky's Theorem"
+    If $X_n \to X$ in distribution and $Y_n \to a$, a constant in probability, then
+
+   1. $Y_n X_n \to aX$ in distribution.
+   2. $X_n + Y_n \to X + a$ in distribution. 
 
 
 
