@@ -275,7 +275,7 @@ A rando variable is a real-valued function on a sample $S$ where $X_n(s)$ and $X
     X_4(s) = s + I_{[0, 1 / 3]}(s), X_5(s) = s + I_{[1/3, 2/3]}(s), X_6(s) = s + I_{[2/3, 1]}(s)
     $$
 
-    Let $X(s) = s$. The sequence $(X_n)$ iterates over the $[0, 1]$ interval several times. Each time, it's value is either $s$ or $1 + s$ assuming s happens to fall in a vanishingly small interval.
+    Let $X(s) = s$. The sequence $(X_n)$ iterates over the $[0, 1]$ interval several times. Each time, it's value is either $s$ or $1 + s$ (whenever s hits the vanishingly small interval).
 
     Convergence in probability looks at the limit of the probability. Specifically, $\lim_{n \to \infty} P(|X_n - X| \geq \epsilon)$. We can characterize $P(|X_n - X| \geq \epsilon)$ by observing that for each "pass" of the $[0, 1]$ interval that only $\frac{1}{n}$ interval will produce an estimate equal to $1 + s$. However, the number of intervals continues to grow so in the limit, this probability goes to $0$. Hence, we have convergence in probability.
 
@@ -290,12 +290,16 @@ Almost sure convergence says that $\mu(S') = 1$.
 Comparatively, convergence in probability concerns the entire set. Define $G_{\epsilon}^n = \{s \in S: |X_n(s) - X(s)| < \epsilon\}$. Convergence in probability states that for any $\epsilon > 0$, as $n \to \infty$, $\mu(G_{\epsilon}^n) \to 1$.
 
 In other words,
-- Convergence i.p.: As $n \to \infty$, the set of points close to $X$ *obtains* measure $1$.
-- A.s. Convergence: The set of points which converges *has* measure $1$.
+1. Convergence i.p.: As $n \to \infty$, the set of points close to $X$ *obtains* measure $1$.
+2. A.s. Convergence: The set of points which converges *has* measure $1$.
 
-Applying this reasoning to our previous example, $X_n(s)$ converges i.p. because as $n \to \infty$, the interval gets chopped up into finer points as the "bad set"'s measure scales like $\frac{1}{n}$. Hence in the limit, the "good set"'s measure converges to $1$.
+Applying this reasoning to our previous example, $X_n(s)$ converges i.p. because as $n \to \infty$, the interval gets chopped up into finer points as the measure of the "bad set" scales like $\frac{1}{n}$. Hence in the limit, the "good set" measure converges to $1$.
 
-However, the set of points which converges does not have measure $1$ because the set of points which converges is *empty*. For all $s$, there is no $N(\epsilon, s)$ past which $X_n(s)$ is always close to $X(s)$ as $X_n(s)$ always lands in the "bad interval" at least once per iteration of $[0, 1]$ causing it to jump outside of the $\epsilon$-ball.
+However, the set of points which converges does not have measure $1$ because the set of points which converges point-wise is *empty*. For all $s$, there is no $N(\epsilon, s)$ past which $X_n(s)$ is always close to $X(s)$ as $X_n(s)$ always lands in the "bad interval" at least once per iteration of $[0, 1]$ causing it to jump outside of the $\epsilon$-ball.
+
+With a.s. convergence, if you pick a $s$, then past a certain point $X_n(s)$ is guaranteed to be close to $X(s)$ forever. This is convergence at the level of the sample path.
+
+With i.p. convergence, for each $n$, you have a set $G_{\epsilon}^n$ consisting of good points which are near to $X(s)$ and this set will limit towards measure $1$. However, continued *membership* of $G_{\epsilon}^n$ is not guaranteed - sample paths can drift out of the class as long as the measure of the bad set shrinks.
 
 
 
