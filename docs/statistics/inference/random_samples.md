@@ -291,8 +291,8 @@ Comparatively, convergence in probability concerns the entire set. Define $G_{\e
 
 In other words,
 
-    1. Convergence i.p.: As $n \to \infty$, the set of points close to $X$ *obtains* measure $1$.
-    2. A.s. Convergence: The set of points which converges *has* measure $1$.
+1. Convergence i.p.: As $n \to \infty$, the set of points close to $X$ *obtains* measure $1$.
+2. A.s. Convergence: The set of points which converges *has* measure $1$.
 
 Applying this reasoning to our previous example, $X_n(s)$ converges i.p. because as $n \to \infty$, the interval gets chopped up into finer points as the measure of the "bad set" scales like $\frac{1}{n}$. Hence in the limit, the "good set" measure converges to $1$.
 
