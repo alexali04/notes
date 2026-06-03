@@ -16,6 +16,7 @@ Let $X_1, \dots, X_n$ be a sample from a population with distribution $f(x \mid 
 $$
 m_1 = \frac{1}{n} \sum_{i = 1}^n X_i^1, \mu_1 = \mathbb{E}[X^1]
 $$
+
 $$
 m_k = \frac{1}{n} \sum_{i = 1}^n X_i^k, \mu_k = \mathbb{E}[X^k]
 $$
