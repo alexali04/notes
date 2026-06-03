@@ -87,7 +87,7 @@ The posterior distribution tells us about the distribution of $\theta$ condition
     The bias of a point estimator $W$ of some parameter $\theta$ is the difference in the expected value of $W$ and $\theta$:
 
     $$
-    \text{Bias}_{\theta}(W) = \mathbb[E]_{\theta}(W) - \theta
+    \text{Bias}_{\theta}(W) = \mathbb{E_{\theta}}[W] - \theta
     $$
 
 Therefore, an unbiased estimator has an MSE equal to its variance.
