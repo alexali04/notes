@@ -26,7 +26,7 @@ $$
 
     We want to solve:
     $$
-    $\hat{\mu} = \theta, \frac{1}{n} \sum X_i^2 = \theta^2 + \sigma^2
+    \hat{\mu} = \theta, \frac{1}{n} \sum X_i^2 = \theta^2 + \sigma^2
     $$
 
     We get:
