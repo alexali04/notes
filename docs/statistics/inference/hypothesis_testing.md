@@ -25,7 +25,32 @@ Typically, a *test statistic* $W(X_1, \dots, X_n) = W(\mathbf{X})$ is a function
 
 ### Likelihood Ratio
 
+Recall that if $X_1, \dots, X_n$ is a random sample from a population with distribution $f(x \mid \theta)$, the likelihood function is:
 
+$$
+L(\theta \mid x_1, \dots, x_n) = L(\theta, \mathbf{x}) = f(\mathbf{x} \mid \theta) = \prod_{i = 1}^n f(x_i \mid \theta)
+$$
+
+!!! info "Definition: Likelihood Ratio Test Statistic"
+    Let $\Theta$ denote the parameter space. Then, the *likelihood ratio test statistic* for testing $H_0: \theta \in \Theta_0$ versus $H_1: \theta \in \Theta_0^C$ is
+
+    $$
+    \lambda(\mathbf{x}) = \frac{\sup_{\Theta_0} L(\theta \mid \mathbf{x})}{\sup_{\Theta} L(\theta \mid \mathbf{x})}
+    $$
+
+    A *likelihood ratio test* is any test with a rejection region of the form $\{\mathbf{x} : \lambda(\mathbf{x}) \leq c} where $0 \leq c \leq 1$.
+
+In the discrete case, the numerator is the maximum probability of the observed sample under the null hypothesis while the denominator is the maximum probability of the observed sample over all possible parameters.
+
+This ratio is small when there are points in the alternative hypothesis space where the observed sample is much more likely. When this ratio is close to $1$, the null hypothesis space produces as good (or nearly as good) likelihoods for the observed sample.
+
+This is essentially computing the ratio of maximum likelihoods.
+
+### Bayesian Tests
+
+We use the posterior distribution $\pi(\theta \mid \mathbf{x})$ to calculate the probabilities that $H_0, H_1$ are true. Recall $\pi(\theta \mid \mathbf{x})$ is a probability distribution over a random variable. The posterior probabilities, $P(\theta \in \Theta_0 \mid \mathbf{x}), P(\theta \in \Theta_0^C \mid \mathbf{x})$ can be computed.
+
+A Bayesian hypothesis tester can choose to accept $H_0$ as true if $P(\theta \in \Theta_0 \mid \mathbf{X}) \geq P(\theta \in \Theta_0^C \mid \mathbf{X})$. If the tester wishes to guard against false rejections, the tester can reject $H_0$ only if $P(\theta \in \Theta_0^C \mid \mathbf{X})$ is greater than some large number. 
 
 
 
