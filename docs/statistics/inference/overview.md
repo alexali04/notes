@@ -33,5 +33,6 @@ TODO:
 - Hypothesis Testing chapter
 
 Citations:
+
 - Casella, G., & Berger, R. (2024). Statistical Inference (2nd ed.). Chapman and Hall/CRC. https://doi.org/10.1201/9781003456285
 - Wasserman, L. (2013). All of Statistics: A Concise Course in Statistical Inference. Springer Science & Business Media.

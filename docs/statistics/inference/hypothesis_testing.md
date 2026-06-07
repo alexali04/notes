@@ -86,8 +86,11 @@ The accepted false positive tolerance rate defines the rejection region, bounded
 So in short:
 
 1. We devise some statistic $t(\mathbf{x})$ to test between two hypotheses $H_0, H_A$.
+
 2. We specify a significance level $\alpha$ - our tolerance for false positives (incorrectly rejecting the null).
+
 3. $\alpha$ constrains a rejection region bounded by $c$. $c$ "shaves off" the tail(s) of the sampling distribution of $t(\mathbf{x})$ under $H_0$.
+
 4. The statistical power of our test (against a specific $\theta$) is then (w.l.o.g.) the probability $P_{\theta}(t(\mathbf{x}) > c | \theta \in \Theta_0^C)$ - in other words, the probability of correctly accepting the alternative (with being at most $\alpha$ likely to falsely reject the null).
 
 In the $4$th step, power is a function defined over the parameter space - so we frequently observe power curves as opposed to a single number.
