@@ -23,7 +23,7 @@ $$
 
 !!! info "Definition: Statistic"
 
-    Let $X_1, \dots, X_n$ be a random sample (drawn with replacement) of size $n$ from a population. Let $T(x_1, \dots, x_n)$ be a functionn whose domain includes the sample space of $(X_1, \dots, X_n)$. The random variable (possibly a vector) $Y = T(X_1, \dots, X_n)$ is called a *statistic*. The distribution of $Y$ is called the *sampling distribution* of $Y$.
+    Let $X_1, \dots, X_n$ be a random sample (drawn with replacement) of size $n$ from a population. Let $T(x_1, \dots, x_n)$ be a function whose domain includes the sample space of $(X_1, \dots, X_n)$. The random variable (possibly a vector) $Y = T(X_1, \dots, X_n)$ is called a *statistic*. The distribution of $Y$ is called the *sampling distribution* of $Y$.
 
 The only restriction on a statistic is that it cannot be a function of a parameter.
 
@@ -317,7 +317,7 @@ With i.p. convergence, for each $n$, you have a set $G_{\epsilon}^n$ consisting 
     If $X_n \to X$ in distribution and $Y_n \to a$, a constant in probability, then
 
    1. $Y_n X_n \to aX$ in distribution.
-   2. $X_n + Y_n \to X + a$ in distribution. 
+   2. $X_n + Y_n \to X + a$ in distribution.
 
 
 
