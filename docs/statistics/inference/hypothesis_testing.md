@@ -84,6 +84,7 @@ The accepted false positive tolerance rate defines the rejection region, bounded
 ![Statistical Power - Wikipedia](../../images/wikiped.png)
 
 So in short:
+
 1. We devise some statistic $t(\mathbf{x})$ to test between two hypotheses $H_0, H_A$.
 2. We specify a significance level $\alpha$ - our tolerance for false positives (incorrectly rejecting the null).
 3. $\alpha$ constrains a rejection region bounded by $c$. $c$ "shaves off" the tail(s) of the sampling distribution of $t(\mathbf{x})$ under $H_0$.

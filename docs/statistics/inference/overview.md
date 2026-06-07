@@ -20,17 +20,17 @@ Preferably, an estimator should be:
 
 Here, we have several note pages taken from predominantly from "Statistical Inference" by Casella and Berger.
 
-Chapter 1: [Random Samples](random_samples.md). We review and derive common sample statistics and modes of convergence.
-Chapter 2: [Point Estimation](point_estimation.md). We look at a few point estimators.
-Chapter 3: [Hypothesis Testing](hypothesis_testing.md). We review the Fisher school of hypothesis testing.
-Chapter 4: Interval Estimation. We review the Fisher school of hypothesis testing.
-Chapter 5: Basic Asymptotics.
-Chapter 6:
+1. [Random Samples](random_samples.md). We review and derive common sample statistics and modes of convergence.
+2. [Point Estimation](point_estimation.md). We look at a few point estimators.
+3. [Hypothesis Testing](hypothesis_testing.md). We review the Fisher school of hypothesis testing.
+4. Interval Estimation. We review the Fisher school of hypothesis testing.
+5. Basic Asymptotics.
+6. ANOVA.
 
 TODO:
+
 - Work out exercises
 - Hypothesis Testing chapter
-- 
 
 Citations:
 - Casella, G., & Berger, R. (2024). Statistical Inference (2nd ed.). Chapman and Hall/CRC. https://doi.org/10.1201/9781003456285
