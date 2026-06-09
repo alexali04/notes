@@ -94,3 +94,40 @@ So in short:
 4. The statistical power of our test (against a specific $\theta$) is then (w.l.o.g.) the probability $P_{\theta}(t(\mathbf{x}) > c | \theta \in \Theta_0^C)$ - in other words, the probability of correctly accepting the alternative (with being at most $\alpha$ likely to falsely reject the null).
 
 In the $4$th step, power is a function defined over the parameter space - so we frequently observe power curves as opposed to a single number.
+
+### Most Powerful Tests
+
+Level $\alpha$ tests have Type I error probabilities at $\alpha$ for all $\theta \in \Theta_0$. A good test then would also have a small Type II Error probability (a large power function for $\theta \in \Theta_0^C$). If one test had a smaller Type II Error than all other tets in that $\alpha$-class, it could be the best test in class.
+
+!!! info "Definition: UMP"
+
+    Let $\mathcal{C}$ be a class of tests for testing $H_0: \theta \in \Theta_0$ vs $H_A: \theta \in \Theta_0^C$. A test in class $\mathcal{C}$ with power function $\beta(\theta)$ is a *uniformly most powerful* (UMP) class $C$ test if $\beta(\theta) \geq \beta'(\theta)$ for every $\theta \in \Theta_0^C$ and every $\beta'(\theta)$ that is a power function of a test in class $\mathcal{C}$.
+
+Essentially, a maximal Type I error tolerance $\alpha$ fixes a set of tests $\mathcal{C}$. The test whose power function (probability of correctly rejecting the null) for every $\theta \in \Theta_0^C$ is at least as large as every other power function in $\mathcal{C}$ is called the UMP test in class $\mathcal{C}$.
+
+These requirements are quite strong so in practice, a UMP test may not exist. We would like to be able to identify UMP tests if they exist. The *Neyman-Pearson Lemma* describes which tests are UMP level $\alpha$ tests where both the null and alternative hypotheses consists of one probability distribution (*simple* hypotheses).
+
+
+!!! tip "Theorem: Neyman-Pearson Lemma"
+
+    Consider testing $H_0: \theta = \Theta_0$ vs $H_1: \theta = \theta_1$ where the pdf correspoding to $\theta_i$ is $f(\mathbf{x} \mid \theta_i), i = 0, 1$ using a test with rejection region $R$ that satisfies
+
+    $$
+    \mathbf{x} \in R \text{ if } f(\mathbf{x} \mid \theta_1) > k f(\mathbf{x} \mid \theta_0)
+    $$
+
+    and
+
+    $$
+    \mathbf{x} \in R^C \text{ if } f(\mathbf{x} \mid \theta_1) < k f(\mathbf{x} \mid \theta_0)
+    $$
+
+    for some $k \geq 0$ and $\alpha = P_{\theta_0}(\mathbf{X} \in R)$, then
+
+    a. Sufficiency. Any test that satisfies the three above conditions is a UMP level $\alpha$-test.
+    b. Necessity. If there exists a test satisfying the three above conditions with $k > 0$, then every UMP level $\alpha$ test is a size $\alpha$ test and every UMP level $\alpha $ test satisfies the first two requirements except on a set $A$ satisfying $P_{\theta_0}(\mathbf{X} \in A) = P_{\theta_1}(\mathbf{X} \in A) = 0$.
+
+
+
+
+
