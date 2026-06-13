@@ -1,24 +1,22 @@
 """
-Auto-number admonitions with section-based counters.
+Auto-number theorem-like admonitions AND opt-in display equations, both scoped
+to h3 sections, derived from the same h2/h3 counts your CSS uses (no metadata).
 
-Renders: "Definition 1.3: σ-algebra" where 1 = h2 section number, 3 = definition count within that section.
+Admonitions  -- shared counter, reset per ## / ### section:
+    !!! info "Definition: UMP"               -> Definition 3.2.1: UMP
+    !!! tip  "Theorem: Neyman-Pearson Lemma" -> Theorem 3.2.2: Neyman-Pearson Lemma
 
-Supported admonition types:
-  !!! info "Definition: name"       -> Definition 1.1: name
-  !!! tip "Theorem: name"           -> Theorem 1.1: name
-  !!! question "Lemma: name"        -> Lemma 1.1: name
-  !!! success "Proposition: name"   -> Proposition 1.1: name
-  !!! warning "Corollary: name"     -> Corollary 1.1: name
-  !!! example "Example: name"       -> Example 1.1: name
-  !!! quote "Proof"                 -> Proof (no numbering)
+Equations -- separate counter, OPT-IN via the \eqnum marker:
+    $$ x = y \eqnum $$                                 -> x = y                  (3.2.1)
+    $$ \begin{gather*} ... \eqnum ... \end{gather*} $$ -> number on that row    (3.2.2)
 
-The name part is optional:
-  !!! info "Definition"             -> Definition 1.1
+Put \eqnum anywhere inside a display block ($$...$$, single- or multi-line) to
+give it the next sectional number; the hook swaps it for \tag{...}. Blocks
+without \eqnum are left untouched. One \eqnum per block.
 """
 
 import re
 
-# Map admonition types to their display labels
 ADMONITION_LABELS = {
     'info': 'Definition',
     'tip': 'Theorem',
@@ -27,65 +25,91 @@ ADMONITION_LABELS = {
     'warning': 'Corollary',
     'example': 'Example',
 }
+SHARED = {'info', 'tip', 'question', 'success', 'warning'}  # one shared counter
+OWN = {'example'}                                           # its own counter
+SKIP_NUMBERING = {'quote'}                                  # Proof, unnumbered
 
-# Types that should NOT be numbered
-SKIP_NUMBERING = {'quote'}
+ADMON_RE = re.compile(r'^(\s*)!!!\s+(\w+)\s+"([^"]*)"')
+HEADING_RE = re.compile(r'^(#{1,6})\s+\S')
+DELIM_RE = re.compile(r'^\s*\$\$\s*$')                 # a lone $$ delimiter line
+ONELINE_RE = re.compile(r'^(\s*)\$\$(.+?)\$\$\s*$')    # $$ ... $$ on one line
+
+EQ_MARKER = r'\eqnum'
 
 
 def on_page_markdown(markdown, page, config, files):
-    h2_count = 0
-    counters = {}  # per-type counters, reset each h2
+    h2 = h3 = 0
+    shared = example = eq = 0
+
+    def prefix():
+        if h3 > 0:
+            return f'{h2}.{h3}'
+        if h2 > 0:
+            return f'{h2}'
+        return '1'
+
+    def tag_block(text):
+        """Replace the first \eqnum with a sectional \tag; strip any extras."""
+        nonlocal eq
+        eq += 1
+        text = text.replace(EQ_MARKER, f'\\tag{{{prefix()}.{eq}}}', 1)
+        return text.replace(EQ_MARKER, '')   # safety: no stray markers reach MathJax
 
     lines = markdown.split('\n')
-    result = []
+    out = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
 
-    admonition_pattern = re.compile(
-        r'^(\s*)!!!\s+(\w+)\s+"([^"]*)"'
-    )
-    h2_pattern = re.compile(r'^##\s+[^#]')
+        # --- headings: bump section counters, reset everything per section ---
+        h = HEADING_RE.match(line)
+        if h:
+            level = len(h.group(1))
+            if level == 2:
+                h2 += 1; h3 = 0; shared = example = eq = 0
+            elif level == 3:
+                h3 += 1; shared = example = eq = 0
+            out.append(line); i += 1; continue
 
-    for line in lines:
-        # Detect h2 headings — reset counters
-        if h2_pattern.match(line):
-            h2_count += 1
-            counters = {}
-            result.append(line)
-            continue
-
-        m = admonition_pattern.match(line)
+        # --- admonitions ---
+        m = ADMON_RE.match(line)
         if m:
-            indent = m.group(1)
-            kind = m.group(2)
-            title_text = m.group(3)
-
-            if kind in SKIP_NUMBERING:
-                result.append(line)
-                continue
-
-            if kind not in ADMONITION_LABELS:
-                result.append(line)
-                continue
-
-            # Increment counter for this type
-            counters[kind] = counters.get(kind, 0) + 1
-            num = counters[kind]
-            section = h2_count if h2_count > 0 else 1
-
-            label = ADMONITION_LABELS[kind]
-
-            # Parse title: "Label: name" or "Label" or just "name"
-            # If title starts with the expected label, extract the name after ":"
-            if ':' in title_text:
-                parts = title_text.split(':', 1)
-                name = parts[1].strip()
-                new_title = f'{label} {section}.{num}: {name}'
+            indent, kind, title = m.group(1), m.group(2), m.group(3)
+            if kind in SKIP_NUMBERING or kind not in ADMONITION_LABELS:
+                out.append(line); i += 1; continue
+            if kind in OWN:
+                example += 1; num = example
             else:
-                # No colon — could be just "Definition" or a custom title
-                new_title = f'{label} {section}.{num}'
+                shared += 1; num = shared
+            label = ADMONITION_LABELS[kind]
+            if ':' in title:
+                name = title.split(':', 1)[1].strip()
+                out.append(f'{indent}!!! {kind} "{label} {prefix()}.{num}: {name}"')
+            else:
+                out.append(f'{indent}!!! {kind} "{label} {prefix()}.{num}"')
+            i += 1; continue
 
-            result.append(f'{indent}!!! {kind} "{new_title}"')
-            continue
+        # --- one-line display equation with marker ---
+        om = ONELINE_RE.match(line)
+        if om and EQ_MARKER in om.group(2):
+            body = tag_block(om.group(2)).strip()
+            out.append(f'{om.group(1)}$$ {body} $$')
+            i += 1; continue
 
-        result.append(line)
+        # --- multi-line display block ---
+        if DELIM_RE.match(line):
+            block = [line]
+            j = i + 1
+            while j < len(lines) and not DELIM_RE.match(lines[j]):
+                block.append(lines[j]); j += 1
+            if j < len(lines):
+                block.append(lines[j])          # closing delimiter
+            inner = '\n'.join(block)
+            if EQ_MARKER in inner:
+                inner = tag_block(inner)
+            out.append(inner)
+            i = j + 1; continue
 
-    return '\n'.join(result)
+        out.append(line); i += 1; continue
+
+    return '\n'.join(out)

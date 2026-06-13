@@ -113,19 +113,49 @@ These requirements are quite strong so in practice, a UMP test may not exist. We
     Consider testing $H_0: \theta = \Theta_0$ vs $H_1: \theta = \theta_1$ where the pdf correspoding to $\theta_i$ is $f(\mathbf{x} \mid \theta_i), i = 0, 1$ using a test with rejection region $R$ that satisfies
 
     $$
-    \mathbf{x} \in R \text{ if } f(\mathbf{x} \mid \theta_1) > k f(\mathbf{x} \mid \theta_0)
-    $$
-
-    and
-
-    $$
-    \mathbf{x} \in R^C \text{ if } f(\mathbf{x} \mid \theta_1) < k f(\mathbf{x} \mid \theta_0)
+    \begin{gather}
+    \mathbf{x} \in R \quad \text{if } f(\mathbf{x} \mid \theta_1) > k f(\mathbf{x} \mid \theta_0) \\
+    \text{and} \eqnum \\
+    \mathbf{x} \in R^c \quad \text{if } f(\mathbf{x} \mid \theta_1) < k f(\mathbf{x} \mid \theta_0)
+    \end{gather}
     $$
 
     for some $k \geq 0$ and $\alpha = P_{\theta_0}(\mathbf{X} \in R)$, then
 
-    a. Sufficiency. Any test that satisfies the three above conditions is a UMP level $\alpha$-test.
-    b. Necessity. If there exists a test satisfying the three above conditions with $k > 0$, then every UMP level $\alpha$ test is a size $\alpha$ test and every UMP level $\alpha $ test satisfies the first two requirements except on a set $A$ satisfying $P_{\theta_0}(\mathbf{X} \in A) = P_{\theta_1}(\mathbf{X} \in A) = 0$.
+    1. Sufficiency. Any test that satisfies the three above conditions is a UMP level $\alpha$-test.
+
+    2. Necessity. If there exists a test satisfying the three above conditions with $k > 0$, then every UMP level $\alpha$ test is a size $\alpha$ test and every UMP level $\alpha $ test satisfies the first two requirements except on a set $A$ satisfying $P_{\theta_0}(\mathbf{X} \in A) = P_{\theta_1}(\mathbf{X} \in A) = 0$.
+
+### $p$-values
+
+After a hypothesis test is done, we want to report the conclusion in a statistically meaningful way. We could report $\alpha$ and the decision. But if $\alpha$ is large, the rejection decision is not as convincing as the test has a large probability of incorrectly rejecting the null. Instead, we can use a $p$-value.
+
+!!! info "Definition: p-value"
+    A $p$-value $p(\mathbf{X})$ is a test statistic satisfying $0 \leq p(\mathbf{x}) \leq 1$ for each sample $\mathbf{x}$. Small values of $p(\mathbf{X})$ provide evidence for $H_A$. A $p$-value is *valid* if for every $\theta \in \Theta_0$ and every $0 \leq \alpha \leq 1$,
+
+    $$
+    P_{\theta}(p(\mathbf{X}) \leq \alpha) \leq \alpha
+    $$
+
+The advantage of choosing a $p$-value rather than a specific $\alpha$ is that the reader can choose the $\alpha$ considered appropriate and compared the reported $p$-value to $\alpha$. 
+
+
+!!! info "Definition: Valid $P$-value"
+
+    Let $W(\mathbf{X})$ be a test statistic such that large values of $W$ give evidence that $H_1$ is true. For each sample $\mathbf{x}$, define
+
+    $$
+    p(\mathbf{x}) = \sup_{\theta \in \Theta_0} P_{\theta}(W(\mathbf{X}) \geq W(\mathbf{x}))
+    $$
+
+    Then $p(\mathbf{X})$ is a valid p-value.
+
+This is the probability of observing a result at least as extreme as the observed result given the null hypothesis. If the probability of observing such an extreme (or even more extreme) result is $0.05$, then this observation is quite unlikely under the null hypothesis (hence we should reject it).
+
+
+
+
+
 
 
 
