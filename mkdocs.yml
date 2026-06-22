@@ -21,3 +21,4 @@ extra_css:
 
 hooks:
   - docs/hooks/number_admonitions.py
+  - docs/hooks/bibtex_citations.py
