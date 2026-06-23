@@ -6,27 +6,28 @@ I have previously come across typicality in a couple of contexts
 
 - In using MCMC estimators in high dimensions, an integral tends to concentrate its $\text{volume} * \text{density}$ on a thin surface called the *typical set* where the Markov Chain should ideally spend most of its time. High dimensional Gaussians are frequently analogized to soap bubbles (I think of them like pound cakes). The density is concentrated around the distribution's mode but there is also very little *volume* around the mode. The typical set is thus like a film around the mode where both the probability density and the volume are non-negligible (hence where most of the integral is).
 
-- The AEP (Asymptotic Equipartition Property) in information theory states that there is a set of sequences called the *typical set* where the probability of this set as the length of the sequence grows approaches $1$ *and* the distribution over this set is roughly uniform. Additionally, I recall that the single most likely sequence is frequently *not* in this set.
+- The AEP (Asymptotic Equipartition Property) in information theory states that there is a set of sequences called the *typical set* where as the length of the sequence grows, the probability of this set approaches $1$. Additionally, the distribution over this set is roughly uniform and the single most likely sequence is frequently *not* in this set.
 
 For the first point, much of my intuition comes from this [paper](https://arxiv.org/abs/1701.02434) and talk by Michael Betancourt.
 
 ## Blog
 
-Maximum likelihood training is simple and intuitive. However, for generative modeling, higher likelihood frequently does not correlate to visual fidelity and can produce very unintuitive results. This post excludes overfitting as a possible explainer as that is not unique to likelihood based models.
+Maximum likelihood training is simple and intuitive. However, for generative models, higher likelihoods frequently do not correlate to visual fidelity and can produce very unintuitive results. This post excludes overfitting as a possible explainer as that is not unique to likelihood based models.
 
 ### Coins
 
-Consider the binomial distribution $B(n, p)$ where $n = 16, p = \frac{3}{4}$ modeling a sequence of unfair coin flips. On average, we would expect to see about $12$ heads and $4$ tails with some room for error. Here, we are treating sequences as unordered sets.
+Consider the binomial distribution $B(n, p)$ where $n = 16, p = \frac{3}{4}$ modeling a sequence of biased coin flips. On average, we would expect to see about $12$ heads and $4$ tails with some room for error. Here, we are treating sequences as unordered sets.
 
 Let $Y$ be the sequence $(x_1, \dots, x_{16})$. What is $\text{argmax}_Y \ P(Y)$, the *single* most likely sequence?
 
-The single most likely sequence is all heads. The probability of this sequence is $\frac{3}{4}^{16} = 0.01$. While this sequence is the single most likely sequence, we would be shocked if we actually ended up counting $16$ heads as that would mean not a single coin landed on tails.
+The single most likely sequence is all heads. The probability of this sequence is $(\frac{3}{4})^{16} = 0.01$. While this sequence is the single most likely sequence, we would be shocked if we actually ended up counting $16$ heads as that would mean not a single coin landed on tails.
 
-On the contrary, let $X$ be the number of heads observed. Then, the most likely number of heads to observe is $12$. The specific probability of observing $12$ heads is $C(16, 4) * (\frac{3}{4})^{12} (\frac{1}{4})^4$. While each individual sequence containing $12$ heads is not as likely as the sequence with $16$ heads, there are $C(16, 4)$ ways to *get* $12$ heads while there is only *one* way to get $16$ heads.
+On the contrary, let $X$ be the number of heads observed. The most likely number of heads to be observed is $12$. The specific probability of observing $12$ heads is $C(16, 4) * (\frac{3}{4})^{12} (\frac{1}{4})^4$. While each individual sequence containing $12$ heads is not as likely as the sequence with $16$ heads, there are $C(16, 4)$ ways to *get* $12$ heads while there is only *one* way to get $16$ heads.
 
 ### Gaussians
 
 ![Gaussian Densities Resemble Pound Cakes](../images/lemon_pound_cake.png)
+
 *Gaussian Densities can be analogized to soap bubbles... or pound cakes!*
 
 As was stated earlier, high-dimensional Gaussians concentrate their probability density around the mode. However, computing an integral involves multiplying this density against $dx$, a little piece of volume. In high-dimensional spaces, there is more volume *further away* from any given point. There is simply more space for the distribution to exist over further away from the mode (at the peak of the pound cake / surface of the soap bubble). This is the continuous version of the coin example - $16$ heads is the single most likely sequence but there are more *ways* to get $12$ heads. Similarly, if you had a hundred-dimensional Gaussian centered around $\vec{0}$, you would still be extremely surprised to observe $\vec{0}$ as a sample.
