@@ -4,35 +4,34 @@
 
 I have previously come across typicality in a couple of contexts
 
-- In using MCMC estimators in high dimensions, an integral tends to concentrate its $\text{volume} * \text{density}$ on a thin surface called the *typical set* where the Markov Chain should ideally spend most of its time. High dimensional Gaussians are frequently analogized to soap bubbles (I think of them as like pound cakes (excluding the top)). The probability density is concentrated around the mode of the distribution but there is also very little *volume* around the mode. The typical set is like a film around the mode where both the probability density and the volume are non-negligible (hence where most of the integral is).
+- In using MCMC estimators in high dimensions, an integral tends to concentrate its $\text{volume} * \text{density}$ on a thin surface called the *typical set* where the Markov Chain should ideally spend most of its time. High dimensional Gaussians are frequently analogized to soap bubbles (I think of them like pound cakes). The density is concentrated around the distribution's mode but there is also very little *volume* around the mode. The typical set is thus like a film around the mode where both the probability density and the volume are non-negligible (hence where most of the integral is).
 
-- The AEP (Asymptotic Equipartition Property) in information theory states that there is a set of sequences called the *typical set* where the probability of this set as the length of the sequence goes to $\infty$ approaches $1$ *and* the distribution over this set is roughly uniform. Additionally, I recall that the single most likely sequence is frequently *not* in this set.
+- The AEP (Asymptotic Equipartition Property) in information theory states that there is a set of sequences called the *typical set* where the probability of this set as the length of the sequence grows approaches $1$ *and* the distribution over this set is roughly uniform. Additionally, I recall that the single most likely sequence is frequently *not* in this set.
 
 For the first point, much of my intuition comes from this [paper](https://arxiv.org/abs/1701.02434) and talk by Michael Betancourt.
 
 ## Blog
 
-Maximum likelihood training is simple and effective. However, for generative modeling, higher likelihood frequently doesn't correlate to visual fidelity and behaves in very unintuitive ways. This post excludes overfitting as a possible explainer as that is not unique to likelihood based models.
+Maximum likelihood training is simple and intuitive. However, for generative modeling, higher likelihood frequently does not correlate to visual fidelity and can produce very unintuitive results. This post excludes overfitting as a possible explainer as that is not unique to likelihood based models.
 
 ### Coins
 
-Consider the binomial distribution modeling an unfair coin with $P(\text{heads}) = \frac{3}{4}.$ If we consider sets of $16$ tosses, we would expect to see $12$ heads and $4$ tails on average. This assumes we only care about the frequency of occurence as opposed to the order in which each coin flip arrives. We are treating sequences as unordered sets.
+Consider the binomial distribution $B(n, p)$ where $n = 16, p = \frac{3}{4}$ modeling a sequence of unfair coin flips. On average, we would expect to see about $12$ heads and $4$ tails with some room for error. Here, we are treating sequences as unordered sets.
 
-Let $Y$ be the sequence $(x_1, \dots, x_{16})$. What is $\text{argmax}_Y \ P(Y)$ (the *single* most likely sequence)?
+Let $Y$ be the sequence $(x_1, \dots, x_{16})$. What is $\text{argmax}_Y \ P(Y)$, the *single* most likely sequence?
 
-The single most likely sequence is all heads where the probability of this sequence is $\frac{3}{4}^{16} = 0.01$. However, we would be shocked if we actually ended up counting $16$ heads as that would mean not a single coin landed on tails.
+The single most likely sequence is all heads. The probability of this sequence is $\frac{3}{4}^{16} = 0.01$. While this sequence is the single most likely sequence, we would be shocked if we actually ended up counting $16$ heads as that would mean not a single coin landed on tails.
 
-Let $X$ be the number of heads observed. Then, $\text{argmax}_X \ P(X) = 12$ and the most likely number of heads to observe is $12$. The specific probability of observing $12$ heads is $C(16, 4) * (\frac{3}{4})^{12} (\frac{1}{4})^4$. While each individual sequence is not as likely as all heads, there are $C(16, 4)$ of those sequences as opposed to only *one* sequence of all heads.
+On the contrary, let $X$ be the number of heads observed. Then, the most likely number of heads to observe is $12$. The specific probability of observing $12$ heads is $C(16, 4) * (\frac{3}{4})^{12} (\frac{1}{4})^4$. While each individual sequence containing $12$ heads is not as likely as the sequence with $16$ heads, there are $C(16, 4)$ ways to *get* $12$ heads while there is only *one* way to get $16$ heads.
 
 ### Gaussians
 
-The point made about Gaussians is nearly the same in the first point above. Here are some photos of high-dimensional Gaussians.
-
 ![Gaussian Densities Resemble Pound Cakes](../images/lemon_pound_cake.png)
+*Gaussian Densities can be analogized to soap bubbles... or pound cakes!*
 
-This is the same point as the coin point as well. The density of a MVG is still the highest at the center but there is just more space for the distribution to exist in at the peak of the pound cake (or the film of the soap bubble). All heads is the most likely result but there are more *ways* to get $12$ heads.
+As was stated earlier, high-dimensional Gaussians concentrate their probability density around the mode. However, computing an integral involves multiplying this density against $dx$, a little piece of volume. In high-dimensional spaces, there is more volume *further away* from any given point. There is simply more space for the distribution to exist over further away from the mode (at the peak of the pound cake / surface of the soap bubble). This is the continuous version of the coin example - $16$ heads is the single most likely sequence but there are more *ways* to get $12$ heads. Similarly, if you had a hundred-dimensional Gaussian centered around $\vec{0}$, you would still be extremely surprised to observe $\vec{0}$ as a sample.
 
-Put shortly, if you had a hundred-dimensional Gaussian centered around $\vec{0}$, you would still be extremely surprised to observe $\vec{0}$ as a sample.
+This is stated formally in many textbooks as the Gaussian annulus theorem.
 
 ### Typicality
 
@@ -86,7 +85,7 @@ OOD detection asks if an input plausibly could have been drawn from some distrib
 
 It may be preferable to learn fidelity using 'intuitive' likelihood or to learn some kind of perceptual metric.
 
-After reading this blog, I feel that I have a much better handle on typicality and its relationship with likelihoods. I believe the first intuition which is that in high-dimensional spaces, volume grows the further we move from a given spot, explains this phenomenon of Gaussian "soap bubbles" (called the Gaussian annulus theorem). The trap of examining atypically likely samples (like the mode) seems to be the clearest connection between typicality and machine learning.
+After reading this blog, I feel that I have a much better handle on typicality and its relationship with likelihoods. I believe the first intuition which is that in high-dimensional spaces, volume grows the further we move from a given spot, explains this phenomenon of Gaussian "soap bubbles". The trap of examining atypically likely samples (like the mode) seems to be the clearest connection between typicality and machine learning.
 
 
 
