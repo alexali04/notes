@@ -62,7 +62,7 @@ This is a continuous time stochastic process taking continuous values, a limit o
     W_t - W_s \sim \mathcal{N}(0, t - s)
     $$
 
-    - $\{W_t\} has independent increments. Increments on non-overlapping time increments are statistically independent.
+    - $\{W_t\}$ has independent increments. Increments on non-overlapping time intervals are statistically independent.
 
 From this definition, we can show (informally) that Brownian motion is nowhere differentiable.
 
