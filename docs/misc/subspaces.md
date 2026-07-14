@@ -13,7 +13,7 @@ $$
 $$
 
 $$
-\text{Im}(L) = \{L(x) : x \in A\} \subset Y
+\text{Im}(L) = \{L(x) : x \in X\} \subset Y
 $$
 
 The kernel is the subspace of vectors in the domain which are sent to $0$ and the image is the subspace of vectors in $Y$ which "came from" $X$. From this, we can recover Rank-Nullity, etc.
@@ -32,7 +32,7 @@ $$
 L(sx) = sL(x)
 $$
 
-This is still just an abstract map. Now suppose $X, Y$ are finite-dimensional. Fix a basis $\{e_1, \dots, e_n\}$ for $X$ and $\{f_1, \dots, f_m\} for $Y$. Then, any vector $x \in X$ can be represented as:
+This is still just an abstract map. Now suppose $X, Y$ are finite-dimensional. Fix a basis $\{e_1, \dots, e_n\}$ for $X$ and $\{f_1, \dots, f_m\}$ for $Y$. Then, any vector $x \in X$ can be represented as:
 
 $$
 x = \sum_{i = 1}^n s_i e_i = [e_1 \dots e_n] \begin{bmatrix}
@@ -216,7 +216,7 @@ Finally, we will prove that orthogonal projections minimize the distance to a su
     = |v_1 - w|^2 + |v - v_1|^2 \geq |v - v_1|^2
     $$
 
-    This is basically just Pythagors. If we have some point above a subspace and we want to find some point which is closest to it, the distance can be computed by Pythagoras. The vertical drop is unavoidable but the horizontal drop is hence why the smallest error is achieved when the target and approximate vectors are orthogonal to one another.
+    This is basically just Pythagoras. If we have some point above a subspace and we want to find some point which is closest to it, the distance can be computed by Pythagoras. The vertical drop is unavoidable but the horizontal drop is, hence why the smallest error is achieved when the target and error vectors are orthogonal to one another.
 
 ## Linear Regression
 
@@ -230,7 +230,7 @@ $$
 e = y - X \beta
 $$
 
-Minimizing this error occurs when $e$ is orthogonal to $X \beta$: when $e$ exists in the orthogonal complement of $X$. Therefore, $e \in \text{Ker}(X^T)$. So we have:
+Minimizing this error occurs when $e$ is in $\text{Img}(X)^{\perp}$. Therefore, $e \in \text{Ker}(X^T)$. So we have:
 
 $$
 X^T e = 0
