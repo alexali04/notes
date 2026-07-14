@@ -166,6 +166,58 @@ $$
 \text{Ker}(A) = \text{Img}(A^T)^{\perp}
 $$
 
+## Orthogonal Projections
+
+Finally, we will prove that orthogonal projections minimize the distance to a subspace. First,
+
+!!! info "Definition: Orthogonal Projection"
+
+    An orthogonal projection is a projection where the kernel and image are orthogonal subspaces.
+
+    $$
+    P_E: E^{\perp} \oplus E \to E
+    $$
+
+    $$
+    P_{E^{\perp}}: E^{\perp} \oplus E \to E^{\perp}
+    $$
+
+!!! tip "Theorem: Orthogonal Projection Minimizes Distance"
+
+    For each $v \in E \oplus E^{\perp}$ and $w \in E$, the distance from $v$ to $e$ is minimized if $w = P_E(v)$ i.e.
+
+    $$
+    |v - w| \geq |v - P_E(v)|
+    $$
+
+    equality is clearly achieved when $w = P_E(v)$.
+
+!!! quote "Proof"
+
+    Let $v = v_1 + v_2, v_1 = P_E(v), v_2 = v - P_E(v) \in E^{\perp}$. For any $w \in E$,
+
+    $$
+    |v - w|^2 = |v_1 + v_2 - w|^2
+    $$
+
+    $$
+    = \langle v_1 + v_2 - w, v_1 + v_2 - w \rangle
+    $$
+
+    $$
+    = \langle v_1 - w, v_1 - w \rangle + \langle v_2, v_2 \rangle + \langle v_1 - w, v_2 \rangle + \langle v_2, v_1 - w \rangle
+    $$
+
+    $$
+    = |v_1 - w|^2 + |v_2|^2
+    $$
+
+    $$
+    = |v_1 - w|^2 + |v - v_1|^2 \geq |v - v_1|^2
+    $$
+
+    This is basically just Pythagors. If we have some point above a subspace and we want to find some point which is closest to it, the distance can be computed by Pythagoras. The vertical drop is unavoidable but the horizontal drop is hence why the smallest error is achieved when the target and approximate vectors are orthogonal to one another.
+
 ## Linear Regression
 
 Consider the following modeling problem. We have a vector of targets $y$, a matrix $X$ where each row represents a single datapoint (and columns are features). We want to find $\beta$ such that $X \beta$ is "closest" to $y$.
@@ -178,7 +230,7 @@ $$
 e = y - X \beta
 $$
 
-$\beta$ is adjustable but no matter what $\beta$ is picked, the columns of $X$ have still been "removed" from $e$. In other words, $e$ exists in the orthogonal complement of $X$. Therefore, $e \in \text{Ker}(X^T)$. So we have:
+Minimizing this error occurs when $e$ is orthogonal to $X \beta$: when $e$ exists in the orthogonal complement of $X$. Therefore, $e \in \text{Ker}(X^T)$. So we have:
 
 $$
 X^T e = 0
@@ -197,11 +249,3 @@ $$
 $$
 
 This is the simplest and most elegant way I know of to get the standard linear regression equation. More generally, the kernel and image of $L$ and $L^*$ have been frequently discussed as the "four fundamental subspaces" but I only just intuited the orthogonal complement (even though in retrospect, it was an incredibly natural idea?) and the connection between orthogonal rows and kernel of the transpose. I wanted to write this up as a nice motivator for the matrix-vector product "formula" which becomes retroactively defined by linearity + a basis.
-
-
-
-
-
-
-
-
