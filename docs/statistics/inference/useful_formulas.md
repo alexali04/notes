@@ -21,5 +21,5 @@ $$
   |a_n - a| < \epsilon
   $$
 
-In other words, fix a radius $\epsilon$. Then, for any radius, there's a certain index $n$ past which all points $a_n$ exist in the $\epsilon$-ball around $a$.
+Fix a radius $\epsilon$. Then, for any radius, there's a certain index $n$ past which all points $a_n$ exist in the $\epsilon$-ball around $a$.
 

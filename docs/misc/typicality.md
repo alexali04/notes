@@ -1,6 +1,6 @@
 # Understanding Typicality
 
-## Before Blog
+[TOC]
 
 I have previously come across typicality in a couple of contexts
 
@@ -10,11 +10,11 @@ I have previously come across typicality in a couple of contexts
 
 For the first point, much of my intuition comes from this [paper](https://arxiv.org/abs/1701.02434) and talk by Michael Betancourt.
 
-## Blog
+# Blog Review
 
 Maximum likelihood training is simple and intuitive. However, for generative models, higher likelihoods frequently do not correlate to visual fidelity and can produce very unintuitive results. This post excludes overfitting as a possible explainer as that is not unique to likelihood based models.
 
-### Coins
+## Coins
 
 Consider the binomial distribution $B(n, p)$ where $n = 16, p = \frac{3}{4}$ modeling a sequence of biased coin flips. On average, we would expect to see about $12$ heads and $4$ tails with some room for error. Here, we are treating sequences as unordered sets.
 
@@ -24,7 +24,7 @@ The single most likely sequence is all heads. The probability of this sequence i
 
 On the contrary, let $X$ be the number of heads observed. The most likely number of heads to be observed is $12$. The specific probability of observing $12$ heads is $C(16, 4) * (\frac{3}{4})^{12} (\frac{1}{4})^4$. While each individual sequence containing $12$ heads is not as likely as the sequence with $16$ heads, there are $C(16, 4)$ ways to *get* $12$ heads while there is only *one* way to get $16$ heads.
 
-### Gaussians
+## Gaussians
 
 ![Gaussian Densities Resemble Pound Cakes](../images/lemon_pound_cake.png)
 
@@ -34,7 +34,7 @@ As was stated earlier, high-dimensional Gaussians concentrate their probability 
 
 This is stated formally in many textbooks as the Gaussian annulus theorem.
 
-### Typicality
+## Typicality
 
 Entropy can be written as
 
@@ -54,7 +54,7 @@ $$
 \mathcal{T}_{n}^{\epsilon} = \{x^n \in \mathcal{X}^n: p(x^n) \in [2^{-n(H(X) + \epsilon)}, 2^{-n(H(X) - \epsilon)}] \}
 $$
 
-In other words, each sequence in the typical set carries roughly as much information as expected (within $\epsilon$ of the distribution's entropy). To see this, simply reverse:
+Each sequence in the typical set carries roughly as much information as expected (within $\epsilon$ of the distribution's entropy). To see this, simply reverse:
 
 $$
 \frac{1}{n} \log \frac{1}{p(\mathbf{x})} \approx H(X)
@@ -72,13 +72,13 @@ The negative log likelihood of each of these sequences is close to the distribut
 
 Additionally, like mentioned earlier (and illustrated with the coin example), the mode frequently is not part of the typical set. Individual samples with exceptional likelihoods are in fact atypical and we shouldn't expect to observe them during sampling.
 
-### Paradoxes
+## Paradoxes
 
-#### Language
+### Language
 
 In autoregressive models + beam search, we sometimes may want to find the single most likely sentence ('MAP decoding') or something akin to that. However, those familiar with language models know that in setting temperature to $0$, we get degenerate or repetitive sentences. This repetitivity is atypical but has high likelihoods precisely because it is more predictable.
 
-#### OOD detection
+### OOD detection
 
 OOD detection asks if an input plausibly could have been drawn from some distribution. Typically, we assume that OOD inputs have low-likelihoods and in-distribution inputs have high-likelihoods (we are likely to sample them). However, the mode of a distribution has a very high likelihood but as we established, we are extremely *unlikely* to sample the mode as it is not part of the typical set.
 

@@ -237,7 +237,7 @@ The Weak LLN states that as sample size approaches infinity, the sample mean con
     = \frac{\text{Var}(S^2_n)}{\epsilon}
     $$
 
-    In other words, a sufficient condition for $S_n^2$ to converge in probability to $\sigma^2$ is for $\text{Var}(S^2_n) \to 0$ as $n \to \infty$.
+    A sufficient condition for $S_n^2$ to converge in probability to $\sigma^2$ is for $\text{Var}(S^2_n) \to 0$ as $n \to \infty$.
 
 
 !!! tip "Theorem: Function Convergence"
@@ -288,8 +288,6 @@ Let $S' = \{s \in S: X_n(s) \to X(s)\}$. For each point $s \in S'$, you can pick
 Almost sure convergence says that $\mu(S') = 1$.
 
 Comparatively, convergence in probability concerns the entire set. Define $G_{\epsilon}^n = \{s \in S: |X_n(s) - X(s)| < \epsilon\}$. Convergence in probability states that for any $\epsilon > 0$, as $n \to \infty$, $\mu(G_{\epsilon}^n) \to 1$.
-
-In other words,
 
 1. Convergence i.p.: As $n \to \infty$, the set of points close to $X$ *obtains* measure $1$.
 2. A.s. Convergence: The set of points which converges *has* measure $1$.

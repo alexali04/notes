@@ -91,7 +91,7 @@ So in short:
 
 3. $\alpha$ constrains a rejection region bounded by $c$. $c$ "shaves off" the tail(s) of the sampling distribution of $t(\mathbf{x})$ under $H_0$.
 
-4. The statistical power of our test (against a specific $\theta$) is then (w.l.o.g.) the probability $P_{\theta}(t(\mathbf{x}) > c | \theta \in \Theta_0^C)$ - in other words, the probability of correctly accepting the alternative (with being at most $\alpha$ likely to falsely reject the null).
+4. The statistical power of our test (against a specific $\theta$) is then (w.l.o.g.) the probability $P_{\theta}(t(\mathbf{x}) > c | \theta \in \Theta_0^C)$ - the probability of correctly accepting the alternative (with being at most $\alpha$ likely to falsely reject the null).
 
 In the $4$th step, power is a function defined over the parameter space - so we frequently observe power curves as opposed to a single number.
 
@@ -137,7 +137,7 @@ After a hypothesis test is done, we want to report the conclusion in a statistic
     P_{\theta}(p(\mathbf{X}) \leq \alpha) \leq \alpha
     $$
 
-The advantage of choosing a $p$-value rather than a specific $\alpha$ is that the reader can choose the $\alpha$ considered appropriate and compared the reported $p$-value to $\alpha$. 
+The advantage of choosing a $p$-value rather than a specific $\alpha$ is that the reader can choose the $\alpha$ considered appropriate and compared the reported $p$-value to $\alpha$.
 
 
 !!! info "Definition: Valid $P$-value"
