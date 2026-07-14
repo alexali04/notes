@@ -41,10 +41,13 @@ s_1 \\ \vdots \\ s_n
 $$
 
 Then,
+
 $$
-L(x) = L([e_1 \dots e_n] \begin{bmatrix}
-s_1 \\ \vdots \\ s_n
-\end{bmatrix}]
+L(x) = L([e_1 \dots e_n]
+\begin{bmatrix}
+s_1 \\ \vdots  \\ s_n
+\end{bmatrix}
+)
 $$
 
 $$
