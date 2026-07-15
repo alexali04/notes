@@ -67,7 +67,7 @@ This choice of which dimension to contract over is pure convention.
 So we have:
 
 $$
-L(x) = [f_1 A_{11} + \dots + f_m A_{m1} \dots f_1 A_{n1} + \dots + f_m A_{mn}] \begin{bmatrix}
+L(x) = [f_1 A_{11} + \dots + f_m A_{m1} & \dots & f_1 A_{n1} + \dots + f_m A_{mn}] \begin{bmatrix}
 s_1 \\ \vdots \\ s_n
 \end{bmatrix}
 $$
