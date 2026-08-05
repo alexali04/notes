@@ -1,0 +1,1341 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://alexali04.github.io/notes/misc/subspaces/">
+      
+      
+        <link rel="prev" href="../fim/">
+      
+      
+        <link rel="next" href="../typicality/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Fundamental Subspaces - ML Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fundamental-subspaces" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ML Notes" class="md-header__button md-logo" aria-label="ML Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ML Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Fundamental Subspaces
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ML Notes" class="md-nav__button md-logo" aria-label="ML Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ML Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Math
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Math
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/background/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Math Background
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stochastic Calculus
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Stochastic Calculus
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/Stochastic_Calculus/1_ito/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 - Itô Integral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/Stochastic_Calculus/2_calc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 - New Calculus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Misc
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Misc
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fisher Information Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamental Subspaces
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamental Subspaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#two-fundamental-subspaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two Fundamental Subspaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linear-maps-column-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear Maps, Column Space
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orthogonal-complements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orthogonal Complements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orthogonal-projections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orthogonal Projections
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linear-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear Regression
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../typicality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding Typicality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probability
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Probability
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../probability/distributions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Statistics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Statistics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statistics/inference/hypothesis_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hypothesis Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statistics/inference/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Statistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statistics/inference/point_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point Estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statistics/inference/random_samples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Random Samples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../statistics/inference/useful_formulas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Useful Formulas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#two-fundamental-subspaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two Fundamental Subspaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linear-maps-column-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear Maps, Column Space
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orthogonal-complements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orthogonal Complements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orthogonal-projections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orthogonal Projections
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linear-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear Regression
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="fundamental-subspaces">Fundamental Subspaces<a class="headerlink" href="#fundamental-subspaces" title="Permanent link">&para;</a></h1>
+<div class="toc">
+<ul>
+<li><a href="#fundamental-subspaces">Fundamental Subspaces</a><ul>
+<li><a href="#two-fundamental-subspaces">Two Fundamental Subspaces</a></li>
+<li><a href="#linear-maps-column-space">Linear Maps, Column Space</a></li>
+<li><a href="#orthogonal-complements">Orthogonal Complements</a></li>
+<li><a href="#orthogonal-projections">Orthogonal Projections</a></li>
+<li><a href="#linear-regression">Linear Regression</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="two-fundamental-subspaces">Two Fundamental Subspaces<a class="headerlink" href="#two-fundamental-subspaces" title="Permanent link">&para;</a></h2>
+<p>It's quite easy to identify two subspaces - the <em>kernel</em> or <em>null-space</em> and the image. These subspaces are both defined by a linear map.</p>
+<p>Consider a linear map <span class="arithmatex">\(L: X \to Y\)</span>. Then,</p>
+<div class="arithmatex">\[
+\text{Ker}(L) = \{x \in X \mid L(x) = 0\}
+\]</div>
+<div class="arithmatex">\[
+\text{Im}(L) = \{L(x) : x \in X\} \subset Y
+\]</div>
+<p>The kernel is the subspace of vectors in the domain which are sent to <span class="arithmatex">\(0\)</span> and the image is the subspace of vectors in <span class="arithmatex">\(Y\)</span> which "came from" <span class="arithmatex">\(X\)</span>. From this, we can recover Rank-Nullity, etc.</p>
+<p>The image in particular is also called the span or <em>column-space</em> of <span class="arithmatex">\(A\)</span>. But why is it called the column-space?</p>
+<h2 id="linear-maps-column-space">Linear Maps, Column Space<a class="headerlink" href="#linear-maps-column-space" title="Permanent link">&para;</a></h2>
+<p>Let <span class="arithmatex">\(x_1, x_2, x \in X\)</span> and <span class="arithmatex">\(s \in \mathbb{F}\)</span> where <span class="arithmatex">\(\mathbb{F}\)</span> is some field (like <span class="arithmatex">\(\mathbb{C}, \mathbb{R}\)</span>). Then, <span class="arithmatex">\(L: X \to Y\)</span> is a linear map iff</p>
+<div class="arithmatex">\[
+L(x_1 + x_2) = L(x_1) + L(x_2)
+\]</div>
+<div class="arithmatex">\[
+L(sx) = sL(x)
+\]</div>
+<p>This is still just an abstract map. Now suppose <span class="arithmatex">\(X, Y\)</span> are finite-dimensional. Fix a basis <span class="arithmatex">\(\{e_1, \dots, e_n\}\)</span> for <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(\{f_1, \dots, f_m\}\)</span> for <span class="arithmatex">\(Y\)</span>. Then, any vector <span class="arithmatex">\(x \in X\)</span> can be represented as:</p>
+<div class="arithmatex">\[
+x = \sum_{i = 1}^n s_i e_i = [e_1 \dots e_n] \begin{bmatrix}
+s_1 \\ \vdots \\ s_n
+\end{bmatrix}
+\]</div>
+<p>Then,</p>
+<div class="arithmatex">\[
+L(x) = L([e_1 \dots e_n]
+\begin{bmatrix}
+s_1 \\ \vdots  \\ s_n
+\end{bmatrix}
+)
+\]</div>
+<div class="arithmatex">\[
+= L([e_1 \dots e_n]) \begin{bmatrix}
+s_1 \\ \vdots \\ s_n
+\end{bmatrix}
+\]</div>
+<p>When we apply <span class="arithmatex">\(L\)</span> to each basis vector <span class="arithmatex">\(e_i\)</span>, the output vector can be represented as a linear combination of the output basis vectors. Specifically,</p>
+<div class="arithmatex">\[
+L(e_j) = f_1 A_{1j} + \dots + f_m A_{mj} = \sum_i A_{ij} f_i
+\]</div>
+<p>This choice of which dimension to contract over is pure convention.</p>
+<p>So we have:</p>
+<div class="arithmatex">\[
+L(x) = \begin{bmatrix}f_1 A_{11} + \dots + f_m A_{m1} &amp; \dots &amp; f_1 A_{1n} + \dots + f_m A_{mn}\end{bmatrix} \begin{bmatrix}
+s_1 \\ \vdots \\ s_n
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+=
+\begin{bmatrix}
+f_1 &amp; \dots &amp; f_m
+\end{bmatrix}
+\begin{bmatrix}
+A_{11} &amp; \dots &amp; A_{1n} \\ \vdots &amp; \ddots &amp; \vdots \\ A_{m1} &amp; \dots &amp; A_{mn}
+\end{bmatrix}
+\begin{bmatrix}
+s_1 \\ \vdots \\ s_n
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+= F A s
+\]</div>
+<p>When we write a vector like <span class="arithmatex">\([1, 2, 3]^T\)</span>, we are really writing down <span class="arithmatex">\(s\)</span> as the coordinate representation within a specific basis. Additionally, in most cases, <span class="arithmatex">\(F\)</span> as a collection of basis vectors in <span class="arithmatex">\(Y\)</span> is just the identity matrix (typically if we are taking an orthonormal basis in <span class="arithmatex">\(F\)</span>) so this really reduces to:</p>
+<div class="arithmatex">\[
+L(v) = As
+\]</div>
+<p>Each column of a matrix merely encodes the action of the linear operator on a basis vector in the domain. Hence why it is appropriate to call this a "column-space". We also recover the typical formula of matrix-multiplication. Computationally, we are taking inner-products between the rows of <span class="arithmatex">\(A\)</span> and the vector <span class="arithmatex">\(s\)</span> but this is <em>equivalent</em> to scaling each column by the corresponding element of <span class="arithmatex">\(s\)</span>. Write <span class="arithmatex">\(A = [A_1 | \dots | A_n]\)</span>. If we ignore <span class="arithmatex">\(F\)</span> as the identity, then <span class="arithmatex">\(L(s)\)</span> (where <span class="arithmatex">\(s\)</span> is the coordinate vector) is:</p>
+<div class="arithmatex">\[
+L(s) = L(\sum_i s_i e_i) = \sum_i s_i A_i
+\]</div>
+<h2 id="orthogonal-complements">Orthogonal Complements<a class="headerlink" href="#orthogonal-complements" title="Permanent link">&para;</a></h2>
+<p>Given a subspace <span class="arithmatex">\(E \subset V\)</span>, define the <strong>orthogonal complement</strong> of <span class="arithmatex">\(E\)</span> in <span class="arithmatex">\(V\)</span> as:</p>
+<div class="arithmatex">\[
+E^{\perp} = \{v \in V: \forall e \in E, \langle e, v \rangle = 0\}
+\]</div>
+<p>This is the collection of vectors which are orthogonal to every vector in <span class="arithmatex">\(E\)</span>. Hence why it is the complement.</p>
+<p>(For convenience, we will now speak about linear maps and their matrix representation semi-interchangeably).</p>
+<p>Now, recall the <em>adjoint</em> of a linear map <span class="arithmatex">\(L^*\)</span> is defined as:</p>
+<div class="arithmatex">\[
+\langle L(x), y \rangle = \langle x, L^*(y) \rangle
+\]</div>
+<div class="arithmatex">\[
+(Ax)^T y = x^T A^T y
+\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 3.1: Orthogonality and Kernel</p>
+<div class="arithmatex">\[
+\text{Ker}(L^*) = \text{Img}(L)^{\perp}
+\]</div>
+<p>Here, <span class="arithmatex">\(L\)</span> and <span class="arithmatex">\(L^*\)</span> can be swapped and perpendicularity is symmetric.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Suppose <span class="arithmatex">\(w \in \text{Ker}(L^*)\)</span>. Then,</p>
+<div class="arithmatex">\[
+L^* (w) = 0 \iff \forall v \in V, \langle v, L^*w \rangle = 0
+\]</div>
+<div class="arithmatex">\[
+\iff \forall v \in V, \langle L(v), w \rangle = 0
+\]</div>
+<div class="arithmatex">\[
+\iff w \in \text{Img}(L)^{\perp}
+\]</div>
+</div>
+<p>Now view the matrix-vector product by taking inner-products between rows and <span class="arithmatex">\(s\)</span>. Specifically,</p>
+<div class="arithmatex">\[
+Ax = \begin{bmatrix}
+A_{1, :}^T x \\
+\vdots \\
+A_{m, :}^T x
+\end{bmatrix}
+\]</div>
+<p>Observe that this is <span class="arithmatex">\(0\)</span> iff <span class="arithmatex">\(x\)</span> is orthogonal to every row of <span class="arithmatex">\(A\)</span>. But each row of <span class="arithmatex">\(A\)</span> is also a column of <span class="arithmatex">\(A^T\)</span>.</p>
+<p>Suppose <span class="arithmatex">\(Ax = 0\)</span>. Then, <span class="arithmatex">\(x \in \text{Ker}(A)\)</span>. But this also means <span class="arithmatex">\(x\)</span> is orthogonal to each column of <span class="arithmatex">\(A^T\)</span>. Since <span class="arithmatex">\(\text{Img}(A^T)\)</span> is the space of all linear combinations and the inner-product is bilinear, it follows that <span class="arithmatex">\(x\)</span> is in the orthogonal complement of <span class="arithmatex">\(\text{Img}(A^T)\)</span>.</p>
+<p>So we get that:</p>
+<div class="arithmatex">\[
+\text{Ker}(A) = \text{Img}(A^T)^{\perp}
+\]</div>
+<h2 id="orthogonal-projections">Orthogonal Projections<a class="headerlink" href="#orthogonal-projections" title="Permanent link">&para;</a></h2>
+<p>Finally, we will prove that orthogonal projections minimize the distance to a subspace. First,</p>
+<div class="admonition info">
+<p class="admonition-title">Definition 4.1: Orthogonal Projection</p>
+<p>An orthogonal projection is a projection where the kernel and image are orthogonal subspaces.</p>
+<div class="arithmatex">\[
+P_E: E^{\perp} \oplus E \to E
+\]</div>
+<div class="arithmatex">\[
+P_{E^{\perp}}: E^{\perp} \oplus E \to E^{\perp}
+\]</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 4.2: Orthogonal Projection Minimizes Distance</p>
+<p>For each <span class="arithmatex">\(v \in E \oplus E^{\perp}\)</span> and <span class="arithmatex">\(w \in E\)</span>, the distance from <span class="arithmatex">\(v\)</span> to <span class="arithmatex">\(e\)</span> is minimized if <span class="arithmatex">\(w = P_E(v)\)</span> i.e.</p>
+<div class="arithmatex">\[
+|v - w| \geq |v - P_E(v)|
+\]</div>
+<p>equality is clearly achieved when <span class="arithmatex">\(w = P_E(v)\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="arithmatex">\(v = v_1 + v_2, v_1 = P_E(v), v_2 = v - P_E(v) \in E^{\perp}\)</span>. For any <span class="arithmatex">\(w \in E\)</span>,</p>
+<div class="arithmatex">\[
+|v - w|^2 = |v_1 + v_2 - w|^2
+\]</div>
+<div class="arithmatex">\[
+= \langle v_1 + v_2 - w, v_1 + v_2 - w \rangle
+\]</div>
+<div class="arithmatex">\[
+= \langle v_1 - w, v_1 - w \rangle + \langle v_2, v_2 \rangle + \langle v_1 - w, v_2 \rangle + \langle v_2, v_1 - w \rangle
+\]</div>
+<div class="arithmatex">\[
+= |v_1 - w|^2 + |v_2|^2
+\]</div>
+<div class="arithmatex">\[
+= |v_1 - w|^2 + |v - v_1|^2 \geq |v - v_1|^2
+\]</div>
+<p>This is basically just Pythagoras. If we have some point above a subspace and we want to find some point which is closest to it, the distance can be computed by Pythagoras. The vertical drop is unavoidable but the horizontal drop is, hence why the smallest error is achieved when the target and error vectors are orthogonal to one another.</p>
+</div>
+<h2 id="linear-regression">Linear Regression<a class="headerlink" href="#linear-regression" title="Permanent link">&para;</a></h2>
+<p>Consider the following modeling problem. We have a vector of targets <span class="arithmatex">\(y\)</span>, a matrix <span class="arithmatex">\(X\)</span> where each row represents a single datapoint (and columns are features). We want to find <span class="arithmatex">\(\beta\)</span> such that <span class="arithmatex">\(X \beta\)</span> is "closest" to <span class="arithmatex">\(y\)</span>.</p>
+<p>There are several approaches to this involving matrix calculus but with those approaches, it's quite hard to remember the exact convention being used for gradients.</p>
+<p>Instead, define the error vector</p>
+<div class="arithmatex">\[
+e = y - X \beta
+\]</div>
+<p>Minimizing this error occurs when <span class="arithmatex">\(e\)</span> is in <span class="arithmatex">\(\text{Img}(X)^{\perp}\)</span>. Therefore, <span class="arithmatex">\(e \in \text{Ker}(X^T)\)</span>. So we have:</p>
+<div class="arithmatex">\[
+X^T e = 0
+\]</div>
+<div class="arithmatex">\[
+X^T (y - X \beta) = 0
+\]</div>
+<div class="arithmatex">\[
+X^T X \beta = X^T y
+\]</div>
+<div class="arithmatex">\[
+\beta = (X^T X)^{-1} X^T y
+\]</div>
+<p>This is the simplest and most elegant way I know of to get the standard linear regression equation. More generally, the kernel and image of <span class="arithmatex">\(L\)</span> and <span class="arithmatex">\(L^*\)</span> have been frequently discussed as the "four fundamental subspaces" but I only just intuited the orthogonal complement (even though in retrospect, it was an incredibly natural idea?) and the connection between orthogonal rows and kernel of the transpose. I wanted to write this up as a nice motivator for the matrix-vector product "formula" which becomes retroactively defined by linearity + a basis.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

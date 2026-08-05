@@ -1,0 +1,1255 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://alexali04.github.io/notes/math/Stochastic_Calculus/2_calc/">
+      
+      
+        <link rel="prev" href="../1_ito/">
+      
+      
+        <link rel="next" href="../../../misc/fim/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>02 - New Calculus - ML Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#02-new-calculus" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="ML Notes" class="md-header__button md-logo" aria-label="ML Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ML Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              02 - New Calculus
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ML Notes" class="md-nav__button md-logo" aria-label="ML Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ML Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Math
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Math
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../background/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Math Background
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stochastic Calculus
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Stochastic Calculus
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_ito/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 - Itô Integral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 - New Calculus
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 - New Calculus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motivation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Motivation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#another-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Another View
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-heart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Heart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dw_t2-dt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        \(dW_t^2 = dt\)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intuition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intuition
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Misc
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Misc
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/fim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fisher Information Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/subspaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamental Subspaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/typicality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding Typicality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probability
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Probability
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../probability/distributions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Statistics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Statistics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/hypothesis_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hypothesis Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Statistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/point_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point Estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/random_samples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Random Samples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/useful_formulas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Useful Formulas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motivation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Motivation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#another-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Another View
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-heart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Heart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dw_t2-dt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        \(dW_t^2 = dt\)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intuition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intuition
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="02-new-calculus">02 - New Calculus<a class="headerlink" href="#02-new-calculus" title="Permanent link">&para;</a></h1>
+<p>Recall that Brownian motion is a continuous time stochastic process with the following properties:</p>
+<ul>
+<li><span class="arithmatex">\(W_0 = 0\)</span></li>
+<li><span class="arithmatex">\(t \mapsto W_t\)</span> w.p.<span class="arithmatex">\(1\)</span>. (almost surely continuous sample paths)</li>
+<li><span class="arithmatex">\(W_t - W_s \sim \mathcal{N}(0, t - s)\)</span> for <span class="arithmatex">\(0 \leq s &lt; t\)</span>.</li>
+<li>Independent increments (non-overlapping time intervals) are statistically independent.</li>
+</ul>
+<p>We also defined the Itô Integral as</p>
+<div class="arithmatex">\[
+\int_{0}^t X_s dW_s = \lim_{n \to \infty} \sum_{i = 1}^n X_{i - 1} \Delta W_i
+\]</div>
+<p>The integrand is evaluated at the left end-point of each infinitesimal interval (meeting our non-anticipation assumption).</p>
+<p>However, what happens if <span class="arithmatex">\(X_s\)</span> itself is a random process (as opposed to a constant function)?</p>
+<h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h2>
+<p>Consider:</p>
+<div class="arithmatex">\[
+\int_0^t W_s dW_s = \lim_{n \to \infty} \sum_{i = 1}^n W_{i - 1} \Delta W_i = \lim_{n \to \infty} S_n
+\]</div>
+<p>First, recall that <span class="arithmatex">\(\Delta W_i = W_i - W_{i - 1}\)</span>. Consider:</p>
+<div class="arithmatex">\[
+W_{i}^2 = (\Delta W_i + W_{i - 1})^2 = \Delta W_i^2 + 2 W_{i - 1} \Delta W_i + W_{i - 1}^2
+\]</div>
+<p>Then, we can isolate</p>
+<div class="arithmatex">\[
+W_{i - 1} \Delta W_i = \frac{1}{2} [W_{i}^2 - W_{i - 1}^2 - \Delta W_i^2]
+\]</div>
+<p>Then, our integral becomes:</p>
+<div class="arithmatex">\[
+S_n = \frac{1}{2} \sum_{i = 1}^n (W_i^2 - W_{i - 1}^2) - \frac{1}{2} \sum_{i = 1}^n \Delta W_i^2
+\]</div>
+<p>The first sum telescopes to <span class="arithmatex">\(W_n^2 - W_0^2 = W_t^2\)</span>. But what about <span class="arithmatex">\(Q_n := \sum_{i = 1}^n \Delta W_i^2\)</span>?</p>
+<p>Recall that</p>
+<div class="arithmatex">\[
+\Delta W_i \sim_{i.i.d.} \mathcal{N}(0, \Delta t)
+\]</div>
+<p>So <span class="arithmatex">\(Q_n\)</span> is the sum of squared Gaussian i.i.d. RVs. This is the <em>chi-squared</em> distribution.</p>
+<div class="arithmatex">\[
+Q_n = \sum_{i = 1}^n \Delta W_i^2 \sim \Delta t \cdot \chi^2(n)
+\]</div>
+<p>Two properties of the Chi-squared distribution are that <span class="arithmatex">\(\mathbb{E}[\chi_n^2] = n\)</span> and <span class="arithmatex">\(\text{Var}(\chi_n^2) = 2n\)</span>. So we can recover that:</p>
+<div class="arithmatex">\[
+\mathbb{E}[Q_n] = n \Delta t = t \text{ since $n$ is the number of total time increments}
+\]</div>
+<div class="arithmatex">\[
+\text{Var}(Q_n) = 2n \Delta t^2 = 2 t \Delta t
+\]</div>
+<p>As <span class="arithmatex">\(n \to \infty\)</span>, we can see that <span class="arithmatex">\(\mathbb{E}[Q_n]\)</span> doesn't depend on <span class="arithmatex">\(n\)</span> but since <span class="arithmatex">\(n\)</span> controls the size of <span class="arithmatex">\(\Delta t\)</span>, <span class="arithmatex">\(\Delta t \to 0\)</span> and the mean-square limit of <span class="arithmatex">\(Q_n\)</span> is <span class="arithmatex">\(t\)</span>.</p>
+<p>(Recall that mean square limit of a sequence of random variables is a RV such that the expected square difference with the sequence goes to <span class="arithmatex">\(0\)</span> as the sequence grows)</p>
+<p>In short, the first sum is $ \frac{1}{2} W_t^2$ and the 2nd sum converges to <span class="arithmatex">\(\frac{1}{2} t\)</span>.</p>
+<p>By the definition of Ito integrals,</p>
+<div class="arithmatex">\[
+\int_0^2 W_s dW_s = \frac{1}{2} W_t^2 - \frac{1}{2} t
+\]</div>
+<p>This is not regular calculus - naive integration produces the first term but not the 2nd!</p>
+<p>Doing a left Riemann sum as an approximation to an integral produces an error on the order of <span class="arithmatex">\(O(\Delta x)\)</span> which tends to <span class="arithmatex">\(0\)</span> as the partition grows finer. The proof for why the <span class="arithmatex">\(2\)</span>nd order terms go to <span class="arithmatex">\(0\)</span> involve both the mean-value theorem and the extreme value theorem which assume continuity and bounds the derivative. However, Brownian motion is non-differentiable! That's why sample paths are so jagged and why we need a new calculus.</p>
+<h3 id="another-view">Another View<a class="headerlink" href="#another-view" title="Permanent link">&para;</a></h3>
+<p>Another reason why <span class="arithmatex">\(\int_0^t W_s dW_s = \frac{1}{2} W_t^2 - \frac{1}{2} t\)</span> is that <span class="arithmatex">\(\mathbb{E}[Y_t] = 0\)</span>. We will show this but recall that Since <span class="arithmatex">\(X_i\)</span> is non-anticipatory, it contains zero information about <span class="arithmatex">\(\Delta W_{i + 1}\)</span> (and hence they are orthogonal). <span class="arithmatex">\(Y_t\)</span> is called a <strong>martingale</strong> or a fair game.</p>
+<p>Heuristically,</p>
+<div class="arithmatex">\[
+\mathbb{E}[\sum_{i = 1}^n X_{i - 1} \Delta W_i] = \sum_{i = 1} \mathbb{E}[X_{i - 1}] \mathbb{E}[\Delta W_i] = 0
+\]</div>
+<p>Then, as <span class="arithmatex">\(n \to \infty\)</span>, <span class="arithmatex">\(\mathbb{E}[Y_t] = 0\)</span> for all <span class="arithmatex">\(t &gt; 0\)</span>.</p>
+<p>So,</p>
+<div class="arithmatex">\[
+\mathbb{E}[\int_0^t W_s dW_s] = \mathbb{E} [\frac{1}{2} W_t^2 - \frac{1}{2} t]
+\]</div>
+<div class="arithmatex">\[
+= 0
+\]</div>
+<p>The expectation of <span class="arithmatex">\(W_t^2\)</span> is just the variance of <span class="arithmatex">\(W_t\)</span> which is normally distributed as <span class="arithmatex">\(mathcal{N}(0, t)\)</span>. So the <span class="arithmatex">\(\frac{1}{2} t\)</span> "has to" exist to produce an expectation of <span class="arithmatex">\(0\)</span>.</p>
+<h2 id="the-heart">The Heart<a class="headerlink" href="#the-heart" title="Permanent link">&para;</a></h2>
+<p>We observe that <span class="arithmatex">\(\text{l.i.m} \sum_{i = 1}^n \Delta W_i^2 = t\)</span>. So we can write this as:</p>
+<div class="arithmatex">\[
+\int_0^t dW_s^2 = t
+\]</div>
+<p>By applying FTC, we recover <span class="arithmatex">\(dW_t^2 = dt\)</span>. This cannot be taken literally - squared increment of Brownian motion does not equal to time increment.</p>
+<h2 id="dw_t2-dt"><span class="arithmatex">\(dW_t^2 = dt\)</span><a class="headerlink" href="#dw_t2-dt" title="Permanent link">&para;</a></h2>
+<p>Suppose <span class="arithmatex">\(\mathbb{E}[G_s^2] &lt; M\)</span> for all <span class="arithmatex">\(s \in [t_0, t]\)</span> for some constant <span class="arithmatex">\(M &gt; 0\)</span>. Then, we have:</p>
+<div class="arithmatex">\[
+\int_{t_0}^t G_s dW_s^2 := \text{l.i.m.} \sum_{i = 1}^n G_{i - 1} \Delta W_i^2
+\]</div>
+<p>Theorem: This mean-square limits is equal to <span class="arithmatex">\(\int_{t_0}^t G_s ds\)</span> where <span class="arithmatex">\(ds\)</span> is an ordinary differential.</p>
+<h2 id="intuition">Intuition<a class="headerlink" href="#intuition" title="Permanent link">&para;</a></h2>
+<p>Consider a time-interval sliced <span class="arithmatex">\(0 \leq t_0 &lt; t_1 &lt; \dots &lt; t_n = T\)</span>.</p>
+<div class="arithmatex">\[
+\int_0^T G_s ds \approx \sum_i G_{t_i} (t_{i + 1} - t_i) = \sum_i G_{t_i} \Delta t
+\]</div>
+<div class="arithmatex">\[
+\int_0^T G_s dW_s^2 \approx \sum_i G_{t_i} (W_{t_{i + 1}} - W_{t_i}) = \sum_i G_{t_i} \Delta W_i^2
+\]</div>
+<p>On a single slice, <span class="arithmatex">\(\Delta W_i \sim \mathcal{N}(0, \Delta t)\)</span>. Each random increment has mean square <span class="arithmatex">\(\Delta t\)</span>: <span class="arithmatex">\(\mathbb{E}[\Delta W_i^2] = \Delta t\)</span>. Each <span class="arithmatex">\(\Delta W_i^2\)</span> is not exactly <span class="arithmatex">\(\Delta t\)</span> but if you sum them, the sum's variance becomes linear in <span class="arithmatex">\(\Delta t\)</span> and goes to <span class="arithmatex">\(0\)</span> as <span class="arithmatex">\(n \to \infty\)</span>.</p>
+<p>It's like using statistically regular movements as a clock. Suppose we have a rat which runs at a reliable rate (it will move as <span class="arithmatex">\(\Delta W \sim \mathcal{N}(0, \Delta t)\)</span> over <span class="arithmatex">\(\Delta t\)</span> seconds). To use this rat as a clock, we can measure its movements at a really fine scale and square the movement to get a positive quantity. Each squared step follows a <span class="arithmatex">\(\Delta t \cdot \chi^2(1)\)</span> distribution with expectation <span class="arithmatex">\(\Delta t\)</span> and variance <span class="arithmatex">\(2 \Delta t^2\)</span> - the square distance the rat moves is like a noisy estimator of how much time has passed. Fine scale measurement gives so many estimates that the LLN averages out the noise and in the limit, we get a reliable measurement of total time <span class="arithmatex">\(T\)</span>.</p>
+<p><img alt="" src="../../../images/dw2.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
