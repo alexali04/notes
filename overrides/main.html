@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  {% if page.meta.git_creation_date_localized %}
+    <div class="page-dates">
+      Created {{ page.meta.git_creation_date_localized }}
+      {%- if page.meta.git_revision_date_localized %}
+        · Updated {{ page.meta.git_revision_date_localized }}
+      {%- endif %}
+    </div>
+  {% endif %}
+  {{ super() }}
+{% endblock %}

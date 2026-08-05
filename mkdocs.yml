@@ -2,6 +2,7 @@ site_name: ML Notes
 site_url: https://alexali04.github.io/notes/
 theme:
   name: material
+  custom_dir: overrides
 
 markdown_extensions:
   - pymdownx.arithmatex:
@@ -22,3 +23,10 @@ extra_css:
 hooks:
   - docs/hooks/number_admonitions.py
   - docs/hooks/bibtex_citations.py
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: iso_date        # or date, datetime, timeago
+      fallback_to_build_date: false

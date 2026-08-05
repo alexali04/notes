@@ -151,3 +151,6 @@ h4::before {
 .md-typeset .admonition {
   font-size: inherit !important;
 }
+
+.md-source-file { display: none; }
+.page-dates { font-size: .7rem; color: var(--md-default-fg-color--light); margin-bottom: .8rem; }
