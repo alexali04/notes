@@ -154,3 +154,26 @@ h4::before {
 
 .md-source-file { display: none; }
 .page-dates { font-size: .7rem; color: var(--md-default-fg-color--light); margin-bottom: .8rem; }
+
+body.nav-hidden .md-sidebar--primary {
+  display: none;
+}
+
+.nav-toggle {
+  position: fixed;
+  left: 0.4rem;
+  bottom: 0.8rem;
+  z-index: 10;
+  padding: 0.3rem 0.5rem;
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  background: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+  font-size: 0.7rem;
+}
+
+/* drawer already exists on small screens */
+@media screen and (max-width: 76.1875em) {
+  .nav-toggle { display: none; }
+}
