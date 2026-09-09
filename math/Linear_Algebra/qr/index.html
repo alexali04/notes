@@ -1,0 +1,1621 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://alexali04.github.io/notes/math/Linear_Algebra/qr/">
+      
+      
+        <link rel="prev" href="../../Information_Geometry/fim/">
+      
+      
+        <link rel="next" href="../subspaces/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>QR Decomposition - ML Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#qr-decomposition" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="ML Notes" class="md-header__button md-logo" aria-label="ML Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ML Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              QR Decomposition
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ML Notes" class="md-nav__button md-logo" aria-label="ML Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ML Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Math
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Math
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../background/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Math Background
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Information Geometry
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Information Geometry
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Information_Geometry/fim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fisher Information Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linear Algebra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linear Algebra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QR Decomposition
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QR Decomposition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#projectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Projectors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Projectors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complementary-projector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complementary Projector
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orthogonal-projector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orthogonal Projector
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qr-factorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QR Factorization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="QR Factorization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gram-schmidt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gram-Schmidt
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outer-products" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outer Products
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subspaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamental Subspaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stochastic Calculus
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Stochastic Calculus
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Stochastic_Calculus/1_ito/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 - Itô Integral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Stochastic_Calculus/2_calc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 - New Calculus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Misc
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Misc
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/jepa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JEPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/typicality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding Typicality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probability
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Probability
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../probability/distributions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Statistics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Statistics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/hypothesis_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hypothesis Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Statistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/point_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point Estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/random_samples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Random Samples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/useful_formulas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Useful Formulas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#projectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Projectors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Projectors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complementary-projector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complementary Projector
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orthogonal-projector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orthogonal Projector
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qr-factorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QR Factorization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="QR Factorization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gram-schmidt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gram-Schmidt
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outer-products" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outer Products
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+  
+    <div class="page-dates">
+      Created <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="September 9, 2026 19:04:33 UTC">2026-09-09</span>
+        · Updated <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="September 9, 2026 19:04:33 UTC">2026-09-09</span>
+    </div>
+  
+  
+                  
+
+
+
+<h1 id="qr-decomposition">QR Decomposition<a class="headerlink" href="#qr-decomposition" title="Permanent link">&para;</a></h1>
+<p>We introduce the tools used in QR-decomposition - outer-products, projectors, and the product of Householder reflectors. These tools are frequently used to compute QR decompositions so we can review this problem as well.</p>
+<p>We specifically review choice chapters from the QR-decomposition section of Trefethen &amp; Bau.</p>
+<h2 id="projectors">Projectors<a class="headerlink" href="#projectors" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Definition 1.1: Projector</p>
+<p>A <em>projector</em> is a square matrix that satisfies</p>
+<div class="arithmatex">\[
+P^2 = P
+\]</div>
+<p><span class="arithmatex">\(P\)</span> is also called idempotent. This definition includes both orthogonal and non-orthogonal projectors. Non-orthogonal projectors may be called <em>oblique projectors</em>.</p>
+</div>
+<p>As suggested by its name, a projector takes a vector <span class="arithmatex">\(v\)</span> and projects it onto a certain subspace (kind of like the shadow casted by <span class="arithmatex">\(v\)</span> on <span class="arithmatex">\(\text{span}(P)\)</span>). Once we have projected <span class="arithmatex">\(v\)</span> onto <span class="arithmatex">\(\text{span}(P)\)</span>, a secondary projection ought to do nothing, which is why we require that <span class="arithmatex">\(P^2 = P\)</span>. Mathematically,</p>
+<p>Suppose <span class="arithmatex">\(v = Px\)</span>. Then,</p>
+<div class="arithmatex">\[
+Pv = P(Px) = P^2x = Px = v
+\]</div>
+<p>Naturally, <span class="arithmatex">\(Pv - v \in \text{Ker}(P)\)</span>. This is precisely the component of <span class="arithmatex">\(v\)</span> which is discarded by the projection.</p>
+<h3 id="complementary-projector">Complementary Projector<a class="headerlink" href="#complementary-projector" title="Permanent link">&para;</a></h3>
+<p>If <span class="arithmatex">\(P\)</span> is a projector, then <span class="arithmatex">\(I - P\)</span> is also a projector.</p>
+<div class="arithmatex">\[
+(I - P)^2 = I - 2P + P^2 = I - P
+\]</div>
+<p><span class="arithmatex">\(I - P\)</span> projects on the null-space of <span class="arithmatex">\(P\)</span>. We have that:</p>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 1.1.1: Image(I - P) = Kernel(P)</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Suppose <span class="arithmatex">\(v \in \text{Ker}(P), v \neq 0\)</span>. Then, <span class="arithmatex">\(Pv = 0\)</span> and <span class="arithmatex">\((I - P)v = v - Pv = v - 0 = v\)</span> so <span class="arithmatex">\(v \in \text{Image}(I - P)\)</span>. Therefore, <span class="arithmatex">\(\text{Ker}(P) \subseteq \text{Image}(I - P)\)</span>.</p>
+<p>Suppose <span class="arithmatex">\(v \in \text{Image}(I - P)\)</span>. Then, <span class="arithmatex">\((I - P)v = v - Pv\)</span>. However, we know that <span class="arithmatex">\(P\)</span> maps <span class="arithmatex">\(v - Pv\)</span> to <span class="arithmatex">\(0\)</span> so <span class="arithmatex">\(\text{Image}(I - P) \subseteq \text{Ker}(P)\)</span> (the two spaces are comparable because <span class="arithmatex">\(P\)</span> is square).</p>
+<p>Therefore, <span class="arithmatex">\(\text{Image}(I - P) = \text{Ker}(P)\)</span>.</p>
+</div>
+<p>Without too much effort, we can show that <span class="arithmatex">\(\text{Ker}(I - P) = \text{Image}(P)\)</span> as well and that <span class="arithmatex">\(\text{Image}(P) \bigcap \text{Ker}(P) = \{0\}\)</span>.</p>
+<p>In short, a projector separates the vector space into two subspaces. Let <span class="arithmatex">\(S_1, S_2\)</span> be subspaces of <span class="arithmatex">\(\mathbb{C}^m\)</span> such that <span class="arithmatex">\(S_1 \bigcap S_2 = \{0\}\)</span> and <span class="arithmatex">\(\mathbb{C}^m = S_1 \oplus S_2\)</span> (each vector in <span class="arithmatex">\(\mathbb{C}^m\)</span> can be uniquely expressed as a sum of <span class="arithmatex">\(s_1 \in S_1\)</span> and <span class="arithmatex">\(s_2 \in S_2\)</span>). The pair <span class="arithmatex">\((S_1, S_2)\)</span> is called complementary subspaces. There is a projector <span class="arithmatex">\(P\)</span> such that <span class="arithmatex">\(\text{Image}(P) = S_1, \text{Ker}(P) = S_2\)</span>. We say that <span class="arithmatex">\(P\)</span> is a projector onto <span class="arithmatex">\(S_1\)</span> along <span class="arithmatex">\(S_2\)</span>.</p>
+<p>An application: Given <span class="arithmatex">\(x \in \mathbb{C}^m\)</span>, what's the component of <span class="arithmatex">\(x\)</span> in the direction of a particular eigenvector <span class="arithmatex">\(v\)</span> of a matrix <span class="arithmatex">\(A\)</span> (which holds a complete set of eigenvectors)? The answer is <span class="arithmatex">\(Px\)</span> where <span class="arithmatex">\(P\)</span> is a particular rank-one projector.</p>
+<p>Note that if <span class="arithmatex">\(P\)</span> is a rank <span class="arithmatex">\(k\)</span> projector, <span class="arithmatex">\(I - P\)</span> is a rank <span class="arithmatex">\(n - k\)</span> projector where <span class="arithmatex">\(n\)</span> is the number of rows / columns in <span class="arithmatex">\(P\)</span>.</p>
+<h3 id="orthogonal-projector">Orthogonal Projector<a class="headerlink" href="#orthogonal-projector" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Definition 1.2.1: Orthogonal Projector</p>
+<p>An <strong>orthogonal projector</strong> is one which projects onto a subspace <span class="arithmatex">\(S_1\)</span> along <span class="arithmatex">\(S_2\)</span> where <span class="arithmatex">\(S_1, S_2\)</span> are orthogonal.</p>
+<p>Orthogonal projectors don't need to be orthogonal matrices.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 1.2.2: Orthogonal Projectors are Symmetric</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="arithmatex">\(P\)</span> be an orthogonal projector. We have that</p>
+<div class="arithmatex">\[
+\text{Image}(P) \perp \text{Ker}(P)
+\]</div>
+<p>and</p>
+<div class="arithmatex">\[
+\text{Image}(P) \perp \text{Image}(I - P)
+\]</div>
+<p>Suppose <span class="arithmatex">\(Px_1 \neq 0, (I - P)x_2 \neq 0\)</span>. Then by orthogonality,</p>
+<div class="arithmatex">\[
+(P x_1)^T ((I - P) x_2) = 0
+\]</div>
+<div class="arithmatex">\[
+x_1^T P^T (I - P) x_2 = 0
+\]</div>
+<div class="arithmatex">\[
+x_1^T P^T x_2  - x_1^T P^T P x_2 = 0
+\]</div>
+<div class="arithmatex">\[
+x_1^T P^T x_2 = x_1^T P^T P x_2 \implies P^T = P^T P
+\]</div>
+<div class="arithmatex">\[
+(P^T)^T = P = P^T
+\]</div>
+<p>Therefore, orthogonality of the projected subspaces implies that the orthogonal projector must be symmetric.</p>
+</div>
+<p>A particularly important kind of orthogonal projector is the rank-one orthogonal projector,</p>
+<div class="arithmatex">\[
+P_q = qq^T
+\]</div>
+<p>The complement is the rank <span class="arithmatex">\(m - 1\)</span> orthogonal projector which removes the component in the direction of <span class="arithmatex">\(q\)</span>,</p>
+<div class="arithmatex">\[
+P_{\perp q} = I - qq^T
+\]</div>
+<p>For idempotency, it is assumed that <span class="arithmatex">\(q\)</span> has norm <span class="arithmatex">\(1\)</span>. However, normalizing is not hard.</p>
+<h2 id="qr-factorization">QR Factorization<a class="headerlink" href="#qr-factorization" title="Permanent link">&para;</a></h2>
+<p>The goal of QR factorization is to construct a sequence of orthonormal matrices <span class="arithmatex">\(q_1, q_2, \dots\)</span> that spans the successive column spaces of some matrix <span class="arithmatex">\(A\)</span>. More precisely, for <span class="arithmatex">\(A \in \mathbb{C}^{m \times n}, m \geq n\)</span>, we want:</p>
+<div class="arithmatex">\[
+\text{Span}(q_1, \dots, q_j) = \text{Span}(a_1, \dots, a_j)
+\]</div>
+<p>for <span class="arithmatex">\(j = 1, \dots, n\)</span>. This amounts to the condition that:</p>
+<div class="arithmatex">\[
+\left[\begin{array}{c|c|c|c}
+a_1 &amp; a_2 &amp; \cdots &amp; a_n
+\end{array}\right]
+=
+\left[\begin{array}{c|c|c|c}
+q_1 &amp; q_2 &amp; \cdots &amp; q_n
+\end{array}\right]
+\begin{bmatrix}
+r_{11} &amp; r_{12} &amp; \cdots &amp; r_{1n} \\
+       &amp; r_{22} &amp;        &amp; \vdots \\
+       &amp;        &amp; \ddots &amp;        \\
+       &amp;        &amp;        &amp; r_{nn}
+\end{bmatrix}
+\]</div>
+<p>The coefficients in <span class="arithmatex">\(R\)</span> express that a column <span class="arithmatex">\(a_j\)</span> can be represented as a linear combination <span class="arithmatex">\(\sum_{i = 1}^j r_{ij} q_i\)</span> of the orthonormal columns of <span class="arithmatex">\(Q\)</span>. More generally, we have <span class="arithmatex">\(A = QR\)</span> where <span class="arithmatex">\(Q\)</span> is a <span class="arithmatex">\(m \times n\)</span> matrix with orthonormal columns and <span class="arithmatex">\(R\)</span> is a <span class="arithmatex">\(n \times n\)</span> upper-triangular matrix. This factorization is called the <em>reduced <span class="arithmatex">\(QR\)</span> factorization of <span class="arithmatex">\(A\)</span></em>.</p>
+<h3 id="gram-schmidt">Gram-Schmidt<a class="headerlink" href="#gram-schmidt" title="Permanent link">&para;</a></h3>
+<p>One way to explicitly construct the <span class="arithmatex">\(q\)</span> vectors is to "invert" the sum <span class="arithmatex">\(a_j = \sum_{i = 1}^j r_{ij} q_i\)</span>. Specifically,</p>
+<div class="arithmatex">\[
+q_1 = \frac{a_1}{r_{11}}
+\]</div>
+<div class="arithmatex">\[
+q_2 = \frac{a_2 - r_{12} q_a}{r_{22}}
+\]</div>
+<div class="arithmatex">\[
+q_j = \frac{a_j - \sum_{i = 1}^{j - 1} r_{ij} q_j}{r_{jj}}
+\]</div>
+<p>This naturally produces a sequence of</p>
+<h2 id="appendix">Appendix<a class="headerlink" href="#appendix" title="Permanent link">&para;</a></h2>
+<p>Finally, we review outer-products.</p>
+<h3 id="outer-products">Outer Products<a class="headerlink" href="#outer-products" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 3.1.1: </p>
+<p>Matrix multiplication can be expressed as a sum of outer products.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Consider the generic <span class="arithmatex">\(AB\)</span> matrix multiplication.</p>
+<div class="arithmatex">\[
+AB = \begin{bmatrix}
+a_{11} &amp; \dots &amp; a_{1N} \\
+\vdots &amp; \ddots &amp; \vdots \\
+a_{M1} &amp; \dots &amp; a_{MN} \\
+\end{bmatrix}
+\begin{bmatrix}
+b_{11} &amp; \dots &amp; b_{1P} \\
+\vdots &amp; \ddots &amp; \vdots \\
+b_{N1} &amp; \dots &amp; b_{NP} \\
+\end{bmatrix} = C
+\]</div>
+<div class="arithmatex">\[
+c_{kl} = \sum_{i = 1}^N a_{ki} b_{il}
+\]</div>
+<p>The <strong>outer-product</strong> of two vectors is defined as:</p>
+<div class="arithmatex">\[
+a_i \otimes b_j = ab^T = \begin{bmatrix}
+a_1 \\ \vdots \\ a_N
+\end{bmatrix} \otimes
+\begin{bmatrix}
+b_1 \\ \vdots \\ b_M
+\end{bmatrix} =
+\begin{bmatrix}
+a_1 b_1 &amp; \dots &amp; a_1 b_M \\
+\vdots &amp; \ddots &amp; \vdots \\
+a_N b_1 &amp; \dots &amp; a_N b_M \\
+\end{bmatrix}
+\]</div>
+<p>Let <span class="arithmatex">\(C' = a_i \otimes b_j\)</span>. Then, <span class="arithmatex">\(C'_{kl} = a_k b_l\)</span>.</p>
+<p>Generally, we can express:</p>
+<div class="arithmatex">\[
+AB =
+\begin{bmatrix}
+a_1 | \dots | a_N
+\end{bmatrix}
+\begin{bmatrix}
+&amp; b_1 &amp; \\
+\hline
+&amp; \vdots &amp; \\
+\hline
+&amp; b_N &amp;
+\end{bmatrix}
+= C = \sum_{i = 1}^N a_i \otimes b_i^T
+\]</div>
+<p>In other words, a matrix-multiply can be expressed as a sum of rank-one outer-products. To see this, observe that:</p>
+<div class="arithmatex">\[
+C_{kl} = [\sum_{i = 1}^N a_i \otimes b_i^T]_{kl}
+\]</div>
+<div class="arithmatex">\[
+= \sum_{i = 1}^N (a_i \otimes b_i^T)_{kl}
+\]</div>
+<div class="arithmatex">\[
+= \sum_{i = 1}^N a_{ki} b_{il}
+\]</div>
+<p>This is identical to the element-wise formula given by the regular process for matrix multiplication and holds for generic indices.</p>
+</div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="September 9, 2026 19:04:33 UTC">2026-09-09</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="September 9, 2026 19:04:33 UTC">2026-09-09</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../javascripts/nav-toggle.js"></script>
+      
+    
+  </body>
+</html>
