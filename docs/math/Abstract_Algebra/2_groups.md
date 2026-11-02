@@ -110,6 +110,39 @@ $$
 
 These rules are called the *defining relations* for the group.
 
+### Permutation Signs
+
+Any permutation $p$ can be associated with a permutation matrix $P$. Left-multiplicaiton by this matrix permutes the entries of a vector $X$ using the permutation.
+
+Consider $p = (1 \ 2 \ 3)$ and associated matrix $P$. Then,
+
+$$
+PX = \begin{bmatrix}
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+0 & 1 & 0
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\ x_2 \\ x_3
+\end{bmatrix} = \begin{bmatrix}
+x_3 \\ x_1 \\ x_2
+\end{bmatrix}
+$$
+
+!!! success "Proposition: Permutation Matrices"
+    - Any matrix with a single $1$ per row and column is a permutation matrix (and vice versa).
+    - The determinant of a permutation matrix is $\pm 1$.
+    - Let $p, q$ be permutations with associated $P, Q$. Then, $pq$ has associated matrix $PQ$.
+
+!!! info "Definition: Sign"
+    The *sign* of a permutation is:
+
+    $$
+    \text{sign}(p) = \det P = \pm 1
+    $$
+
+    $p$ is *even* if its sign is $1$ and *odd* if its sign is $-1$.
+
 ## Subgroups
 
 The general linear group and symmetric groups are important because many other groups are included in them as subgroups.
@@ -184,7 +217,123 @@ Within $S_3$, $x$ has order $3$ and $y$ has order $2$. If $x^n \neq 1$ for all $
 
 We can also speak about the subgroup $G$ generated from a subset $U$. This is the smallest subgroup of $G$ that contains $U$ and it consists of all elements of $G$ that can be expressed as a product of a "string" of elements in $U$ and relevant inverses. A subset $U$ of $G$ is said to *generate* $G$ if every element of $G$ is such a product. For example, in $S_3$, the set $U = \{x, y\}$ generates $S_3$. Elementary matrices generated $\text{GL}_n$.
 
-In those particular examples, inverses weren't needed but that's not always the case. Negative powers are generally needed to fill out the group. 
+In those particular examples, inverses weren't needed but that's not always the case. Negative powers are generally needed to fill out the group.
+
+## Homomorphisms
+
+!!! info "Definition: Homomorphism"
+    Let $G, G'$ be groups with group operations $f, h$ respectively. A *homomorphism* $\varphi: G \to G'$ is a map from $G$ to $G'$ such that for all $a, b \in G$,
+
+    $$
+    \varphi(f(a, b)) = h(\varphi(a), \varphi(b))
+    $$
+
+The left side says to multiply $a, b$ in $G$ and send their product to $G'$ using $\varphi$. The right side says to send $a, b$ to $G'$ using $\varphi$ and then multiply their images using $G'$'s group operation.
+
+!!! example "Example: Homomorphisms"
+    - The determinant function $\text{GL}_n(\mathbb{R}) \to \mathbb{R}^{\times}$. If we multiply two matrices together (under matrix multiplication) and take its determinant, that's identical to taking the determinants of the operands and multiplying them together.
+    - The exponential map $\exp: \mathbb{R}^{+} \to \mathbb{R}^{\times}$. Since $e^{a + b} = e^a e^b$.
+    - The sign homomorphism $\sigma: S_n \to \{\pm 1\}$. If you compose two permutations and then find their sign, that's equivalent to multiplying the signs together. This is basically the same as the determinant example.
+
+There's also the *trivial homomorphism* $\varphi: G \to G"$ maps every element of $G$ to the identity element. If $H$ is a subgroup of $G$, the *inclusion map* $i: H \to G$ where $i(x) = x$ for $x \in H$ is a homomorphism.
+
+!!! success "Proposition: Homomorphism Properties"
+    - If $a_1, \dots, a_k \in G$, then $\varphi(a_1 \dots a_k) = \varphi(a_1) \dots \varphi(a_k)$.
+    - $\phi(1_G) = 1_{G'}$.
+    - $\phi(a^{-1}) = \phi(a)^{-1}$.
+
+!!! quote "Proof"
+    Since $1 \cdot 1 = 1$, then $\varphi(1) \varphi(1) = \varphi(1)$. Using the inverse property, we have that $\varphi(1) = 1$. We also have that $1 = \varphi(a a^{-1}) = \varphi(a) \varphi(a^{-1}) \implies \varphi(a^{-1}) = \varphi(a)^{-1}$.
+
+!!! info "Definition: Image, Kernel"
+    A group homomorphism determines two subgroups - the *image* and the *kernel*.
+
+    $$
+    \text{Im} (\varphi) = \{x \in G' \mid x = \phi(a), a \in G\}
+    $$
+
+    $$
+    \text{Ker} (\varphi) = \{a \in G \mid \varphi(a) = 1\}
+    $$
+
+    The image of a homomorphism is a subgroup of the range. We verify closure. Let $x, y \in \text{Im} (\varphi)$. Then, there exist elements $a, b$ such that $\varphi(a) = x, \varphi(b) = y$. Since $\varphi$ is a homomorphism, we have that $\varphi(a) \varphi(b) = \varphi(ab) = xy$. Therefore, $xy \in \text{Im} (\varphi)$ too.
+
+    The kernel of a homomorphism is a subgroup of $G$ since if $a, b \in \text{Ker} (\varphi)$, then $\varphi(a) \varphi(b) = 1 \cdot 1 = 1$. But since $\varphi$ is a homomorphism, then $\varphi(a b) = \varphi(a) \varphi(b)$ so $ab \in \text{Ker} (\varphi)$.
+
+!!! example "Example: Kernels"
+    - Consider the determinant homomorphism $\det: \text{GL}_n(\mathbb{R}) \to \mathbb{R}^{\times}$. Then, $\text{Ker}(\det) = \text{SL}_n(\mathbb{R})$. The identity in $G' = \mathbb{R}^{+}$ is $1$. The kernel of $\det$ is the set of matrices with determinant $1$ or $\text{SL}_n(\mathbb{R})$.
+    - Consider the sign homomorphism $\sigma: S_n \to \{\pm 1\}$. Then, $\text{Ker}(\sigma) = A_n$ which is the group of even permutations (permuations with determinant $1$).
+
+The kernel is important - it tells us which elements of $G$ are mapped to the identity in $G'$ and which pairs of elements have the same image in $G'$.
+
+!!! info "Definition: Coset"
+    If $H$ is a subgroup of $G$ and $a \in G$, then
+
+    $$
+    aH = \{g \in G \mid g = ah, h \in H\}
+    $$
+
+    This is called the *left coset* of $H$ in $G$.
+
+!!! success "Proposition: Coset Conditions"
+    Let $\varphi: G \to G'$ be a homomorphism, $a, b \in G$, and $K$ be the kernel of $\varphi$. Then, the following conditions are equivalent:
+
+    - $\varphi(a) = \varphi(b)$.
+    - $a^{-1}b \in K$.
+    - $b \in aK$.
+    - $bK = aK$.
+
+!!! quote "Proof"
+    Recall that the kernel exists in the domain of $\varphi$. Suppose $\varphi(a) = \varphi(b)$. Then, $\varphi(a^{-1} b) = \varphi(a^{-1}) \varphi(b)$ by the definition of homomorphism. We know that $\varphi(a^{-1}) = \varphi(a)^{-1}$. So we have $\varphi(a^{-1} b) = \varphi(a)^{-1} \varphi(b) = \varphi(a)^{-1} \varphi(a) = 1 \implies a^{-1} b \in K$.
+
+    Since $a^{-1} b \in K$, we have that $a(a^{-1}b) = b \in aK$.
+
+!!! tip "Theorem: Injective Homomorphism"
+    A homomorphism $\varphi$ is injective iff its kernel $K$ is the trivial subgroup $\{1\}$ of $G$.
+
+!!! info "Definition: Normal Subgroup"
+    A subgroup $N$ of $G$ is a *normal subgroup* if for every $a \in N$ and $g \in G$, the conjugate $gag^{-1} \in N$.
+
+!!! success "Proposition: Kernel Normal"
+    The kernel of a homomorphism is a normal subgroup.
+
+!!! quote "Proof"
+    If $a$ is in the kernel of $\varphi$ and $g$ is an element of $G$, then,
+
+    $$
+    \varphi(gag^{-1}) = \varphi(g) \varphi(a) \varphi(g^{-1}) = \varphi(g) 1 \varphi(g)^{-1} = 1 \implies gag^{-1} \in K(\varphi)
+    $$
+
+The special linear group is a normal subgroup of the general linear group (take any metrix with det $1$ and use the face that determinants commute). The alternating group is a normal subgroup of the symmetric group $S_n$ (take an even permutation and another permutation and its inverse).
+
+Every subgroup of an abelian group is normal due to commutativity. But subgroups of nonabelian groups don't need to be normal.
+
+The *center* of a group $G$ is the set of elements which commute with every element of $G$.
+
+$$
+Z = \{z \in G \mid zx = xz, x \in G\}
+$$
+
+It's always a normal subgroup of $G$. The center of the special linear group $\text{SL}_2(\mathbb{R})$ consists of $I, -I$.
+
+## Isomorphisms
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
