@@ -1,5 +1,7 @@
 # Groups
 
+[TOC]
+
 ## Definitions, Examples
 
 !!! info "Definition: Law of Composition"
@@ -18,7 +20,7 @@
     - $G$ has an identity element $1$ such that $1a = a1 = a$ for all $a \in G$.
     - For each $a$ in $G$, there exists an inverse element $b$ such that $ab = 1$.
 
-Associativity, identity, and invertibility - that's all a group is.
+Associativity, identity, and invertibility - that's all a group is. Naturally, the inverse of the identity is also the identity.
 
 An *abelian group* is one whose operation is also commutative.
 
@@ -301,6 +303,8 @@ The kernel is important - it tells us which elements of $G$ are mapped to the id
 
     A particular coset of the kernel is the set of group elements which are all mapped to the same element. Together, all the cosets of the kernel partition the domain according to the elements of the image.
 
+    Additionally, note that a coset does not form a group. Consider $AK$ where $\det(A) = 7$ and $K = \text{Ker}(\text{GL}_n)$. Then $AK$ is the set of matrices with determinant $7$. It does not include matrices with determinant $1/7$.
+
 !!! tip "Theorem: Injective Homomorphism"
     A homomorphism $\varphi$ is injective iff its kernel $K$ is the trivial subgroup $\{1\}$ of $G$.
 
@@ -389,6 +393,141 @@ The *commutator* $aba^{-1}b^{-1}$ is an element associated with pair $a, b$.
 
 !!! question "Lemma: Commutator"
     Two element $a, b$ commute $ab = ba$ iff $aba^{-1} = b$ which is equivalent to $aba^{-1} b^{-1} = 1$.
+
+## Equivalence Relations, Partitions
+
+!!! info "Definition: Partition"
+    A *partition* $\Pi$ of a set $S$ is a division of $S$ into non-overlapping, non-empty subsets. If $S = \{1, 2, 3\}$, a possible partition is $\Pi = \{\{1\}, \{2, 3\}\}$.
+
+!!! info "Definition: Equivalence Relation"
+    An *equivalence relation* on a set $S$ is a relation between pairs of elements on $S$ written as $a \sim b$. An equivalence relation is required to be:
+
+    - *transitive*. If $a \sim b$ and $b \sim c$, then $a \sim c$.
+    - *symmetric*. If $a \sim b$, then $b \sim a$.
+    - *reflexive*. For all $a$, $a \sim a$.
+
+!!! example "Example: Equivalence Relations"
+    - Congruence of triangles (triangles of the same shape, size) is an equivalence relation on the set of triangles in a plane.
+    - Conjugacy. We say that $a \sim b$ if $b = gag^{-1}$ for some group element $g$. This is reflexive since $a = gag^{-1}$ where $g = 1$. This is also symmetric. If $a = gbg^{-1}$, then $b = g^{-1} a g$. Finally, this is symmetric. Suppose $a = gbg^{-1}$ and $b = hch^{-1}$. Then, $a = ghch^{-1}g^{-1}$.
+
+!!! success "Proposition: Equivalence Relations are bijective to Partitions"
+
+    An equivalence relation on $S$ determines a partition on $S$ and vice versa.
+
+!!! quote "Proof"
+    Given a partition of $S$, say that $a \sim b$ if $a, b$ lie in the same subset of a partition. Clearly, reflexivity, symmetry, and transitiveness are satisified.
+
+    Given an equivalence relation, define an *equivalence class* as
+
+    $$
+    C_a = \{b \in S \mid a \sim b\}
+    $$
+
+    The subset that contains $a$ is the set of elements $b$ such that $a \sim b$. We will then show that the equivalence classes on $S$ partition $S$.
+
+    First, each equivalence class is non-empty since they at least include $a$. Second, the union of these classes is $S$ - each element of $S$ at least belongs to its own equivalence class. Finally, we will show that these classes are disjoint.
+
+    Consider distinct equivalence classes $C_a, C_b$. Suppose there existed some element $c$ such that $c \in C_a, C_b$. Then, $c \sim b$ and $c \sim a$. However, by transitivity, this would imply that $a \sim b$ and that $C_a = C_b$. Since these equivalence classes are distinct, there can be no such element belonging to both classes. Therefore, the equivelance classes are disjoint.
+
+The relation on a group defined as $a \sim b$ if $a, b$ have the same order is an equivalence relation.
+
+Given some partition $\Pi$ of a set $S$, we can construct a new set $\bar{S}$ whose elements are the subsets. If $U$ is such a subset, we will write $[U]$ as the relevant element of $\bar{S}$. So when given an equivalence relation on $S$, we obtain $\bar{S}$ whose elements are the equivalence classes $[C_a]$. We interpret $a \sim b$ to mean that $a, b$ become equal in $\bar{S}$ since $C_a = C_b$. Then, in $\bar{S}$, more elements have been deemed "equal" than in $S$ (i.e. congruent triangles).
+
+For any equivalence relation, there's a natural surjective map:
+
+$$
+\pi: S \to \bar{S}
+$$
+
+that takes an element $a$ to its equivalence class, $\pi(a) = [C_a]$ or $\pi(a) = \bar{a}$. For example, if $a, b \in S$, then $\bar{a} = \bar{b} \iff a \sim b$.
+
+We can frequently choose *representative elements* of each equivalence class. For example,
+
+$$
+\{\text{Even}, \text{Odd}\} = \{\bar{0}, \bar{1}\}
+$$
+
+### Fibres
+
+Any map of sets $f: S \to T$ gives an equivalence relation on its domain $S$ defined by the rule $a \sim b$ if $f(a) = f(b)$.
+
+!!! info "Definition: Fibres"
+    The *inverse image* or *fibre* of an element $t \in T$ is:
+
+    $$
+    f^{-1}(t) = \{s \in S: f(s) = t\}
+    $$
+
+    Unless $f$ is bijective, $f^{-1}$ will not be a map.
+
+    The elements of the image correspond bijectively to non-empty fibres which are equivalence clsses of the domain $S$ and elements of $\bar{S}$.
+
+![](../../images/fibres.png)
+
+!!! example "Example: Group Order"
+    If $G$ is a finite group, we can define a map $f: G \to \mathbb{N}$ letting $f(a)$ be the order of the element $a$ of $G$. The fibres of this map are the sets of elements with the same order.
+
+We return to a group homomorphism $\varphi: G \to G'$. The equivalence relation defined by $\varphi$ is denoted by $\equiv$ and is referred to as *congruence*.
+
+$$
+a \equiv b \text{ if } $\varphi(a) = \varphi(b)
+$$
+
+Elements $a, b$ are congruent iff $b$ is in the coset $aK$ of the kernel $K$.
+
+!!! success "Proposition: Cosets Partition"
+    Let $K$ be the kernel of homomorphism $k: G \to G'$. The fibre of $\varphi$ that contains an element $a$ of $G$ is the coset $aK$ of $K$. The cosets partition the group $G$ and correspond to elements of the image of $\varphi$.
+
+![](../../images/schematic_homo.png)
+
+## Cosets
+
+AS before, if $H$ is a subgroup of $G$ and $a$ is an element of $G$, then the subset:
+
+$$
+aH = \{ah \mid h \in H\}
+$$
+
+if called the left coset of $H$. The subgroup $H$ is a left coset since $H = 1H$.
+
+The cosets of $H$ in $G$ are equivalence classes for the congruence relation $a \equiv b$ if $b = ah$ for some $h \in H$.
+
+Transitivity. Suppose that $a \equiv b, b \equiv c$. Then, $b = ah, c = bh' \implies c = a (h h')$. Since $H$ is a subgroup, $hh' \in H$, therefore, $a \equiv c$.
+
+Symmetry. Suppose that $a \equiv b$. Then, $b = ah \implies a = bh^{-1}$. Since $H$ is a subgroup, $h^{-1} \in H$ so $b \equiv a$.
+
+Reflexivity. $a = ah$ where $h = 1$ so $a \equiv a$.
+
+We've used the defining properties of a subgroup here - closure, inverse, and identity. Since cosets from the equivalence classes for the congruence relation, we have that:
+
+!!! warning "Corollary: Coset Partition"
+    The left cosets of a subgroup $H$ of group $G$ partition the group.
+
+The number of left cosets of a subgroup is called the index of $H$ in $G$ denoted by $[G:H]$. Consider $S_3$. The element $y$ generates a cyclic subgroup of order $2$ so we have $H = \{1, y\}$. Then, we have three left-cosets of $H$ in $G$: $H, xH, x^2H$.
+
+The index of the subgroup $\langle y \rangle$ is $3$.
+
+!!! question "Lemma: Coset Order"
+    All left cosets $aH$ of a subgroup $H$ of $G$ have the same order.
+
+!!! quote "Proof"
+    Multiplication by $a$ sends $h \to ah$. Each coset has the same number of "base" elements $h$. The map is bijective since its inverse is multiplication by $a^{-1}$.
+
+    In other words, all cosets have the same order as the group they were generated from.
+
+Thus we obtain the counting formula:
+
+$$
+|G| = |H| * [G:H]
+$$
+
+The order of $G$ is the order of $H$ times the number of cosets. This works since cosets all have the same order and they partition the group.
+
+
+
+
+
+
 
 
 

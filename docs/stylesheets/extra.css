@@ -177,3 +177,17 @@ body.nav-hidden .md-sidebar--primary {
 @media screen and (max-width: 76.1875em) {
   .nav-toggle { display: none; }
 }
+
+/* Numbered TOC (right sidebar) */
+.md-nav--secondary .md-nav__list { counter-reset: toc; }
+.md-nav--secondary .md-nav__item > .md-nav__link::before {
+  counter-increment: toc;
+  content: counters(toc, ".") ". ";
+}
+
+.md-typeset .toc ul { list-style: none; }
+.md-typeset .toc ul ul { counter-reset: toc; }
+.md-typeset .toc ul ul li { counter-increment: toc; }
+.md-typeset .toc ul ul li > a::before {
+  content: counters(toc, ".") ". ";
+}
