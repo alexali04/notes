@@ -228,10 +228,16 @@ In those particular examples, inverses weren't needed but that's not always the 
     \varphi(f(a, b)) = h(\varphi(a), \varphi(b))
     $$
 
+    More succintly,
+
+    $$
+    \varphi(ab) = \varphi(a) \varphi(b)
+    $$
+
 The left side says to multiply $a, b$ in $G$ and send their product to $G'$ using $\varphi$. The right side says to send $a, b$ to $G'$ using $\varphi$ and then multiply their images using $G'$'s group operation.
 
 !!! example "Example: Homomorphisms"
-    - The determinant function $\text{GL}_n(\mathbb{R}) \to \mathbb{R}^{\times}$. If we multiply two matrices together (under matrix multiplication) and take its determinant, that's identical to taking the determinants of the operands and multiplying them together.
+    - The determinant function $\text{GL}_n(\mathbb{R}) \to \mathbb{R}^{\times}$. If we multiply two matrices together (under matrix multiplication) and take its determinant, that's identical to taking the determinants of the operands and multiplying them together. Specifically, $\det(AB) = \det(A) \cdot \det(B)$.
     - The exponential map $\exp: \mathbb{R}^{+} \to \mathbb{R}^{\times}$. Since $e^{a + b} = e^a e^b$.
     - The sign homomorphism $\sigma: S_n \to \{\pm 1\}$. If you compose two permutations and then find their sign, that's equivalent to multiplying the signs together. This is basically the same as the determinant example.
 
@@ -259,6 +265,8 @@ There's also the *trivial homomorphism* $\varphi: G \to G"$ maps every element o
     The image of a homomorphism is a subgroup of the range. We verify closure. Let $x, y \in \text{Im} (\varphi)$. Then, there exist elements $a, b$ such that $\varphi(a) = x, \varphi(b) = y$. Since $\varphi$ is a homomorphism, we have that $\varphi(a) \varphi(b) = \varphi(ab) = xy$. Therefore, $xy \in \text{Im} (\varphi)$ too.
 
     The kernel of a homomorphism is a subgroup of $G$ since if $a, b \in \text{Ker} (\varphi)$, then $\varphi(a) \varphi(b) = 1 \cdot 1 = 1$. But since $\varphi$ is a homomorphism, then $\varphi(a b) = \varphi(a) \varphi(b)$ so $ab \in \text{Ker} (\varphi)$.
+
+Importantly, the image is a subgroup of the range and the kernel is a subgroup of the domain.
 
 !!! example "Example: Kernels"
     - Consider the determinant homomorphism $\det: \text{GL}_n(\mathbb{R}) \to \mathbb{R}^{\times}$. Then, $\text{Ker}(\det) = \text{SL}_n(\mathbb{R})$. The identity in $G' = \mathbb{R}^{+}$ is $1$. The kernel of $\det$ is the set of matrices with determinant $1$ or $\text{SL}_n(\mathbb{R})$.
@@ -288,6 +296,11 @@ The kernel is important - it tells us which elements of $G$ are mapped to the id
 
     Since $a^{-1} b \in K$, we have that $a(a^{-1}b) = b \in aK$.
 
+!!! quote "Important: Cosets"
+    The important thing about cosets of the kernel is that they partition group outputs. In particular, if $b \in aK$, then $\varphi(a) = \varphi(b)$.
+
+    A particular coset of the kernel is the set of group elements which are all mapped to the same element. Together, all the cosets of the kernel partition the domain according to the elements of the image.
+
 !!! tip "Theorem: Injective Homomorphism"
     A homomorphism $\varphi$ is injective iff its kernel $K$ is the trivial subgroup $\{1\}$ of $G$.
 
@@ -304,7 +317,15 @@ The kernel is important - it tells us which elements of $G$ are mapped to the id
     \varphi(gag^{-1}) = \varphi(g) \varphi(a) \varphi(g^{-1}) = \varphi(g) 1 \varphi(g)^{-1} = 1 \implies gag^{-1} \in K(\varphi)
     $$
 
-The special linear group is a normal subgroup of the general linear group (take any metrix with det $1$ and use the face that determinants commute). The alternating group is a normal subgroup of the symmetric group $S_n$ (take an even permutation and another permutation and its inverse).
+!!! example "Example: Normal Subgroups"
+    - $\text{SL}_n$ is a normal subgroup of $\text{GL}_n$. Consider $A \in \text{SL}_n$, $B \in \text{GL}_n$. Then,
+
+        $$
+        \det(BAB^{-1}) = \det(B) \det(A) \det(B^{-1}) = \det(B) \det(B)^{-1} = 1
+        $$
+        Therefore, $BAB^{-1} \in \text{SL}_n$ so $\text{SL}_n$ is a normal subgroup of $\text{GL}_n$.
+
+    - The alternating group $A_n$ is a normal subgroup of the symmetric group $S_n$. Consider $p \in A_n$ where $\sigma(p) = 1$ and $q \in S_n$ where $\sigma(q) = \pm 1$. Then, $\sigma(pqp^{-1}) = 1$ since inverse permutations have the same sign (same number of transpositions forwards and backwards).
 
 Every subgroup of an abelian group is normal due to commutativity. But subgroups of nonabelian groups don't need to be normal.
 
@@ -317,6 +338,57 @@ $$
 It's always a normal subgroup of $G$. The center of the special linear group $\text{SL}_2(\mathbb{R})$ consists of $I, -I$.
 
 ## Isomorphisms
+
+!!! info "Definition: Isomorphism"
+    An isomorphism $\varphi: G \to G'$ is a bijective group homomorphism.
+
+The key component is that its bijective. Recall that a bijection is a function which is both injective (one-to-one) and surjective (image $=$ range).
+
+!!! example "Example: Isomorphisms"
+    - $e^x$ is an isomorphism when viewed as a map from $\mathbb{R}^{+}$ to $\mathbb{R}_{\geq 0}^{\times}$.
+    - Suppose $a$ is an element of infinite order in group $G$. Then the map $n \mapsto a^n$ is an isomorphism from $\mathbb{Z}^{+}$ to the infinite cyclic subgroup $\langle a \rangle$ of $G$.
+    - The map $S_n \to P$ is an isomorphism. It sends a permutation to its associated matrix.
+
+We can verify that a homomorphism $\varphi: G \to G'$ is an isomorphism provided that $\text{Ker}(\varphi) = \{1\}$ and that $\text{Im}(\varphi) = G'$.
+
+!!! question "Lemma: Inverse of an Isomorphisms is Isomorphic"
+    If $\varphi: G \to G'$ is an isomorphism then $\varphi^{-1}: G' \to G$ is an isomorphism.
+
+!!! quote "Proof"
+    It suffices to show that $\varphi^{-1}$ is homomorphic since the inverse of a bijection is bijective. Consider $a, b \in G'$ and $x, y \in G$ such that $\varphi^{-1}(a) = x, \varphi^{-1}(b) = y$. We WTS that $\varphi^{-1}(a) \varphi^{-1}(b) = \varphi^{-1}(ab)$.
+
+    $$
+    \varphi(xy) = \varphi(x) \varphi(y) = ab \implies \varphi^{-1}(ab) = xy = \varphi^{-1}(a) \varphi^{-1}(b)
+    $$
+
+When $\varphi: G \to G'$ is an isomorphism, we can do the computation in either $G$ or $G'$ and carry it over to the other group using $\varphi$ or $\varphi^{-1}$.
+
+For example, we often blur the distinction between $S_n$ and the isomorphic group $\mathcal{P}$ of permutation matrices.
+
+The groups isomorphic to $G$ form the *isomorphism class* of $G$.
+
+An *automorphism* is an isomorphism from a group $G$ to itself. The identity map is an automorphism. The most important type of automorphism is conjugation. Let $g$ be a fixed element of $G$. Conjugation by $g$ is an automorphism defined as:
+
+$$
+\varphi(x) = gxg^{-1}
+$$
+
+This is a homomorphism:
+
+$$
+\varphi(xy) = gxyg^{-1} = gx (g^{-1}g) yg^{-1} = \varphi(x) \varphi(y)
+$$
+
+Conjugation with $g^{-1}$ acts as an inverse meaning that it is also bijective. Therefore, it's also an automorphism.
+
+Conjugation under abelian groups is just the identity map $gxg^{-1} = x$. Noncommutative groups have nontrivial conjugations and thus have automorphisms different from the identity.
+
+The elemenet $gxg^{-1}$ is the conjugate of $x$ by $g$ and two elements $x, x'$ of $G$ are *conjugate* if $x' = gxg^{-1}$. The conjugate has the same order as the element $x$ in the group (since it is the image of $x$ under automorphism).
+
+The *commutator* $aba^{-1}b^{-1}$ is an element associated with pair $a, b$.
+
+!!! question "Lemma: Commutator"
+    Two element $a, b$ commute $ab = ba$ iff $aba^{-1} = b$ which is equivalent to $aba^{-1} b^{-1} = 1$.
 
 
 
