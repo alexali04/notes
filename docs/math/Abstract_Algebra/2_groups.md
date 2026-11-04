@@ -560,7 +560,78 @@ $$
     Let $K \subset H \subset G$ be subgroups of $G$. Then, $[G:K] = [G:H] [H:K]$.
 
 !!! quote "Proof"
-    Suppose $[G:H] = m, [H:K] = n$. We list $m$ cosets of $H$ in $G$ as $g_1H, \dots, g_mH$. This forms a partition on $G$. We also have that $H = h_1K, \dots, h_nK$. Therefore, $g_iH = g_i h_1K \cup \dots \cup g_i h_nK$ will partition $g_iH$. Since each of the $m$ cosets of $H$ can be partitioned into $n$ cosets of $K$, we have that $[G:K] = mn$. 
+    Suppose $[G:H] = m, [H:K] = n$. We list $m$ cosets of $H$ in $G$ as $g_1H, \dots, g_mH$. This forms a partition on $G$. We also have that $H = h_1K, \dots, h_nK$. Therefore, $g_iH = g_i h_1K \cup \dots \cup g_i h_nK$ will partition $g_iH$. Since each of the $m$ cosets of $H$ can be partitioned into $n$ cosets of $K$, we have that $[G:K] = mn$.
+
+### Right Cosets
+
+!!! info "Definition: Right Cosets"
+    The right cosets of a subgroup $H$ of a group $G$ are the sets
+
+    $$
+    Ha = \{ha \mid h \in H\}
+    $$
+
+Right cosets are equivalence classes for the relation $a \equiv b$ if $b = ha$ for some $h \in H$. Right cosets partition the group $G$ but not necessarily in the same as left cosets. The right cosets of $\langle y \rangle$ of $S_3$ are $Hy, Hx^2y, Hxy$.
+
+If a subgroup is normal, then its right and left cosets are equal.
+
+!!! success "Proposition: Right cosets"
+    Let $H$ be a subgroup of a group $G$. Then, the following conditions are equivalent:
+
+    - $H$ is a normal subgroup. For all $h \in H, g \in G$, $ghg^{-1} \in H$.
+    - $\forall g \in G, gHg^{-1} = H$.
+    - $\forall g \in G, gH = Hg$.
+    - Every left coset of $H$ in $G$ is a right coset.
+
+!!! quote "Proof"
+    Let $gHg^{-1}$ be the set of all elements $ghg^{-1}$ with $h \in H$.
+
+
+    Suppose $H$ is normal. Then, for all $g \in G$, we have that $gHg^{-1} \subset H$. Therefore, $H \subset g^{-1} H g = g H g^{-1}$. Therefore, $H = gHg^{-1}$.
+
+    If $gHg^{-1} = H$, then $gH = Hg$. This means that left cosets are equivalent to right cosets.
+
+    When is a right coset equal to a left coset? Right cosets partition the group $G$ and have an element in common with the left coset, namely $g$. Therefore, they must be the same coset (if a left coset $gH$ is to be equal to any right coset, it must be $Hg$.).
+
+!!! success "Proposition: Subgroups"
+    - If $H$ is a subgroup of $G$ and $g \in G$, then $gHg^{-1}$ is also a subgroup.
+    - If $G$ has one subgroup $H$ of order $r$, then that subgroup is normal.
+
+!!! quote "Proof"
+    Conjugation by $g$ is an automorphism and $gHg^{-1}$ is the image of $H$ under conjugation.
+
+    If there is only one subgroup $H$ of order $r$, then $gHg^{-1}$ preserves that order (since it's bijective) so $H = gHg^{-1}$.
+
+## Correspondence Theorem
+
+Let $\varphi: G \to G'$ be a group homomorphism and let $H$ be a subgroup of $G$. We can *restrict* $\varphi$ to $H$ obtaining a homomorphism:
+
+$$
+\varphi |_{H}: H \to G'
+$$
+
+If $h \in H$, then $[\varphi |_{H}](h) = \varphi(h)$. This restriction is a homomorphism since $\varphi$ is a homomorphism and:
+
+$$
+\text{Ker}(\varphi |_H) = \text{Ker}(\varphi) \cap H
+$$
+
+Additionally, $\text{Im}(\varphi |_H) = \text{Im}(\varphi(H))$.
+
+Consider the counting formula. We have that $|\text{Im}(\varphi)|$ divides $|H|$ and $|G'|$. If $|H|$ and $|G'|$ have no common factor, it follows that $\varphi(H) = \{1\}$ so $H \in \text{Ker}(\varphi)$.
+
+-- i don't really get this part
+
+
+
+
+
+
+
+
+
+
+
 
 
 
