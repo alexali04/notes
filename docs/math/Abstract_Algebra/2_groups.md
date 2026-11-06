@@ -13,14 +13,16 @@
 
     This law is *associative* if $(ab)c = a(bc)$. The law is *commutative* if $ab = ba$. Associativity is more fundamental than commutativity because it relates to function composition.
 
+Crucially, the set $S$ is *closed* under the law of composition, meaning that composing any two elements of $S$ produces another element in $S$.
+
 !!! info "Definition: Group"
-    A group is a set $G$ with a binary operation on $G$ with the following properties.
+    A group is a set $G$ with a law of composition on $G$ with the following properties.
 
     - The operation is associative, $(ab)c = a(bc)$ for all $a, b, c \in G$.
     - $G$ has an identity element $1$ such that $1a = a1 = a$ for all $a \in G$.
     - For each $a$ in $G$, there exists an inverse element $b$ such that $ab = 1$.
 
-Associativity, identity, and invertibility - that's all a group is. Naturally, the inverse of the identity is also the identity.
+In other words, a group is simply a set with a binary law of composition defined over it. The set contains an identity element and the law is associative and invertible. Naturally, the inverse of the identity is also the identity.
 
 An *abelian group* is one whose operation is also commutative.
 
@@ -72,7 +74,7 @@ $$
 q \circ p = (1 \ 3 \ 5)
 $$
 
-where the omitted $2$ and $4$ means that those indices are left alone (which is easily verifiable).
+where the omitted $2$ and $4$ means that those indices are mapped to themselves (which is easily verifiable).
 
 Consider $S_2 = \{a, b\}$. All we can do is either apply the identity $i$ or transpose $\tau$. Since there are only two permutations, our group has order two.
 
@@ -145,6 +147,9 @@ $$
 
     $p$ is *even* if its sign is $1$ and *odd* if its sign is $-1$.
 
+A permutation is called even if it involves an even number of transpositions (swaps) and odd if it involves an odd number of transpositions.
+
+
 ## Subgroups
 
 The general linear group and symmetric groups are important because many other groups are included in them as subgroups.
@@ -200,6 +205,8 @@ We consider an important abstract example of a subgroup, the *cyclic subgroup* g
 
     This is the smallest subgroup of $G$ containing $x$ and is often written $\langle x \rangle$.
 
+Generally, the *order* of an element $x$ of a group is the smallest integer $k$ such that $x^k = 1$.
+
 The notation $x^n$ represents an element of the group obtained under the particular law. For example, if $G$ is the multiplicative group $\mathbb{R}^{\times}$ and $x = -1$, then $\langle -1 \rangle = \{-1, 1\}$. Either $x^n$ represents different elements or they don't. Consider the cases.
 
 !!! success "Proposition: Cyclic Subgroups"
@@ -220,6 +227,8 @@ Within $S_3$, $x$ has order $3$ and $y$ has order $2$. If $x^n \neq 1$ for all $
 We can also speak about the subgroup $G$ generated from a subset $U$. This is the smallest subgroup of $G$ that contains $U$ and it consists of all elements of $G$ that can be expressed as a product of a "string" of elements in $U$ and relevant inverses. A subset $U$ of $G$ is said to *generate* $G$ if every element of $G$ is such a product. For example, in $S_3$, the set $U = \{x, y\}$ generates $S_3$. Elementary matrices generated $\text{GL}_n$.
 
 In those particular examples, inverses weren't needed but that's not always the case. Negative powers are generally needed to fill out the group.
+
+A finite group is cyclic when some element's order equals the order of that group. Then, the element generates the group.
 
 ## Homomorphisms
 
@@ -604,23 +613,169 @@ If a subgroup is normal, then its right and left cosets are equal.
 
 ## Correspondence Theorem
 
-Let $\varphi: G \to G'$ be a group homomorphism and let $H$ be a subgroup of $G$. We can *restrict* $\varphi$ to $H$ obtaining a homomorphism:
+Let $\varphi: G \to G'$ be a homomorphism with $H$ being a subgroup of $G$. We can restrict $\varphi$ to $H$:
 
 $$
-\varphi |_{H}: H \to G'
+\varphi|_H: H \to G'
 $$
 
-If $h \in H$, then $[\varphi |_{H}](h) = \varphi(h)$. This restriction is a homomorphism since $\varphi$ is a homomorphism and:
+This restriction is a homomorphism since $\varphi$ is a homomorphism and:
 
 $$
-\text{Ker}(\varphi |_H) = \text{Ker}(\varphi) \cap H
+\text{Ker}(\varphi|_H) = \text{Ker}(\varphi) \cap H
 $$
 
-Additionally, $\text{Im}(\varphi |_H) = \text{Im}(\varphi(H))$.
+Recall the original counting formula, $|G| = |H| * [G:H]$. The order of the group is the order of the subgroup times the index of $H$ in $G$. Here we've restricted the homomorphism and we're specifically considering the kernel. So we have:
 
-Consider the counting formula. We have that $|\text{Im}(\varphi)|$ divides $|H|$ and $|G'|$. If $|H|$ and $|G'|$ have no common factor, it follows that $\varphi(H) = \{1\}$ so $H \in \text{Ker}(\varphi)$.
+$$
+|H| = |\text{Ker}(\varphi|_H)| * |\text{Im}(\varphi|_H)|
+$$
 
--- i don't really get this part
+since the image is bijective with the number of cosets of the kernel. We will use this fact extensively.
+
+!!! example "Example: Sign Homomorphism"
+    Consider $\sigma: S_n \to \{\pm1\}$. Suppose a subgroup $H$ of $S_n$ has odd order. We don't know the order of the kernel but since $|H|$ is odd, it follows that $|\text{Im}(\varphi|_H)|$ cannot be even. Since $|\{\pm1\}| = 2$, the restricted map must have $|\text{Im}(\varphi|_H)| = 1$. Since the $\varphi|_H$ takes $1 \in H$ to $1$, it follows that $|\text{Im}(\varphi|_H)| = \{1\}$.
+
+    Therefore, $|\text{Ker}(\varphi|_H)| = A_n$.
+
+    Now consider the cyclic subgroup $\langle q \rangle$ with order $m$, i.e. $\langle q \rangle = \{1, q, \dots, q^{m - 1}\}$. Since $|m|$ is odd, it follows that $|m| \subseteq A_n$.
+
+    Generally, permutations with odd orders have signs $+1$ and so are considered even permutations.
+
+
+!!! success "Proposition: Normality"
+    Let $\varphi: G \to G'$ be a homomorphism with kernel $K$. Let $H'$ be a subgroup in the range $G'$. Denote the inverse image $H = \varphi^{-1}(H')$. Then, $H$ is a subgroup of $G$ containing $K$.
+
+    If $H"$ is a normal subgroup of $G'$, then $H$ is a normal subgroup of $G$.
+    If $\varphi$ is surjective and $H$ is a normal subgroup of $G$, then $H'$ is a normal subgroup of $G'$.
+
+Intuitively, a subgroup in the range must contain the identity. Therefore, it's inverse image must contain the kernel (although the inverse image isn't guaranteed to be a map).
+
+!!! quote "Proof"
+    By definition, $\varphi^{-1}(H') = H = \{x \in G: \varphi(x) \in H'\}$. If $x \in \text{Ker}(\varphi)$, then $\varphi(x) = 1$. Since $1 \in H'$, it follows that $K \subseteq H$. We now verify conditions of a subgroup.
+
+    Closure: Suppose $x, y \in H$. Then, $\varphi(x) \varphi(y) = \varphi(xy) \in H'$. Then, $\varphi^{-1}(xy) = xy$. Therefore, $H$ is closed.
+
+    Identity: $1 \in H$ since $\varphi(1) = 1 \in H'$.
+
+    Inverse: Let $x \in H$. Then, $\varphi(x) \in H'$ and $\varphi^{-1}(x) = \varphi(x^{-1}) \in H' \implies x^{-1} \in H$.
+
+    Suppose $H'$ is a normal subgroup. Let $x \in H, g \in G$. Then, $\varphi(gxg^{-1}) = \varphi(g) \varphi(x) \varphi(g^{-1})$ is a conjugate of $\varphi(x) \in H'$. Since $H'$ is normal, it follows that $\varphi(g) \varphi(x) \varphi(g^{-1}) \in H' \implies gxg^{-1} \in H$.
+
+    Suppose $H$ is a normal subgroup of $G$ and $\varphi$ is surjective. Let $a \in H', g \in G'$. Since $\varphi$ is surjective, it follows that each of these elements has a corresponding element $x, y$ such that $a = \varphi(x), g = \varphi(y)$. Therefore, $\varphi^{-1}(gag^{-1}) = y^{-1} x y$. Since $x \in H$ and $H$ is normal, it follows that $y^{-1} x y \in H$. Therefore, $\varphi(y^{-1} x y) = gag^{-1} \in H' \implies H'$ is normal.
+
+!!! tip "Theorem: Correspondence Theorem"
+    Let $\varphi: G \to G'$ be a *surjective* homomorphism with kernel $K$. Then, there's a bijective correspondence between subgroups of $G'$ and subgroups of $G$ containing $K$.
+
+    Each subgroup $H$ of $G$ containing $K$ corresponds to $\varphi(H) \subseteq G'$.
+    Each subgroup $H'$ of $G'$ corresponds to $\varphi^{-1}(H') \in G$.
+
+For corresponding subgroups $H, H'$, $H$ is normal in $G$ iff $H'$ is normal in $G'$.
+
+Additionally, $|H| = |H'| |K|$.
+
+!!! quote "Proof"
+    Let $H$ be a subgroup of $G$ containing $K$ and $H'$ a subgroup of $G'$. We must check that
+
+    - $\phi(H)$ is a subgroup of $G$ (true since $\phi(H)$ is the image of the homomorphism $\varphi|_H$)
+    - $\varphi^{-1}(H)$ is a subgroup of $G$ containing $K$
+    - $H'$ is a normal subgroup of $G'$ iff $H$ is a normal subgroup of $G$
+    - the correspondence is bijective; $\varphi(\varphi^{-1}(H)) = \varphi^{-1}(\varphi(H)) = H$
+    $|\varphi^{-1}(H)| = |H'| |K|$
+
+    The 2nd and 3rd point follow from the normality proposition. Generally, the equality $\varphi(\varphi^{-1}(H)) = H$ is true for any surjective mapping and $H \subset \varphi^{-1}(\varphi(H))$. We verify the other direction. Suppose $x \in \varphi^{-1}(\varphi(H))$. Then, $\varphi(x) \in \varphi(H)$ where $\varphi(x) = \varphi(a)$ for some $a \in H$. Then, $a^{-1} x \in K$ (refer to coset section) so $a^{-1} x \in H$. Since $a \in H, a^{-1} x \in H$, it follows that $x \in H$ too.
+
+## Product Groups
+
+Let $G, G'$ be two groups. The product set $G \times G' is the set of pairs $(a, a')$ with $a \in G, a' \in G'$. This can be made into a group via component-wise multiplication:
+
+$$
+(a, a') \cdot (b, b') = (ab, a'b')
+$$
+
+The pair $(1, 1)$ is the identity and the inverse of $(a, a')$ is $(a^{-1}, a'^{-1})$. The associative law follows from the associativity in $G, G'$.
+
+This group is called the *product* of $G, G'$ denoted by $G \times G'$.
+
+Let $i(x) = (x, 1)$, $i'(x') = (1, x')$, $p(x, x') = x$ and $p'(x, x') = x'$. Then, we obtain the following homomorphism diagram:
+
+![](../../images/product_homo.png){ .center }
+
+The injective homomorphisms $i$, $i'$ identify $G, G'$ with their images, the subgroups $G \times 1$ and $1 \times G'$ of $G \times G'$. The maps $p, p'$ are surjective and the kernel of $p$ is $1 \times G'$ while the kernel of $p'$ is $G \times 1$. These are the *projections*.
+
+If we can decompose a group $G$ as a product of subgroups $H, H'$ such that $G$ is isomorphic to $H \times H'$, we can better understand $G$ through its simpler factors.
+
+Consider the cyclic group $C_6$. This is isomorphic to $C_2 \times C_3$. Suppose $C_2 = \langle y \rangle$ where $y^2 = 1$ and $C_3 = \langle z \rangle$ where $z^3 = 1$. Let $x = (y, z)$ of $C_2 \times C_3$. The smallest positive integer $k$ such that $x^k = (y^k, z^k) = (1, 1)$ is $k = 6$. So $x$ has order $6$. Since $C_2 \times C_3$ also has order $6$, it's equal to $\langle x \rangle$. The powers of $x$ are:
+
+$$
+(1, 1), (y, z), (1, z^2), (y, 1), (1, z), (y, z^2)
+$$
+
+Since $C_2 \times C_3$ is cyclic and has order $6$, it's isomorphic to $C_6$.
+
+!!! success "Proposition: Relative Prime Cyclic Groups"
+    Let $r$ and $s$ be relatively prime. A cyclic group of order $rs$ is isomorphic to the product of a cyclic group of order $r$ and a cyclic group of order $s$.
+
+A cyclic group of order $4$ is *not* isomorphic to a product of two cyclic groups of order $2. Consider $C_2 \times C_2$. This has $4$ elements, $(1, 1), (y, 1), (1, z), (y, z)$. Squaring any of these elements produces $(1, 1)$. Therefore, the elements of this group have at most order $2$ and $C_2 \times C_2$ is not cylic so it cannot be isomorphic to $C_6$.
+
+!!! success "Proposition: Characterizing Product Groups"
+    Let $H, K$ be subgroups of $G$ and $f: H \times K \to G$ be the multiplication map where $f(h, k) = hk$. Then, it's image is $HK = \{hk \mid h \in H, k \in K\}$. Then,
+
+    - $f$ is injective iff $H \cap K = \{1\}$.
+    - $f$ is a homomorphism from $H \times K$ to $G$ iff $kh = kh$.
+    - If $H$ is a normal subgroup of $G$, then $HK$ is a subgroup of $G$.
+    - $f$ is an isomorphism iff $H \cap K = \{1\}$, $HK = G$, and $H, K$ are normal subgroups of $G$.
+
+!!! quote "Proof"
+    (a) Suppose there exists $x \neq 1 \in H \cap K$. Then, $x^{-1} \in H$. Then, $f$ cannot be injective since it maps $(1, 1)$ to $1$ and it also maps $(x^{-1}, x)$ to $1$.
+
+    (b) Let $(h_1, k_1)$ and $(h_2, k_2)$ be elements of $H \times K$. The product is $(h_1 h_2, k_1, k_2)$. $f(h_1 h_2, k_1, k_2) = h_1 h_2 k_1 k_2$ while $f(h_1, k_1) f(h_2, k_2) = h_1 k_1 h_2 k_2$. Therefore, $h_1 h_2 k_1 k_2 = h_1 k_1 h_2 k_2$. This is equal iff $h_2 k_1 = k_1 h_2$.
+
+    (c) Suppose $H$ is a normal subgroup. Note $KH$ is a union of the left cosets $kH$ with $k \in K$ and that $HK$ is a union of the right cosets $Hk$. Since $H$ is normal, then $KH = HK$. We verify closure and inverses.
+
+    Take $h_1 k_1$ and $h_2 k_2$. Then, $h_1 k_1 h_2 k_2 = (h_1 h_2) (k_1 k_2) = h' k'$. Therefore, $HK$ is closed.
+
+    $$
+    (hk)^{-1} = k^{-1} h^{-1} = h^{-1} k^{-1} \in HK
+    $$
+
+    Therefore, $HK$ is closed under inverses. 
+
+    (d) Suppose $H, K$ satisfy the given conditions. Then, $f$ is bijective. By (b), this is additionally an isomorphism provided that $hk = kh$ for all $k \in K, h \in H$. Consider the commutator $(hkh^{-1})k^{-1} = h (kh^{-1} k^{-1})$. Since $H, K$ are normal subgroups, the left element is in $K$ and the right element is in $H$. Since $H \cap K = \{1\}$, it follows that $hkh^{-1}k^{-1} = 1 \implies hk = kh$. Therefore, $f$ is an isomorphism.
+
+    Suppose $f$ is an isomorphism. Therefore, it is injective which implies that $H \cap K = \{1\} by (a). It is also surjective which implies that $HK = G$. We show that $H, K$ are normal subgroups of $G$. Pick $h \in H, g \in G$. Since $HK = G$, we have that G = h' k'$.
+
+    Then,
+
+    $$
+    ghg^{-1} = h' k' h k'^{-1} h'^{-1} = h' h k' k'^{-1} h'^{-1} = h' h h'^{-1} \in H
+    $$
+
+    Therefore, $H$ is normal. The same process can be repeated for $K$.
+
+!!! success "Proposition: Classifying Groups of Order $4$"
+    There are two isomorphism classes of groups of order $4$ - the class of cyclic groups $C_4$ and the class of the Klein Four Group which is isomorphic to $C_2 \times C_2$.
+
+!!! quote "Proof"
+    Suppose $|G| = 4$. The order of any element $x$ of $G$ divides $4$ so then:
+
+    - If $G$ contains an element of order $4$, then it's cyclic with order $4$.
+    - Otherwise, all elements of $G$ (except the identity) have order $2$.
+
+    Then, $x = x^{-1}$ for $x \in G$. Consider $x, y \in G$. Then, $xy$ has order $2$ so $xy x^{-1} y^{-1} = (xy) (xy) = 1 \implies xy x^{-1} y^{-1} = xy y^{-1} x^{-1} = xy yx \implies xy = yx$. Therefore $G$ is abelian and every subgroup of $G$ is normal. Let $H, K$ be distinct subgroups of $G$ generated respectively by $x, y$. The previous proposition shows that $G$ is isomorphic to the product group $H \times K$ which is isomorphic to $C_2 \times C_2$.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

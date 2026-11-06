@@ -191,3 +191,5 @@ body.nav-hidden .md-sidebar--primary {
 .md-typeset .toc ul ul li > a::before {
   content: counters(toc, ".") ". ";
 }
+
+.center { display: block; margin: 0 auto; }

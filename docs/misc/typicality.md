@@ -26,7 +26,7 @@ On the contrary, let $X$ be the number of heads observed. The most likely number
 
 ## Gaussians
 
-![Gaussian Densities Resemble Pound Cakes](../images/lemon_pound_cake.png)
+![Gaussian Densities Resemble Pound Cakes](../images/lemon_pound_cake.png){ .center }
 
 *Gaussian Densities can be analogized to soap bubbles... or pound cakes!*
 
