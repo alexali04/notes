@@ -1,0 +1,2591 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://alexali04.github.io/notes/math/Abstract_Algebra/2_groups/">
+      
+      
+        <link rel="prev" href="../../background/">
+      
+      
+        <link rel="next" href="../overview/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Groups - ML Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#groups" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="ML Notes" class="md-header__button md-logo" aria-label="ML Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ML Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Groups
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ML Notes" class="md-nav__button md-logo" aria-label="ML Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ML Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Math
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Math
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../background/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Math Background
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Abstract Algebra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Abstract Algebra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Groups
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definitions-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definitions, Examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permutation-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permutation Groups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Permutation Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cyclic-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cyclic Notation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permutation-signs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permutation Signs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subgroups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subgroups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subgroups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cyclic-subgroups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cyclic Subgroups
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homomorphisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Homomorphisms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#isomorphisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Isomorphisms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equivalence-relations-partitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Equivalence Relations, Partitions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Equivalence Relations, Partitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fibres" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fibres
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cosets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cosets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cosets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#right-cosets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Right Cosets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correspondence-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Correspondence Theorem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#product-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product Groups
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quotient-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quotient Groups
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#big-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Big Picture
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Information Geometry
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Information Geometry
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Information_Geometry/fim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fisher Information Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linear Algebra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linear Algebra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear_Algebra/qr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QR Decomposition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear_Algebra/subspaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamental Subspaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stochastic Calculus
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Stochastic Calculus
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Stochastic_Calculus/1_ito/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 - Itô Integral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Stochastic_Calculus/2_calc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 - New Calculus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Misc
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Misc
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/jepa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JEPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/typicality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding Typicality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probability
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Probability
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../probability/distributions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Statistics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Statistics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/hypothesis_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hypothesis Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Statistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/point_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point Estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/random_samples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Random Samples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/useful_formulas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Useful Formulas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definitions-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definitions, Examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permutation-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permutation Groups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Permutation Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cyclic-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cyclic Notation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permutation-signs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permutation Signs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subgroups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subgroups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subgroups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cyclic-subgroups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cyclic Subgroups
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homomorphisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Homomorphisms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#isomorphisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Isomorphisms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equivalence-relations-partitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Equivalence Relations, Partitions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Equivalence Relations, Partitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fibres" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fibres
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cosets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cosets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cosets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#right-cosets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Right Cosets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correspondence-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Correspondence Theorem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#product-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product Groups
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quotient-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quotient Groups
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#big-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Big Picture
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+  
+    <div class="page-dates">
+      Created <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 9, 2026 03:29:21 UTC">2026-11-09</span>
+        · Updated <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 9, 2026 03:29:21 UTC">2026-11-09</span>
+    </div>
+  
+  
+                  
+
+
+
+<h1 id="groups">Groups<a class="headerlink" href="#groups" title="Permanent link">&para;</a></h1>
+<div class="toc">
+<ul>
+<li><a href="#groups">Groups</a><ul>
+<li><a href="#definitions-examples">Definitions, Examples</a></li>
+<li><a href="#permutation-groups">Permutation Groups</a><ul>
+<li><a href="#cyclic-notation">Cyclic Notation</a></li>
+<li><a href="#permutation-signs">Permutation Signs</a></li>
+</ul>
+</li>
+<li><a href="#subgroups">Subgroups</a><ul>
+<li><a href="#cyclic-subgroups">Cyclic Subgroups</a></li>
+</ul>
+</li>
+<li><a href="#homomorphisms">Homomorphisms</a></li>
+<li><a href="#isomorphisms">Isomorphisms</a></li>
+<li><a href="#equivalence-relations-partitions">Equivalence Relations, Partitions</a><ul>
+<li><a href="#fibres">Fibres</a></li>
+</ul>
+</li>
+<li><a href="#cosets">Cosets</a><ul>
+<li><a href="#right-cosets">Right Cosets</a></li>
+</ul>
+</li>
+<li><a href="#correspondence-theorem">Correspondence Theorem</a></li>
+<li><a href="#product-groups">Product Groups</a></li>
+<li><a href="#quotient-groups">Quotient Groups</a></li>
+<li><a href="#big-picture">Big Picture</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="definitions-examples">Definitions, Examples<a class="headerlink" href="#definitions-examples" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Definition 1.1: Law of Composition</p>
+<p>A <strong>law of composition</strong> on a set <span class="arithmatex">\(S\)</span> is a binary function:</p>
+<div class="arithmatex">\[
+S \times S \to S
+\]</div>
+<p>This law is <em>associative</em> if <span class="arithmatex">\((ab)c = a(bc)\)</span>. The law is <em>commutative</em> if <span class="arithmatex">\(ab = ba\)</span>. Associativity is more fundamental than commutativity because it relates to function composition.</p>
+</div>
+<p>Crucially, the set <span class="arithmatex">\(S\)</span> is <em>closed</em> under the law of composition, meaning that composing any two elements of <span class="arithmatex">\(S\)</span> produces another element in <span class="arithmatex">\(S\)</span>.</p>
+<div class="admonition info">
+<p class="admonition-title">Definition 1.2: Group</p>
+<p>A <strong>group</strong> is a set <span class="arithmatex">\(G\)</span> with a law of composition on <span class="arithmatex">\(G\)</span> with the following properties.</p>
+<ul>
+<li>The operation is associative, <span class="arithmatex">\((ab)c = a(bc)\)</span> for all <span class="arithmatex">\(a, b, c \in G\)</span>.</li>
+<li><span class="arithmatex">\(G\)</span> has an identity element <span class="arithmatex">\(1\)</span> such that <span class="arithmatex">\(1a = a1 = a\)</span> for all <span class="arithmatex">\(a \in G\)</span>.</li>
+<li>For each <span class="arithmatex">\(a\)</span> in <span class="arithmatex">\(G\)</span>, there exists an inverse element <span class="arithmatex">\(b\)</span> such that <span class="arithmatex">\(ab = 1\)</span>.</li>
+</ul>
+</div>
+<p>In other words, a group is simply a set with a binary law of composition defined over it. The set contains an identity element and the law is associative and invertible. Naturally, the inverse of the identity is also the identity.</p>
+<p>An <em>abelian group</em> is one whose operation is also commutative.</p>
+<div class="admonition example">
+<p class="admonition-title">Example 1.1: Groups</p>
+<ul>
+<li><span class="arithmatex">\(\mathbb{R} / \{0\}\)</span> forms an abelian group under multiplication. Multiplication is associative, invertible (under exclusion of <span class="arithmatex">\(0\)</span>) and the identity is <span class="arithmatex">\(1\)</span>.</li>
+<li><span class="arithmatex">\(\mathbb{R}\)</span> forms an abelian group under addition. Addition is associative, invertible (via subtraction), and the identity is <span class="arithmatex">\(0\)</span>.</li>
+<li>The set of invertible <span class="arithmatex">\(n \times n\)</span> matrices forms a group under matrix multiplication. It's associative, invertible and the identity matrix is the identity. This is called the <em>general linear group</em>.</li>
+</ul>
+</div>
+<p>The order of a group <span class="arithmatex">\(G\)</span> is the number of elements it contains denoted by <span class="arithmatex">\(|G|\)</span>. If <span class="arithmatex">\(|G|\)</span> is finite, then <span class="arithmatex">\(G\)</span> is a <em>finite group</em>. Otherwise, <span class="arithmatex">\(G\)</span> is an infinite group.</p>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 1.3: Cancellation Law</p>
+<p>Let <span class="arithmatex">\(a, b, c\)</span> be elements of a group <span class="arithmatex">\(G\)</span>. If <span class="arithmatex">\(ab = ac\)</span> or <span class="arithmatex">\(ba = ca\)</span>, then <span class="arithmatex">\(b = c\)</span>. This is a direct consequence of the inverse.</p>
+</div>
+<p>Groups can also be obtained by excluding elements that are not invertible.</p>
+<ul>
+<li><span class="arithmatex">\(\text{GL}_n(\mathcal{F}) = \{A \in \mathcal{F}^{n \times n} | \det(A) \neq 0\}\)</span>. This is the <span class="arithmatex">\(n \times n\)</span> general linear group - the group of all invertible <span class="arithmatex">\(n \times n\)</span> matrices. We can write <span class="arithmatex">\(\text{GL}_n(\mathbb{R})\)</span> or <span class="arithmatex">\(\text{GL}_n(\mathbb{C})\)</span> to indicate if we are working with real or complex matrices.</li>
+<li>Let <span class="arithmatex">\(M\)</span> be the set of maps from a set <span class="arithmatex">\(T\)</span> to itself. A map <span class="arithmatex">\(f: T \to T\)</span> has an inverse iff it is bijective - in other words, <span class="arithmatex">\(f\)</span> is a <em>permutation</em> of <span class="arithmatex">\(T\)</span>. These permutations form a group where the binary op. is function composition. The group of permutations of index set <span class="arithmatex">\(\{1, 2, \dots, n\}\)</span> is called the <em>symmetric group</em> written like <span class="arithmatex">\(S_n\)</span>. <span class="arithmatex">\(|S_n| = n!\)</span>.</li>
+</ul>
+<div class="admonition quote">
+<p class="admonition-title">Important: </p>
+<p>The elements of a permutation group are the permutations, not the set of indices.</p>
+</div>
+<h2 id="permutation-groups">Permutation Groups<a class="headerlink" href="#permutation-groups" title="Permanent link">&para;</a></h2>
+<h3 id="cyclic-notation">Cyclic Notation<a class="headerlink" href="#cyclic-notation" title="Permanent link">&para;</a></h3>
+<p>To write down a permutation, we typically use <em>cycle notation</em>. Consider the output of some permutation <span class="arithmatex">\(p\)</span> to be</p>
+<div class="arithmatex">\[
+p = \begin{bmatrix}
+1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\
+3 &amp; 5 &amp; 4 &amp; 1 &amp; 2
+\end{bmatrix}
+\]</div>
+<p><span class="arithmatex">\(p\)</span> maps each element in the upper row to the matching element in the bottom row. Writing the output of each permutation makes it a nightmare to track composition of permutations (which is what we really care about).</p>
+<p>Instead, we use cycle notation. Pick some index, say <span class="arithmatex">\(3\)</span>. <span class="arithmatex">\(p(3) = 4\)</span>. <span class="arithmatex">\(p(4) = 1\)</span>. <span class="arithmatex">\(p(1) = 3\)</span>. So we have a cycle <span class="arithmatex">\((3, 4, 1)\)</span>. Since <span class="arithmatex">\(p(2) = 5\)</span> and <span class="arithmatex">\(p(5) = 2\)</span>, we can write:</p>
+<div class="arithmatex">\[
+p = (3 \ 4 \ 1) (2 \ 5)
+\]</div>
+<p>Basically, an index within a cycle gets mapped to the next element.</p>
+<p>Consider <span class="arithmatex">\(q = (1 \ 4 \ 5 \ 2)\)</span>. We want to compute <span class="arithmatex">\(q \circ p\)</span>. In function composition, the inner function is applied first. So consider an index <span class="arithmatex">\(1\)</span>. By <span class="arithmatex">\(p\)</span>, <span class="arithmatex">\(1\)</span> gets mapped to <span class="arithmatex">\(3\)</span> and <span class="arithmatex">\(q\)</span> leaves <span class="arithmatex">\(3\)</span> alone. <span class="arithmatex">\(p(3) = 4\)</span> and <span class="arithmatex">\(q(4) = 5\)</span>. <span class="arithmatex">\(p(5) = 2\)</span> and <span class="arithmatex">\(q(2) = 1\)</span>. So we have the chain:</p>
+<div class="arithmatex">\[
+q \circ p = (1 \ 3 \ 5)
+\]</div>
+<p>where the omitted <span class="arithmatex">\(2\)</span> and <span class="arithmatex">\(4\)</span> means that those indices are mapped to themselves (which is easily verifiable).</p>
+<p>Consider <span class="arithmatex">\(S_2 = \{a, b\}\)</span>. All we can do is either apply the identity <span class="arithmatex">\(i\)</span> or transpose <span class="arithmatex">\(\tau\)</span>. Since there are only two permutations, our group has order two.</p>
+<p>Consider <span class="arithmatex">\(S_3\)</span>. This is the smallest group whose binary operation isn't commutative. Pick two permutations - the cyclic permutation <span class="arithmatex">\(x = (1, 2, 3)\)</span> and the transposition <span class="arithmatex">\((1, 2)\)</span>. We have <span class="arithmatex">\(x^3 = 1\)</span> and <span class="arithmatex">\(y^2 = 1\)</span> (following the cycle).</p>
+<p>It's also easily verifiable that <span class="arithmatex">\(yx = x^2y\)</span>. <span class="arithmatex">\(x^3 = 1 \implies x \circ x^2 = 1 \implies x^2 = x^{-1}\)</span>. Let's multiply both sides by <span class="arithmatex">\(y\)</span>. We get <span class="arithmatex">\(x^2 y = x^{-1} y\)</span>.</p>
+<div class="arithmatex">\[
+\begin{aligned}
+x^{-1} &amp;= (3 \ 2 \ 1) \\
+y &amp;= (1 \ 2) \\
+x^{-1} y &amp;= (2 \ 3)
+\end{aligned}
+\]</div>
+<div class="arithmatex">\[
+\begin{aligned}
+y &amp;= (1 \ 2) \\
+x &amp;= (1 \ 2 \ 3) \\
+yx &amp;= (2 \ 3)
+\end{aligned}
+\]</div>
+<p>So <span class="arithmatex">\(x^2 y = yx\)</span>.</p>
+<p>Thus our group is:</p>
+<div class="arithmatex">\[
+S_3 = \{1, x, x^2, y, xy, x^2 y\}
+\]</div>
+<p>Any product of elements <span class="arithmatex">\(x, y\)</span> can be shown to be equal to an element of <span class="arithmatex">\(S_3\)</span>.</p>
+<div class="arithmatex">\[
+x^{-1} y^3 x^2 y = x^2 y^3 y x = x^2 y^4 x = x^3 = 1
+\]</div>
+<p>These rules are called the <em>defining relations</em> for the group.</p>
+<h3 id="permutation-signs">Permutation Signs<a class="headerlink" href="#permutation-signs" title="Permanent link">&para;</a></h3>
+<p>Any permutation <span class="arithmatex">\(p\)</span> can be associated with a permutation matrix <span class="arithmatex">\(P\)</span>. Left-multiplicaiton by this matrix permutes the entries of a vector <span class="arithmatex">\(X\)</span> using the permutation.</p>
+<p>Consider <span class="arithmatex">\(p = (1 \ 2 \ 3)\)</span> and associated matrix <span class="arithmatex">\(P\)</span>. Then,</p>
+<div class="arithmatex">\[
+PX = \begin{bmatrix}
+0 &amp; 0 &amp; 1 \\
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\ x_2 \\ x_3
+\end{bmatrix} = \begin{bmatrix}
+x_3 \\ x_1 \\ x_2
+\end{bmatrix}
+\]</div>
+<div class="admonition success">
+<p class="admonition-title">Proposition 2.2.1: Permutation Matrices</p>
+<ul>
+<li>Any matrix with a single <span class="arithmatex">\(1\)</span> per row and column is a permutation matrix (and vice versa).</li>
+<li>The determinant of a permutation matrix is <span class="arithmatex">\(\pm 1\)</span>.</li>
+<li>Let <span class="arithmatex">\(p, q\)</span> be permutations with associated <span class="arithmatex">\(P, Q\)</span>. Then, <span class="arithmatex">\(pq\)</span> has associated matrix <span class="arithmatex">\(PQ\)</span>.</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Definition 2.2.2: Sign</p>
+<p>The <em>sign</em> of a permutation is:</p>
+<div class="arithmatex">\[
+\text{sign}(p) = \det P = \pm 1
+\]</div>
+<p><span class="arithmatex">\(p\)</span> is <em>even</em> if its sign is <span class="arithmatex">\(1\)</span> and <em>odd</em> if its sign is <span class="arithmatex">\(-1\)</span>.</p>
+</div>
+<p>A permutation is called even if it involves an even number of transpositions (swaps) and odd if it involves an odd number of transpositions.</p>
+<h2 id="subgroups">Subgroups<a class="headerlink" href="#subgroups" title="Permanent link">&para;</a></h2>
+<p>The general linear group and symmetric groups are important because many other groups are included in them as subgroups.</p>
+<div class="admonition info">
+<p class="admonition-title">Definition 3.1: Subgroup</p>
+<p>A subset <span class="arithmatex">\(H\)</span> of group <span class="arithmatex">\(G\)</span> is called a <strong>subgroup</strong> if</p>
+<ul>
+<li><em>Closure</em>. If <span class="arithmatex">\(a, b \in H\)</span>, then <span class="arithmatex">\(ab \in H\)</span>.</li>
+<li><em>Identity</em>. <span class="arithmatex">\(1 \in H\)</span>.</li>
+<li><em>Inverses</em>. <span class="arithmatex">\(a \in H \implies a^{-1} \in H\)</span>.</li>
+</ul>
+</div>
+<p>The first condition states that the law of composition on <span class="arithmatex">\(G\)</span> induces a law of composition on <span class="arithmatex">\(H\)</span>. The other conditions state that <span class="arithmatex">\(H\)</span> is a group w.r.t. the induced law.</p>
+<div class="admonition example">
+<p class="admonition-title">Example 3.1: Subgroups</p>
+<ul>
+<li>The group of <span class="arithmatex">\(n \times n\)</span> real matrices with determinant <span class="arithmatex">\(1\)</span> is a subgroup of the general linear group <span class="arithmatex">\(\text{GL}_n(\mathbb{R})\)</span>. This is called the <em>special linear group</em>, <span class="arithmatex">\(\text{SL}_n(\mathbb{R})\)</span>.</li>
+<li>Complex numbers of absolute value <span class="arithmatex">\(1\)</span> are the set of points on the unit circle in the complex plane. It's a subgroup of the multiplicative group <span class="arithmatex">\(\mathbb{C}^{\times}\)</span> called the <em>circle group</em>.</li>
+</ul>
+</div>
+<p>Each group <span class="arithmatex">\(G\)</span> has two obvious subgroups - the group <span class="arithmatex">\(G\)</span> itself and the <em>trivial</em> subgroup containing just the identity element. A subgroup is called a <em>proper subgroup</em> if its neither of these two.</p>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 3.2: Subgroups of Additive Groups of Integers</p>
+<p>Let <span class="arithmatex">\(S\)</span> be a subgroup of the additive group <span class="arithmatex">\(\mathbb{Z}^{+}\)</span>. Either <span class="arithmatex">\(\mathbb{Z}\)</span> is the trivial subgroup <span class="arithmatex">\(\{0\}\)</span> of it has the form <span class="arithmatex">\(\mathbb{Z}a\)</span> where <span class="arithmatex">\(a\)</span> is the smallest positive integer in <span class="arithmatex">\(S\)</span>. Here,</p>
+<div class="arithmatex">\[
+\mathbb{Z}a = \{n \in \mathbb{Z} \mid n = ka, k \in \mathbb{Z}\}
+\]</div>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="arithmatex">\(S\)</span> be a subgroup of <span class="arithmatex">\(\mathbb{Z}^{+}\)</span>. Then, <span class="arithmatex">\(0 \in S\)</span>. If <span class="arithmatex">\(S = \{0\}\)</span>, then its the trivial subgroup. Othherwise, there exists at least two more integers, namely <span class="arithmatex">\(n\)</span> and <span class="arithmatex">\(-n\)</span>. WLOG, suppose <span class="arithmatex">\(n &gt; 0\)</span>. We now show that <span class="arithmatex">\(S = \mathbb{Z}a\)</span> where <span class="arithmatex">\(a\)</span> is the smallest positive integer in <span class="arithmatex">\(S\)</span>. The way to show two sets are equivalent is to show that they are subsets of one another.</p>
+<p>First, we show that <span class="arithmatex">\(\mathbb{Z}a \subseteq S\)</span>, namely that <span class="arithmatex">\(ka \in S\)</span> for every integer <span class="arithmatex">\(k\)</span>. If <span class="arithmatex">\(k &gt; 0\)</span>, then <span class="arithmatex">\(ka = (a + \dots + a)\)</span> which is in <span class="arithmatex">\(S\)</span> under closure. If <span class="arithmatex">\(k = 0\)</span>, then <span class="arithmatex">\(ka = 0 \in S\)</span>. If <span class="arithmatex">\(k &lt; 0\)</span>, then <span class="arithmatex">\(-ka \in S\)</span> so by the inverse property of <span class="arithmatex">\(S, ka \in S\)</span>. Therefore, <span class="arithmatex">\(ka \in S\)</span>.</p>
+<p>Next, we show that <span class="arithmatex">\(S \subseteq \mathbb{Z}a\)</span>, i.e. every element <span class="arithmatex">\(n \in S\)</span> is an integer multiple of <span class="arithmatex">\(a\)</span>, the smallest positive integer in <span class="arithmatex">\(S\)</span>. Consider an arbitrary element <span class="arithmatex">\(n \in S\)</span>. By the division theorem, we have <span class="arithmatex">\(n = qa + r\)</span> where <span class="arithmatex">\(0 \leq r &lt; a\)</span>. Naturally, <span class="arithmatex">\(qa \in \mathbb{Z}a\)</span> since <span class="arithmatex">\(a \mid qa\)</span>. Since <span class="arithmatex">\(\mathbb{Z}a \subseteq S\)</span>, it follows that <span class="arithmatex">\(qa \in S\)</span> as well. Since <span class="arithmatex">\(n, qa \in S\)</span>, it follows that <span class="arithmatex">\(n - qa = r\)</span> is also in <span class="arithmatex">\(S\)</span> as <span class="arithmatex">\(S\)</span> is closed under addition and has an inverse. Therefore, <span class="arithmatex">\(r \in S\)</span>. Since <span class="arithmatex">\(a\)</span> is the smallest positive integer in <span class="arithmatex">\(S\)</span> and <span class="arithmatex">\(0 \leq r &lt; a\)</span>, <span class="arithmatex">\(r = 0\)</span> and <span class="arithmatex">\(n = qa \implies n \in \mathbb{Z}a\)</span>.</p>
+<p>Therefore, <span class="arithmatex">\(S = \mathbb{Z}a\)</span>.</p>
+</div>
+<p>This theorem is quite strong - every possible subgroup of the additive group of integers is just a group where the elements are all integer multiples of some integer <span class="arithmatex">\(a\)</span>.</p>
+<p>I review this only briefly since I dislike the book-keeping involved in the GCD algorithm.</p>
+<h3 id="cyclic-subgroups">Cyclic Subgroups<a class="headerlink" href="#cyclic-subgroups" title="Permanent link">&para;</a></h3>
+<p>We consider an important abstract example of a subgroup, the <em>cyclic subgroup</em> generated by an arbitrary element <span class="arithmatex">\(x\)</span> of a group <span class="arithmatex">\(G\)</span> (using multiplicative notion).</p>
+<div class="admonition info">
+<p class="admonition-title">Definition 3.1.1: Cyclic Subgroup</p>
+<p>The <em>cyclic subgroup</em> <span class="arithmatex">\(H\)</span> generated by <span class="arithmatex">\(x\)</span> is:</p>
+<div class="arithmatex">\[
+H = \{\dots, x^{-2}, x^{-1}, 1, x, x^2, \dots \}
+\]</div>
+<p>This is the smallest subgroup of <span class="arithmatex">\(G\)</span> containing <span class="arithmatex">\(x\)</span> and is often written <span class="arithmatex">\(\langle x \rangle\)</span>.</p>
+</div>
+<p>Generally, the <em>order</em> of an element <span class="arithmatex">\(x\)</span> of a group is the smallest integer <span class="arithmatex">\(k\)</span> such that <span class="arithmatex">\(x^k = 1\)</span>.</p>
+<p>The notation <span class="arithmatex">\(x^n\)</span> represents an element of the group obtained under the particular law. For example, if <span class="arithmatex">\(G\)</span> is the multiplicative group <span class="arithmatex">\(\mathbb{R}^{\times}\)</span> and <span class="arithmatex">\(x = -1\)</span>, then <span class="arithmatex">\(\langle -1 \rangle = \{-1, 1\}\)</span>. Either <span class="arithmatex">\(x^n\)</span> represents different elements or they don't. Consider the cases.</p>
+<div class="admonition success">
+<p class="admonition-title">Proposition 3.1.2: Cyclic Subgroups</p>
+<p>Let <span class="arithmatex">\(\langle x \rangle\)</span> be the cyclic subgroup of a group <span class="arithmatex">\(G\)</span> generated by <span class="arithmatex">\(x \in G\)</span> and <span class="arithmatex">\(S = \{k \in \mathbb{Z} \mid x^k = 1\}\)</span>.</p>
+<p>Then,</p>
+<ul>
+<li><span class="arithmatex">\(S\)</span> is a subgroup of <span class="arithmatex">\(\mathbb{Z}^{+}\)</span>.</li>
+<li>The powers <span class="arithmatex">\(x^r = x^s\)</span> with <span class="arithmatex">\(r \geq s\)</span> are equal iff <span class="arithmatex">\(x^{r - s} = 1\)</span>, i.e. if <span class="arithmatex">\(r - s \in S\)</span>.</li>
+<li>Suppose <span class="arithmatex">\(S\)</span> is not the trivial subgroup. Then, <span class="arithmatex">\(S = \mathbb{Z}n\)</span> for some positive integer <span class="arithmatex">\(n\)</span>. Then, <span class="arithmatex">\(1, x, x^2, \dots, x^{n - 1}\)</span> are the distinct elements of subgroup <span class="arithmatex">\(\langle x \rangle\)</span> and the order of <span class="arithmatex">\(\langle x \rangle\)</span> is <span class="arithmatex">\(n\)</span>.</li>
+</ul>
+</div>
+<p>Basically, if <span class="arithmatex">\(c\)</span> is the smallest positive integer such that <span class="arithmatex">\(x^c = 1\)</span>, then past <span class="arithmatex">\(c\)</span>, the group elements begin to recycle.</p>
+<p>Then, the group <span class="arithmatex">\(\langle x \rangle = \{1, x, \dots, x^{n - 1}\}\)</span> is called the cyclic group of order <span class="arithmatex">\(n\)</span>.</p>
+<p>Within <span class="arithmatex">\(S_3\)</span>, <span class="arithmatex">\(x\)</span> has order <span class="arithmatex">\(3\)</span> and <span class="arithmatex">\(y\)</span> has order <span class="arithmatex">\(2\)</span>. If <span class="arithmatex">\(x^n \neq 1\)</span> for all <span class="arithmatex">\(n &gt; 0\)</span>, then <span class="arithmatex">\(x\)</span> has infinite order and the group is infinite cyclic.</p>
+<p>We can also speak about the subgroup <span class="arithmatex">\(G\)</span> generated from a subset <span class="arithmatex">\(U\)</span>. This is the smallest subgroup of <span class="arithmatex">\(G\)</span> that contains <span class="arithmatex">\(U\)</span> and it consists of all elements of <span class="arithmatex">\(G\)</span> that can be expressed as a product of a "string" of elements in <span class="arithmatex">\(U\)</span> and relevant inverses. A subset <span class="arithmatex">\(U\)</span> of <span class="arithmatex">\(G\)</span> is said to <em>generate</em> <span class="arithmatex">\(G\)</span> if every element of <span class="arithmatex">\(G\)</span> is such a product. For example, in <span class="arithmatex">\(S_3\)</span>, the set <span class="arithmatex">\(U = \{x, y\}\)</span> generates <span class="arithmatex">\(S_3\)</span>. Elementary matrices generated <span class="arithmatex">\(\text{GL}_n\)</span>.</p>
+<p>In those particular examples, inverses weren't needed but that's not always the case. Negative powers are generally needed to fill out the group.</p>
+<p>A finite group is cyclic when some element's order equals the order of that group. Then, the element generates the group.</p>
+<h2 id="homomorphisms">Homomorphisms<a class="headerlink" href="#homomorphisms" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Definition 4.1: Homomorphism</p>
+<p>Let <span class="arithmatex">\(G, G'\)</span> be groups with group operations <span class="arithmatex">\(f, h\)</span> respectively. A <strong>homomorphism</strong> <span class="arithmatex">\(\varphi: G \to G'\)</span> is a map from <span class="arithmatex">\(G\)</span> to <span class="arithmatex">\(G'\)</span> such that for all <span class="arithmatex">\(a, b \in G\)</span>,</p>
+<div class="arithmatex">\[
+\varphi(f(a, b)) = h(\varphi(a), \varphi(b))
+\]</div>
+<p>More succintly,</p>
+<div class="arithmatex">\[
+\varphi(ab) = \varphi(a) \varphi(b)
+\]</div>
+</div>
+<p>The left side says to multiply <span class="arithmatex">\(a, b\)</span> in <span class="arithmatex">\(G\)</span> and send their product to <span class="arithmatex">\(G'\)</span> using <span class="arithmatex">\(\varphi\)</span>. The right side says to send <span class="arithmatex">\(a, b\)</span> to <span class="arithmatex">\(G'\)</span> using <span class="arithmatex">\(\varphi\)</span> and then multiply their images using <span class="arithmatex">\(G'\)</span>'s group operation.</p>
+<div class="admonition example">
+<p class="admonition-title">Example 4.1: Homomorphisms</p>
+<ul>
+<li>The determinant function <span class="arithmatex">\(\text{GL}_n(\mathbb{R}) \to \mathbb{R}^{\times}\)</span>. If we multiply two matrices together (under matrix multiplication) and take its determinant, that's identical to taking the determinants of the operands and multiplying them together. Specifically, <span class="arithmatex">\(\det(AB) = \det(A) \cdot \det(B)\)</span>.</li>
+<li>The exponential map <span class="arithmatex">\(\exp: \mathbb{R}^{+} \to \mathbb{R}^{\times}\)</span>. Since <span class="arithmatex">\(e^{a + b} = e^a e^b\)</span>.</li>
+<li>The sign homomorphism <span class="arithmatex">\(\sigma: S_n \to \{\pm 1\}\)</span>. If you compose two permutations and then find their sign, that's equivalent to multiplying the signs together. This is basically the same as the determinant example.</li>
+</ul>
+</div>
+<p>There's also the <em>trivial homomorphism</em> <span class="arithmatex">\(\varphi: G \to G"\)</span> maps every element of <span class="arithmatex">\(G\)</span> to the identity element. If <span class="arithmatex">\(H\)</span> is a subgroup of <span class="arithmatex">\(G\)</span>, the <em>inclusion map</em> <span class="arithmatex">\(i: H \to G\)</span> where <span class="arithmatex">\(i(x) = x\)</span> for <span class="arithmatex">\(x \in H\)</span> is a homomorphism.</p>
+<div class="admonition success">
+<p class="admonition-title">Proposition 4.2: Homomorphism Properties</p>
+<ul>
+<li>If <span class="arithmatex">\(a_1, \dots, a_k \in G\)</span>, then <span class="arithmatex">\(\varphi(a_1 \dots a_k) = \varphi(a_1) \dots \varphi(a_k)\)</span>.</li>
+<li><span class="arithmatex">\(\varphi(1_G) = 1_{G'}\)</span>.</li>
+<li><span class="arithmatex">\(\varphi(a^{-1}) = \varphi(a)^{-1}\)</span>.</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Since <span class="arithmatex">\(1 \cdot 1 = 1\)</span>, then <span class="arithmatex">\(\varphi(1) \varphi(1) = \varphi(1)\)</span>. Using the inverse property, we have that <span class="arithmatex">\(\varphi(1) = 1\)</span>. We also have that <span class="arithmatex">\(1 = \varphi(a a^{-1}) = \varphi(a) \varphi(a^{-1}) \implies \varphi(a^{-1}) = \varphi(a)^{-1}\)</span>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Definition 4.3: Image, Kernel</p>
+<p>A group homomorphism determines two subgroups - the <strong>image</strong> and the <strong>kernel</strong>.</p>
+<div class="arithmatex">\[
+\text{Im} (\varphi) = \{x \in G' \mid x = \phi(a), a \in G\}
+\]</div>
+<div class="arithmatex">\[
+\text{Ker} (\varphi) = \{a \in G \mid \varphi(a) = 1\}
+\]</div>
+<p>The image of a homomorphism is a subgroup of the range. We verify closure. Let <span class="arithmatex">\(x, y \in \text{Im} (\varphi)\)</span>. Then, there exist elements <span class="arithmatex">\(a, b\)</span> such that <span class="arithmatex">\(\varphi(a) = x, \varphi(b) = y\)</span>. Since <span class="arithmatex">\(\varphi\)</span> is a homomorphism, we have that <span class="arithmatex">\(\varphi(a) \varphi(b) = \varphi(ab) = xy\)</span>. Therefore, <span class="arithmatex">\(xy \in \text{Im} (\varphi)\)</span> too.</p>
+<p>The kernel of a homomorphism is a subgroup of <span class="arithmatex">\(G\)</span> since if <span class="arithmatex">\(a, b \in \text{Ker} (\varphi)\)</span>, then <span class="arithmatex">\(\varphi(a) \varphi(b) = 1 \cdot 1 = 1\)</span>. But since <span class="arithmatex">\(\varphi\)</span> is a homomorphism, then <span class="arithmatex">\(\varphi(a b) = \varphi(a) \varphi(b)\)</span> so <span class="arithmatex">\(ab \in \text{Ker} (\varphi)\)</span>.</p>
+</div>
+<p>Importantly, the image is a subgroup of the range and the kernel is a subgroup of the domain.</p>
+<div class="admonition example">
+<p class="admonition-title">Example 4.2: Kernels</p>
+<ul>
+<li>Consider the determinant homomorphism <span class="arithmatex">\(\det: \text{GL}_n(\mathbb{R}) \to \mathbb{R}^{\times}\)</span>. Then, <span class="arithmatex">\(\text{Ker}(\det) = \text{SL}_n(\mathbb{R})\)</span>. The identity in <span class="arithmatex">\(G' = \mathbb{R}^{+}\)</span> is <span class="arithmatex">\(1\)</span>. The kernel of <span class="arithmatex">\(\det\)</span> is the set of matrices with determinant <span class="arithmatex">\(1\)</span> or <span class="arithmatex">\(\text{SL}_n(\mathbb{R})\)</span>.</li>
+<li>Consider the sign homomorphism <span class="arithmatex">\(\sigma: S_n \to \{\pm 1\}\)</span>. Then, <span class="arithmatex">\(\text{Ker}(\sigma) = A_n\)</span> which is the group of even permutations (permuations with determinant <span class="arithmatex">\(1\)</span>).</li>
+</ul>
+</div>
+<p>The kernel is important - it tells us which elements of <span class="arithmatex">\(G\)</span> are mapped to the identity in <span class="arithmatex">\(G'\)</span> and which pairs of elements have the same image in <span class="arithmatex">\(G'\)</span>.</p>
+<div class="admonition info">
+<p class="admonition-title">Definition 4.4: Coset</p>
+<p>If <span class="arithmatex">\(H\)</span> is a subgroup of <span class="arithmatex">\(G\)</span> and <span class="arithmatex">\(a \in G\)</span>, then</p>
+<div class="arithmatex">\[
+aH = \{g \in G \mid g = ah, h \in H\}
+\]</div>
+<p>This is called the <strong>left coset</strong> of <span class="arithmatex">\(H\)</span> in <span class="arithmatex">\(G\)</span>.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Proposition 4.5: Coset Conditions</p>
+<p>Let <span class="arithmatex">\(\varphi: G \to G'\)</span> be a homomorphism, <span class="arithmatex">\(a, b \in G\)</span>, and <span class="arithmatex">\(K\)</span> be the kernel of <span class="arithmatex">\(\varphi\)</span>. Then, the following conditions are equivalent:</p>
+<ul>
+<li><span class="arithmatex">\(\varphi(a) = \varphi(b)\)</span>.</li>
+<li><span class="arithmatex">\(a^{-1}b \in K\)</span>.</li>
+<li><span class="arithmatex">\(b \in aK\)</span>.</li>
+<li><span class="arithmatex">\(bK = aK\)</span>.</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Recall that the kernel exists in the domain of <span class="arithmatex">\(\varphi\)</span>. Suppose <span class="arithmatex">\(\varphi(a) = \varphi(b)\)</span>. Then, <span class="arithmatex">\(\varphi(a^{-1} b) = \varphi(a^{-1}) \varphi(b)\)</span> by the definition of homomorphism. We know that <span class="arithmatex">\(\varphi(a^{-1}) = \varphi(a)^{-1}\)</span>. So we have <span class="arithmatex">\(\varphi(a^{-1} b) = \varphi(a)^{-1} \varphi(b) = \varphi(a)^{-1} \varphi(a) = 1 \implies a^{-1} b \in K\)</span>.</p>
+<p>Since <span class="arithmatex">\(a^{-1} b \in K\)</span>, we have that <span class="arithmatex">\(a(a^{-1}b) = b \in aK\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Important: Cosets</p>
+<p>The important thing about cosets of the kernel is that they partition group outputs. In particular, if <span class="arithmatex">\(b \in aK\)</span>, then <span class="arithmatex">\(\varphi(a) = \varphi(b)\)</span>.</p>
+<p>A particular coset of the kernel is the set of group elements which are all mapped to the same element. Together, all the cosets of the kernel partition the domain according to the elements of the image.</p>
+<p>Additionally, note that a coset does not form a group. Consider <span class="arithmatex">\(AK\)</span> where <span class="arithmatex">\(\det(A) = 7\)</span> and <span class="arithmatex">\(K = \text{Ker}(\text{GL}_n)\)</span>. Then <span class="arithmatex">\(AK\)</span> is the set of matrices with determinant <span class="arithmatex">\(7\)</span>. It does not include matrices with determinant <span class="arithmatex">\(1/7\)</span>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 4.6: Injective Homomorphism</p>
+<p>A homomorphism <span class="arithmatex">\(\varphi\)</span> is injective iff its kernel <span class="arithmatex">\(K\)</span> is the trivial subgroup <span class="arithmatex">\(\{1\}\)</span> of <span class="arithmatex">\(G\)</span>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Definition 4.7: Normal Subgroup</p>
+<p>A subgroup <span class="arithmatex">\(N\)</span> of <span class="arithmatex">\(G\)</span> is a <strong>normal subgroup</strong> if for every <span class="arithmatex">\(a \in N\)</span> and <span class="arithmatex">\(g \in G\)</span>, the conjugate <span class="arithmatex">\(gag^{-1} \in N\)</span>.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Proposition 4.8: Kernel Normal</p>
+<p>The kernel of a homomorphism is a normal subgroup.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>If <span class="arithmatex">\(a\)</span> is in the kernel of <span class="arithmatex">\(\varphi\)</span> and <span class="arithmatex">\(g\)</span> is an element of <span class="arithmatex">\(G\)</span>, then,</p>
+<div class="arithmatex">\[
+\varphi(gag^{-1}) = \varphi(g) \varphi(a) \varphi(g^{-1}) = \varphi(g) 1 \varphi(g)^{-1} = 1 \implies gag^{-1} \in K(\varphi)
+\]</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example 4.3: Normal Subgroups</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\text{SL}_n\)</span> is a normal subgroup of <span class="arithmatex">\(\text{GL}_n\)</span>. Consider <span class="arithmatex">\(A \in \text{SL}_n\)</span>, <span class="arithmatex">\(B \in \text{GL}_n\)</span>. Then,</p>
+<p>$$
+\det(BAB^{-1}) = \det(B) \det(A) \det(B^{-1}) = \det(B) \det(B)^{-1} = 1
+$$
+Therefore, <span class="arithmatex">\(BAB^{-1} \in \text{SL}_n\)</span> so <span class="arithmatex">\(\text{SL}_n\)</span> is a normal subgroup of <span class="arithmatex">\(\text{GL}_n\)</span>.</p>
+</li>
+<li>
+<p>The alternating group <span class="arithmatex">\(A_n\)</span> is a normal subgroup of the symmetric group <span class="arithmatex">\(S_n\)</span>. Consider <span class="arithmatex">\(p \in A_n\)</span> where <span class="arithmatex">\(\sigma(p) = 1\)</span> and <span class="arithmatex">\(q \in S_n\)</span> where <span class="arithmatex">\(\sigma(q) = \pm 1\)</span>. Then, <span class="arithmatex">\(\sigma(pqp^{-1}) = 1\)</span> since inverse permutations have the same sign (same number of transpositions forwards and backwards).</p>
+</li>
+</ul>
+</div>
+<p>Every subgroup of an abelian group is normal due to commutativity. But subgroups of nonabelian groups don't need to be normal.</p>
+<p>The <em>center</em> of a group <span class="arithmatex">\(G\)</span> is the set of elements which commute with every element of <span class="arithmatex">\(G\)</span>.</p>
+<div class="arithmatex">\[
+Z = \{z \in G \mid zx = xz, x \in G\}
+\]</div>
+<p>It's always a normal subgroup of <span class="arithmatex">\(G\)</span>. The center of the special linear group <span class="arithmatex">\(\text{SL}_2(\mathbb{R})\)</span> consists of <span class="arithmatex">\(I, -I\)</span>.</p>
+<h2 id="isomorphisms">Isomorphisms<a class="headerlink" href="#isomorphisms" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Definition 5.1: Isomorphism</p>
+<p>An <strong>isomorphism</strong> <span class="arithmatex">\(\varphi: G \to G'\)</span> is a bijective group homomorphism.</p>
+</div>
+<p>The key component is that its bijective. Recall that a bijection is a function which is both injective (one-to-one) and surjective (image <span class="arithmatex">\(=\)</span> range).</p>
+<div class="admonition example">
+<p class="admonition-title">Example 5.1: Isomorphisms</p>
+<ul>
+<li><span class="arithmatex">\(e^x\)</span> is an isomorphism when viewed as a map from <span class="arithmatex">\(\mathbb{R}^{+}\)</span> to <span class="arithmatex">\(\mathbb{R}_{\geq 0}^{\times}\)</span>.</li>
+<li>Suppose <span class="arithmatex">\(a\)</span> is an element of infinite order in group <span class="arithmatex">\(G\)</span>. Then the map <span class="arithmatex">\(n \mapsto a^n\)</span> is an isomorphism from <span class="arithmatex">\(\mathbb{Z}^{+}\)</span> to the infinite cyclic subgroup <span class="arithmatex">\(\langle a \rangle\)</span> of <span class="arithmatex">\(G\)</span>.</li>
+<li>The map <span class="arithmatex">\(S_n \to P\)</span> is an isomorphism. It sends a permutation to its associated matrix.</li>
+</ul>
+</div>
+<p>We can verify that a homomorphism <span class="arithmatex">\(\varphi: G \to G'\)</span> is an isomorphism provided that <span class="arithmatex">\(\text{Ker}(\varphi) = \{1\}\)</span> and that <span class="arithmatex">\(\text{Im}(\varphi) = G'\)</span>.</p>
+<div class="admonition question">
+<p class="admonition-title">Lemma 5.2: Inverse of an Isomorphisms is Isomorphic</p>
+<p>If <span class="arithmatex">\(\varphi: G \to G'\)</span> is an isomorphism then <span class="arithmatex">\(\varphi^{-1}: G' \to G\)</span> is an isomorphism.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>It suffices to show that <span class="arithmatex">\(\varphi^{-1}\)</span> is homomorphic since the inverse of a bijection is bijective. Consider <span class="arithmatex">\(a, b \in G'\)</span> and <span class="arithmatex">\(x, y \in G\)</span> such that <span class="arithmatex">\(\varphi^{-1}(a) = x, \varphi^{-1}(b) = y\)</span>. We WTS that <span class="arithmatex">\(\varphi^{-1}(a) \varphi^{-1}(b) = \varphi^{-1}(ab)\)</span>.</p>
+<div class="arithmatex">\[
+\varphi(xy) = \varphi(x) \varphi(y) = ab \implies \varphi^{-1}(ab) = xy = \varphi^{-1}(a) \varphi^{-1}(b)
+\]</div>
+</div>
+<p>When <span class="arithmatex">\(\varphi: G \to G'\)</span> is an isomorphism, we can do the computation in either <span class="arithmatex">\(G\)</span> or <span class="arithmatex">\(G'\)</span> and carry it over to the other group using <span class="arithmatex">\(\varphi\)</span> or <span class="arithmatex">\(\varphi^{-1}\)</span>.</p>
+<p>For example, we often blur the distinction between <span class="arithmatex">\(S_n\)</span> and the isomorphic group <span class="arithmatex">\(\mathcal{P}\)</span> of permutation matrices.</p>
+<p>The groups isomorphic to <span class="arithmatex">\(G\)</span> form the <em>isomorphism class</em> of <span class="arithmatex">\(G\)</span>.</p>
+<p>An <em>automorphism</em> is an isomorphism from a group <span class="arithmatex">\(G\)</span> to itself. The identity map is an automorphism. The most important type of automorphism is conjugation. Let <span class="arithmatex">\(g\)</span> be a fixed element of <span class="arithmatex">\(G\)</span>. Conjugation by <span class="arithmatex">\(g\)</span> is an automorphism defined as:</p>
+<div class="arithmatex">\[
+\varphi(x) = gxg^{-1}
+\]</div>
+<p>This is a homomorphism:</p>
+<div class="arithmatex">\[
+\varphi(xy) = gxyg^{-1} = gx (g^{-1}g) yg^{-1} = \varphi(x) \varphi(y)
+\]</div>
+<p>Conjugation with <span class="arithmatex">\(g^{-1}\)</span> acts as an inverse meaning that it is also bijective. Therefore, it's also an automorphism.</p>
+<p>Conjugation under abelian groups is just the identity map <span class="arithmatex">\(gxg^{-1} = x\)</span>. Noncommutative groups have nontrivial conjugations and thus have automorphisms different from the identity.</p>
+<p>The elemenet <span class="arithmatex">\(gxg^{-1}\)</span> is the conjugate of <span class="arithmatex">\(x\)</span> by <span class="arithmatex">\(g\)</span> and two elements <span class="arithmatex">\(x, x'\)</span> of <span class="arithmatex">\(G\)</span> are <em>conjugate</em> if <span class="arithmatex">\(x' = gxg^{-1}\)</span>. The conjugate has the same order as the element <span class="arithmatex">\(x\)</span> in the group (since it is the image of <span class="arithmatex">\(x\)</span> under automorphism).</p>
+<p>The <em>commutator</em> <span class="arithmatex">\(aba^{-1}b^{-1}\)</span> is an element associated with pair <span class="arithmatex">\(a, b\)</span>.</p>
+<div class="admonition question">
+<p class="admonition-title">Lemma 5.3: Commutator</p>
+<p>Two element <span class="arithmatex">\(a, b\)</span> commute <span class="arithmatex">\(ab = ba\)</span> iff <span class="arithmatex">\(aba^{-1} = b\)</span> which is equivalent to <span class="arithmatex">\(aba^{-1} b^{-1} = 1\)</span>.</p>
+</div>
+<h2 id="equivalence-relations-partitions">Equivalence Relations, Partitions<a class="headerlink" href="#equivalence-relations-partitions" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Definition 6.1: Partition</p>
+<p>A <em>partition</em> <span class="arithmatex">\(\Pi\)</span> of a set <span class="arithmatex">\(S\)</span> is a division of <span class="arithmatex">\(S\)</span> into non-overlapping, non-empty subsets. If <span class="arithmatex">\(S = \{1, 2, 3\}\)</span>, a possible partition is <span class="arithmatex">\(\Pi = \{\{1\}, \{2, 3\}\}\)</span>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Definition 6.2: Equivalence Relation</p>
+<p>An <em>equivalence relation</em> on a set <span class="arithmatex">\(S\)</span> is a relation between pairs of elements on <span class="arithmatex">\(S\)</span> written as <span class="arithmatex">\(a \sim b\)</span>. An equivalence relation is required to be:</p>
+<ul>
+<li><em>transitive</em>. If <span class="arithmatex">\(a \sim b\)</span> and <span class="arithmatex">\(b \sim c\)</span>, then <span class="arithmatex">\(a \sim c\)</span>.</li>
+<li><em>symmetric</em>. If <span class="arithmatex">\(a \sim b\)</span>, then <span class="arithmatex">\(b \sim a\)</span>.</li>
+<li><em>reflexive</em>. For all <span class="arithmatex">\(a\)</span>, <span class="arithmatex">\(a \sim a\)</span>.</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example 6.1: Equivalence Relations</p>
+<ul>
+<li>Congruence of triangles (triangles of the same shape, size) is an equivalence relation on the set of triangles in a plane.</li>
+<li>Conjugacy. We say that <span class="arithmatex">\(a \sim b\)</span> if <span class="arithmatex">\(b = gag^{-1}\)</span> for some group element <span class="arithmatex">\(g\)</span>. This is reflexive since <span class="arithmatex">\(a = gag^{-1}\)</span> where <span class="arithmatex">\(g = 1\)</span>. This is also symmetric. If <span class="arithmatex">\(a = gbg^{-1}\)</span>, then <span class="arithmatex">\(b = g^{-1} a g\)</span>. Finally, this is symmetric. Suppose <span class="arithmatex">\(a = gbg^{-1}\)</span> and <span class="arithmatex">\(b = hch^{-1}\)</span>. Then, <span class="arithmatex">\(a = ghch^{-1}g^{-1}\)</span>.</li>
+</ul>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Proposition 6.3: Equivalence Relations are bijective to Partitions</p>
+<p>An equivalence relation on <span class="arithmatex">\(S\)</span> determines a partition on <span class="arithmatex">\(S\)</span> and vice versa.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Given a partition of <span class="arithmatex">\(S\)</span>, say that <span class="arithmatex">\(a \sim b\)</span> if <span class="arithmatex">\(a, b\)</span> lie in the same subset of a partition. Clearly, reflexivity, symmetry, and transitiveness are satisified.</p>
+<p>Given an equivalence relation, define an <em>equivalence class</em> as</p>
+<div class="arithmatex">\[
+C_a = \{b \in S \mid a \sim b\}
+\]</div>
+<p>The subset that contains <span class="arithmatex">\(a\)</span> is the set of elements <span class="arithmatex">\(b\)</span> such that <span class="arithmatex">\(a \sim b\)</span>. We will then show that the equivalence classes on <span class="arithmatex">\(S\)</span> partition <span class="arithmatex">\(S\)</span>.</p>
+<p>First, each equivalence class is non-empty since they at least include <span class="arithmatex">\(a\)</span>. Second, the union of these classes is <span class="arithmatex">\(S\)</span> - each element of <span class="arithmatex">\(S\)</span> at least belongs to its own equivalence class. Finally, we will show that these classes are disjoint.</p>
+<p>Consider distinct equivalence classes <span class="arithmatex">\(C_a, C_b\)</span>. Suppose there existed some element <span class="arithmatex">\(c\)</span> such that <span class="arithmatex">\(c \in C_a, C_b\)</span>. Then, <span class="arithmatex">\(c \sim b\)</span> and <span class="arithmatex">\(c \sim a\)</span>. However, by transitivity, this would imply that <span class="arithmatex">\(a \sim b\)</span> and that <span class="arithmatex">\(C_a = C_b\)</span>. Since these equivalence classes are distinct, there can be no such element belonging to both classes. Therefore, the equivelance classes are disjoint.</p>
+</div>
+<p>The relation on a group defined as <span class="arithmatex">\(a \sim b\)</span> if <span class="arithmatex">\(a, b\)</span> have the same order is an equivalence relation.</p>
+<p>Given some partition <span class="arithmatex">\(\Pi\)</span> of a set <span class="arithmatex">\(S\)</span>, we can construct a new set <span class="arithmatex">\(\bar{S}\)</span> whose elements are the subsets. If <span class="arithmatex">\(U\)</span> is such a subset, we will write <span class="arithmatex">\([U]\)</span> as the relevant element of <span class="arithmatex">\(\bar{S}\)</span>. So when given an equivalence relation on <span class="arithmatex">\(S\)</span>, we obtain <span class="arithmatex">\(\bar{S}\)</span> whose elements are the equivalence classes <span class="arithmatex">\([C_a]\)</span>. We interpret <span class="arithmatex">\(a \sim b\)</span> to mean that <span class="arithmatex">\(a, b\)</span> become equal in <span class="arithmatex">\(\bar{S}\)</span> since <span class="arithmatex">\(C_a = C_b\)</span>. Then, in <span class="arithmatex">\(\bar{S}\)</span>, more elements have been deemed "equal" than in <span class="arithmatex">\(S\)</span> (i.e. congruent triangles).</p>
+<p>For any equivalence relation, there's a natural surjective map:</p>
+<div class="arithmatex">\[
+\pi: S \to \bar{S}
+\]</div>
+<p>that takes an element <span class="arithmatex">\(a\)</span> to its equivalence class, <span class="arithmatex">\(\pi(a) = [C_a]\)</span> or <span class="arithmatex">\(\pi(a) = \bar{a}\)</span>. For example, if <span class="arithmatex">\(a, b \in S\)</span>, then <span class="arithmatex">\(\bar{a} = \bar{b} \iff a \sim b\)</span>.</p>
+<p>We can frequently choose <em>representative elements</em> of each equivalence class. For example,</p>
+<div class="arithmatex">\[
+\{\text{Even}, \text{Odd}\} = \{\bar{0}, \bar{1}\}
+\]</div>
+<h3 id="fibres">Fibres<a class="headerlink" href="#fibres" title="Permanent link">&para;</a></h3>
+<p>Any map of sets <span class="arithmatex">\(f: S \to T\)</span> gives an equivalence relation on its domain <span class="arithmatex">\(S\)</span> defined by the rule <span class="arithmatex">\(a \sim b\)</span> if <span class="arithmatex">\(f(a) = f(b)\)</span>.</p>
+<div class="admonition info">
+<p class="admonition-title">Definition 6.1.1: Fibres</p>
+<p>The <em>inverse image</em> or <em>fibre</em> of an element <span class="arithmatex">\(t \in T\)</span> is:</p>
+<div class="arithmatex">\[
+f^{-1}(t) = \{s \in S: f(s) = t\}
+\]</div>
+<p>Unless <span class="arithmatex">\(f\)</span> is bijective, <span class="arithmatex">\(f^{-1}\)</span> will not be a map.</p>
+<p>The elements of the image correspond bijectively to non-empty fibres which are equivalence clsses of the domain <span class="arithmatex">\(S\)</span> and elements of <span class="arithmatex">\(\bar{S}\)</span>.</p>
+</div>
+<p><img alt="" src="../../../images/fibres.png" /></p>
+<div class="admonition example">
+<p class="admonition-title">Example 6.1.1: Group Order</p>
+<p>If <span class="arithmatex">\(G\)</span> is a finite group, we can define a map <span class="arithmatex">\(f: G \to \mathbb{N}\)</span> letting <span class="arithmatex">\(f(a)\)</span> be the order of the element <span class="arithmatex">\(a\)</span> of <span class="arithmatex">\(G\)</span>. The fibres of this map are the sets of elements with the same order.</p>
+</div>
+<p>We return to a group homomorphism <span class="arithmatex">\(\varphi: G \to G'\)</span>. The equivalence relation defined by <span class="arithmatex">\(\varphi\)</span> is denoted by <span class="arithmatex">\(\equiv\)</span> and is referred to as <em>congruence</em>.</p>
+<div class="arithmatex">\[
+a \equiv b \text{ if } \varphi(a) = \varphi(b)
+\]</div>
+<p>Elements <span class="arithmatex">\(a, b\)</span> are congruent iff <span class="arithmatex">\(b\)</span> is in the coset <span class="arithmatex">\(aK\)</span> of the kernel <span class="arithmatex">\(K\)</span>.</p>
+<div class="admonition success">
+<p class="admonition-title">Proposition 6.1.2: Cosets Partition</p>
+<p>Let <span class="arithmatex">\(K\)</span> be the kernel of homomorphism <span class="arithmatex">\(\varphi: G \to G'\)</span>. The fibre of <span class="arithmatex">\(\varphi\)</span> that contains an element <span class="arithmatex">\(a\)</span> of <span class="arithmatex">\(G\)</span> is the coset <span class="arithmatex">\(aK\)</span> of <span class="arithmatex">\(K\)</span>. The cosets partition the group <span class="arithmatex">\(G\)</span> and correspond to elements of the image of <span class="arithmatex">\(\varphi\)</span>.</p>
+</div>
+<p><img alt="" src="../../../images/schematic_homo.png" /></p>
+<h2 id="cosets">Cosets<a class="headerlink" href="#cosets" title="Permanent link">&para;</a></h2>
+<p>AS before, if <span class="arithmatex">\(H\)</span> is a subgroup of <span class="arithmatex">\(G\)</span> and <span class="arithmatex">\(a\)</span> is an element of <span class="arithmatex">\(G\)</span>, then the subset:</p>
+<div class="arithmatex">\[
+aH = \{ah \mid h \in H\}
+\]</div>
+<p>is called the left coset of <span class="arithmatex">\(H\)</span>. The subgroup <span class="arithmatex">\(H\)</span> is a left coset since <span class="arithmatex">\(H = 1H\)</span>.</p>
+<p>The cosets of <span class="arithmatex">\(H\)</span> in <span class="arithmatex">\(G\)</span> are equivalence classes for the congruence relation <span class="arithmatex">\(a \equiv b\)</span> if <span class="arithmatex">\(b = ah\)</span> for some <span class="arithmatex">\(h \in H\)</span>.</p>
+<p>Transitivity. Suppose that <span class="arithmatex">\(a \equiv b, b \equiv c\)</span>. Then, <span class="arithmatex">\(b = ah, c = bh' \implies c = a (h h')\)</span>. Since <span class="arithmatex">\(H\)</span> is a subgroup, <span class="arithmatex">\(hh' \in H\)</span>, therefore, <span class="arithmatex">\(a \equiv c\)</span>.</p>
+<p>Symmetry. Suppose that <span class="arithmatex">\(a \equiv b\)</span>. Then, <span class="arithmatex">\(b = ah \implies a = bh^{-1}\)</span>. Since <span class="arithmatex">\(H\)</span> is a subgroup, <span class="arithmatex">\(h^{-1} \in H\)</span> so <span class="arithmatex">\(b \equiv a\)</span>.</p>
+<p>Reflexivity. <span class="arithmatex">\(a = ah\)</span> where <span class="arithmatex">\(h = 1\)</span> so <span class="arithmatex">\(a \equiv a\)</span>.</p>
+<p>We've used the defining properties of a subgroup here - closure, inverse, and identity. Since cosets from the equivalence classes for the congruence relation, we have that:</p>
+<div class="admonition warning">
+<p class="admonition-title">Corollary 7.1: Coset Partition</p>
+<p>The left cosets of a subgroup <span class="arithmatex">\(H\)</span> of group <span class="arithmatex">\(G\)</span> partition the group.</p>
+</div>
+<p>The number of left cosets of a subgroup <span class="arithmatex">\(H\)</span> is called the <em>index</em> of <span class="arithmatex">\(H\)</span> in <span class="arithmatex">\(G\)</span> denoted by <span class="arithmatex">\([G:H]\)</span>. Consider <span class="arithmatex">\(S_3\)</span>. The element <span class="arithmatex">\(y\)</span> generates a cyclic subgroup of order <span class="arithmatex">\(2\)</span> so we have <span class="arithmatex">\(H = \{1, y\}\)</span>. Then, we have three left-cosets of <span class="arithmatex">\(H\)</span> in <span class="arithmatex">\(G\)</span>: <span class="arithmatex">\(H, xH, x^2H\)</span>.</p>
+<p>The index of the subgroup <span class="arithmatex">\(\langle y \rangle\)</span> is <span class="arithmatex">\(3\)</span>.</p>
+<div class="admonition question">
+<p class="admonition-title">Lemma 7.2: Coset Order</p>
+<p>All left cosets <span class="arithmatex">\(aH\)</span> of a subgroup <span class="arithmatex">\(H\)</span> of <span class="arithmatex">\(G\)</span> have the same order.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Multiplication by <span class="arithmatex">\(a\)</span> sends <span class="arithmatex">\(h \to ah\)</span>. Each coset has the same number of "base" elements <span class="arithmatex">\(h\)</span>. The map is bijective since its inverse is multiplication by <span class="arithmatex">\(a^{-1}\)</span>.</p>
+<p>In other words, all cosets have the same order as the subgroup they were generated from.</p>
+</div>
+<p>Thus we obtain the counting formula:</p>
+<div class="arithmatex">\[
+|G| = |H| * [G:H]
+\]</div>
+<p>The order of <span class="arithmatex">\(G\)</span> is the order of <span class="arithmatex">\(H\)</span> times the number of cosets. This works since cosets all have the same order and they partition the group.</p>
+<p>It follows from the counting formula that <span class="arithmatex">\(|H| \mid |G|\)</span>. Specifically,</p>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 7.3: Lagrange's Theorem</p>
+<p>Let <span class="arithmatex">\(H\)</span> be a subgroup of a finite group <span class="arithmatex">\(G\)</span>. Then, <span class="arithmatex">\(|H| \mid |G|\)</span>.</p>
+</div>
+<p>As a corollary, let <span class="arithmatex">\(a \in G\)</span>. Then, <span class="arithmatex">\(|\langle a \rangle | \mid |G|\)</span>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Corollary 7.4: Primes</p>
+<p>Suppose <span class="arithmatex">\(|G|\)</span> is prime <span class="arithmatex">\(p\)</span>. Let <span class="arithmatex">\(a \in G, a \neq 1\)</span>. Then, <span class="arithmatex">\(G\)</span> is the cyclic group generated by <span class="arithmatex">\(a\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>The order of an element <span class="arithmatex">\(a \neq 1\)</span> is greater than <span class="arithmatex">\(1\)</span> and divides <span class="arithmatex">\(|G| = p\)</span>. However, since <span class="arithmatex">\(p\)</span> is prime, it follows that <span class="arithmatex">\(|a| = p\)</span>. This is the order of cyclic subgroup <span class="arithmatex">\(\langle a \rangle\)</span>. Therefore, <span class="arithmatex">\(\langle a \rangle = G\)</span>.</p>
+</div>
+<p>Groups of order <span class="arithmatex">\(p\)</span> form an isomorphism class, the class of cyclic groups of order <span class="arithmatex">\(p\)</span>.</p>
+<p>The coutning formula can also be applied when a homomorphism <span class="arithmatex">\(\varphi: G \to G'\)</span> is given. The left cosets of the kernel <span class="arithmatex">\(\text{Ker}(\varphi)\)</span> are the non-empty fibres of the map <span class="arithmatex">\(\varphi\)</span> in a bijective correspondence with the image:</p>
+<div class="arithmatex">\[
+[G: \text{Ker}(\varphi)] = |\text{Image}(\varphi)|
+\]</div>
+<div class="admonition warning">
+<p class="admonition-title">Corollary 7.5: Divisibility of Kernel Order</p>
+<p>Let <span class="arithmatex">\(\varphi: G \to G'\)</span> be a homomorphism of finite groups. Then,</p>
+<ul>
+<li><span class="arithmatex">\(|G| = |\text{Ker}(\varphi)| \cdot |\text{Image}(\varphi)|\)</span>.</li>
+<li><span class="arithmatex">\(|\text{Ker}(\varphi)|\)</span> divides <span class="arithmatex">\(|G|\)</span>.</li>
+<li><span class="arithmatex">\(|\text{Image}(\varphi)|\)</span> divides <span class="arithmatex">\(|G|\)</span> and <span class="arithmatex">\(|G'|\)</span>.</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>We have that <span class="arithmatex">\([G: \text{Ker}(\varphi)] = |\text{Image}(\varphi)|\)</span>: the number of left cosets of the kernel is equivalent to the number of elements in the image. All of these cosets are bijective with the kernel so they have the same order and they partition the group so we can express <span class="arithmatex">\(|G| = \text{ Coset Size } \times \text{ Number of Cosets }\)</span>. Since the cosets are bijective with the kernel, we have that <span class="arithmatex">\(\text{ Coset Size } = |\text{Ker}(\varphi)|\)</span> and since each coset corresponds to a single output element in the image we have <span class="arithmatex">\(\text{ Number of Cosets } = |\text{Image}(\varphi)|\)</span>. Therefore, <span class="arithmatex">\(|G| = |\text{Ker}(\varphi)| \cdot |\text{Image}(\varphi)|\)</span> and <span class="arithmatex">\(|\text{Ker}(\varphi)|\)</span> divides <span class="arithmatex">\(|G|\)</span>.</p>
+<p>More generally, we know the the order of a subgroup divides the order of the group. Since the image is a subgroup in the range, we have <span class="arithmatex">\(|\text{Image}(\varphi)|\)</span> divides <span class="arithmatex">\(|G'|\)</span>.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Proposition 7.6: Multiplicative Index</p>
+<p>Let <span class="arithmatex">\(K \subset H \subset G\)</span> be subgroups of <span class="arithmatex">\(G\)</span>. Then, <span class="arithmatex">\([G:K] = [G:H] [H:K]\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Suppose <span class="arithmatex">\([G:H] = m, [H:K] = n\)</span>. We list <span class="arithmatex">\(m\)</span> cosets of <span class="arithmatex">\(H\)</span> in <span class="arithmatex">\(G\)</span> as <span class="arithmatex">\(g_1H, \dots, g_mH\)</span>. This forms a partition on <span class="arithmatex">\(G\)</span>. We also have that <span class="arithmatex">\(H = h_1K, \dots, h_nK\)</span>. Therefore, <span class="arithmatex">\(g_iH = g_i h_1K \cup \dots \cup g_i h_nK\)</span> will partition <span class="arithmatex">\(g_iH\)</span>. Since each of the <span class="arithmatex">\(m\)</span> cosets of <span class="arithmatex">\(H\)</span> can be partitioned into <span class="arithmatex">\(n\)</span> cosets of <span class="arithmatex">\(K\)</span>, we have that <span class="arithmatex">\([G:K] = mn\)</span>.</p>
+</div>
+<h3 id="right-cosets">Right Cosets<a class="headerlink" href="#right-cosets" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Definition 7.1.1: Right Cosets</p>
+<p>The right cosets of a subgroup <span class="arithmatex">\(H\)</span> of a group <span class="arithmatex">\(G\)</span> are the sets</p>
+<div class="arithmatex">\[
+Ha = \{ha \mid h \in H\}
+\]</div>
+</div>
+<p>Right cosets are equivalence classes for the relation <span class="arithmatex">\(a \equiv b\)</span> if <span class="arithmatex">\(b = ha\)</span> for some <span class="arithmatex">\(h \in H\)</span>. Right cosets partition the group <span class="arithmatex">\(G\)</span> but not necessarily in the same as left cosets. The right cosets of <span class="arithmatex">\(\langle y \rangle\)</span> of <span class="arithmatex">\(S_3\)</span> are <span class="arithmatex">\(Hy, Hx^2y, Hxy\)</span>.</p>
+<p>If a subgroup is normal, then its right and left cosets are equal.</p>
+<div class="admonition success">
+<p class="admonition-title">Proposition 7.1.2: Right cosets</p>
+<p>Let <span class="arithmatex">\(H\)</span> be a subgroup of a group <span class="arithmatex">\(G\)</span>. Then, the following conditions are equivalent:</p>
+<ul>
+<li><span class="arithmatex">\(H\)</span> is a normal subgroup. For all <span class="arithmatex">\(h \in H, g \in G\)</span>, <span class="arithmatex">\(ghg^{-1} \in H\)</span>.</li>
+<li><span class="arithmatex">\(\forall g \in G, gHg^{-1} = H\)</span>.</li>
+<li><span class="arithmatex">\(\forall g \in G, gH = Hg\)</span>.</li>
+<li>Every left coset of <span class="arithmatex">\(H\)</span> in <span class="arithmatex">\(G\)</span> is a right coset.</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="arithmatex">\(gHg^{-1}\)</span> be the set of all elements <span class="arithmatex">\(ghg^{-1}\)</span> with <span class="arithmatex">\(h \in H\)</span>.</p>
+<p>Suppose <span class="arithmatex">\(H\)</span> is normal. Then, for all <span class="arithmatex">\(g \in G\)</span>, we have that <span class="arithmatex">\(gHg^{-1} \subset H\)</span>. Therefore, <span class="arithmatex">\(H \subset g^{-1} H g = g H g^{-1}\)</span>. Therefore, <span class="arithmatex">\(H = gHg^{-1}\)</span>.</p>
+<p>If <span class="arithmatex">\(gHg^{-1} = H\)</span>, then <span class="arithmatex">\(gH = Hg\)</span>. This means that left cosets are equivalent to right cosets.</p>
+<p>When is a right coset equal to a left coset? Right cosets partition the group <span class="arithmatex">\(G\)</span> and have an element in common with the left coset, namely <span class="arithmatex">\(g\)</span>. Therefore, they must be the same coset (if a left coset <span class="arithmatex">\(gH\)</span> is to be equal to any right coset, it must be <span class="arithmatex">\(Hg\)</span>.).</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Proposition 7.1.3: Subgroups</p>
+<ul>
+<li>If <span class="arithmatex">\(H\)</span> is a subgroup of <span class="arithmatex">\(G\)</span> and <span class="arithmatex">\(g \in G\)</span>, then <span class="arithmatex">\(gHg^{-1}\)</span> is also a subgroup.</li>
+<li>If <span class="arithmatex">\(G\)</span> has one subgroup <span class="arithmatex">\(H\)</span> of order <span class="arithmatex">\(r\)</span>, then that subgroup is normal.</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Conjugation by <span class="arithmatex">\(g\)</span> is an automorphism and <span class="arithmatex">\(gHg^{-1}\)</span> is the image of <span class="arithmatex">\(H\)</span> under conjugation.</p>
+<p>If there is only one subgroup <span class="arithmatex">\(H\)</span> of order <span class="arithmatex">\(r\)</span>, then <span class="arithmatex">\(gHg^{-1}\)</span> preserves that order (since it's bijective) so <span class="arithmatex">\(H = gHg^{-1}\)</span>.</p>
+</div>
+<h2 id="correspondence-theorem">Correspondence Theorem<a class="headerlink" href="#correspondence-theorem" title="Permanent link">&para;</a></h2>
+<p>Let <span class="arithmatex">\(\varphi: G \to G'\)</span> be a homomorphism with <span class="arithmatex">\(H\)</span> being a subgroup of <span class="arithmatex">\(G\)</span>. We can restrict <span class="arithmatex">\(\varphi\)</span> to <span class="arithmatex">\(H\)</span>:</p>
+<div class="arithmatex">\[
+\varphi|_H: H \to G'
+\]</div>
+<p>This restriction is a homomorphism since <span class="arithmatex">\(\varphi\)</span> is a homomorphism and:</p>
+<div class="arithmatex">\[
+\text{Ker}(\varphi|_H) = \text{Ker}(\varphi) \cap H
+\]</div>
+<p>Recall the original counting formula, <span class="arithmatex">\(|G| = |H| * [G:H]\)</span>. The order of the group is the order of the subgroup times the index of <span class="arithmatex">\(H\)</span> in <span class="arithmatex">\(G\)</span>. Here we've restricted the homomorphism and we're specifically considering the kernel. So we have:</p>
+<div class="arithmatex">\[
+|H| = |\text{Ker}(\varphi|_H)| * |\text{Im}(\varphi|_H)|
+\]</div>
+<p>since the image is bijective with the number of cosets of the kernel. We will use this fact extensively.</p>
+<div class="admonition example">
+<p class="admonition-title">Example 8.1: Sign Homomorphism</p>
+<p>Consider <span class="arithmatex">\(\sigma: S_n \to \{\pm1\}\)</span>. Suppose a subgroup <span class="arithmatex">\(H\)</span> of <span class="arithmatex">\(S_n\)</span> has odd order. We don't know the order of the kernel but since <span class="arithmatex">\(|H|\)</span> is odd, it follows that <span class="arithmatex">\(|\text{Im}(\varphi|_H)|\)</span> cannot be even. Since <span class="arithmatex">\(|\{\pm1\}| = 2\)</span>, the restricted map must have <span class="arithmatex">\(|\text{Im}(\varphi|_H)| = 1\)</span>. Since the <span class="arithmatex">\(\varphi|_H\)</span> takes <span class="arithmatex">\(1 \in H\)</span> to <span class="arithmatex">\(1\)</span>, it follows that <span class="arithmatex">\(|\text{Im}(\varphi|_H)| = \{1\}\)</span>.</p>
+<p>Therefore, <span class="arithmatex">\(|\text{Ker}(\varphi|_H)| = A_n\)</span>.</p>
+<p>Now consider the cyclic subgroup <span class="arithmatex">\(\langle q \rangle\)</span> with order <span class="arithmatex">\(m\)</span>, i.e. <span class="arithmatex">\(\langle q \rangle = \{1, q, \dots, q^{m - 1}\}\)</span>. Since <span class="arithmatex">\(|m|\)</span> is odd, it follows that <span class="arithmatex">\(|m| \subseteq A_n\)</span>.</p>
+<p>Generally, permutations with odd orders have signs <span class="arithmatex">\(+1\)</span> and so are considered even permutations.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Proposition 8.1: Normality</p>
+<p>Let <span class="arithmatex">\(\varphi: G \to G'\)</span> be a homomorphism with kernel <span class="arithmatex">\(K\)</span>. Let <span class="arithmatex">\(H'\)</span> be a subgroup in the range <span class="arithmatex">\(G'\)</span>. Denote the inverse image <span class="arithmatex">\(H = \varphi^{-1}(H')\)</span>. Then, <span class="arithmatex">\(H\)</span> is a subgroup of <span class="arithmatex">\(G\)</span> containing <span class="arithmatex">\(K\)</span>.</p>
+<p>If <span class="arithmatex">\(H"\)</span> is a normal subgroup of <span class="arithmatex">\(G'\)</span>, then <span class="arithmatex">\(H\)</span> is a normal subgroup of <span class="arithmatex">\(G\)</span>.
+If <span class="arithmatex">\(\varphi\)</span> is surjective and <span class="arithmatex">\(H\)</span> is a normal subgroup of <span class="arithmatex">\(G\)</span>, then <span class="arithmatex">\(H'\)</span> is a normal subgroup of <span class="arithmatex">\(G'\)</span>.</p>
+</div>
+<p>Intuitively, a subgroup in the range must contain the identity. Therefore, it's inverse image must contain the kernel (although the inverse image isn't guaranteed to be a map).</p>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>By definition, <span class="arithmatex">\(\varphi^{-1}(H') = H = \{x \in G: \varphi(x) \in H'\}\)</span>. If <span class="arithmatex">\(x \in \text{Ker}(\varphi)\)</span>, then <span class="arithmatex">\(\varphi(x) = 1\)</span>. Since <span class="arithmatex">\(1 \in H'\)</span>, it follows that <span class="arithmatex">\(K \subseteq H\)</span>. We now verify conditions of a subgroup.</p>
+<p>Closure: Suppose <span class="arithmatex">\(x, y \in H\)</span>. Then, <span class="arithmatex">\(\varphi(x) \varphi(y) = \varphi(xy) \in H'\)</span>. Then, <span class="arithmatex">\(\varphi^{-1}(xy) = xy\)</span>. Therefore, <span class="arithmatex">\(H\)</span> is closed.</p>
+<p>Identity: <span class="arithmatex">\(1 \in H\)</span> since <span class="arithmatex">\(\varphi(1) = 1 \in H'\)</span>.</p>
+<p>Inverse: Let <span class="arithmatex">\(x \in H\)</span>. Then, <span class="arithmatex">\(\varphi(x) \in H'\)</span> and <span class="arithmatex">\(\varphi^{-1}(x) = \varphi(x^{-1}) \in H' \implies x^{-1} \in H\)</span>.</p>
+<p>Suppose <span class="arithmatex">\(H'\)</span> is a normal subgroup. Let <span class="arithmatex">\(x \in H, g \in G\)</span>. Then, <span class="arithmatex">\(\varphi(gxg^{-1}) = \varphi(g) \varphi(x) \varphi(g^{-1})\)</span> is a conjugate of <span class="arithmatex">\(\varphi(x) \in H'\)</span>. Since <span class="arithmatex">\(H'\)</span> is normal, it follows that <span class="arithmatex">\(\varphi(g) \varphi(x) \varphi(g^{-1}) \in H' \implies gxg^{-1} \in H\)</span>.</p>
+<p>Suppose <span class="arithmatex">\(H\)</span> is a normal subgroup of <span class="arithmatex">\(G\)</span> and <span class="arithmatex">\(\varphi\)</span> is surjective. Let <span class="arithmatex">\(a \in H', g \in G'\)</span>. Since <span class="arithmatex">\(\varphi\)</span> is surjective, it follows that each of these elements has a corresponding element <span class="arithmatex">\(x, y\)</span> such that <span class="arithmatex">\(a = \varphi(x), g = \varphi(y)\)</span>. Therefore, <span class="arithmatex">\(\varphi^{-1}(gag^{-1}) = y^{-1} x y\)</span>. Since <span class="arithmatex">\(x \in H\)</span> and <span class="arithmatex">\(H\)</span> is normal, it follows that <span class="arithmatex">\(y^{-1} x y \in H\)</span>. Therefore, <span class="arithmatex">\(\varphi(y^{-1} x y) = gag^{-1} \in H' \implies H'\)</span> is normal.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 8.2: Correspondence Theorem</p>
+<p>Let <span class="arithmatex">\(\varphi: G \to G'\)</span> be a <em>surjective</em> homomorphism with kernel <span class="arithmatex">\(K\)</span>. Then, there's a bijective correspondence between subgroups of <span class="arithmatex">\(G'\)</span> and subgroups of <span class="arithmatex">\(G\)</span> containing <span class="arithmatex">\(K\)</span>.</p>
+<p>Each subgroup <span class="arithmatex">\(H\)</span> of <span class="arithmatex">\(G\)</span> containing <span class="arithmatex">\(K\)</span> corresponds to <span class="arithmatex">\(\varphi(H) \subseteq G'\)</span>.
+Each subgroup <span class="arithmatex">\(H'\)</span> of <span class="arithmatex">\(G'\)</span> corresponds to <span class="arithmatex">\(\varphi^{-1}(H') \in G\)</span>.</p>
+</div>
+<p>For corresponding subgroups <span class="arithmatex">\(H, H'\)</span>, <span class="arithmatex">\(H\)</span> is normal in <span class="arithmatex">\(G\)</span> iff <span class="arithmatex">\(H'\)</span> is normal in <span class="arithmatex">\(G'\)</span>.</p>
+<p>Additionally, <span class="arithmatex">\(|H| = |H'| |K|\)</span>.</p>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="arithmatex">\(H\)</span> be a subgroup of <span class="arithmatex">\(G\)</span> containing <span class="arithmatex">\(K\)</span> and <span class="arithmatex">\(H'\)</span> a subgroup of <span class="arithmatex">\(G'\)</span>. We must check that</p>
+<ul>
+<li><span class="arithmatex">\(\phi(H)\)</span> is a subgroup of <span class="arithmatex">\(G\)</span> (true since <span class="arithmatex">\(\phi(H)\)</span> is the image of the homomorphism <span class="arithmatex">\(\varphi|_H\)</span>)</li>
+<li><span class="arithmatex">\(\varphi^{-1}(H)\)</span> is a subgroup of <span class="arithmatex">\(G\)</span> containing <span class="arithmatex">\(K\)</span></li>
+<li><span class="arithmatex">\(H'\)</span> is a normal subgroup of <span class="arithmatex">\(G'\)</span> iff <span class="arithmatex">\(H\)</span> is a normal subgroup of <span class="arithmatex">\(G\)</span></li>
+<li>the correspondence is bijective; <span class="arithmatex">\(\varphi(\varphi^{-1}(H)) = \varphi^{-1}(\varphi(H)) = H\)</span>
+<span class="arithmatex">\(|\varphi^{-1}(H)| = |H'| |K|\)</span></li>
+</ul>
+<p>The 2nd and 3rd point follow from the normality proposition. Generally, the equality <span class="arithmatex">\(\varphi(\varphi^{-1}(H)) = H\)</span> is true for any surjective mapping and <span class="arithmatex">\(H \subset \varphi^{-1}(\varphi(H))\)</span>. We verify the other direction. Suppose <span class="arithmatex">\(x \in \varphi^{-1}(\varphi(H))\)</span>. Then, <span class="arithmatex">\(\varphi(x) \in \varphi(H)\)</span> where <span class="arithmatex">\(\varphi(x) = \varphi(a)\)</span> for some <span class="arithmatex">\(a \in H\)</span>. Then, <span class="arithmatex">\(a^{-1} x \in K\)</span> (refer to coset section) so <span class="arithmatex">\(a^{-1} x \in H\)</span>. Since <span class="arithmatex">\(a \in H, a^{-1} x \in H\)</span>, it follows that <span class="arithmatex">\(x \in H\)</span> too.</p>
+</div>
+<h2 id="product-groups">Product Groups<a class="headerlink" href="#product-groups" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Definition 9.1: Product Group</p>
+<p>Let <span class="arithmatex">\(G, G'\)</span> be two groups. The product set <span class="arithmatex">\(G \times G'\)</span> is the set of pairs <span class="arithmatex">\((a, a')\)</span> with <span class="arithmatex">\(a \in G, a' \in G'\)</span>. This can be made into a group via component-wise multiplication:</p>
+<div class="arithmatex">\[
+(a, a') \cdot (b, b') = (ab, a'b')
+\]</div>
+<p>The pair <span class="arithmatex">\((1, 1)\)</span> is the identity and the inverse of <span class="arithmatex">\((a, a')\)</span> is <span class="arithmatex">\((a^{-1}, a'^{-1})\)</span>. The associative law follows from the associativity in <span class="arithmatex">\(G, G'\)</span>.</p>
+<p>This group is called the <em>product</em> of <span class="arithmatex">\(G, G'\)</span> denoted by <span class="arithmatex">\(G \times G'\)</span>.</p>
+</div>
+<p>Let <span class="arithmatex">\(i(x) = (x, 1)\)</span>, <span class="arithmatex">\(i'(x') = (1, x')\)</span>, <span class="arithmatex">\(p(x, x') = x\)</span> and <span class="arithmatex">\(p'(x, x') = x'\)</span>. Then, we obtain the following homomorphism diagram:</p>
+<p><img alt="" class="center" src="../../../images/product_homo.png" /></p>
+<p>The injective homomorphisms <span class="arithmatex">\(i\)</span>, <span class="arithmatex">\(i'\)</span> identify <span class="arithmatex">\(G, G'\)</span> with their images, the subgroups <span class="arithmatex">\(G \times 1\)</span> and <span class="arithmatex">\(1 \times G'\)</span> of <span class="arithmatex">\(G \times G'\)</span>. The maps <span class="arithmatex">\(p, p'\)</span> are surjective and the kernel of <span class="arithmatex">\(p\)</span> is <span class="arithmatex">\(1 \times G'\)</span> while the kernel of <span class="arithmatex">\(p'\)</span> is <span class="arithmatex">\(G \times 1\)</span>. These are the <em>projections</em>.</p>
+<p>If we can decompose a group <span class="arithmatex">\(G\)</span> as a product of subgroups <span class="arithmatex">\(H, H'\)</span> such that <span class="arithmatex">\(G\)</span> is isomorphic to <span class="arithmatex">\(H \times H'\)</span>, we can better understand <span class="arithmatex">\(G\)</span> through its simpler factors.</p>
+<p>Consider the cyclic group <span class="arithmatex">\(C_6\)</span>. This is isomorphic to <span class="arithmatex">\(C_2 \times C_3\)</span>. Suppose <span class="arithmatex">\(C_2 = \langle y \rangle\)</span> where <span class="arithmatex">\(y^2 = 1\)</span> and <span class="arithmatex">\(C_3 = \langle z \rangle\)</span> where <span class="arithmatex">\(z^3 = 1\)</span>. Let <span class="arithmatex">\(x = (y, z)\)</span> of <span class="arithmatex">\(C_2 \times C_3\)</span>. The smallest positive integer <span class="arithmatex">\(k\)</span> such that <span class="arithmatex">\(x^k = (y^k, z^k) = (1, 1)\)</span> is <span class="arithmatex">\(k = 6\)</span>. So <span class="arithmatex">\(x\)</span> has order <span class="arithmatex">\(6\)</span>. Since <span class="arithmatex">\(C_2 \times C_3\)</span> also has order <span class="arithmatex">\(6\)</span>, it's equal to <span class="arithmatex">\(\langle x \rangle\)</span>. The powers of <span class="arithmatex">\(x\)</span> are:</p>
+<div class="arithmatex">\[
+(1, 1), (y, z), (1, z^2), (y, 1), (1, z), (y, z^2)
+\]</div>
+<p>Since <span class="arithmatex">\(C_2 \times C_3\)</span> is cyclic and has order <span class="arithmatex">\(6\)</span>, it's isomorphic to <span class="arithmatex">\(C_6\)</span>.</p>
+<div class="admonition success">
+<p class="admonition-title">Proposition 9.2: Relative Prime Cyclic Groups</p>
+<p>Let <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(s\)</span> be relatively prime. A cyclic group of order <span class="arithmatex">\(rs\)</span> is isomorphic to the product of a cyclic group of order <span class="arithmatex">\(r\)</span> and a cyclic group of order <span class="arithmatex">\(s\)</span>.</p>
+</div>
+<p>A cyclic group of order <span class="arithmatex">\(4\)</span> is <em>not</em> isomorphic to a product of two cyclic groups of order $2. Consider <span class="arithmatex">\(C_2 \times C_2\)</span>. This has <span class="arithmatex">\(4\)</span> elements, <span class="arithmatex">\((1, 1), (y, 1), (1, z), (y, z)\)</span>. Squaring any of these elements produces <span class="arithmatex">\((1, 1)\)</span>. Therefore, the elements of this group have at most order <span class="arithmatex">\(2\)</span> and <span class="arithmatex">\(C_2 \times C_2\)</span> is not cylic so it cannot be isomorphic to <span class="arithmatex">\(C_6\)</span>.</p>
+<div class="admonition success">
+<p class="admonition-title">Proposition 9.3: Characterizing Product Groups</p>
+<p>Let <span class="arithmatex">\(H, K\)</span> be subgroups of <span class="arithmatex">\(G\)</span> and <span class="arithmatex">\(f: H \times K \to G\)</span> be the multiplication map where <span class="arithmatex">\(f(h, k) = hk\)</span>. Then, it's image is <span class="arithmatex">\(HK = \{hk \mid h \in H, k \in K\}\)</span>. Then,</p>
+<ul>
+<li><span class="arithmatex">\(f\)</span> is injective iff <span class="arithmatex">\(H \cap K = \{1\}\)</span>.</li>
+<li><span class="arithmatex">\(f\)</span> is a homomorphism from <span class="arithmatex">\(H \times K\)</span> to <span class="arithmatex">\(G\)</span> iff <span class="arithmatex">\(kh = kh\)</span>.</li>
+<li>If <span class="arithmatex">\(H\)</span> is a normal subgroup of <span class="arithmatex">\(G\)</span>, then <span class="arithmatex">\(HK\)</span> is a subgroup of <span class="arithmatex">\(G\)</span>.</li>
+<li><span class="arithmatex">\(f\)</span> is an isomorphism iff <span class="arithmatex">\(H \cap K = \{1\}\)</span>, <span class="arithmatex">\(HK = G\)</span>, and <span class="arithmatex">\(H, K\)</span> are normal subgroups of <span class="arithmatex">\(G\)</span>.</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>(a) Suppose there exists <span class="arithmatex">\(x \neq 1 \in H \cap K\)</span>. Then, <span class="arithmatex">\(x^{-1} \in H\)</span>. Then, <span class="arithmatex">\(f\)</span> cannot be injective since it maps <span class="arithmatex">\((1, 1)\)</span> to <span class="arithmatex">\(1\)</span> and it also maps <span class="arithmatex">\((x^{-1}, x)\)</span> to <span class="arithmatex">\(1\)</span>.</p>
+<p>(b) Let <span class="arithmatex">\((h_1, k_1)\)</span> and <span class="arithmatex">\((h_2, k_2)\)</span> be elements of <span class="arithmatex">\(H \times K\)</span>. The product is <span class="arithmatex">\((h_1 h_2, k_1, k_2)\)</span>. <span class="arithmatex">\(f(h_1 h_2, k_1, k_2) = h_1 h_2 k_1 k_2\)</span> while <span class="arithmatex">\(f(h_1, k_1) f(h_2, k_2) = h_1 k_1 h_2 k_2\)</span>. Therefore, <span class="arithmatex">\(h_1 h_2 k_1 k_2 = h_1 k_1 h_2 k_2\)</span>. This is equal iff <span class="arithmatex">\(h_2 k_1 = k_1 h_2\)</span>.</p>
+<p>(c) Suppose <span class="arithmatex">\(H\)</span> is a normal subgroup. Note <span class="arithmatex">\(KH\)</span> is a union of the left cosets <span class="arithmatex">\(kH\)</span> with <span class="arithmatex">\(k \in K\)</span> and that <span class="arithmatex">\(HK\)</span> is a union of the right cosets <span class="arithmatex">\(Hk\)</span>. Since <span class="arithmatex">\(H\)</span> is normal, then <span class="arithmatex">\(KH = HK\)</span>. We verify closure and inverses.</p>
+<p>Take <span class="arithmatex">\(h_1 k_1\)</span> and <span class="arithmatex">\(h_2 k_2\)</span>. Then, <span class="arithmatex">\(h_1 k_1 h_2 k_2 = (h_1 h_2) (k_1 k_2) = h' k'\)</span>. Therefore, <span class="arithmatex">\(HK\)</span> is closed.</p>
+<div class="arithmatex">\[
+(hk)^{-1} = k^{-1} h^{-1} = h^{-1} k^{-1} \in HK
+\]</div>
+<p>Therefore, <span class="arithmatex">\(HK\)</span> is closed under inverses.</p>
+<p>(d) Suppose <span class="arithmatex">\(H, K\)</span> satisfy the given conditions. Then, <span class="arithmatex">\(f\)</span> is bijective. By (b), this is additionally an isomorphism provided that <span class="arithmatex">\(hk = kh\)</span> for all <span class="arithmatex">\(k \in K, h \in H\)</span>. Consider the commutator <span class="arithmatex">\((hkh^{-1})k^{-1} = h (kh^{-1} k^{-1})\)</span>. Since <span class="arithmatex">\(H, K\)</span> are normal subgroups, the left element is in <span class="arithmatex">\(K\)</span> and the right element is in <span class="arithmatex">\(H\)</span>. Since <span class="arithmatex">\(H \cap K = \{1\}\)</span>, it follows that <span class="arithmatex">\(hkh^{-1}k^{-1} = 1 \implies hk = kh\)</span>. Therefore, <span class="arithmatex">\(f\)</span> is an isomorphism.</p>
+<p>Suppose <span class="arithmatex">\(f\)</span> is an isomorphism. Therefore, it is injective which implies that $H \cap K = {1} by (a). It is also surjective which implies that <span class="arithmatex">\(HK = G\)</span>. We show that <span class="arithmatex">\(H, K\)</span> are normal subgroups of <span class="arithmatex">\(G\)</span>. Pick <span class="arithmatex">\(h \in H, g \in G\)</span>. Since <span class="arithmatex">\(HK = G\)</span>, we have that G = h' k'$.</p>
+<p>Then,</p>
+<div class="arithmatex">\[
+ghg^{-1} = h' k' h k'^{-1} h'^{-1} = h' h k' k'^{-1} h'^{-1} = h' h h'^{-1} \in H
+\]</div>
+<p>Therefore, <span class="arithmatex">\(H\)</span> is normal. The same process can be repeated for <span class="arithmatex">\(K\)</span>.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Proposition 9.4: Classifying Groups of Order <span class="arithmatex">\(4\)</span></p>
+<p>There are two isomorphism classes of groups of order <span class="arithmatex">\(4\)</span> - the class of cyclic groups <span class="arithmatex">\(C_4\)</span> and the class of the Klein Four Group which is isomorphic to <span class="arithmatex">\(C_2 \times C_2\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Suppose <span class="arithmatex">\(|G| = 4\)</span>. The order of any element <span class="arithmatex">\(x\)</span> of <span class="arithmatex">\(G\)</span> divides <span class="arithmatex">\(4\)</span> so then:</p>
+<ul>
+<li>If <span class="arithmatex">\(G\)</span> contains an element of order <span class="arithmatex">\(4\)</span>, then it's cyclic with order <span class="arithmatex">\(4\)</span>.</li>
+<li>Otherwise, all elements of <span class="arithmatex">\(G\)</span> (except the identity) have order <span class="arithmatex">\(2\)</span>.</li>
+</ul>
+<p>Then, <span class="arithmatex">\(x = x^{-1}\)</span> for <span class="arithmatex">\(x \in G\)</span>. Consider <span class="arithmatex">\(x, y \in G\)</span>. Then, <span class="arithmatex">\(xy\)</span> has order <span class="arithmatex">\(2\)</span> so <span class="arithmatex">\(xy x^{-1} y^{-1} = (xy) (xy) = 1 \implies xy x^{-1} y^{-1} = xy y^{-1} x^{-1} = xy yx \implies xy = yx\)</span>. Therefore <span class="arithmatex">\(G\)</span> is abelian and every subgroup of <span class="arithmatex">\(G\)</span> is normal. Let <span class="arithmatex">\(H, K\)</span> be distinct subgroups of <span class="arithmatex">\(G\)</span> generated respectively by <span class="arithmatex">\(x, y\)</span>. The previous proposition shows that <span class="arithmatex">\(G\)</span> is isomorphic to the product group <span class="arithmatex">\(H \times K\)</span> which is isomorphic to <span class="arithmatex">\(C_2 \times C_2\)</span>.</p>
+</div>
+<h2 id="quotient-groups">Quotient Groups<a class="headerlink" href="#quotient-groups" title="Permanent link">&para;</a></h2>
+<p>We can define a law of composition on the set of cosets of a normal subgroup of any group. This law of composition makes the set of cosets into a group called a <em>quotient group</em>.</p>
+<div class="admonition quote">
+<p class="admonition-title">Important: Modular Arithmetic</p>
+<p>Recall modular arithmetic: We say that integers <span class="arithmatex">\(a, b\)</span> are congruent mod z if <span class="arithmatex">\(n \mid a - b\)</span>. The congruence class <span class="arithmatex">\([a]\)</span> is the set of all integers congruent to <span class="arithmatex">\(a \mod n\)</span> (or the set of integers whose remainder when divided by <span class="arithmatex">\(n\)</span> is <span class="arithmatex">\(a\)</span>). For example, <span class="arithmatex">\([3]\)</span> mod <span class="arithmatex">\(5\)</span> is <span class="arithmatex">\(\{\dots, 3, 8, 13, \dots \}\)</span>. A given <span class="arithmatex">\(n\)</span> partitions <span class="arithmatex">\(\mathbb{Z}\)</span> into <span class="arithmatex">\(n\)</span> parts with remainders <span class="arithmatex">\(\{0, 1, \dots, n - 1\}\)</span>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example 10.1: Adding Congruence Classes</p>
+<p>Consider the group of integers under addition, <span class="arithmatex">\((\mathbb{Z}, +)\)</span>. Consider the subset of all multiples of <span class="arithmatex">\(n\)</span> denoted as <span class="arithmatex">\(n\mathbb{Z} = \{kn \mid k \in \mathbb{Z}\}\)</span>. So for example, <span class="arithmatex">\(3\mathbb{Z} = \{\dots, -3, 0, 3, 6, \dots\}\)</span>. Since <span class="arithmatex">\(\mathbb{Z}\)</span> is abelian, <span class="arithmatex">\(n \mathbb{Z}\)</span> is a normal subgroup.</p>
+<p>Now consider cosets of <span class="arithmatex">\(n \mathbb{Z}\)</span>, or the sets <span class="arithmatex">\(a + n \mathbb{Z}\)</span>. These cosets are precisely the congruence classes in <span class="arithmatex">\(\mod n\)</span> arithmetic. We can add these cosets by adding their representative elements, <span class="arithmatex">\([a] + [b] = [a + b]\)</span>.</p>
+<p>Since we have defined a law of composition over cosets, we can form a group of cosets of the normal subgroup.</p>
+</div>
+<p>We write <span class="arithmatex">\(G / N\)</span> to be the set of cosets of <span class="arithmatex">\(N\)</span> in <span class="arithmatex">\(G\)</span>. When regard <span class="arithmatex">\(C\)</span> as an element of the set of cosets, we use <span class="arithmatex">\([C]\)</span>. If <span class="arithmatex">\(C = aN\)</span>, we can write <span class="arithmatex">\(\bar{a}\)</span>. Similarly, we can write <span class="arithmatex">\(\bar{G} = G / N\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 10.1: Canonical Map</p>
+<p>Let <span class="arithmatex">\(N\)</span> be a normal subgroup of <span class="arithmatex">\(G\)</span> and <span class="arithmatex">\(\bar{G}\)</span> be the set of cosets of <span class="arithmatex">\(N\)</span> in <span class="arithmatex">\(G\)</span>. There is a law of composition on <span class="arithmatex">\(\bar{G}\)</span> which makes this set into a group such that the map <span class="arithmatex">\(\pi: G \to \bar{G}\)</span> written as <span class="arithmatex">\(\pi(a) = \bar{a}\)</span> is a surjective homomorphism and <span class="arithmatex">\(\text{Ker}(\pi) = N\)</span>.</p>
+</div>
+<p>Intuitively, we would expect <span class="arithmatex">\(\pi\)</span> to be surjective but not injective. Consider <span class="arithmatex">\(G = (\mathbb{Z}, +)\)</span> and <span class="arithmatex">\(N = (n \mathbb{Z}, +)\)</span>. Then, there are <span class="arithmatex">\(n\)</span> additive cosets. If we consider a mapping <span class="arithmatex">\(\pi: a \to aN\)</span>, this maps each element of the group to is coset which is not one-to-one. But since the cosets partition the group, this is surjective.</p>
+<p>The map <span class="arithmatex">\(\pi\)</span> is often referred to as the <em>canonical map</em> from <span class="arithmatex">\(G \to \bar{G}\)</span>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Corollary 10.2: Canonical Homomorphism</p>
+<p>Let <span class="arithmatex">\(N\)</span> be a normal subgroup of <span class="arithmatex">\(G\)</span>, <span class="arithmatex">\(\bar{G}\)</span> be the set of cosets of <span class="arithmatex">\(N\)</span> in <span class="arithmatex">\(G\)</span>, and <span class="arithmatex">\(\pi: G \to \bar{G}\)</span> be the canonical homomorphism. Let <span class="arithmatex">\(a_1, \dots, a_k\)</span> be elements of <span class="arithmatex">\(G\)</span> such that <span class="arithmatex">\(a_1 \dots a_k \in N\)</span>. Then, <span class="arithmatex">\(\bar{a}_1 \dots \bar{a}_k = \bar{1}\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>This is because <span class="arithmatex">\(\pi\)</span> is a homomorphism. Specifically, since <span class="arithmatex">\(a_1 \dots a_k \in N\)</span> and <span class="arithmatex">\(\text{Ker}(\pi) = N\)</span>, it follows that <span class="arithmatex">\(\pi(a_1 \dots a_k) = 1\)</span>. However, since <span class="arithmatex">\(\pi\)</span> is a homomorphism, it follows that <span class="arithmatex">\(\pi(a_1) \dots \pi(a_k) = \bar{a}_1 \dots \bar{a}_k = \bar{1}\)</span>.</p>
+</div>
+<p>Now we prove the canonical map theorem.</p>
+<p>We need to define a law of composition on <span class="arithmatex">\(\bar{G}\)</span>, show that <span class="arithmatex">\(\bar{G}\)</span> is a group, show that <span class="arithmatex">\(\pi\)</span> is a surjective homomorphism and show that <span class="arithmatex">\(\text{Ker}(\pi) = N\)</span>.</p>
+<p>If <span class="arithmatex">\(A, B \subset G\)</span>, then let <span class="arithmatex">\(AB = \{x \in G \mid x = ab, a \in A, b \in B \}\)</span>.</p>
+<div class="admonition question">
+<p class="admonition-title">Lemma 10.3</p>
+<p>Let <span class="arithmatex">\(N\)</span> be a normal subgroup of <span class="arithmatex">\(G\)</span> and <span class="arithmatex">\(aN, bN\)</span> be cosets. Then, <span class="arithmatex">\(aN bN\)</span> is also a coset equal to <span class="arithmatex">\(abN\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Since <span class="arithmatex">\(N\)</span> is a subgroup, <span class="arithmatex">\(NN = N\)</span>. Since <span class="arithmatex">\(N\)</span> is normal, <span class="arithmatex">\(aN = Na\)</span>. Then,</p>
+<div class="arithmatex">\[
+(aN) (bN) = a (Nb) N = a (bN) N = abNN = abN
+\]</div>
+<p>If <span class="arithmatex">\(C_1, C_2\)</span> are cosets that <span class="arithmatex">\([C_1] [C_2] = [C_1 C_2]\)</span>. This product set is another coset and:</p>
+<div class="arithmatex">\[
+[aN] [bN] = [abN]
+\]</div>
+<div class="arithmatex">\[
+\pi(a) \pi(b) = \bar{a} \bar{b} = \bar{ab} = \pi(ab)
+\]</div>
+<p>Once we show that <span class="arithmatex">\(\bar{G}\)</span> is a group, it will follow that <span class="arithmatex">\(\pi\)</span> is a homomorphism. We will also that <span class="arithmatex">\(\pi\)</span> is surjective.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Lemma 10.4</p>
+<p>Let <span class="arithmatex">\(G\)</span> be a group and <span class="arithmatex">\(Y\)</span> be a set with a law of composition. Let <span class="arithmatex">\(\varphi: G \to Y\)</span> be a surjective map with <span class="arithmatex">\(\varphi(ab) = \varphi(a) \varphi(b)\)</span> for <span class="arithmatex">\(a, b \in G\)</span>. Then, <span class="arithmatex">\(Y\)</span> is a group and <span class="arithmatex">\(\varphi\)</span> is a homomorphism.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>We show associativity, invertibility and identity. Closure carries over from <span class="arithmatex">\(Y\)</span>'s law of composition. Since <span class="arithmatex">\(\varphi\)</span> is surjective, suppose <span class="arithmatex">\(y_i = \varphi(x_i)\)</span> for some <span class="arithmatex">\(x_i \in G\)</span>.</p>
+<p><strong>Associativity</strong>.</p>
+<div class="arithmatex">\[
+(y_1 y_2) y_3 = (\varphi(x_1) \varphi(x_2)) \varphi(x_3) = \varphi(x_1 x_2) \varphi(x_3) = \varphi((x_1 x_2)x_3)
+\]</div>
+<p>Since composition in <span class="arithmatex">\(G\)</span> is associative, we have:
+$$
+\varphi((x_1 x_2)x_3) = \varphi(x_1 (x_2 x_3)) = \varphi(x_1) \varphi(x_2 x_3)
+= y_1 (\varphi(x_2) \varphi(x_3)) = y_1 (y_2 y_3)
+$$</p>
+<p><strong>Identity</strong>. Let <span class="arithmatex">\(e = \varphi(1)\)</span> and <span class="arithmatex">\(y = \varphi(x)\)</span>.</p>
+<div class="arithmatex">\[
+y e = \varphi(x) \varphi(1) = \varphi(x \cdot 1) = \varphi(x) = y
+\]</div>
+<p>By symmetry we can easily show that <span class="arithmatex">\(e y = y\)</span>. Therefore, <span class="arithmatex">\(e\)</span> is the identity element in <span class="arithmatex">\(Y\)</span>.</p>
+<p><strong>Invertibility</strong>. Let <span class="arithmatex">\(y_1 = \varphi(x)\)</span> and <span class="arithmatex">\(y_2 = \varphi(x^{-1})\)</span>. Then,</p>
+<div class="arithmatex">\[
+y_1 y_2 = \varphi(x) \varphi(x^{-1}) = \varphi(x x^{-1}) = \varphi(1) = e
+\]</div>
+<p>Therefore, <span class="arithmatex">\(y_2 = y_1^{-1}\)</span>. So <span class="arithmatex">\(Y\)</span> has an inverse. By symmetry, we can show that the RHS operand also has an inverse.</p>
+<p>Since <span class="arithmatex">\(Y\)</span> has an associative and invertible law of composition and an identity element, <span class="arithmatex">\(Y\)</span> is a group. Since <span class="arithmatex">\(Y\)</span> is a group and <span class="arithmatex">\(\varphi(ab) = \varphi(a) \varphi(b)\)</span>, <span class="arithmatex">\(\varphi\)</span> is a homomorphism.</p>
+</div>
+<p>Now we only need to verify that <span class="arithmatex">\(\text{Ker}(\pi) = N\)</span>. We have that <span class="arithmatex">\(\pi(a) = \pi(1)\)</span> iff <span class="arithmatex">\(\bar{a} = \bar{1}\)</span> of <span class="arithmatex">\([aN] = [1N] \implies a \in N\)</span>.</p>
+<p>Finally, we relate the quotient group consruction fo a general group homomorphism and provide a fundamental method for identifying quotient groups.</p>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 10.5: First Isomorphism Theorem</p>
+<p>Let <span class="arithmatex">\(\varphi: G \to G'\)</span> be a surjective group homomorphism with kernel <span class="arithmatex">\(N\)</span>. The quotient group <span class="arithmatex">\(\bar{G} = G / N\)</span> is isomorphic to <span class="arithmatex">\(G'\)</span>. Specifically, let <span class="arithmatex">\(\pi: G \to \bar{G}\)</span> be the canonical map. Then, there is a unique isomorphism <span class="arithmatex">\(\bar{\varphi}: \bar{G} \to G'\)</span> such that <span class="arithmatex">\(\varphi = \bar{\varphi} \circ \pi\)</span>.</p>
+</div>
+<p>Intuitively, the quotient group is the group of cosets and we know that the cosets are the fibres of the image. So we would expect there to be an isomorphism between the quotient group and the image.</p>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>The elements of <span class="arithmatex">\(\bar{G}\)</span> are the cosets of <span class="arithmatex">\(N\)</span>. They are also the fibres of <span class="arithmatex">\(\varphi\)</span>. Here, <span class="arithmatex">\(\bar{\varphi}\)</span> sends a non-empty fibre to its image, <span class="arithmatex">\(\bar{\varphi}(\bar{x}) = \varphi(x)\)</span>. For any surjective map of sets <span class="arithmatex">\(\varphi: G \to G'\)</span>, one can form <span class="arithmatex">\(\bar{G}\)</span>, the set of fibres. Then, we obtain the bijection between fibres and elements of the image. When <span class="arithmatex">\(\varphi\)</span> is a homomorphism, <span class="arithmatex">\(\bar{\varphi}\)</span> is an isomorphism because:</p>
+<div class="arithmatex">\[
+\bar{\varphi}(\bar{ab}) = \varphi(ab) = \varphi(a) \varphi(b) = \bar{\varphi}(\bar{a}) \bar{\varphi}(\bar{b})
+\]</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Corollary 10.6: </p>
+<p>Let <span class="arithmatex">\(\varphi: G \to G'\)</span> be a group homomorphism with kernel <span class="arithmatex">\(N\)</span> and image <span class="arithmatex">\(H'\)</span> The quotient group <span class="arithmatex">\(\bar{G} = G / N\)</span> is isomorphic to <span class="arithmatex">\(H'\)</span>.</p>
+</div>
+<p>Consider the determinant, a surjective homomorphism <span class="arithmatex">\(\det: \text{GL}_n(\mathbb{R}) \to \mathbb{R}^{\times}\)</span>. Then, the kernel is <span class="arithmatex">\(\text{SL}_n(\mathbb{R}) = K\)</span>. The cosets of this kernel are <span class="arithmatex">\(AK\)</span> where <span class="arithmatex">\(A\)</span> is some matrix with determinant <span class="arithmatex">\(\det(A)\)</span>. Then, the quotient group <span class="arithmatex">\(\text{GL}_n(\mathbb{R}) / \text{SL}_n(\mathbb{R})\)</span> is isomorphic to <span class="arithmatex">\(\mathbb{R}^{\times}\)</span>.</p>
+<h2 id="big-picture">Big Picture<a class="headerlink" href="#big-picture" title="Permanent link">&para;</a></h2>
+<p>It's a bit hard to talk about the big picture of a subject in the process of studying it but there's a clear geometric meaning to groups that motivate their study. Groups correspond to <em>symmetries</em>. There's a transformation which does nothing (the identity), transformations can be composed, transformations can be undone (the inverse), and a string of transformations can be grouped in any way. Proving abstract therorems about groups then carries over information to objects which don't intuitively have geometric structure (like <span class="arithmatex">\(\mathbb{Z}\)</span> or <span class="arithmatex">\(\mathbb{R}\)</span>) but share the same algebraic structure of being a group.</p>
+<p>Next, there are several common themes in this chapter, the major motif being how to study groups.</p>
+<ul>
+<li>Break groups into components. We have cosets which partition a group, subgroups like the kernel and image, quotient groups and product groups.</li>
+<li>Study groups through maps. Homomorphisms let us do computation in one group and carry it over to another. The kernel tells us what information is lost and the image tells us what remains.</li>
+<li>Structure matters more - We don't care about the particulars of a group but rather its isomorphism class.</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 9, 2026 03:29:21 UTC">2026-11-09</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 9, 2026 03:29:21 UTC">2026-11-09</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="../../../javascripts/nav-toggle.js"></script>
+      
+        <script src="../../../javascripts/mathjax/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
