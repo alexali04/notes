@@ -256,8 +256,8 @@ There's also the *trivial homomorphism* $\varphi: G \to G"$ maps every element o
 
 !!! success "Proposition: Homomorphism Properties"
     - If $a_1, \dots, a_k \in G$, then $\varphi(a_1 \dots a_k) = \varphi(a_1) \dots \varphi(a_k)$.
-    - $\phi(1_G) = 1_{G'}$.
-    - $\phi(a^{-1}) = \phi(a)^{-1}$.
+    - $\varphi(1_G) = 1_{G'}$.
+    - $\varphi(a^{-1}) = \varphi(a)^{-1}$.
 
 !!! quote "Proof"
     Since $1 \cdot 1 = 1$, then $\varphi(1) \varphi(1) = \varphi(1)$. Using the inverse property, we have that $\varphi(1) = 1$. We also have that $1 = \varphi(a a^{-1}) = \varphi(a) \varphi(a^{-1}) \implies \varphi(a^{-1}) = \varphi(a)^{-1}$.
@@ -479,13 +479,13 @@ Any map of sets $f: S \to T$ gives an equivalence relation on its domain $S$ def
 We return to a group homomorphism $\varphi: G \to G'$. The equivalence relation defined by $\varphi$ is denoted by $\equiv$ and is referred to as *congruence*.
 
 $$
-a \equiv b \text{ if } $\varphi(a) = \varphi(b)
+a \equiv b \text{ if } \varphi(a) = \varphi(b)
 $$
 
 Elements $a, b$ are congruent iff $b$ is in the coset $aK$ of the kernel $K$.
 
 !!! success "Proposition: Cosets Partition"
-    Let $K$ be the kernel of homomorphism $k: G \to G'$. The fibre of $\varphi$ that contains an element $a$ of $G$ is the coset $aK$ of $K$. The cosets partition the group $G$ and correspond to elements of the image of $\varphi$.
+    Let $K$ be the kernel of homomorphism $\varphi: G \to G'$. The fibre of $\varphi$ that contains an element $a$ of $G$ is the coset $aK$ of $K$. The cosets partition the group $G$ and correspond to elements of the image of $\varphi$.
 
 ![](../../images/schematic_homo.png)
 
@@ -739,7 +739,7 @@ A cyclic group of order $4$ is *not* isomorphic to a product of two cyclic group
     (hk)^{-1} = k^{-1} h^{-1} = h^{-1} k^{-1} \in HK
     $$
 
-    Therefore, $HK$ is closed under inverses. 
+    Therefore, $HK$ is closed under inverses.
 
     (d) Suppose $H, K$ satisfy the given conditions. Then, $f$ is bijective. By (b), this is additionally an isomorphism provided that $hk = kh$ for all $k \in K, h \in H$. Consider the commutator $(hkh^{-1})k^{-1} = h (kh^{-1} k^{-1})$. Since $H, K$ are normal subgroups, the left element is in $K$ and the right element is in $H$. Since $H \cap K = \{1\}$, it follows that $hkh^{-1}k^{-1} = 1 \implies hk = kh$. Therefore, $f$ is an isomorphism.
 
@@ -764,73 +764,128 @@ A cyclic group of order $4$ is *not* isomorphic to a product of two cyclic group
 
     Then, $x = x^{-1}$ for $x \in G$. Consider $x, y \in G$. Then, $xy$ has order $2$ so $xy x^{-1} y^{-1} = (xy) (xy) = 1 \implies xy x^{-1} y^{-1} = xy y^{-1} x^{-1} = xy yx \implies xy = yx$. Therefore $G$ is abelian and every subgroup of $G$ is normal. Let $H, K$ be distinct subgroups of $G$ generated respectively by $x, y$. The previous proposition shows that $G$ is isomorphic to the product group $H \times K$ which is isomorphic to $C_2 \times C_2$.
 
+## Quotient Groups
 
+We can define a law of composition on the set of cosets of a normal subgroup of any group. This law of composition makes the set of cosets into a group called a *quotient group*.
 
+!!! quote "Important: Modular Arithmetic"
+    Recall modular arithmetic: We say that integers $a, b$ are congruent mod z if $n \mid a - b$. The congruence class $[a]$ is the set of all integers congruent to $a \mod n$ (or the set of integers whose remainder when divided by $n$ is $a$). For example, $[3]$ mod $5$ is $\{\dots, 3, 8, 13, \dots \}$. A given $n$ partitions $\mathbb{Z}$ into $n$ parts with remainders $\{0, 1, \dots, n - 1\}$.
 
+!!! example "Example: Adding Congruence Classes"
+    Consider the group of integers under addition, $(\mathbb{Z}, +)$. Consider the subset of all multiples of $n$ denoted as $n\mathbb{Z} = \{kn \mid k \in \mathbb{Z}\}$. So for example, $3\mathbb{Z} = \{\dots, -3, 0, 3, 6, \dots\}$. Since $\mathbb{Z}$ is abelian, $n \mathbb{Z}$ is a normal subgroup.
 
+    Now consider cosets of $n \mathbb{Z}$, or the sets $a + n \mathbb{Z}$. These cosets are precisely the congruence classes in $\mod n$ arithmetic. We can add these cosets by adding their representative elements, $[a] + [b] = [a + b]$.
 
+    Since we have defined a law of composition over cosets, we can form a group of cosets of the normal subgroup.
 
+We write $G / N$ to be the set of cosets of $N$ in $G$. When regard $C$ as an element of the set of cosets, we use $[C]$. If $C = aN$, we can write $\bar{a}$. Similarly, we can write $\bar{G} = G / N$.
 
+!!! tip "Theorem: Canonical Map"
+    Let $N$ be a normal subgroup of $G$ and $\bar{G}$ be the set of cosets of $N$ in $G$. There is a law of composition on $\bar{G}$ which makes this set into a group such that the map $\pi: G \to \bar{G}$ written as $\pi(a) = \bar{a}$ is a surjective homomorphism and $\text{Ker}(\pi) = N$.
 
+Intuitively, we would expect $\pi$ to be surjective but not injective. Consider $G = (\mathbb{Z}, +)$ and $N = (n \mathbb{Z}, +)$. Then, there are $n$ additive cosets. If we consider a mapping $\pi: a \to aN$, this maps each element of the group to is coset which is not one-to-one. Since the cosets partition the group, this is
 
+coset to its representative element so it's not a one-to-one mapping. But since the cosets partition the group, it is surjective.
 
+The map $\pi$ is often referred to as the *canonical map* from $G \to \bar{G}$.
 
+!!! warning "Corollary: Canonical Homomorphism"
+    Let $N$ be a normal subgroup of $G$, $\bar{G}$ be the set of cosets of $N$ in $G$, and $\pi: G \to \bar{G}$ be the canonical homomorphism. Let $a_1, \dots, a_k$ be elements of $G$ such that $a_1 \dots a_k \in N$. Then, $\bar{a}_1 \dots \bar{a}_k = \bar{1}$.
 
+!!! quote "Proof"
+    This is because $\pi$ is a homomorphism. Specifically, since $a_1 \dots a_k \in N$ and $\text{Ker}(\pi) = N$, it follows that $\pi(a_1 \dots a_k) = 1$. However, since $\pi$ is a homomorphism, it follows that $\pi(a_1) \dots \pi(a_k) = \bar{a}_1 \dots \bar{a}_k = \bar{1}$.
 
+Now we prove the canonical map theorem.
 
+We need to define a law of composition on $\bar{G}$, show that $\bar{G}$ is a group, show that $\pi$ is a surjective homomorphism and show that $\text{Ker}(\pi) = N$.
 
+If $A, B \subset G$, then let $AB = \{x \in G \mid x = ab, a \in A, b \in B \}$.
 
+!!! question "Lemma"
+    Let $N$ be a normal subgroup of $G$ and $aN, bN$ be cosets. Then, $aN bN$ is also a coset equal to $abN$.
 
+!!! quote "Proof"
+    Since $N$ is a subgroup, $NN = N$. Since $N$ is normal, $aN = Na$. Then,
 
+    $$
+    (aN) (bN) = a (Nb) N = a (bN) N = abNN = abN
+    $$
 
+    If $C_1, C_2$ are cosets that $[C_1] [C_2] = [C_1 C_2]$. This product set is another coset and:
 
+    $$
+    [aN] [bN] = [abN]
+    $$
 
+    $$
+    \pi(a) \pi(b) = \bar{a} \bar{b} = \bar{ab} = \pi(ab)
+    $$
 
+    Once we show that $\bar{G}$ is a group, it will follow that $\pi$ is a homomorphism. We will also that $\pi$ is surjective.
 
+!!! question "Lemma"
+    Let $G$ be a group and $Y$ be a set with a law of composition. Let $\varphi: G \to Y$ be a surjective map with $\varphi(ab) = \varphi(a) \varphi(b)$ for $a, b \in G$. Then, $Y$ is a group and $\varphi$ is a homomorphism.
 
+!!! quote "Proof"
+    We show associativity, invertibility and identity. Closure carries over from $Y$'s law of composition. Since $\varphi$ is surjective, suppose $y_i = \varphi(x_i)$ for some $x_i \in G$.
 
+    **Associativity**.
 
+    $$
+    (y_1 y_2) y_3 = (\varphi(x_1) \varphi(x_2)) \varphi(x_3) = \varphi(x_1 x_2) \varphi(x_3) = \varphi((x_1 x_2)x_3)
+    $$
 
+    Since composition in $G$ is associative, we have:
+    $$
+    \varphi((x_1 x_2)x_3) = \varphi(x_1 (x_2 x_3)) = \varphi(x_1) \varphi(x_2 x_3)
+    = y_1 (\varphi(x_2) \varphi(x_3)) = y_1 (y_2 y_3)
+    $$
 
+    **Identity**. Let $e = \varphi(1)$ and $y = \varphi(x)$.
 
+    $$
+    y e = \varphi(x) \varphi(1) = \varphi(x \cdot 1) = \varphi(x) = y
+    $$
 
+    By symmetry we can easily show that $e y = y$. Therefore, $e$ is the identity element in $Y$.
 
+    **Invertibility**. Let $y_1 = \varphi(x)$ and $y_2 = \varphi(x^{-1})$. Then,
 
+    $$
+    y_1 y_2 = \varphi(x) \varphi(x^{-1}) = \varphi(x x^{-1}) = \varphi(1) = e
+    $$
 
+    Therefore, $y_2 = y_1^{-1}$. So $Y$ has an inverse. By symmetry, we can show that the RHS operand also has an inverse.
 
+    Since $Y$ has an associative and invertible law of composition and an identity element, $Y$ is a group. Since $Y$ is a group and $\varphi(ab) = \varphi(a) \varphi(b)$, $\varphi$ is a homomorphism.
 
+Now we only need to verify that $\text{Ker}(\pi) = N$. We have that $\pi(a) = \pi(1)$ iff $\bar{a} = \bar{1}$ of $[aN] = [1N] \implies a \in N$.
 
+Finally, we relate the quotient group consruction fo a general group homomorphism and provide a fundamental method for identifying quotient groups.
 
+!!! tip "Theorem: First Isomorphism Theorem"
+    Let $\varphi: G \to G'$ be a surjective group homomorphism with kernel $N$. The quotient group $\bar{G} = G / N$ is isomorphic to $G'$. Specifically, let $\pi: G \to \bar{G}$ be the canonical map. Then, there is a unique isomorphism $\bar{\varphi}: \bar{G} \to G'$ such that $\varphi = \bar{\varphi} \circ \pi$.
 
+Intuitively, the quotient group is the group of cosets and we know that the cosets are the fibres of the image. So we would expect there to be an isomorphism between the quotient group and the image.
 
+!!! quote "Proof"
+    The elements of $\bar{G}$ are the cosets of $N$. They are also the fibres of $\varphi$. Here, $\bar{\varphi}$ sends a non-empty fibre to its image, $\bar{\varphi}(\bar{x}) = \varphi(x)$. For any surjective map of sets $\varphi: G \to G'$, one can form $\bar{G}$, the set of fibres. Then, we obtain the bijection between fibres and elements of the image. When $\varphi$ is a homomorphism, $\bar{\varphi}$ is an isomorphism because:
 
+    $$
+    \bar{\varphi}(\bar{ab}) = \varphi(ab) = \varphi(a) \varphi(b) = \bar{\varphi}(\bar{a}) \bar{\varphi}(\bar{b})
+    $$
 
+!!! warning "Corollary: "
+    Let $\varphi: G \to G'$ be a group homomorphism with kernel $N$ and image $H'$ The quotient group $\bar{G} = G / N$ is isomorphic to $H'$.
 
+Consider the determinant, a surjective homomorphism $\det: \text{GL}_n(\mathbb{R}) \to \mathbb{R}^{\times}$. Then, the kernel is $\text{SL}_n(\mathbb{R}) = K$. The cosets of this kernel are $AK$ where $A$ is some matrix with determinant $\det(A)$. Then, the quotient group $\text{GL}_n(\mathbb{R}) / \text{SL}_n(\mathbb{R})$ is isomorphic to $\mathbb{R}^{\times}$.
 
+## Big Picture
 
+It's a bit hard to talk about the big picture of a subject in the process of studying it but there's a clear geometric meaning to groups that motivate their study. Groups correspond to *symmetries*. There's a transformation which does nothing (the identity), transformations can be composed, transformations can be undone (the inverse), and a string of transformations can be grouped in any way. Proving abstract therorems about groups then carries over information to objects which don't intuitively have geometric structure (like $\mathbb{Z}$ or $\mathbb{R}$) but share the same algebraic structure of being a group.
 
+Next, there are several common themes in this chapter, the major motif being how to study groups.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- Break groups into components. We have cosets which partition a group, subgroups like the kernel and image, quotient groups and product groups.
+- Study groups through maps. Homomorphisms let us do computation in one group and carry it over to another. The kernel tells us what information is lost and the image tells us what remains.
+- Structure matters more - We don't care about the particulars of a group but rather its isomorphism class.

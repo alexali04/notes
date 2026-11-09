@@ -1,3 +1,5 @@
 *.tex
 *.DS_Store
 .vscode/.venv/
+.vscode/
+docs/hooks/__pycache__/
