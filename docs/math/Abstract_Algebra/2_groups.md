@@ -5,7 +5,7 @@
 ## Definitions, Examples
 
 !!! info "Definition: Law of Composition"
-    A law of composition is a binary function:
+    A **law of composition** on a set $S$ is a binary function:
 
     $$
     S \times S \to S
@@ -16,7 +16,7 @@
 Crucially, the set $S$ is *closed* under the law of composition, meaning that composing any two elements of $S$ produces another element in $S$.
 
 !!! info "Definition: Group"
-    A group is a set $G$ with a law of composition on $G$ with the following properties.
+    A **group** is a set $G$ with a law of composition on $G$ with the following properties.
 
     - The operation is associative, $(ab)c = a(bc)$ for all $a, b, c \in G$.
     - $G$ has an identity element $1$ such that $1a = a1 = a$ for all $a \in G$.
@@ -155,7 +155,7 @@ A permutation is called even if it involves an even number of transpositions (sw
 The general linear group and symmetric groups are important because many other groups are included in them as subgroups.
 
 !!! info "Definition: Subgroup"
-    A subset $H$ of group $G$ is called a *subgroup* if
+    A subset $H$ of group $G$ is called a **subgroup** if
 
     - *Closure*. If $a, b \in H$, then $ab \in H$.
     - *Identity*. $1 \in H$.
@@ -233,7 +233,7 @@ A finite group is cyclic when some element's order equals the order of that grou
 ## Homomorphisms
 
 !!! info "Definition: Homomorphism"
-    Let $G, G'$ be groups with group operations $f, h$ respectively. A *homomorphism* $\varphi: G \to G'$ is a map from $G$ to $G'$ such that for all $a, b \in G$,
+    Let $G, G'$ be groups with group operations $f, h$ respectively. A **homomorphism** $\varphi: G \to G'$ is a map from $G$ to $G'$ such that for all $a, b \in G$,
 
     $$
     \varphi(f(a, b)) = h(\varphi(a), \varphi(b))
@@ -263,7 +263,7 @@ There's also the *trivial homomorphism* $\varphi: G \to G"$ maps every element o
     Since $1 \cdot 1 = 1$, then $\varphi(1) \varphi(1) = \varphi(1)$. Using the inverse property, we have that $\varphi(1) = 1$. We also have that $1 = \varphi(a a^{-1}) = \varphi(a) \varphi(a^{-1}) \implies \varphi(a^{-1}) = \varphi(a)^{-1}$.
 
 !!! info "Definition: Image, Kernel"
-    A group homomorphism determines two subgroups - the *image* and the *kernel*.
+    A group homomorphism determines two subgroups - the **image** and the **kernel**.
 
     $$
     \text{Im} (\varphi) = \{x \in G' \mid x = \phi(a), a \in G\}
@@ -292,7 +292,7 @@ The kernel is important - it tells us which elements of $G$ are mapped to the id
     aH = \{g \in G \mid g = ah, h \in H\}
     $$
 
-    This is called the *left coset* of $H$ in $G$.
+    This is called the **left coset** of $H$ in $G$.
 
 !!! success "Proposition: Coset Conditions"
     Let $\varphi: G \to G'$ be a homomorphism, $a, b \in G$, and $K$ be the kernel of $\varphi$. Then, the following conditions are equivalent:
@@ -318,7 +318,7 @@ The kernel is important - it tells us which elements of $G$ are mapped to the id
     A homomorphism $\varphi$ is injective iff its kernel $K$ is the trivial subgroup $\{1\}$ of $G$.
 
 !!! info "Definition: Normal Subgroup"
-    A subgroup $N$ of $G$ is a *normal subgroup* if for every $a \in N$ and $g \in G$, the conjugate $gag^{-1} \in N$.
+    A subgroup $N$ of $G$ is a **normal subgroup** if for every $a \in N$ and $g \in G$, the conjugate $gag^{-1} \in N$.
 
 !!! success "Proposition: Kernel Normal"
     The kernel of a homomorphism is a normal subgroup.
@@ -353,7 +353,7 @@ It's always a normal subgroup of $G$. The center of the special linear group $\t
 ## Isomorphisms
 
 !!! info "Definition: Isomorphism"
-    An isomorphism $\varphi: G \to G'$ is a bijective group homomorphism.
+    An **isomorphism** $\varphi: G \to G'$ is a bijective group homomorphism.
 
 The key component is that its bijective. Recall that a bijection is a function which is both injective (one-to-one) and surjective (image $=$ range).
 
@@ -687,15 +687,16 @@ Additionally, $|H| = |H'| |K|$.
 
 ## Product Groups
 
-Let $G, G'$ be two groups. The product set $G \times G' is the set of pairs $(a, a')$ with $a \in G, a' \in G'$. This can be made into a group via component-wise multiplication:
+!!! info "Definition: Product Group"
+    Let $G, G'$ be two groups. The product set $G \times G'$ is the set of pairs $(a, a')$ with $a \in G, a' \in G'$. This can be made into a group via component-wise multiplication:
 
-$$
-(a, a') \cdot (b, b') = (ab, a'b')
-$$
+    $$
+    (a, a') \cdot (b, b') = (ab, a'b')
+    $$
 
-The pair $(1, 1)$ is the identity and the inverse of $(a, a')$ is $(a^{-1}, a'^{-1})$. The associative law follows from the associativity in $G, G'$.
+    The pair $(1, 1)$ is the identity and the inverse of $(a, a')$ is $(a^{-1}, a'^{-1})$. The associative law follows from the associativity in $G, G'$.
 
-This group is called the *product* of $G, G'$ denoted by $G \times G'$.
+    This group is called the *product* of $G, G'$ denoted by $G \times G'$.
 
 Let $i(x) = (x, 1)$, $i'(x') = (1, x')$, $p(x, x') = x$ and $p'(x, x') = x'$. Then, we obtain the following homomorphism diagram:
 
@@ -783,9 +784,7 @@ We write $G / N$ to be the set of cosets of $N$ in $G$. When regard $C$ as an el
 !!! tip "Theorem: Canonical Map"
     Let $N$ be a normal subgroup of $G$ and $\bar{G}$ be the set of cosets of $N$ in $G$. There is a law of composition on $\bar{G}$ which makes this set into a group such that the map $\pi: G \to \bar{G}$ written as $\pi(a) = \bar{a}$ is a surjective homomorphism and $\text{Ker}(\pi) = N$.
 
-Intuitively, we would expect $\pi$ to be surjective but not injective. Consider $G = (\mathbb{Z}, +)$ and $N = (n \mathbb{Z}, +)$. Then, there are $n$ additive cosets. If we consider a mapping $\pi: a \to aN$, this maps each element of the group to is coset which is not one-to-one. Since the cosets partition the group, this is
-
-coset to its representative element so it's not a one-to-one mapping. But since the cosets partition the group, it is surjective.
+Intuitively, we would expect $\pi$ to be surjective but not injective. Consider $G = (\mathbb{Z}, +)$ and $N = (n \mathbb{Z}, +)$. Then, there are $n$ additive cosets. If we consider a mapping $\pi: a \to aN$, this maps each element of the group to is coset which is not one-to-one. But since the cosets partition the group, this is surjective.
 
 The map $\pi$ is often referred to as the *canonical map* from $G \to \bar{G}$.
 
