@@ -611,6 +611,38 @@ If a subgroup is normal, then its right and left cosets are equal.
 
     If there is only one subgroup $H$ of order $r$, then $gHg^{-1}$ preserves that order (since it's bijective) so $H = gHg^{-1}$.
 
+## Modular Arithmetic
+
+!!! info "Definition: Congruent"
+    We say that integers $a, b$ are *congruent modulo $n$*
+
+    $$
+    a \equiv b \mod n
+    $$
+
+    if $n$ divides $b - a$ or $a = kn + b$ where $k$ is some integer.
+
+For example, $2 \equiv 17 \mod 5$. $4 \equiv 61 \mod 3$.
+
+We consider the equivalence classes of an integer $a \mod n$ as:
+
+$$
+\bar{a} = \mathbb{Z}n = \{a + kn \mid k \in \mathbb{Z}\}
+$$
+
+Here, $\mathbb{Z}n$ isn't a right coset but rather a subgroup. The congruence class $\bar{0}$ is the subgroup $\{\dots, -n, 0, n, 2n, \dots \}$. The other congruence classes are the cosets of $\bar{0}$ like $a + \bar{0}$.
+
+The integers $0, 1, \dots, n - 1$ are the *representative elements* of the $n$ congruence classes.
+
+!!! success "Proposition: Congruence Classes"
+    There are $n$ congruence classes modulo $n$, namely $\bar{0}, \bar{1}, \dots, \bar{n - 1}$. The index $[\mathbb{Z} : \mathbb{Z}n]$ is $n$.
+
+We exclude further review of modular arithmetic.
+
+Note that $\mod n$ is a homomorphism. This is a particularly nice illustration of the general concept that $\varphi(a) = \varphi(b) \iff b \in aK$. Specifically, if $a \equiv b \mod n$, then $a, b \in a + \mathbb{Z}n$.
+
+This carries over to less intuitive settings like matrices. Consider $\text{SL}_n$. Then, $A \text{SL}_n = \{B \in \mathbb{R}^{n \times n} \mid \det(B) = \det(A)\}$. 
+
 ## Correspondence Theorem
 
 Let $\varphi: G \to G'$ be a homomorphism with $H$ being a subgroup of $G$. We can restrict $\varphi$ to $H$:
