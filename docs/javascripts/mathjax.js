@@ -8,7 +8,13 @@ window.MathJax = {
       argmax: "\\operatorname*{arg\\,max}",
       bm: ["\\boldsymbol{#1}", 1],
       bphi: "\\boldsymbol{\\Phi}",
-      bt: "\\boldsymbol{t}"
+      bt: "\\boldsymbol{t}",
+      R: "\\mathbb{R}",
+      N: "\\mathbb{N}",
+      Z: "\\mathbb{Z}",
+      Q: "\\mathbb{Q}",
+      C: "\\mathbb{C}",
+      E: "\\mathbb{E}"
     }
   },
 };

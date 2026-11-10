@@ -22,7 +22,7 @@ The image in particular is also called the span or *column-space* of $A$. But wh
 
 ## Linear Maps, Column Space
 
-Let $x_1, x_2, x \in X$ and $s \in \mathbb{F}$ where $\mathbb{F}$ is some field (like $\mathbb{C}, \mathbb{R}$). Then, $L: X \to Y$ is a linear map iff
+Let $x_1, x_2, x \in X$ and $s \in \mathbb{F}$ where $\mathbb{F}$ is some field (like $\mathbb{C}, \R$). Then, $L: X \to Y$ is a linear map iff
 
 $$
 L(x_1 + x_2) = L(x_1) + L(x_2)

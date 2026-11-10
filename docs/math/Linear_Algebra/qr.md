@@ -320,7 +320,7 @@ where $Q^* = Q_n \dots Q_2 Q_1$ and the product $Q = Q_1^* Q_2^* \dots Q_n^*$ is
 Thus Gram-Schmidt can be thought of as triangular orthogonalization while Householder is orthogonal triangularization.
 
 !!! info "Definition: Householder Matrix"
-    Let $v \in \mathbb{R}^m$. An $m \times m$ matrix $H$ of the form:
+    Let $v \in \R^m$. An $m \times m$ matrix $H$ of the form:
 
     $$
     H = I - \beta vv^T, \beta = \frac{2}{v^T v}
@@ -441,7 +441,7 @@ def householder_explicit(A: np.ndarray):
 
 #### WY-Trick
 
-Instead of actually doing the matrix-multiplies explicitly, we can represent the product of Householder matrices implicitly. 
+Instead of actually doing the matrix-multiplies explicitly, we can represent the product of Householder matrices implicitly.
 
 ## Appendix
 

@@ -28,8 +28,8 @@ An *abelian group* is one whose operation is also commutative.
 
 !!! example "Example: Groups"
 
-    - $\mathbb{R} / \{0\}$ forms an abelian group under multiplication. Multiplication is associative, invertible (under exclusion of $0$) and the identity is $1$.
-    - $\mathbb{R}$ forms an abelian group under addition. Addition is associative, invertible (via subtraction), and the identity is $0$.
+    - $\R / \{0\}$ forms an abelian group under multiplication. Multiplication is associative, invertible (under exclusion of $0$) and the identity is $1$.
+    - $\R$ forms an abelian group under addition. Addition is associative, invertible (via subtraction), and the identity is $0$.
     - The set of invertible $n \times n$ matrices forms a group under matrix multiplication. It's associative, invertible and the identity matrix is the identity. This is called the *general linear group*.
 
 The order of a group $G$ is the number of elements it contains denoted by $|G|$. If $|G|$ is finite, then $G$ is a *finite group*. Otherwise, $G$ is an infinite group.
@@ -39,7 +39,7 @@ The order of a group $G$ is the number of elements it contains denoted by $|G|$.
 
 Groups can also be obtained by excluding elements that are not invertible.
 
-- $\text{GL}_n(\mathcal{F}) = \{A \in \mathcal{F}^{n \times n} | \det(A) \neq 0\}$. This is the $n \times n$ general linear group - the group of all invertible $n \times n$ matrices. We can write $\text{GL}_n(\mathbb{R})$ or $\text{GL}_n(\mathbb{C})$ to indicate if we are working with real or complex matrices.
+- $\text{GL}_n(\mathcal{F}) = \{A \in \mathcal{F}^{n \times n} | \det(A) \neq 0\}$. This is the $n \times n$ general linear group - the group of all invertible $n \times n$ matrices. We can write $\text{GL}_n(\R)$ or $\text{GL}_n(\C)$ to indicate if we are working with real or complex matrices.
 - Let $M$ be the set of maps from a set $T$ to itself. A map $f: T \to T$ has an inverse iff it is bijective - in other words, $f$ is a *permutation* of $T$. These permutations form a group where the binary op. is function composition. The group of permutations of index set $\{1, 2, \dots, n\}$ is called the *symmetric group* written like $S_n$. $|S_n| = n!$.
 
 !!! quote "Important: "
@@ -164,28 +164,28 @@ The general linear group and symmetric groups are important because many other g
 The first condition states that the law of composition on $G$ induces a law of composition on $H$. The other conditions state that $H$ is a group w.r.t. the induced law.
 
 !!! example "Example: Subgroups"
-    - The group of $n \times n$ real matrices with determinant $1$ is a subgroup of the general linear group $\text{GL}_n(\mathbb{R})$. This is called the *special linear group*, $\text{SL}_n(\mathbb{R})$.
-    - Complex numbers of absolute value $1$ are the set of points on the unit circle in the complex plane. It's a subgroup of the multiplicative group $\mathbb{C}^{\times}$ called the *circle group*.
+    - The group of $n \times n$ real matrices with determinant $1$ is a subgroup of the general linear group $\text{GL}_n(\R)$. This is called the *special linear group*, $\text{SL}_n(\R)$.
+    - Complex numbers of absolute value $1$ are the set of points on the unit circle in the complex plane. It's a subgroup of the multiplicative group $\C^{\times}$ called the *circle group*.
 
 Each group $G$ has two obvious subgroups - the group $G$ itself and the *trivial* subgroup containing just the identity element. A subgroup is called a *proper subgroup* if its neither of these two.
 
 
 !!! tip "Theorem: Subgroups of Additive Groups of Integers"
-    Let $S$ be a subgroup of the additive group $\mathbb{Z}^{+}$. Either $\mathbb{Z}$ is the trivial subgroup $\{0\}$ of it has the form $\mathbb{Z}a$ where $a$ is the smallest positive integer in $S$. Here,
+    Let $S$ be a subgroup of the additive group $\Z^{+}$. Either $\Z$ is the trivial subgroup $\{0\}$ of it has the form $\Z a$ where $a$ is the smallest positive integer in $S$. Here,
 
     $$
-    \mathbb{Z}a = \{n \in \mathbb{Z} \mid n = ka, k \in \mathbb{Z}\}
+    \Z a = \{n \in \Z \mid n = ka, k \in \Z\}
     $$
 
 
 !!! quote "Proof"
-    Let $S$ be a subgroup of $\mathbb{Z}^{+}$. Then, $0 \in S$. If $S = \{0\}$, then its the trivial subgroup. Othherwise, there exists at least two more integers, namely $n$ and $-n$. WLOG, suppose $n > 0$. We now show that $S = \mathbb{Z}a$ where $a$ is the smallest positive integer in $S$. The way to show two sets are equivalent is to show that they are subsets of one another.
+    Let $S$ be a subgroup of $\Z^{+}$. Then, $0 \in S$. If $S = \{0\}$, then its the trivial subgroup. Othherwise, there exists at least two more integers, namely $n$ and $-n$. WLOG, suppose $n > 0$. We now show that $S = \Z a$ where $a$ is the smallest positive integer in $S$. The way to show two sets are equivalent is to show that they are subsets of one another.
 
-    First, we show that $\mathbb{Z}a \subseteq S$, namely that $ka \in S$ for every integer $k$. If $k > 0$, then $ka = (a + \dots + a)$ which is in $S$ under closure. If $k = 0$, then $ka = 0 \in S$. If $k < 0$, then $-ka \in S$ so by the inverse property of $S, ka \in S$. Therefore, $ka \in S$.
+    First, we show that $\Z a \subseteq S$, namely that $ka \in S$ for every integer $k$. If $k > 0$, then $ka = (a + \dots + a)$ which is in $S$ under closure. If $k = 0$, then $ka = 0 \in S$. If $k < 0$, then $-ka \in S$ so by the inverse property of $S, ka \in S$. Therefore, $ka \in S$.
 
-    Next, we show that $S \subseteq \mathbb{Z}a$, i.e. every element $n \in S$ is an integer multiple of $a$, the smallest positive integer in $S$. Consider an arbitrary element $n \in S$. By the division theorem, we have $n = qa + r$ where $0 \leq r < a$. Naturally, $qa \in \mathbb{Z}a$ since $a \mid qa$. Since $\mathbb{Z}a \subseteq S$, it follows that $qa \in S$ as well. Since $n, qa \in S$, it follows that $n - qa = r$ is also in $S$ as $S$ is closed under addition and has an inverse. Therefore, $r \in S$. Since $a$ is the smallest positive integer in $S$ and $0 \leq r < a$, $r = 0$ and $n = qa \implies n \in \mathbb{Z}a$.
+    Next, we show that $S \subseteq \Z a$, i.e. every element $n \in S$ is an integer multiple of $a$, the smallest positive integer in $S$. Consider an arbitrary element $n \in S$. By the division theorem, we have $n = qa + r$ where $0 \leq r < a$. Naturally, $qa \in \Z a$ since $a \mid qa$. Since $\Z a \subseteq S$, it follows that $qa \in S$ as well. Since $n, qa \in S$, it follows that $n - qa = r$ is also in $S$ as $S$ is closed under addition and has an inverse. Therefore, $r \in S$. Since $a$ is the smallest positive integer in $S$ and $0 \leq r < a$, $r = 0$ and $n = qa \implies n \in \Z a$.
 
-    Therefore, $S = \mathbb{Z}a$.
+    Therefore, $S = \Z a$.
 
 This theorem is quite strong - every possible subgroup of the additive group of integers is just a group where the elements are all integer multiples of some integer $a$.
 
@@ -207,16 +207,16 @@ We consider an important abstract example of a subgroup, the *cyclic subgroup* g
 
 Generally, the *order* of an element $x$ of a group is the smallest integer $k$ such that $x^k = 1$.
 
-The notation $x^n$ represents an element of the group obtained under the particular law. For example, if $G$ is the multiplicative group $\mathbb{R}^{\times}$ and $x = -1$, then $\langle -1 \rangle = \{-1, 1\}$. Either $x^n$ represents different elements or they don't. Consider the cases.
+The notation $x^n$ represents an element of the group obtained under the particular law. For example, if $G$ is the multiplicative group $\R^{\times}$ and $x = -1$, then $\langle -1 \rangle = \{-1, 1\}$. Either $x^n$ represents different elements or they don't. Consider the cases.
 
 !!! success "Proposition: Cyclic Subgroups"
-    Let $\langle x \rangle$ be the cyclic subgroup of a group $G$ generated by $x \in G$ and $S = \{k \in \mathbb{Z} \mid x^k = 1\}$.
+    Let $\langle x \rangle$ be the cyclic subgroup of a group $G$ generated by $x \in G$ and $S = \{k \in \Z \mid x^k = 1\}$.
 
     Then,
 
-    - $S$ is a subgroup of $\mathbb{Z}^{+}$.
+    - $S$ is a subgroup of $\Z^{+}$.
     - The powers $x^r = x^s$ with $r \geq s$ are equal iff $x^{r - s} = 1$, i.e. if $r - s \in S$.
-    - Suppose $S$ is not the trivial subgroup. Then, $S = \mathbb{Z}n$ for some positive integer $n$. Then, $1, x, x^2, \dots, x^{n - 1}$ are the distinct elements of subgroup $\langle x \rangle$ and the order of $\langle x \rangle$ is $n$.
+    - Suppose $S$ is not the trivial subgroup. Then, $S = \Zn$ for some positive integer $n$. Then, $1, x, x^2, \dots, x^{n - 1}$ are the distinct elements of subgroup $\langle x \rangle$ and the order of $\langle x \rangle$ is $n$.
 
 Basically, if $c$ is the smallest positive integer such that $x^c = 1$, then past $c$, the group elements begin to recycle.
 
@@ -248,11 +248,11 @@ A finite group is cyclic when some element's order equals the order of that grou
 The left side says to multiply $a, b$ in $G$ and send their product to $G'$ using $\varphi$. The right side says to send $a, b$ to $G'$ using $\varphi$ and then multiply their images using $G'$'s group operation.
 
 !!! example "Example: Homomorphisms"
-    - The determinant function $\text{GL}_n(\mathbb{R}) \to \mathbb{R}^{\times}$. If we multiply two matrices together (under matrix multiplication) and take its determinant, that's identical to taking the determinants of the operands and multiplying them together. Specifically, $\det(AB) = \det(A) \cdot \det(B)$.
-    - The exponential map $\exp: \mathbb{R}^{+} \to \mathbb{R}^{\times}$. Since $e^{a + b} = e^a e^b$.
+    - The determinant function $\text{GL}_n(\R) \to \R^{\times}$. If we multiply two matrices together (under matrix multiplication) and take its determinant, that's identical to taking the determinants of the operands and multiplying them together. Specifically, $\det(AB) = \det(A) \cdot \det(B)$.
+    - The exponential map $\exp: \R^{+} \to \R^{\times}$. Since $e^{a + b} = e^a e^b$.
     - The sign homomorphism $\sigma: S_n \to \{\pm 1\}$. If you compose two permutations and then find their sign, that's equivalent to multiplying the signs together. This is basically the same as the determinant example.
 
-There's also the *trivial homomorphism* $\varphi: G \to G"$ maps every element of $G$ to the identity element. If $H$ is a subgroup of $G$, the *inclusion map* $i: H \to G$ where $i(x) = x$ for $x \in H$ is a homomorphism.
+There's also the *trivial homomorphism* $\varphi: G \to G'$ maps every element of $G$ to the identity element. If $H$ is a subgroup of $G$, the *inclusion map* $i: H \to G$ where $i(x) = x$ for $x \in H$ is a homomorphism.
 
 !!! success "Proposition: Homomorphism Properties"
     - If $a_1, \dots, a_k \in G$, then $\varphi(a_1 \dots a_k) = \varphi(a_1) \dots \varphi(a_k)$.
@@ -280,7 +280,7 @@ There's also the *trivial homomorphism* $\varphi: G \to G"$ maps every element o
 Importantly, the image is a subgroup of the range and the kernel is a subgroup of the domain.
 
 !!! example "Example: Kernels"
-    - Consider the determinant homomorphism $\det: \text{GL}_n(\mathbb{R}) \to \mathbb{R}^{\times}$. Then, $\text{Ker}(\det) = \text{SL}_n(\mathbb{R})$. The identity in $G' = \mathbb{R}^{+}$ is $1$. The kernel of $\det$ is the set of matrices with determinant $1$ or $\text{SL}_n(\mathbb{R})$.
+    - Consider the determinant homomorphism $\det: \text{GL}_n(\R) \to \R^{\times}$. Then, $\text{Ker}(\det) = \text{SL}_n(\R)$. The identity in $G' = \R^{+}$ is $1$. The kernel of $\det$ is the set of matrices with determinant $1$ or $\text{SL}_n(\R)$.
     - Consider the sign homomorphism $\sigma: S_n \to \{\pm 1\}$. Then, $\text{Ker}(\sigma) = A_n$ which is the group of even permutations (permuations with determinant $1$).
 
 The kernel is important - it tells us which elements of $G$ are mapped to the identity in $G'$ and which pairs of elements have the same image in $G'$.
@@ -348,7 +348,7 @@ $$
 Z = \{z \in G \mid zx = xz, x \in G\}
 $$
 
-It's always a normal subgroup of $G$. The center of the special linear group $\text{SL}_2(\mathbb{R})$ consists of $I, -I$.
+It's always a normal subgroup of $G$. The center of the special linear group $\text{SL}_2(\R)$ consists of $I, -I$.
 
 ## Isomorphisms
 
@@ -358,8 +358,8 @@ It's always a normal subgroup of $G$. The center of the special linear group $\t
 The key component is that its bijective. Recall that a bijection is a function which is both injective (one-to-one) and surjective (image $=$ range).
 
 !!! example "Example: Isomorphisms"
-    - $e^x$ is an isomorphism when viewed as a map from $\mathbb{R}^{+}$ to $\mathbb{R}_{\geq 0}^{\times}$.
-    - Suppose $a$ is an element of infinite order in group $G$. Then the map $n \mapsto a^n$ is an isomorphism from $\mathbb{Z}^{+}$ to the infinite cyclic subgroup $\langle a \rangle$ of $G$.
+    - $e^x$ is an isomorphism when viewed as a map from $\R^{+}$ to $\R_{\geq 0}^{\times}$.
+    - Suppose $a$ is an element of infinite order in group $G$. Then the map $n \mapsto a^n$ is an isomorphism from $\Z^{+}$ to the infinite cyclic subgroup $\langle a \rangle$ of $G$.
     - The map $S_n \to P$ is an isomorphism. It sends a permutation to its associated matrix.
 
 We can verify that a homomorphism $\varphi: G \to G'$ is an isomorphism provided that $\text{Ker}(\varphi) = \{1\}$ and that $\text{Im}(\varphi) = G'$.
@@ -474,7 +474,7 @@ Any map of sets $f: S \to T$ gives an equivalence relation on its domain $S$ def
 ![](../../images/fibres.png)
 
 !!! example "Example: Group Order"
-    If $G$ is a finite group, we can define a map $f: G \to \mathbb{N}$ letting $f(a)$ be the order of the element $a$ of $G$. The fibres of this map are the sets of elements with the same order.
+    If $G$ is a finite group, we can define a map $f: G \to \N$ letting $f(a)$ be the order of the element $a$ of $G$. The fibres of this map are the sets of elements with the same order.
 
 We return to a group homomorphism $\varphi: G \to G'$. The equivalence relation defined by $\varphi$ is denoted by $\equiv$ and is referred to as *congruence*.
 
@@ -627,21 +627,21 @@ For example, $2 \equiv 17 \mod 5$. $4 \equiv 61 \mod 3$.
 We consider the equivalence classes of an integer $a \mod n$ as:
 
 $$
-\bar{a} = \mathbb{Z}n = \{a + kn \mid k \in \mathbb{Z}\}
+\bar{a} = \Z n = \{a + kn \mid k \in \Z\}
 $$
 
-Here, $\mathbb{Z}n$ isn't a right coset but rather a subgroup. The congruence class $\bar{0}$ is the subgroup $\{\dots, -n, 0, n, 2n, \dots \}$. The other congruence classes are the cosets of $\bar{0}$ like $a + \bar{0}$.
+Here, $\Z n$ isn't a right coset but rather a subgroup. The congruence class $\bar{0}$ is the subgroup $\{\dots, -n, 0, n, 2n, \dots \}$. The other congruence classes are the cosets of $\bar{0}$ like $a + \bar{0}$.
 
 The integers $0, 1, \dots, n - 1$ are the *representative elements* of the $n$ congruence classes.
 
 !!! success "Proposition: Congruence Classes"
-    There are $n$ congruence classes modulo $n$, namely $\bar{0}, \bar{1}, \dots, \bar{n - 1}$. The index $[\mathbb{Z} : \mathbb{Z}n]$ is $n$.
+    There are $n$ congruence classes modulo $n$, namely $\bar{0}, \bar{1}, \dots, \bar{n - 1}$. The index $[\Z : \Z n ]$ is $n$.
 
 We exclude further review of modular arithmetic.
 
-Note that $\mod n$ is a homomorphism. This is a particularly nice illustration of the general concept that $\varphi(a) = \varphi(b) \iff b \in aK$. Specifically, if $a \equiv b \mod n$, then $a, b \in a + \mathbb{Z}n$.
+Note that $\mod n$ is a homomorphism. This is a particularly nice illustration of the general concept that $\varphi(a) = \varphi(b) \iff b \in aK$. Specifically, if $a \equiv b \mod n$, then $a, b \in a + \Z n$.
 
-This carries over to less intuitive settings like matrices. Consider $\text{SL}_n$. Then, $A \text{SL}_n = \{B \in \mathbb{R}^{n \times n} \mid \det(B) = \det(A)\}$. 
+This carries over to less intuitive settings like matrices. Consider $\text{SL}_n$. Then, $A \text{SL}_n = \{B \in \R^{n \times n} \mid \det(B) = \det(A)\}$.
 
 ## Correspondence Theorem
 
@@ -802,12 +802,12 @@ A cyclic group of order $4$ is *not* isomorphic to a product of two cyclic group
 We can define a law of composition on the set of cosets of a normal subgroup of any group. This law of composition makes the set of cosets into a group called a *quotient group*.
 
 !!! quote "Important: Modular Arithmetic"
-    Recall modular arithmetic: We say that integers $a, b$ are congruent mod z if $n \mid a - b$. The congruence class $[a]$ is the set of all integers congruent to $a \mod n$ (or the set of integers whose remainder when divided by $n$ is $a$). For example, $[3]$ mod $5$ is $\{\dots, 3, 8, 13, \dots \}$. A given $n$ partitions $\mathbb{Z}$ into $n$ parts with remainders $\{0, 1, \dots, n - 1\}$.
+    Recall modular arithmetic: We say that integers $a, b$ are congruent mod z if $n \mid a - b$. The congruence class $[a]$ is the set of all integers congruent to $a \mod n$ (or the set of integers whose remainder when divided by $n$ is $a$). For example, $[3]$ mod $5$ is $\{\dots, 3, 8, 13, \dots \}$. A given $n$ partitions $\Z$ into $n$ parts with remainders $\{0, 1, \dots, n - 1\}$.
 
 !!! example "Example: Adding Congruence Classes"
-    Consider the group of integers under addition, $(\mathbb{Z}, +)$. Consider the subset of all multiples of $n$ denoted as $n\mathbb{Z} = \{kn \mid k \in \mathbb{Z}\}$. So for example, $3\mathbb{Z} = \{\dots, -3, 0, 3, 6, \dots\}$. Since $\mathbb{Z}$ is abelian, $n \mathbb{Z}$ is a normal subgroup.
+    Consider the group of integers under addition, $(\Z, +)$. Consider the subset of all multiples of $n$ denoted as $n\Z = \{kn \mid k \in \Z\}$. So for example, $3\Z = \{\dots, -3, 0, 3, 6, \dots\}$. Since $\Z$ is abelian, $n \Z$ is a normal subgroup.
 
-    Now consider cosets of $n \mathbb{Z}$, or the sets $a + n \mathbb{Z}$. These cosets are precisely the congruence classes in $\mod n$ arithmetic. We can add these cosets by adding their representative elements, $[a] + [b] = [a + b]$.
+    Now consider cosets of $n \Z$, or the sets $a + n \Z$. These cosets are precisely the congruence classes in $\mod n$ arithmetic. We can add these cosets by adding their representative elements, $[a] + [b] = [a + b]$.
 
     Since we have defined a law of composition over cosets, we can form a group of cosets of the normal subgroup.
 
@@ -816,7 +816,7 @@ We write $G / N$ to be the set of cosets of $N$ in $G$. When regard $C$ as an el
 !!! tip "Theorem: Canonical Map"
     Let $N$ be a normal subgroup of $G$ and $\bar{G}$ be the set of cosets of $N$ in $G$. There is a law of composition on $\bar{G}$ which makes this set into a group such that the map $\pi: G \to \bar{G}$ written as $\pi(a) = \bar{a}$ is a surjective homomorphism and $\text{Ker}(\pi) = N$.
 
-Intuitively, we would expect $\pi$ to be surjective but not injective. Consider $G = (\mathbb{Z}, +)$ and $N = (n \mathbb{Z}, +)$. Then, there are $n$ additive cosets. If we consider a mapping $\pi: a \to aN$, this maps each element of the group to is coset which is not one-to-one. But since the cosets partition the group, this is surjective.
+Intuitively, we would expect $\pi$ to be surjective but not injective. Consider $G = (\Z, +)$ and $N = (n \Z, +)$. Then, there are $n$ additive cosets. If we consider a mapping $\pi: a \to aN$, this maps each element of the group to is coset which is not one-to-one. But since the cosets partition the group, this is surjective.
 
 The map $\pi$ is often referred to as the *canonical map* from $G \to \bar{G}$.
 
@@ -909,11 +909,11 @@ Intuitively, the quotient group is the group of cosets and we know that the cose
 !!! warning "Corollary: "
     Let $\varphi: G \to G'$ be a group homomorphism with kernel $N$ and image $H'$ The quotient group $\bar{G} = G / N$ is isomorphic to $H'$.
 
-Consider the determinant, a surjective homomorphism $\det: \text{GL}_n(\mathbb{R}) \to \mathbb{R}^{\times}$. Then, the kernel is $\text{SL}_n(\mathbb{R}) = K$. The cosets of this kernel are $AK$ where $A$ is some matrix with determinant $\det(A)$. Then, the quotient group $\text{GL}_n(\mathbb{R}) / \text{SL}_n(\mathbb{R})$ is isomorphic to $\mathbb{R}^{\times}$.
+Consider the determinant, a surjective homomorphism $\det: \text{GL}_n(\R) \to \R^{\times}$. Then, the kernel is $\text{SL}_n(\R) = K$. The cosets of this kernel are $AK$ where $A$ is some matrix with determinant $\det(A)$. Then, the quotient group $\text{GL}_n(\R) / \text{SL}_n(\R)$ is isomorphic to $\R^{\times}$.
 
 ## Big Picture
 
-It's a bit hard to talk about the big picture of a subject in the process of studying it but there's a clear geometric meaning to groups that motivate their study. Groups correspond to *symmetries*. There's a transformation which does nothing (the identity), transformations can be composed, transformations can be undone (the inverse), and a string of transformations can be grouped in any way. Proving abstract therorems about groups then carries over information to objects which don't intuitively have geometric structure (like $\mathbb{Z}$ or $\mathbb{R}$) but share the same algebraic structure of being a group.
+It's a bit hard to talk about the big picture of a subject in the process of studying it but there's a clear geometric meaning to groups that motivate their study. Groups correspond to *symmetries*. There's a transformation which does nothing (the identity), transformations can be composed, transformations can be undone (the inverse), and a string of transformations can be grouped in any way. Proving abstract therorems about groups then carries over information to objects which don't intuitively have geometric structure (like $\Z$ or $\R$) but share the same algebraic structure of being a group.
 
 Next, there are several common themes in this chapter, the major motif being how to study groups.
 

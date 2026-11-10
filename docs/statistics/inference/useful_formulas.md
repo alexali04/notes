@@ -15,7 +15,7 @@ $$
 
 ## Convergence
 
-- Convergence: A sequence $(a_n)$ *converges* to a real number $a4 if for every $\epsilon > 0$, there exists an $N_{\epsilon} \in \mathbb{N}$ such that for all $n \geq N_{\epsilon}$
+- Convergence: A sequence $(a_n)$ *converges* to a real number $a4 if for every $\epsilon > 0$, there exists an $N_{\epsilon} \in \N$ such that for all $n \geq N_{\epsilon}$
 
   $$
   |a_n - a| < \epsilon
