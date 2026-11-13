@@ -8,7 +8,7 @@ h2 {
 }
 
 h2::before {
-  content: counter(h2) ". ";
+  content: var(--chapter-prefix, "") counter(h2) ". ";
 }
 
 h3 {
@@ -17,7 +17,7 @@ h3 {
 }
 
 h3::before {
-  content: counter(h2) "." counter(h3) ". ";
+  content: var(--chapter-prefix, "") counter(h2) "." counter(h3) ". ";
 }
 
 h4 {
@@ -25,7 +25,7 @@ h4 {
 }
 
 h4::before {
-  content: counter(h2) "." counter(h3) "." counter(h4) ". ";
+  content: var(--chapter-prefix, "") counter(h2) "." counter(h3) "." counter(h4) ". ";
 }
 
 /* ============================================
@@ -182,14 +182,14 @@ body.nav-hidden .md-sidebar--primary {
 .md-nav--secondary .md-nav__list { counter-reset: toc; }
 .md-nav--secondary .md-nav__item > .md-nav__link::before {
   counter-increment: toc;
-  content: counters(toc, ".") ". ";
+  content: var(--chapter-prefix, "") counters(toc, ".") ". ";
 }
 
 .md-typeset .toc ul { list-style: none; }
 .md-typeset .toc ul ul { counter-reset: toc; }
 .md-typeset .toc ul ul li { counter-increment: toc; }
 .md-typeset .toc ul ul li > a::before {
-  content: counters(toc, ".") ". ";
+  content: var(--chapter-prefix, "") counters(toc, ".") ". ";
 }
 
 .center { display: block; margin: 0 auto; }

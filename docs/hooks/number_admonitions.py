@@ -10,6 +10,13 @@ Equations -- separate counter, OPT-IN via the \eqnum marker:
     $$ x = y \eqnum $$                                 -> x = y                  (3.2.1)
     $$ \begin{gather*} ... \eqnum ... \end{gather*} $$ -> number on that row    (3.2.2)
 
+Chapter prefix -- opt-in via front matter:
+    ---
+    chapter: 6
+    ---
+prefixes every number on the page (Theorem 6.1.2, eq. (6.2.1)). The heading
+counters in extra.css pick it up via --chapter-prefix, set in overrides/main.html.
+
 Put \eqnum anywhere inside a display block ($$...$$, single- or multi-line) to
 give it the next sectional number; the hook swaps it for \tag{...}. Blocks
 without \eqnum are left untouched. One \eqnum per block.
@@ -41,12 +48,15 @@ def on_page_markdown(markdown, page, config, files):
     h2 = h3 = 0
     shared = example = eq = 0
 
+    chapter = page.meta.get('chapter')
+    chap = f'{chapter}.' if chapter is not None else ''
+
     def prefix():
         if h3 > 0:
-            return f'{h2}.{h3}'
+            return f'{chap}{h2}.{h3}'
         if h2 > 0:
-            return f'{h2}'
-        return '1'
+            return f'{chap}{h2}'
+        return f'{chapter}' if chapter is not None else '1'
 
     def tag_block(text):
         """Replace the first \eqnum with a sectional \tag; strip any extras."""
@@ -113,3 +123,10 @@ def on_page_markdown(markdown, page, config, files):
         out.append(line); i += 1; continue
 
     return '\n'.join(out)
+
+def on_page_content(html, page, config, files):
+    """Prefix the nav/tab title with the chapter number: 'Symmetry' -> '6. Symmetry'."""
+    chapter = page.meta.get('chapter')
+    if chapter is not None and page.title:
+        page.title = f'{chapter}. {page.title}'
+    return html
