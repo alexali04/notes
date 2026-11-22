@@ -4,6 +4,13 @@
   {% if page and page.meta and page.meta.chapter is defined %}
     <style>:root { --chapter-prefix: "{{ page.meta.chapter }}."; }</style>
   {% endif %}
+  {% if page and page.meta and page.meta.numbering == false %}
+    <style>
+      h2::before, h3::before, h4::before,
+      .md-nav--secondary .md-nav__item > .md-nav__link::before,
+      .md-typeset .toc ul ul li > a::before { content: none !important; }
+    </style>
+  {% endif %}
 {% endblock %}
 {% block content %}
   {% if page.meta.git_creation_date_localized %}

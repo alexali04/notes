@@ -448,6 +448,22 @@ Since $g$ permutes the orbit, it sends $S$ to $S$ and $p$ to $p$.
     Let $G$ be a finite subgroup of $M$ of isometries of the plane. Then, $G$ is one of the groups $C_n$ or $D_n$.
 
 
+## Discrete Isometry Groups
+
+Like a kaleidoscope, the union of group actions on a figure can form an interesting figure. Consider a random figure $R$. Each element of $g$ moves $R$ to some new position $gR$. The figure $F = \bigcup_{g \in G} gR$. $h$ sends to $gR$ to $hgR \in F$. If $R$ is sufficiently random, $G$ will be the group of symmetries of $F$.
+
+Some subgroups of $M$ are too wild to have reasonable geometry.
+
+!!! info "Definition: Discrete Groups"
+    A group $G$ of isometries of the plane $P$ is *discrete* if it does not contain arbitrarily small translations or rotations. Specifically, $G$ is discrete is there exists $\epsilon \in \R_{\geq 0}$ so that:
+
+    - If an element of $G$ is translation by non-zero vector $a$, then $|a| \geq \epsilon$.
+    - If an element of $G$ is the rotation through $\theta$ about some point in the plane, then $|\theta| \geq \epsilon$.
+
+Translations and rotations are all of the orientation-preserving isometries. Orientation-reversing isometries are also bounded below - if $m$ is a glide with nonzero glide vector $v$, then $m^2$ is the translation $t_{2v}$.
+
+
+
 
 
 

@@ -220,7 +220,7 @@ The notation $x^n$ represents an element of the group obtained under the particu
 
     - $S$ is a subgroup of $\Z^{+}$.
     - The powers $x^r = x^s$ with $r \geq s$ are equal iff $x^{r - s} = 1$, i.e. if $r - s \in S$.
-    - Suppose $S$ is not the trivial subgroup. Then, $S = \Zn$ for some positive integer $n$. Then, $1, x, x^2, \dots, x^{n - 1}$ are the distinct elements of subgroup $\langle x \rangle$ and the order of $\langle x \rangle$ is $n$.
+    - Suppose $S$ is not the trivial subgroup. Then, $S = \Z n$ for some positive integer $n$. Then, $1, x, x^2, \dots, x^{n - 1}$ are the distinct elements of subgroup $\langle x \rangle$ and the order of $\langle x \rangle$ is $n$.
 
 Basically, if $c$ is the smallest positive integer such that $x^c = 1$, then past $c$, the group elements begin to recycle.
 
