@@ -31,9 +31,10 @@ ADMONITION_LABELS = {
     'success': 'Proposition',
     'warning': 'Corollary',
     'example': 'Example',
+    'abstract': 'Algorithm',
 }
 SHARED = {'info', 'tip', 'question', 'success', 'warning'}  # one shared counter
-OWN = {'example'}                                           # its own counter
+OWN = {'example', 'abstract'}                               # each has its own counter
 SKIP_NUMBERING = {'quote'}                                  # Proof, unnumbered
 
 ADMON_RE = re.compile(r'^(\s*)!!!\s+(\w+)\s+"([^"]*)"')
@@ -46,7 +47,8 @@ EQ_MARKER = r'\eqnum'
 
 def on_page_markdown(markdown, page, config, files):
     h2 = h3 = 0
-    shared = example = eq = 0
+    shared = eq = 0
+    own = {k: 0 for k in OWN}
 
     chapter = page.meta.get('chapter')
     chap = f'{chapter}.' if chapter is not None else ''
@@ -76,9 +78,9 @@ def on_page_markdown(markdown, page, config, files):
         if h:
             level = len(h.group(1))
             if level == 2:
-                h2 += 1; h3 = 0; shared = example = eq = 0
+                h2 += 1; h3 = 0; shared = eq = 0; own = dict.fromkeys(own, 0)
             elif level == 3:
-                h3 += 1; shared = example = eq = 0
+                h3 += 1; shared = eq = 0; own = dict.fromkeys(own, 0)
             out.append(line); i += 1; continue
 
         # --- admonitions ---
@@ -88,7 +90,7 @@ def on_page_markdown(markdown, page, config, files):
             if kind in SKIP_NUMBERING or kind not in ADMONITION_LABELS:
                 out.append(line); i += 1; continue
             if kind in OWN:
-                example += 1; num = example
+                own[kind] += 1; num = own[kind]
             else:
                 shared += 1; num = shared
             label = ADMONITION_LABELS[kind]
