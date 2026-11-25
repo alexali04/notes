@@ -17,6 +17,12 @@ becomes
 
     - Michael Betancourt. *A Conceptual Introduction to Hamiltonian Monte Carlo*. 2018. arXiv:1701.02434. [link](https://arxiv.org/abs/1701.02434)
 
+It also works as a footnote definition, giving clickable inline citations:
+
+    ...as shown by Betancourt[^betancourt].
+
+    [^betancourt]: @misc{betancourt2018, title={...}, author={...}, year={2018}}
+
 Brace-balanced, so braces inside field values (e.g. {BERT}) are handled. One
 entry per block. Non-BibTeX text is left untouched.
 """
@@ -139,10 +145,16 @@ def on_page_markdown(markdown, page, config, files):
         body = body[body.index(',') + 1:]             # drop the cite key
         cite = _format_entry(m.group(1), _parse_fields(body))
 
-        # preserve leading indentation / list marker on the entry's line
+        # preserve leading indentation / list marker / footnote label on the entry's line
         line_start = markdown.rfind('\n', 0, m.start()) + 1
-        pm = re.match(r'^(\s*)(?:([-*+])\s+)?', markdown[line_start:m.start()])
-        bullet = f'{pm.group(1)}{pm.group(2)} ' if pm.group(2) else pm.group(1)
+        pm = re.match(r'^(\s*)(?:([-*+])\s+|(\[\^[^\]]+\]:)\s*)?',
+                      markdown[line_start:m.start()])
+        if pm.group(2):
+            bullet = f'{pm.group(1)}{pm.group(2)} '
+        elif pm.group(3):
+            bullet = f'{pm.group(1)}{pm.group(3)} '
+        else:
+            bullet = pm.group(1)
 
         out.append(markdown[last_end:line_start])
         out.append(bullet + cite)

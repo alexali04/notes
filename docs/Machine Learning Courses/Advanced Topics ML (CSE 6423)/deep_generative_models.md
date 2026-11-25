@@ -5,7 +5,7 @@
 ## EBM
 
 
-The following is taken from How to Train Your Energy-Based Models by Song & Kingma.
+The following is taken from How to Train Your Energy-Based Models by Song & Kingma[^song2021].
 
 Probabilistic models require a *tractable likelihood*. This allows for straightfoward comparison between models and optimization via MLE. Even if the likelihood isn't completely tractable, we can often optimize a *variational lower-bound* on the likelihood.
 
@@ -71,11 +71,9 @@ It is also easy to analyze relationships between different coordinates. Suppose 
 
 However, they have several disadvantages. They're hard to sample from (MCMC), hard to evaluate (due to intractability of $Z_{\theta}$) and hard to learn due to $Z_{\theta}$.
 
-### Training EBMs
+### Training - MCMC
 
-We return to the paper and present how train your EBM. Specifically, we can do maximum likelihood training with MCMC sampling, Score Matching, and Noise Contrastive Estimation.
-
-#### MCMC
+We return to the paper and present how train your EBM. Specifically, we can do maximum likelihood training with MCMC sampling, Score Matching, and Noise Contrastive Estimation. We begin with MCMC.
 
 MLE proceeds like $\E_{x \sim p_{\text{data}}(x)[ \log p_{\theta}(x)]}$. Maximizing likelihood is equivalent to minimizing KL-divergence between $p_{\text{data}}(x)$ and $p_{\theta}(x)$:
 
@@ -121,38 +119,134 @@ We naturally have access to the first term using auto-diff. Since the second ter
     We want to optimize
 
     $$
-    \log p_{\theta}(x) = - \nabla_{\theta} E_{\theta}(x) + \E_{x \sim p_{\theta}(x)}[\nabla_{\theta} E_{\theta}(x)]
+    \nabla_{\theta} \log p_{\theta}(x) = - \nabla_{\theta} E_{\theta}(x) + \E_{x \sim p_{\theta}(x)}[\nabla_{\theta} E_{\theta}(x)]
     $$
 
-    Start with $\theta_i$.
+    Start with $\theta_t$.
 
     1. Draw real data $x_1, \dots, x_n \sim p_{\text{data}}(x)$.
     2. Draw $m$ samples from the model using Langevin MCMC. Specifically, sample noise $\tilde{x}^0$ and repeat:
 
         $$
-        \tilde{x}^{k + 1} \leftarrow \tilde{x}^k - \frac{\epsilon^2}{2} \nabla_x E_{\theta_i}(x) + \sqrt{\epsilon} z, \ z \sim \mathcal{N}(0, I)
+        \tilde{x}^{k + 1} \leftarrow \tilde{x}^k - \frac{\epsilon^2}{2} \nabla_x E_{\theta_t}(\tilde{x}^k) + \epsilon z, \ z \sim \mathcal{N}(0, I)
         $$
 
     3. Compute gradient estimate
 
         $$
-        \hat{\nabla}_{\theta_i} = - \frac{1}{n} \sum_{i = 1}^n \nabla_{\theta_i} E_{\theta_i}(x_i) + \sum_{j = 1}^m \nabla_{\theta_i} E_{\theta_i}(\tilde{x}_j)
+        \hat{\nabla}_{\theta_t} = - \frac{1}{n} \sum_{i = 1}^n \nabla_{\theta_t} E_{\theta_t}(x_i) + \frac{1}{m} \sum_{j = 1}^m \nabla_{\theta_t} E_{\theta_t}(\tilde{x}_j)
         $$
 
     4. Update
 
     $$
-    \theta_{i + 1} \leftarrow \theta_i + \eta \hat{\nabla}_{\theta_i}
+    \theta_{t + 1} \leftarrow \theta_t + \eta \hat{\nabla}_{\theta_t}
     $$
 
 In short, we use real data to compute the gradient of the negative energy (assign lower energy to real samples). We then generate samples from the network (doing gradient descent on the learned energy landscape) to estimate the gradient of the partition function. Then, we can add the two to get a gradient estimate of the log-likelihood.
 
+Note that this is merely for density estimation, i.e. learning $p(x)$ to get a generative model. For supervised learning, energy takes the input and label and defines $E_{\theta}(x, y)$. The normalizing constant sums over labels $y$. In a discrete classification scenario, thisis just a standard classification model. In a continuous or structured $y$, the normalizing constant becomes intractable again.
+
+### Score Matching
+
+If two continuously differentiable real-valued functions $f(x)$ and $g(x)$ have equal first derivatives everywhere, then $f(x) = g(x) + C$. When $f(x)$ and $g(x)$ are log density functions with equal first derivatives, then they have equivalent normalizing constants and $f(x) = g(x)$. Therefore, one can learn an EBM by matching the first derivative of its log-PDF with the first derivative of the log-PDF of the data distribution. This is called **score matching**[^hyvarinen2005].
+
+Recall:
+
+$$
+\nabla_x \log p_{\theta}(x) = - \nabla_x E_{\theta}(x) - \nabla_{x} \log Z_{\theta} = - \nabla_x E_{\theta}(x)
+$$
+
+since the partition function is constant w.r.t $x$.
+!!! info "Definition: Score Matching (Fisher)"
+    Let $p_{\text{data}}$ be the data distribution. The basic Score Matching objective minimizes the *Fisher Divergence*:
+
+    $$
+    D_F(p_{\text{data}}(x) \mid \mid p_{\theta}(x)) = \E_{p_{\text{data}}(x)} \left [
+    \frac{1}{2} || \nabla_x \log p_{\text{data}}(x) - \nabla_x \log p_{\theta}(x)||^2
+    \right ]
+    $$
+
+This is impractical since we typically don't have access to $\nabla_x \log p_{\text{data}}(x)$. Under regularity conditions, the Fisher divergence can be re-written using integration by parts:
+
+$$
+D_F(p_{\text{data}}(x) \mid \mid p_{\theta}(x)) =  \E_{p_{\text{data}}(x)} \left [
+\frac{1}{2} \sum_{i = 1}^d \left ( \frac{\partial E_{\theta}(x)}{\partial x_i} \right )^2 + \frac{\partial^2 E_{\theta}(x)}{(\partial x_i)^2}
+\right ]
+$$
+
+$$
+= \E_{p_{\text{data}}(x)} [\text{Tr}(\nabla^2_x E_{\theta}(x)) + \frac{1}{2} || \nabla_x E_{\theta}(x) ||^2]
+$$
+
+where $d$ is the dimensionality of $x$ and $\nabla^2_x E_{\theta}(x)$ is the Hessian of the energy w.r.t. $x$. Naturally, for high-dimensionality, the Hessian is very expensive to compute.
+
+#### Denoising Score Matching
+
+The score matching objective requires regularity conditions for $\log p_{\text{data}}(x)$ (continuously differentiable, finite everywhere). However, a distribution of images is discrete and bounded - $\log p_{\text{data}}$ is discontinuous and negative infinity outside the range.
+
+Thus, we can add a bit of noise to each data point, $\tilde{x} = x + \epsilon$. As long as $p(\epsilon)$ is smooth, the noisy data distribution, $q(\tilde{x}) = \int q(\tilde{x} \mid x) p_{\text{data}}(x) dx$ is smooth and the Fisher divergence $D_F(q(\tilde{x}) \mid \mid p_{\theta}(\tilde{x}))$ is a proper objective.
+
+Vincent[^vincent2011] showed that:
+
+$$
+D_F(q(\tilde{x}) \mid \mid p_{\theta}(\tilde{x})) = \E_{q(\tilde{x})} \left [
+\frac{1}{2} || \nabla_x \log q(\tilde{x}) - \nabla_x \log p_{\theta}(\tilde{x}) ||_2^2
+\right ]
+$$
+
+$$
+= \E_{q(x, \tilde{x})} \left [
+\frac{1}{2} || \nabla_x \log q(\tilde{x} \mid x) - \nabla_x \log p_{\theta}(\tilde{x}) ||_2^2
+\right ]
+$$
+
+This completely avoids the unknown term and second-order derivatives. Formulas can be traced back to Tweedie's formula and SURE (Stein's Unbiased Risk Estimation).
+
+When $p_{\text{data}}$ is already well-behaved and satisfies the regularity conditions given by Score Matching, $D_F(q(\tilde{x}) \mid \mid p_{\theta}(\tilde{x})) \neq D_F(p_{\text{data}}(x) \mid \mid p_{\theta}(x))$. The optimal EBM matches the noisy distribution and not the data distribution. 
 
 
-#### Score Matching
+
+
+
+
+
 
 ## VAE
 
 ## GAN
 
 ## Normalizing Flows
+
+
+## Appendix
+
+[^song2021]: @misc{song2021trainenergybasedmodels,
+      title={How to Train Your Energy-Based Models},
+      author={Yang Song and Diederik P. Kingma},
+      year={2021},
+      eprint={2101.03288},
+      archivePrefix={arXiv},
+      url={https://arxiv.org/abs/2101.03288},
+    }
+
+[^hyvarinen2005]: @article{hyvarinen2005estimation,
+      title={Estimation of Non-Normalized Statistical Models by Score Matching},
+      author={Aapo Hyvärinen},
+      journal={Journal of Machine Learning Research},
+      volume={6},
+      pages={695--709},
+      year={2005},
+      url={https://jmlr.org/papers/v6/hyvarinen05a.html},
+    }
+
+[^vincent2011]: @article{vincent2011connection,
+      title={A Connection Between Score Matching and Denoising Autoencoders},
+      author={Pascal Vincent},
+      journal={Neural Computation},
+      volume={23},
+      number={7},
+      pages={1661--1674},
+      year={2011},
+      doi={10.1162/NECO_a_00142},
+    }
