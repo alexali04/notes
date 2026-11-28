@@ -1,0 +1,2259 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://alexali04.github.io/notes/math/Abstract_Algebra/symmetry/">
+      
+      
+        <link rel="prev" href="../groups/">
+      
+      
+        <link rel="next" href="../exercises/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>6. Symmetry - ML Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  
+    <style>:root { --chapter-prefix: "6."; }</style>
+  
+  
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#symmetry" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="ML Notes" class="md-header__button md-logo" aria-label="ML Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ML Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              6. Symmetry
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ML Notes" class="md-nav__button md-logo" aria-label="ML Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ML Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Courses
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Machine Learning Courses
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Topics ML (CSE 6423)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced Topics ML (CSE 6423)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Machine%20Learning%20Courses/Advanced%20Topics%20ML%20%28CSE%206423%29/background/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Knowledge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Machine%20Learning%20Courses/Advanced%20Topics%20ML%20%28CSE%206423%29/deep_generative_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deep Generative Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deep Learning Alchemy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deep Learning Alchemy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Machine%20Learning%20Courses/Deep%20Learning%20Alchemy/dl_alchemy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deep Learning Alchemy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Math
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Math
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../background/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Math Background
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Abstract Algebra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Abstract Algebra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Symmetry
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Symmetry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#isometries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Isometries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plane-isometries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plane Isometries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finite-groups-of-orthogonal-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finite Groups of Orthogonal Operators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Finite Groups of Orthogonal Operators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cyclic-dihedral-subgroups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cyclic, Dihedral Subgroups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed Point
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discrete-isometry-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discrete Isometry Groups
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercises
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Information Geometry
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Information Geometry
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Information_Geometry/fim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fisher Information Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linear Algebra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linear Algebra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear_Algebra/qr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QR Decomposition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear_Algebra/subspaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamental Subspaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stochastic Calculus
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Stochastic Calculus
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Stochastic_Calculus/1_ito/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 - Itô Integral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Stochastic_Calculus/2_calc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 - New Calculus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Misc
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Misc
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/jepa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JEPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/typicality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding Typicality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probability
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Probability
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../probability/distributions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Statistics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Statistics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/hypothesis_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hypothesis Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Statistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/point_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point Estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/random_samples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Random Samples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/useful_formulas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Useful Formulas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#isometries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Isometries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plane-isometries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plane Isometries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finite-groups-of-orthogonal-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finite Groups of Orthogonal Operators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Finite Groups of Orthogonal Operators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cyclic-dihedral-subgroups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cyclic, Dihedral Subgroups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed Point
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discrete-isometry-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discrete Isometry Groups
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+  
+    <div class="page-dates">
+      Created <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 28, 2026 11:16:29 UTC">2026-11-28</span>
+        · Updated <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 28, 2026 11:16:29 UTC">2026-11-28</span>
+    </div>
+  
+  
+                  
+
+
+
+<h1 id="symmetry">Symmetry<a class="headerlink" href="#symmetry" title="Permanent link">&para;</a></h1>
+<div class="toc">
+<ul>
+<li><a href="#symmetry">Symmetry</a><ul>
+<li><a href="#isometries">Isometries</a></li>
+<li><a href="#plane-isometries">Plane Isometries</a></li>
+<li><a href="#finite-groups-of-orthogonal-operators">Finite Groups of Orthogonal Operators</a><ul>
+<li><a href="#cyclic-dihedral-subgroups">Cyclic, Dihedral Subgroups</a></li>
+<li><a href="#fixed-point">Fixed Point</a></li>
+</ul>
+</li>
+<li><a href="#discrete-isometry-groups">Discrete Isometry Groups</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="isometries">Isometries<a class="headerlink" href="#isometries" title="Permanent link">&para;</a></h2>
+<p>The distance between points of <span class="arithmatex">\(\R^{n}\)</span> is the length <span class="arithmatex">\(u - v\)</span> of the vector <span class="arithmatex">\(u - v\)</span>.</p>
+<div class="admonition info">
+<p class="admonition-title">Definition 6.1.1: Isometry</p>
+<p>An <em>isometry</em> of <span class="arithmatex">\(\R^{n}\)</span> is a distance-preserving map <span class="arithmatex">\(f: \R^n \to \R^{n}\)</span> such that for all <span class="arithmatex">\(u, \in \R^n\)</span>,</p>
+<div class="arithmatex">\[
+|f(u) - f(v)| = |u - v|
+\]</div>
+</div>
+<p>An isometry will map a figure to a congruent figure.</p>
+<div class="admonition example">
+<p class="admonition-title">Example 6.1.1: Isometries</p>
+<ul>
+<li>
+<p>Orthogonal linear operators are isometries. Since <span class="arithmatex">\(\varphi\)</span> is linear, it follows that <span class="arithmatex">\(\varphi(u) - \varphi(v) = \varphi(u - v)\)</span>. Then,</p>
+<div class="arithmatex">\[
+|\varphi(u - v)| = |u - v|
+\]</div>
+<p>hence orthogonal operators preserve distances.</p>
+</li>
+<li>
+<p>Translation <span class="arithmatex">\(t_a\)</span> be a vector <span class="arithmatex">\(a\)</span>, <span class="arithmatex">\(t_a(x) = x + a\)</span> is an isometry (as the vectors <span class="arithmatex">\(a\)</span> cancel out).</p>
+</li>
+<li>
+<p>Composition of isometries is an isometry.</p>
+</li>
+</ul>
+</div>
+<p>Recall the definition of an orthogonal matrix. <span class="arithmatex">\(A\)</span> is an orthogonal matrix provided that <span class="arithmatex">\(A^T A = I \iff A^T = A^{-1} \iff Ax \cdot Ay = x \cdot y \iff \det(A) = \pm 1 \iff A\)</span>'s columns form an orthonormal basis of <span class="arithmatex">\(R^n\)</span>.</p>
+<p>Crucially, we will use the property of preserving dot-products, i.e. <span class="arithmatex">\(Ax \cdot Ay\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 6.1.2: Isometry Conditions</p>
+<p>The following conditions on <span class="arithmatex">\(\varphi: \R^n \to \R^n\)</span> are equivalent.</p>
+<ul>
+<li>a. <span class="arithmatex">\(\varphi\)</span> is an isometry that fixes the origin <span class="arithmatex">\(\varphi(0) = 0\)</span>.</li>
+<li>b. <span class="arithmatex">\(\varphi(v) \cdot \varphi(w) = v \cdot w\)</span> for all <span class="arithmatex">\(v, w\)</span>.</li>
+<li>c. <span class="arithmatex">\(\varphi\)</span> is an orthogonal linear operator.</li>
+</ul>
+</div>
+<p>We know that <span class="arithmatex">\(c \implies a\)</span>.</p>
+<div class="admonition question">
+<p class="admonition-title">Lemma 6.1.3</p>
+<p>Let <span class="arithmatex">\(x, y \in \R^n\)</span>. If <span class="arithmatex">\(x \cdot x = x \cdot y = y \cdot y\)</span>, then <span class="arithmatex">\(x = y\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Suppose <span class="arithmatex">\(x \cdot x = x \cdot y = y \cdot y\)</span>. Then,</p>
+<div class="arithmatex">\[
+(x - y) \cdot (x - y) = x \cdot x + y \cdot y - 2 x \cdot y = 0 \implies x = y
+\]</div>
+</div>
+<p>Now, we prove that <span class="arithmatex">\(b \implies c\)</span>.</p>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="arithmatex">\(\varphi\)</span> be a map that preserves dot-products. Then, it will be orthogonal provided that it is a linear operator. So we need to show that <span class="arithmatex">\(\varphi(cx) = c \varphi(x)\)</span> and <span class="arithmatex">\(\varphi(x + y) = \varphi(x) + \varphi(y)\)</span>.</p>
+<p>Suppose <span class="arithmatex">\(w = u + v\)</span>. We want to show that <span class="arithmatex">\(\varphi(w) = \varphi(u) + \varphi(v)\)</span>. To show this, it suffices to show that <span class="arithmatex">\(\varphi(w) \cdot \varphi(w) = \varphi(w) \cdot (\varphi(u) + \varphi(v)) = (\varphi(u) + \varphi(v)) \cdot (\varphi(u) + \varphi(v))\)</span>.</p>
+<p>Then, it suffices to show that:</p>
+<div class="arithmatex">\[
+\varphi(w) \cdot \varphi(w) = \varphi(w) \cdot \varphi(u) + \varphi(w) \cdot \varphi(v) = \varphi(u) \cdot \varphi(u) + \varphi(v) \cdot \varphi(v) + 2 \varphi(u) \cdot \varphi(v)
+\]</div>
+<p>Since <span class="arithmatex">\(\varphi\)</span> preserves dot-products, we just need to show that:</p>
+<div class="arithmatex">\[
+w \cdot w = w \cdot u + w \cdot v = u \cdot u + v \cdot v + 2 u \cdot v
+\]</div>
+<p>Since <span class="arithmatex">\(w = (u + v)\)</span>, we have that <span class="arithmatex">\(w \cdot w = w \cdot (u + v) = (u + v) \cdot (u + v)\)</span>. Therefore, <span class="arithmatex">\(\varphi(w) = \varphi(u) + \varphi(v)\)</span>.</p>
+<p>The proof for <span class="arithmatex">\(\varphi(cv) = c \varphi(v)\)</span> sets <span class="arithmatex">\(u = cv\)</span> and shows that <span class="arithmatex">\(\varphi(u) = c \varphi(v)\)</span> and is analogous.</p>
+</div>
+<p>Next, we show that <span class="arithmatex">\(a \implies b\)</span>.</p>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="arithmatex">\(\varphi\)</span> be an isometry that fixes the origin. Then,</p>
+<div class="arithmatex">\[
+(\varphi(u) - \varphi(v)) \cdot (\varphi(u) - \varphi(v)) = (u - v) \cdot (u - v)
+\]</div>
+<p>Substitute <span class="arithmatex">\(v = 0\)</span>. Since <span class="arithmatex">\(\varphi(0) = 0\)</span>, it follows that <span class="arithmatex">\(\varphi(u) \cdot \varphi(u) = u \cdot u\)</span>. Similarly, <span class="arithmatex">\(\varphi(v) \cdot \varphi(v) = v \cdot v\)</span>. Expanding, we get:</p>
+<div class="arithmatex">\[
+\varphi(u) \cdot \varphi(u) + \varphi(v) \cdot \varphi(v) - 2 \varphi(v) \cdot \varphi(u) = u \cdot u + v \cdot v - 2 u \cdot v
+\]</div>
+<p>Canceling, we get:</p>
+<div class="arithmatex">\[
+\varphi(v) \cdot \varphi(u) = u \cdot v
+\]</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Corollary 6.1.4: Isometry Composition</p>
+<p>Every isometry <span class="arithmatex">\(f\)</span> of <span class="arithmatex">\(\R^n\)</span> is the composition of an orthogonal linear operator and a translation. If <span class="arithmatex">\(f\)</span> is an isometry and <span class="arithmatex">\(f(0) = a\)</span>, then <span class="arithmatex">\(f = t_a \varphi\)</span> where <span class="arithmatex">\(t_a\)</span> is a translation and <span class="arithmatex">\(\varphi\)</span> is an orthogonal linear operator. This expression for <span class="arithmatex">\(f\)</span> is unique.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="arithmatex">\(f\)</span> be an isometry and <span class="arithmatex">\(a = f(0)\)</span>. Let <span class="arithmatex">\(\varphi = t_{- a} f\)</span>. Then, <span class="arithmatex">\(t_a \varphi = f\)</span>. Since <span class="arithmatex">\(\varphi\)</span> is the composition of isometries <span class="arithmatex">\(t_{- a}\)</span> and <span class="arithmatex">\(f\)</span>, it's an isometry. <span class="arithmatex">\(\varphi\)</span> also fixes the origin, <span class="arithmatex">\(\varphi(0) = t_{-a} f(0) = t_{-a} a = 0\)</span>. Since <span class="arithmatex">\(\varphi\)</span> is an isometry which fixes the origin, it is an orthogonal linear operator. The expression <span class="arithmatex">\(f = t_a \varphi\)</span> is unique - since <span class="arithmatex">\(\varphi(0) = 0\)</span>, we have <span class="arithmatex">\(a = f(0) \implies \varphi = t_{- a} f\)</span>.</p>
+</div>
+<p>Can we compose isometries together? We know that the composition of orthogonal operators is an orthogonal operator.</p>
+<p>Clearly, <span class="arithmatex">\(t_a t_b = t_{a + b}\)</span>. We also have that <span class="arithmatex">\(\varphi t_a = t_{\varphi(a)} \varphi\)</span>.</p>
+<div class="arithmatex">\[
+\varphi t_a(x) = \varphi(a + x) = \varphi(a) + \varphi(x) = t_{\varphi(a)} \varphi(x)
+\]</div>
+<div class="admonition warning">
+<p class="admonition-title">Corollary 6.1.5: Isometry Group</p>
+<p>The set of all isometries of <span class="arithmatex">\(\R^n\)</span> forms a group <span class="arithmatex">\(M_n\)</span> with composition of functions as its law of composition.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>The composition of isometries is an isometry. The inverse of an isometry is an isometry too since orthogonal operators and translations are invertible so if <span class="arithmatex">\(f = t_a \varphi\)</span>, then</p>
+<div class="arithmatex">\[
+f^{-1} = \varphi^{-1} t_a^{-1} = \varphi^{-1} t_{- a}
+\]</div>
+<p>This is a composition of isometries so <span class="arithmatex">\(f^{-1}\)</span> is an isometry.</p>
+<p>The composition of isometries:</p>
+<div class="arithmatex">\[
+t_a \varphi t_b \phi (x) = t_a \varphi(b + \phi(x)) = a + \varphi(b) + \varphi \phi(x) = t_{a + \varphi(b)} \varphi \phi(x)
+\]</div>
+</div>
+<p><span class="arithmatex">\(O_n\)</span> is the group of <span class="arithmatex">\(n \times n\)</span> orthogonal matrices (product of orthogonal matrices is orthogonal and the transpose (inverse) is orthogonal). <span class="arithmatex">\(O_n\)</span> is a subgroup of <span class="arithmatex">\(\text{GL}_n\)</span>.</p>
+<div class="admonition success">
+<p class="admonition-title">Proposition 6.1.6: Homomorphism</p>
+<p>There is a map <span class="arithmatex">\(\pi: M_n \to O_n\)</span> defined by dropping the translation part of an isometry. Specifically, if <span class="arithmatex">\(f = t_a \varphi\)</span>, then <span class="arithmatex">\(\pi(f) = \varphi\)</span>. This map <span class="arithmatex">\(\pi\)</span> is a surjective homomorphism where <span class="arithmatex">\(\text{Ker}(\pi) = T = \{t_v\}\)</span>, the set of translations which is a normal subgroup of <span class="arithmatex">\(M_n\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>It's clear that <span class="arithmatex">\(\pi\)</span> is surjective. We need to show that <span class="arithmatex">\(\pi(fg) = \pi(f) \pi(g)\)</span>. Suppose <span class="arithmatex">\(f = t_a \varphi, g = t_b \phi\)</span>. Then,</p>
+<div class="arithmatex">\[
+\pi(f) \pi(g) = \varphi \phi
+\]</div>
+<div class="arithmatex">\[
+\pi(fg) = \pi(t_a \varphi t_b \phi) = \pi(t_{a + \varphi(b)} \varphi \phi) = \varphi \phi
+\]</div>
+<p>Therefore, <span class="arithmatex">\(\pi(fg) = \pi(f) \pi(g)\)</span> so <span class="arithmatex">\(\pi\)</span> is a homomorphism.</p>
+</div>
+<p>Let <span class="arithmatex">\(P\)</span> be an <span class="arithmatex">\(n\)</span>-dimensional space. The formula <span class="arithmatex">\(t_a \varphi\)</span> depends on the choice of coordinates. How does the formula change when coordinates are changed? We allow changes of coordinates via isometry.</p>
+<p>Consider isometry <span class="arithmatex">\(f, p \in P\)</span> and <span class="arithmatex">\(q = f(p)\)</span>. When we introduce coordinates <span class="arithmatex">\(P\)</span> is identified with <span class="arithmatex">\(\R^n\)</span> and <span class="arithmatex">\(p, q\)</span> have coordinates as <span class="arithmatex">\(x = (x_1, \dots, x_n), y = (y_1, \dots, y_n)\)</span>. Then, <span class="arithmatex">\(q = f(p)\)</span> translates to <span class="arithmatex">\(y = m(x) = t_a \varphi(x)\)</span>.</p>
+<p>Let <span class="arithmatex">\(\eta\)</span> be the isometry performing a change of coordinates. Specifically, <span class="arithmatex">\(\eta\)</span> maps new coordinates back to the old coordinates. Then, the new coordinate vectors for <span class="arithmatex">\(p, q\)</span> are <span class="arithmatex">\(x', y'\)</span>. Then, <span class="arithmatex">\(m'\)</span> for <span class="arithmatex">\(f\)</span> is <span class="arithmatex">\(m'(x') = y'\)</span>. Substitute <span class="arithmatex">\(\eta(x') = x, \eta(y') = y\)</span> into the equation <span class="arithmatex">\(m(x) = y\)</span> obtaining <span class="arithmatex">\(m \eta(x') = \eta(y') \implies \eta^{-1} m \eta(x') = y'\)</span>. So the new formula is the conjugate:</p>
+<div class="arithmatex">\[
+m' = \eta^{-1} m \eta
+\]</div>
+<div class="admonition warning">
+<p class="admonition-title">Corollary 6.1.7</p>
+<p>The homomorphism <span class="arithmatex">\(\pi: M_n \to O_n\)</span> doesn't change when the origin is shifted by translation.</p>
+</div>
+<p>If <span class="arithmatex">\(\eta = t_v\)</span>, then <span class="arithmatex">\(m' = t_{- v} m t_v\)</span>. Since the translations are in the kernel of <span class="arithmatex">\(\pi\)</span> and since <span class="arithmatex">\(\pi\)</span> is a homomorphism, <span class="arithmatex">\(\pi(m') = \pi(m)\)</span>.</p>
+<p>Finally, we consider orientation. The determinant of orthogonal operator <span class="arithmatex">\(\varphi\)</span> on <span class="arithmatex">\(\R^n\)</span> is <span class="arithmatex">\(\pm 1\)</span>. The operator is orientation-preserving if <span class="arithmatex">\(\det(\varphi) = 1\)</span> and orientation-reversing if <span class="arithmatex">\(\det(\varphi) = -1\)</span>. Similarly, an isometry <span class="arithmatex">\(f = t_a \varphi\)</span> is called orientation-preserving or reverseing if <span class="arithmatex">\(\varphi\)</span> is orientation preserving or reversing.</p>
+<p>The map <span class="arithmatex">\(\sigma: M_n \to \{\pm 1\}\)</span> that sends orientation-preserving isometries to <span class="arithmatex">\(1\)</span> and orientation-reserving isometries to <span class="arithmatex">\(-1\)</span> is a group homomorphism.</p>
+<h2 id="plane-isometries">Plane Isometries<a class="headerlink" href="#plane-isometries" title="Permanent link">&para;</a></h2>
+<p>We consider isometries of the plane. Let <span class="arithmatex">\(M\)</span> be the group of isometries of the plane. To compute in this group, we'll choose some special isometries as generators and obtain relations among them.</p>
+<p>Recall - we say that a set <span class="arithmatex">\(U\)</span> generates a group <span class="arithmatex">\(G\)</span> provided that every element <span class="arithmatex">\(g \in G\)</span> can be expressed as a product of some string of elements in <span class="arithmatex">\(U\)</span>.</p>
+<p>Pick a coordinate system and identify the plane <span class="arithmatex">\(P\)</span> with <span class="arithmatex">\(\R^2\)</span>. We choose as generators the translations, rotations around the origin and reflection across the <span class="arithmatex">\(e_1\)</span> axis. Let the rotation angle <span class="arithmatex">\(\theta\)</span> be written as <span class="arithmatex">\(\rho_{\theta}\)</span> and the reflection angle about the <span class="arithmatex">\(e_1\)</span> axis be <span class="arithmatex">\(r\)</span>. These are linear operators.</p>
+<ol>
+<li>
+<p>Translation <span class="arithmatex">\(t_a\)</span> by a vector <span class="arithmatex">\(t_a(x) = x + a\)</span>.</p>
+</li>
+<li>
+<p>Rotation <span class="arithmatex">\(\rho_{\theta}\)</span> by <span class="arithmatex">\(\theta\)</span> about the origin is:</p>
+</li>
+</ol>
+<div class="arithmatex">\[
+\rho_{\theta} = \begin{bmatrix}
+\cos \theta &amp; - \sin \theta \\
+\sin \theta &amp; \cos \theta
+\end{bmatrix}
+\]</div>
+<ol>
+<li>Reflection about the <span class="arithmatex">\(e_1\)</span>-axis:</li>
+</ol>
+<div class="arithmatex">\[
+r = \begin{bmatrix}
+1 &amp; 0 \\ 0 &amp; -1
+\end{bmatrix}
+\]</div>
+<p>These three elements <span class="arithmatex">\((t_a, \rho_{\theta}, r)\)</span> can generate all other isometries (rotation about a point other than the origin, reflection about other lines, etc).</p>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 6.2.1: Uniqueness</p>
+<p>Let <span class="arithmatex">\(m\)</span> be an isometry of the plane. Then, <span class="arithmatex">\(m = t_v \rho_{\theta}\)</span> or <span class="arithmatex">\(m = t_v \rho_{\theta} r\)</span> for a uniquely determined vector <span class="arithmatex">\(v\)</span> and angle <span class="arithmatex">\(\theta\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Any isometry <span class="arithmatex">\(m\)</span> can be written uniquely as <span class="arithmatex">\(m = t_v \varphi\)</span> where <span class="arithmatex">\(\varphi\)</span> is an orthogonal operator. The orthogonal linear operators on <span class="arithmatex">\(\R^2\)</span> are the rotations <span class="arithmatex">\(\rho_{\theta}\)</span> and the reflections about lines through the origins, of the form <span class="arithmatex">\(\rho_{\theta} r\)</span>.</p>
+</div>
+<p>An isometry of the form <span class="arithmatex">\(t_v \rho_{\theta}\)</span> preserves orientation while <span class="arithmatex">\(t_v \rho_{\theta} r\)</span> reverses orientation.</p>
+<p>Computation can be done as follows:</p>
+<ul>
+<li><span class="arithmatex">\(\rho_{\theta} t_v = t_{\rho_{\theta}(v)} \rho_{\theta}\)</span>.</li>
+<li><span class="arithmatex">\(r t_v = t_{r(v)} r\)</span></li>
+<li><span class="arithmatex">\(r \rho_{\theta} = \rho_{- \theta} r\)</span></li>
+<li><span class="arithmatex">\(t_v t_w = t_{v + w}\)</span>. <span class="arithmatex">\(\rho_{\theta} \rho_{\eta} = \rho_{\theta + \eta}\)</span>. <span class="arithmatex">\(rr = 1\)</span>.</li>
+</ul>
+<p>We now describe the plane isometries geometrically.</p>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 6.2.2: Isometry Forms</p>
+<p>Every isometry of the plane has one of the following forms.</p>
+<ul>
+<li>
+<p>Orientation-preserving: Translation, rotation.</p>
+</li>
+<li>
+<p>Orientation-reversing: Reflection, glides (reflect along some line, then translate).</p>
+</li>
+</ul>
+</div>
+<p><img alt="" class="center" src="../../../images/glide_symmetry.png" /></p>
+<p>Glide Symmetry.</p>
+<p>This theorem has interesting consequences - composing rotations about two different points is just a single rotation about a third point.</p>
+<p>The composition of reflections about nonparallel lines <span class="arithmatex">\(\ell_1, \ell_2\)</span> is a rotation about the intersection point <span class="arithmatex">\(p = \ell_1 \cap \ell_2\)</span>. This follows from the theorem since the composition is orientation-preserving and it fixes <span class="arithmatex">\(p\)</span>. Composition of reflections about parallel lines is translation by a vector orthogonal to the lines.</p>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="arithmatex">\(f\)</span> be an isometry that preserves orientation but isn't a translation. Then, <span class="arithmatex">\(f\)</span> is a rotation about some point. We choose coordinates to write the formula for <span class="arithmatex">\(f\)</span> as <span class="arithmatex">\(m = t_a \rho_{\theta}\)</span>. Since <span class="arithmatex">\(m\)</span> isn't a translation, <span class="arithmatex">\(\theta \neq 0\)</span>.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Lemma 6.2.3</p>
+<p>An isometry <span class="arithmatex">\(f\)</span> with the form <span class="arithmatex">\(m = t_a \rho_{\theta}\)</span> where <span class="arithmatex">\(\theta \neq 0\)</span> is a rotation through <span class="arithmatex">\(\theta\)</span> about a point in the plane.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="arithmatex">\(\rho = \rho_{\theta}\)</span>. We change coordinates by a translation <span class="arithmatex">\(t_p\)</span>. We wish to choose <span class="arithmatex">\(p\)</span> so that the new formula for <span class="arithmatex">\(f\)</span> becomes <span class="arithmatex">\(m' = \rho\)</span>. Then, <span class="arithmatex">\(f\)</span> will be a rotation with <span class="arithmatex">\(\theta\)</span> about <span class="arithmatex">\(p\)</span>.</p>
+<p>The rule is that <span class="arithmatex">\(t_p(x') = x\)</span> so <span class="arithmatex">\(m' = t_{-p} m t_p = t_{-p} t_a \rho t_p = t_{a - p} \rho t_p\)</span>. Let <span class="arithmatex">\(b = a - p + \rho(p)\)</span> so <span class="arithmatex">\(m' = t_b \rho\)</span>. We want to choose <span class="arithmatex">\(p\)</span> such that <span class="arithmatex">\(b = 0\)</span>. We simply need to solve <span class="arithmatex">\(p - \rho(p) = a\)</span> or <span class="arithmatex">\((I - \rho) p = a\)</span>.</p>
+<p>Let <span class="arithmatex">\(I\)</span> be the identity, <span class="arithmatex">\(c = \cos \theta\)</span> and <span class="arithmatex">\(s = \sin \theta\)</span>. Then,</p>
+<div class="arithmatex">\[
+I - \rho = \begin{bmatrix}
+1 - c &amp; s \\
+-s &amp; 1 - c
+\end{bmatrix}
+\]</div>
+<p>with determinant <span class="arithmatex">\((1-c)^2 + s^2 = 1 - 2c + c^2 + s^2 = 2 - 2c\)</span>. This determinant is <span class="arithmatex">\(0\)</span> when <span class="arithmatex">\(2 - 2 \cos \theta = 0\)</span> or when <span class="arithmatex">\(\theta = 0\)</span>. Since <span class="arithmatex">\(\theta \neq 0\)</span> (by assumption), the equation <span class="arithmatex">\((I - \rho)p = a\)</span> has a unique solution for <span class="arithmatex">\(p\)</span>.</p>
+</div>
+<p>The point <span class="arithmatex">\(P\)</span> is the fixed point of the isometry <span class="arithmatex">\(t_a \rho_{\theta}\)</span> and can be found geometrically.</p>
+<p>Let <span class="arithmatex">\(\ell\)</span> pass through the origin and be perpendicular to <span class="arithmatex">\(a\)</span>. Then, the sector with angle <span class="arithmatex">\(\theta\)</span> is bisected by <span class="arithmatex">\(\ell\)</span> and <span class="arithmatex">\(p\)</span> is determined by inserting <span class="arithmatex">\(a\)</span> into the sector.</p>
+<p><img alt="" class="center" src="../../../images/fixed_p_isometry.png" /></p>
+<p>We've completed the proof that all orientation-preserving isometries are either translations or rotations. Next, we show that all orientation-reversing isometries are either glides or a reflection.</p>
+<p>To do this, we again change coordinates. The isometry <span class="arithmatex">\(\rho_{\theta} r\)</span> is a reflection about <span class="arithmatex">\(\ell_0\)</span> through the origin. We can rotate coordinates so that <span class="arithmatex">\(\ell_0\)</span> becomes the horizontal axis. Then, the reflection becomes the standard reflection <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(t_a\)</span> stays a translation in the new coordinate system. Then, <span class="arithmatex">\(m = t_a r\)</span> and operates like:</p>
+<div class="arithmatex">\[
+m \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = t_a \begin{bmatrix} x_1 \\ - x_2 \end{bmatrix} = \begin{bmatrix}
+x_1 + a \\ -x_2 + a
+\end{bmatrix}
+\]</div>
+<p>This is precisely a glide - a reflection about the line <span class="arithmatex">\(\ell = \{x_2 = \frac{1}{2} a_2\}\)</span> followed by translation of <span class="arithmatex">\(a_1 e_1\)</span>. If <span class="arithmatex">\(a_1 = 0\)</span>, then <span class="arithmatex">\(m\)</span> is a reflection. QED.</p>
+<div class="admonition warning">
+<p class="admonition-title">Corollary 6.2.4</p>
+<p>The glide line of the isometry <span class="arithmatex">\(t_a \rho_{\theta} r\)</span> is parallel to the line of reflection of <span class="arithmatex">\(\rho_{\theta} r\)</span>.</p>
+</div>
+<p>Isometries that fix the origin are orthogonal linear operators. When coordinates are chose, the orthogonal group <span class="arithmatex">\(O_2\)</span> becomes a subgroup of the isometry group <span class="arithmatex">\(M\)</span>. We can also consider the subgroup of <span class="arithmatex">\(M\)</span> of isometries which fix a point of the plane other than the origin. How are they related to the orthogonal group?</p>
+<div class="admonition success">
+<p class="admonition-title">Proposition 6.2.5</p>
+<p>Suppose coordinates in the plane have been chosen so that the orthogonal group <span class="arithmatex">\(O_2\)</span> becomes the subgroup of <span class="arithmatex">\(M\)</span> of isometries that fix the origin. Then, the group of isometries that fix a point <span class="arithmatex">\(p\)</span> of the plane is the conjugate subgroup <span class="arithmatex">\(t_p O_2 t_p^{-1}\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Is an isometry <span class="arithmatex">\(m\)</span> fixes <span class="arithmatex">\(p\)</span>, then, <span class="arithmatex">\(t_p^{-1} m t_p\)</span> fixes the origin. <span class="arithmatex">\(t_p^{-1} m t_p o = t_p^{-1} m p = t_p^{-1} p = o\)</span>. Conversely, if <span class="arithmatex">\(m\)</span> fixes <span class="arithmatex">\(o\)</span>, then <span class="arithmatex">\(t_p m t_p^{-1}\)</span> fixes <span class="arithmatex">\(p\)</span>.</p>
+</div>
+<p>We can visualize rotation about <span class="arithmatex">\(p\)</span> as first translate by <span class="arithmatex">\(t_{-p}\)</span> to move <span class="arithmatex">\(p\)</span> to <span class="arithmatex">\(0\)</span>, then rotate about the origin, then translate back to <span class="arithmatex">\(p\)</span>.</p>
+<p>We go back to the homomorphism <span class="arithmatex">\(\pi: M \to O_2\)</span>.</p>
+<div class="admonition success">
+<p class="admonition-title">Proposition 6.2.6</p>
+<p>Let <span class="arithmatex">\(p\)</span> be a point in the plane and <span class="arithmatex">\(\rho_{\theta, p}\)</span> be a rotation though <span class="arithmatex">\(\theta\)</span> about <span class="arithmatex">\(p\)</span>. Then, <span class="arithmatex">\(\pi(\rho_{\theta, p}) = \rho_{\theta}\)</span>. Similarly, if <span class="arithmatex">\(r_{\ell}\)</span> is a reflection about <span class="arithmatex">\(\ell\)</span> or a glide with glide line <span class="arithmatex">\(\ell\)</span> that is parallel to the <span class="arithmatex">\(x\)</span>-axis, then <span class="arithmatex">\(\pi(r_{\ell}) = r\)</span>.</p>
+</div>
+<p><strong>Points and Vectors</strong></p>
+<p>Generally, there is no convincing reason to distinguish a point <span class="arithmatex">\(p\)</span> of the plane <span class="arithmatex">\(P\)</span> from the vector which goes from the origin <span class="arithmatex">\(o\)</span> to <span class="arithmatex">\(p\)</span>. When working with isometries, we maintain the distinction. We introduce a copy of the plane, called <span class="arithmatex">\(V\)</span>, and think of its elements as <em>translation vectors</em>. <span class="arithmatex">\(t_v(p) = p + v\)</span>, shifting every point of the plane by <span class="arithmatex">\(v\)</span>.</p>
+<p>Suppose we shift coordinates in <span class="arithmatex">\(P\)</span> by a translation, <span class="arithmatex">\(\eta = t_w\)</span>. Then, the rule is that <span class="arithmatex">\(\eta(p') = p\)</span> or <span class="arithmatex">\(p' + w = p\)</span>. An isometry <span class="arithmatex">\(m\)</span> changes to <span class="arithmatex">\(\eta^{-1} m \eta = t_{-w} m t_w\)</span>. Applying this rule with <span class="arithmatex">\(m = t_v\)</span>, then <span class="arithmatex">\(m' = t_{-w} t_v t_w = t_v\)</span>. The points of <span class="arithmatex">\(P\)</span> get new coordinates but the translation vectors are unchanged.</p>
+<p>If we change coordinates by orthogonal operator <span class="arithmatex">\(\varphi\)</span>, then <span class="arithmatex">\(\varphi(p') = p\)</span>. If <span class="arithmatex">\(m = t_v\)</span>, then <span class="arithmatex">\(m' = \varphi^{-1} t_v \varphi = t_{\rho^{-1}(v)}\)</span>. So <span class="arithmatex">\(\rho \rho^{-1}(v) = v\)</span>. The effect of change of coordinates is the same as <span class="arithmatex">\(P\)</span> on <span class="arithmatex">\(V\)</span>. In other words, orthogonal operators act on <span class="arithmatex">\(V\)</span> but not on <span class="arithmatex">\(P\)</span> unless the origin is chosen.</p>
+<h2 id="finite-groups-of-orthogonal-operators">Finite Groups of Orthogonal Operators<a class="headerlink" href="#finite-groups-of-orthogonal-operators" title="Permanent link">&para;</a></h2>
+<h3 id="cyclic-dihedral-subgroups">Cyclic, Dihedral Subgroups<a class="headerlink" href="#cyclic-dihedral-subgroups" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 6.3.1.1: Characterizing Subgroup</p>
+<p>Let <span class="arithmatex">\(G\)</span> be a finite subgroup of the orthogonal group <span class="arithmatex">\(O_2\)</span>. There's an integer <span class="arithmatex">\(n\)</span> such that <span class="arithmatex">\(G\)</span> is one of the following groups.</p>
+<ul>
+<li><span class="arithmatex">\(C_n\)</span>: The <em>cyclic group</em> of order <span class="arithmatex">\(n\)</span> generated by the rotation <span class="arithmatex">\(\rho_{\theta}\)</span> where <span class="arithmatex">\(\theta = 2 \pi / n\)</span>.</li>
+<li><span class="arithmatex">\(D_n\)</span>: The <em>dihedral group</em> of order <span class="arithmatex">\(2n\)</span> generated by elements <span class="arithmatex">\(\rho_{\theta}\)</span> where <span class="arithmatex">\(\theta = 2 \pi / n\)</span> and a reflection <span class="arithmatex">\(r'\)</span> about a line <span class="arithmatex">\(\ell\)</span> through the origin.</li>
+</ul>
+</div>
+<p>Generally, <span class="arithmatex">\(n\)</span> is how finely we can rotate around the unit circle. If <span class="arithmatex">\(n = 4\)</span>, then <span class="arithmatex">\(\theta\)</span> corresponds to <span class="arithmatex">\(90^{\circ}\)</span>. The <span class="arithmatex">\(n\)</span> rotations split the circle into <span class="arithmatex">\(n\)</span> equal steps. After <span class="arithmatex">\(n\)</span> rotations, we return to the start.</p>
+<p>We describe the dihedral group <span class="arithmatex">\(D_n\)</span> before proving the theorem. We choose coordinates so that <span class="arithmatex">\(\ell\)</span> is the horizontal axis so the group simpy contains the standard reflection <span class="arithmatex">\(r\)</span> with matrix:</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+1 &amp; \\
+&amp; -1
+\end{bmatrix}
+\]</div>
+<p>If we write <span class="arithmatex">\(\rho\)</span> for <span class="arithmatex">\(\rho_{\theta}\)</span>, then the <span class="arithmatex">\(2n\)</span> elements of the group are the <span class="arithmatex">\(n\)</span> powers of <span class="arithmatex">\(\rho^i\)</span> and the <span class="arithmatex">\(n\)</span> products <span class="arithmatex">\(\rho^i r\)</span>. The rule is that:</p>
+<div class="arithmatex">\[
+r \rho = \begin{bmatrix}
+1 &amp; \\
+&amp; -1
+\end{bmatrix}
+\begin{bmatrix}
+c &amp; -s \\
+s &amp; c
+\end{bmatrix}
+=
+\begin{bmatrix}
+c &amp; s \\
+-s &amp; c
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; \\
+&amp; -1
+\end{bmatrix}
+= \rho^{-1} r
+\]</div>
+<p>If we first rotate and then reflect across the horizontal axis, that's equivalent to reflecting across the horizontal axis first and then rotating in the other direction by the same angle.</p>
+<p><img alt="" class="center" src="../../../images/rotate.png" /></p>
+<p>Let <span class="arithmatex">\(x = \rho_{2 \pi / n}\)</span> and <span class="arithmatex">\(y = r\)</span>. Then,</p>
+<div class="admonition success">
+<p class="admonition-title">Proposition 6.3.1.2</p>
+<p>The dihedral group <span class="arithmatex">\(D_n\)</span> has order <span class="arithmatex">\(2n\)</span>, generated by elements <span class="arithmatex">\(x, y\)</span> that satisfy the relations:</p>
+<div class="arithmatex">\[
+x^n = 1, \ y^2 = 1, \ yx = x^{-1} y
+\]</div>
+<p>The elements of <span class="arithmatex">\(D_n\)</span> are:</p>
+<div class="arithmatex">\[
+1, x, \dots, x^{n - 1}; \ y, xy, x^2y, \dots, x^{n - 1} y
+\]</div>
+</div>
+<p>With the first two relations, we can re-write the third as:</p>
+<div class="arithmatex">\[
+yx = x^{-1} y \implies xyx = y \implies yxyx = y^2 = 1
+\]</div>
+<p>or</p>
+<div class="arithmatex">\[
+yx = x^{n - 1}y
+\]</div>
+<p>When <span class="arithmatex">\(n = 3\)</span>, the relations are the same as <span class="arithmatex">\(S_3\)</span>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Corollary 6.3.1.3</p>
+<p>The dihedral group <span class="arithmatex">\(D_3\)</span> and the symmetric group <span class="arithmatex">\(S_3\)</span> are isomorphic.</p>
+</div>
+<p>For <span class="arithmatex">\(n \geq 3\)</span>, the dihedral and symmetric groups are not isomorphic since <span class="arithmatex">\(D_n\)</span> has order <span class="arithmatex">\(2n\)</span> and <span class="arithmatex">\(S_n\)</span> has order <span class="arithmatex">\(n!\)</span>.</p>
+<p>When <span class="arithmatex">\(n \geq 3\)</span>, the elements of <span class="arithmatex">\(D_n\)</span> are orthogonal operators that take a <span class="arithmatex">\(n\)</span> sided polygon to itself, the group of symmetries of <span class="arithmatex">\(\Delta\)</span>. A regular <span class="arithmatex">\(n\)</span>-gon is carried to itself by rotation by <span class="arithmatex">\(2 \pi / n\)</span> about its center along with some reflections. The group of symmetries is <span class="arithmatex">\(D_n\)</span>.</p>
+<p><span class="arithmatex">\(D_1\)</span> is the group <span class="arithmatex">\(\{1, r\}\)</span> meaning that it is a cyclic group like <span class="arithmatex">\(C_2\)</span>. However, the element <span class="arithmatex">\(r\)</span> of <span class="arithmatex">\(D_1\)</span> is a reflection while the non-identity element of <span class="arithmatex">\(C_2\)</span> is rotation with angle <span class="arithmatex">\(\pi\)</span>.</p>
+<p>The group <span class="arithmatex">\(D_2 = \{1, \rho, r, \rho r\}\)</span> is isomorphic to the Klein four group (look it up!).</p>
+<p>A subgroup <span class="arithmatex">\(\Gamma\)</span> of the additive group <span class="arithmatex">\(\R^+\)</span> is called <em>discrete</em> if there exists some small positive number <span class="arithmatex">\(\epsilon\)</span> such that every non zero element <span class="arithmatex">\(c \in \Gamma\)</span> has absolute value <span class="arithmatex">\(\geq \epsilon\)</span>.</p>
+<div class="admonition question">
+<p class="admonition-title">Lemma 6.3.1.4</p>
+<p>Let <span class="arithmatex">\(\Gamma\)</span> be a discrete subgroup of <span class="arithmatex">\(\R^+\)</span>. Then, either <span class="arithmatex">\(\Gamma = \{0\}\)</span> or <span class="arithmatex">\(\Gamma\)</span> is the set <span class="arithmatex">\(\Z a\)</span> of integer multiples of <span class="arithmatex">\(a\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p><span class="arithmatex">\(a, b \in \Gamma \implies a - b \in \Gamma, |a - b| \geq \epsilon\)</span>. Therefore, a bounded interval contains a finite number of elements of <span class="arithmatex">\(\Gamma\)</span> in it since distinct elements are all separated by <span class="arithmatex">\(\epsilon\)</span> and only finitely many elements separated by <span class="arithmatex">\(\epsilon\)</span> can fit in the bounded interval.</p>
+<p>Suppose <span class="arithmatex">\(\Gamma \neq \{0\}\)</span>. Then, <span class="arithmatex">\(\exists b, -b \neq 0 \in \Gamma\)</span>. Let <span class="arithmatex">\(a' &gt; 0 \in \Gamma\)</span>. We choose the smallest positive element <span class="arithmatex">\(a\)</span> since we only need to choose the smallest element of the finite subset of <span class="arithmatex">\(\Gamma\)</span> in <span class="arithmatex">\(0 \leq x \leq a'\)</span>.</p>
+<p>We show that <span class="arithmatex">\(\Gamma = \Z a\)</span>. Since <span class="arithmatex">\(a \in \Gamma\)</span>, <span class="arithmatex">\(\Z a \subset \Gamma\)</span>. Let <span class="arithmatex">\(b \in \Gamma\)</span>, then <span class="arithmatex">\(b = ra\)</span> where <span class="arithmatex">\(r = m + r_0, m \in \Z, 0 \leq r_0 &lt; 1\)</span>. Since <span class="arithmatex">\(\Gamma\)</span> is a group, <span class="arithmatex">\(b' = b - ma \in \Gamma\)</span>, <span class="arithmatex">\(b' = r_0 a\)</span>. Then, <span class="arithmatex">\(0 \leq b' &lt; a\)</span>. Since <span class="arithmatex">\(a\)</span> is the smallest element in <span class="arithmatex">\(\Gamma, b' = 0 \implies b = ma\)</span>. Therefore, <span class="arithmatex">\(\Gamma \subset \Z a \implies \Gamma = \Z a\)</span>.</p>
+</div>
+<p>Finally, we prove the theorem about finite subgroups of <span class="arithmatex">\(O_2\)</span>.</p>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="arithmatex">\(G\)</span> be a finite subgroup of <span class="arithmatex">\(O_2\)</span>. We want to show that <span class="arithmatex">\(G\)</span> is <span class="arithmatex">\(C_n\)</span> or <span class="arithmatex">\(D_n\)</span>. All elements of <span class="arithmatex">\(O_2\)</span> are rotations <span class="arithmatex">\(\rho_{\theta}\)</span> or reflections <span class="arithmatex">\(\rho_{\theta} r\)</span>.</p>
+<ol>
+<li>Suppose all elements of <span class="arithmatex">\(G\)</span> are rotations.</li>
+</ol>
+<p>We must show that <span class="arithmatex">\(G\)</span> is cyclic. Let <span class="arithmatex">\(\Gamma\)</span> be the set of real numbers <span class="arithmatex">\(\alpha\)</span> such that <span class="arithmatex">\(\rho_{\alpha} \in G\)</span>. Then, <span class="arithmatex">\(\Gamma\)</span> is a subgroup of <span class="arithmatex">\(\R^{+}\)</span> and contains <span class="arithmatex">\(2 \pi\)</span>. Since <span class="arithmatex">\(G\)</span> is finite, <span class="arithmatex">\(\Gamma\)</span> is discrete and has the form <span class="arithmatex">\(\Z a\)</span>. Then, <span class="arithmatex">\(G\)</span> consists of integer multiples through <span class="arithmatex">\(\alpha\)</span>. Since <span class="arithmatex">\(2 \pi \in \Gamma\)</span>, it's a multiplier of <span class="arithmatex">\(\alpha\)</span>. Therefore, <span class="arithmatex">\(\alpha = 2 \pi / n\)</span> for some <span class="arithmatex">\(n\)</span> and <span class="arithmatex">\(G = C_n\)</span>.</p>
+<ol>
+<li><span class="arithmatex">\(G\)</span> contains a reflection.</li>
+</ol>
+<p>Adjust coordinates to the standard reflection <span class="arithmatex">\(r \in G\)</span>. Let <span class="arithmatex">\(H\)</span> be the subgroup consisting of rotations in <span class="arithmatex">\(G\)</span>. We conclude <span class="arithmatex">\(H\)</span> is the cyclic group generated by <span class="arithmatex">\(\rho_{\theta}\)</span> for <span class="arithmatex">\(\theta = 2 \pi / n\)</span>. Then, the products <span class="arithmatex">\(\rho_{\theta}^{k}, \rho_{\theta}^{k} r\)</span> are in <span class="arithmatex">\(G\)</span> so <span class="arithmatex">\(G\)</span> contains the dihedral group <span class="arithmatex">\(D_n\)</span>. We claim <span class="arithmatex">\(G = D_n\)</span>. Let <span class="arithmatex">\(g \in G\)</span>. Then, <span class="arithmatex">\(g\)</span> is either a rotation or reflection. If <span class="arithmatex">\(g\)</span> is a rotation, then <span class="arithmatex">\(g \in H \in D_N\)</span>. If <span class="arithmatex">\(g\)</span> isa reflection, then <span class="arithmatex">\(g = \rho_{\theta} r\)</span>. Since <span class="arithmatex">\(r \in G, gr = \rho_{\alpha} \implies \rho_{\alpha}\)</span> is a power of <span class="arithmatex">\(\rho_{\theta} \implies g \in D_n\)</span>.</p>
+</div>
+<h3 id="fixed-point">Fixed Point<a class="headerlink" href="#fixed-point" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 6.3.2.1: Fixed Point Theorem</p>
+<p>Let <span class="arithmatex">\(G\)</span> be a finite group of isometries of the plane. There is a point in the plane <span class="arithmatex">\(p\)</span> fixed by every element of <span class="arithmatex">\(G\)</span>, i.e. for <span class="arithmatex">\(g \in G, g(p) = p\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="arithmatex">\(s\)</span> be a point in the plane and <span class="arithmatex">\(S = \{g(s) \mid g \in G\}\)</span>. Naturally, <span class="arithmatex">\(s \in S\)</span> since <span class="arithmatex">\(1(s) = s\)</span>.</p>
+<p><span class="arithmatex">\(S\)</span> is called the <em>orbit</em> of <span class="arithmatex">\(s\)</span> for the action of <span class="arithmatex">\(G\)</span>. Any element of <span class="arithmatex">\(G\)</span> simply permutes the orbit <span class="arithmatex">\(S\)</span>. We will show that every isometry <span class="arithmatex">\(g \in G\)</span> sends <span class="arithmatex">\(S\)</span> onto itself.</p>
+<p>Consider <span class="arithmatex">\(s' \in S, h \in G\)</span>. We want to show that <span class="arithmatex">\(h(s') \in S\)</span>. Suppose <span class="arithmatex">\(s' = g(s)\)</span>. Since <span class="arithmatex">\(G\)</span> is a group, <span class="arithmatex">\(hg \in G\)</span> and <span class="arithmatex">\(hg(s) = h(s') \implies h(s') \in S\)</span>.</p>
+<p>Since <span class="arithmatex">\(G\)</span> is a group of isometries, <span class="arithmatex">\(g \in G\)</span> is injective and since we just showed that <span class="arithmatex">\(g\)</span> is surjective, each <span class="arithmatex">\(g\)</span> provides a bijection (or permutation) from <span class="arithmatex">\(S\)</span> to <span class="arithmatex">\(S\)</span>.</p>
+<p>We list <span class="arithmatex">\(S = \{s_1, \dots, s_n\}\)</span>. The fixed point is the centroied <span class="arithmatex">\(p = \frac{1}{n} (s_1 + \dots + s_n)\)</span>.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Lemma 6.3.2.2: Isometries Take Centroids to Centroids</p>
+<p>Let <span class="arithmatex">\(S = \{s_1, \dots, s_n\}\)</span> be a finite set of points in the plane. and <span class="arithmatex">\(p\)</span> be its centroid. Let <span class="arithmatex">\(m\)</span> be an isometry. Let <span class="arithmatex">\(m\)</span> be an isometry, <span class="arithmatex">\(m(p) = p'\)</span>. Then, <span class="arithmatex">\(p'\)</span> is the centroid of the set <span class="arithmatex">\(S' = \{m(s_1), \dots, m(s_n)\}\)</span>.</p>
+</div>
+<p>Since <span class="arithmatex">\(g\)</span> permutes the orbit, it sends <span class="arithmatex">\(S\)</span> to <span class="arithmatex">\(S\)</span> and <span class="arithmatex">\(p\)</span> to <span class="arithmatex">\(p\)</span>.</p>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Suppose <span class="arithmatex">\(m = t_a\)</span> or <span class="arithmatex">\(m = \varphi\)</span>. If <span class="arithmatex">\(m = t_a\)</span>, then:</p>
+<div class="arithmatex">\[
+p' = p + a = \frac{1}{n} ((s_1 + a) + \dots + (s_n + a)) = \frac{1}{n} (t_a(s_1) + \dots + t_a(s_n))
+\]</div>
+<p>If <span class="arithmatex">\(m = \varphi\)</span>, then since <span class="arithmatex">\(\varphi\)</span> is a linear operator:</p>
+<div class="arithmatex">\[
+p' = \varphi(p) = \varphi \frac{1}{n} (s_1 + \dots + s_n) = \frac{1}{n} (\varphi(s_1) + \dots + \varphi(s_n))
+\]</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Corollary 6.3.2.3</p>
+<p>Let <span class="arithmatex">\(G\)</span> be a finite subgroup of <span class="arithmatex">\(M\)</span> of isometries of the plane. Then, <span class="arithmatex">\(G\)</span> is one of the groups <span class="arithmatex">\(C_n\)</span> or <span class="arithmatex">\(D_n\)</span>.</p>
+</div>
+<h2 id="discrete-isometry-groups">Discrete Isometry Groups<a class="headerlink" href="#discrete-isometry-groups" title="Permanent link">&para;</a></h2>
+<p>Like a kaleidoscope, the union of group actions on a figure can form an interesting figure. Consider a random figure <span class="arithmatex">\(R\)</span>. Each element of <span class="arithmatex">\(g\)</span> moves <span class="arithmatex">\(R\)</span> to some new position <span class="arithmatex">\(gR\)</span>. The figure <span class="arithmatex">\(F = \bigcup_{g \in G} gR\)</span>. <span class="arithmatex">\(h\)</span> sends to <span class="arithmatex">\(gR\)</span> to <span class="arithmatex">\(hgR \in F\)</span>. If <span class="arithmatex">\(R\)</span> is sufficiently random, <span class="arithmatex">\(G\)</span> will be the group of symmetries of <span class="arithmatex">\(F\)</span>.</p>
+<p>Some subgroups of <span class="arithmatex">\(M\)</span> are too wild to have reasonable geometry.</p>
+<div class="admonition info">
+<p class="admonition-title">Definition 6.4.1: Discrete Groups</p>
+<p>A group <span class="arithmatex">\(G\)</span> of isometries of the plane <span class="arithmatex">\(P\)</span> is <em>discrete</em> if it does not contain arbitrarily small translations or rotations. Specifically, <span class="arithmatex">\(G\)</span> is discrete is there exists <span class="arithmatex">\(\epsilon \in \R_{\geq 0}\)</span> so that:</p>
+<ul>
+<li>If an element of <span class="arithmatex">\(G\)</span> is translation by non-zero vector <span class="arithmatex">\(a\)</span>, then <span class="arithmatex">\(|a| \geq \epsilon\)</span>.</li>
+<li>If an element of <span class="arithmatex">\(G\)</span> is the rotation through <span class="arithmatex">\(\theta\)</span> about some point in the plane, then <span class="arithmatex">\(|\theta| \geq \epsilon\)</span>.</li>
+</ul>
+</div>
+<p>Translations and rotations are all of the orientation-preserving isometries. Orientation-reversing isometries are also bounded below - if <span class="arithmatex">\(m\)</span> is a glide with nonzero glide vector <span class="arithmatex">\(v\)</span>, then <span class="arithmatex">\(m^2\)</span> is the translation <span class="arithmatex">\(t_{2v}\)</span>.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 28, 2026 11:16:29 UTC">2026-11-28</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 28, 2026 11:16:29 UTC">2026-11-28</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="../../../javascripts/nav-toggle.js"></script>
+      
+        <script src="../../../javascripts/mathjax/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

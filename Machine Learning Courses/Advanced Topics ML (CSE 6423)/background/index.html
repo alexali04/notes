@@ -1,0 +1,2893 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://alexali04.github.io/notes/Machine%20Learning%20Courses/Advanced%20Topics%20ML%20%28CSE%206423%29/background/">
+      
+      
+        <link rel="prev" href="../../..">
+      
+      
+        <link rel="next" href="../deep_generative_models/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Background Knowledge - ML Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  
+  
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#background-knowledge" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="ML Notes" class="md-header__button md-logo" aria-label="ML Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ML Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Background Knowledge
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ML Notes" class="md-nav__button md-logo" aria-label="ML Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ML Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Courses
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Machine Learning Courses
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Topics ML (CSE 6423)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced Topics ML (CSE 6423)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Knowledge
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Knowledge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convexity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convex-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convex Sets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convexity-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convexity Conditions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Convexity Conditions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jensens-inequality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jensen's Inequality
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convex-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convex Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convexity-preserving-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convexity Preserving Operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Convexity Preserving Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variational-lower-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variational Lower Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#density-parameterization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Density Parameterization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Density Parameterization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#canonical-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Canonical Form
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-distribution-modeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Distribution Modeling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#members-of-exponential-family" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Members of Exponential Family
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-partitions-mle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log Partitions, MLE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sampling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sampling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motivation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monte-carlo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monte Carlo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Sampling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Sampling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inverse-probability-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inverse Probability Transform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rejection-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rejection Sampling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#importance-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Importance Sampling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ancestral-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ancestral Sampling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcmc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCMC
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MCMC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metropolis-hastings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metropolis Hastings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gibbs-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gibbs Sampling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slice-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slice Sampling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deep_generative_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deep Generative Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deep Learning Alchemy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deep Learning Alchemy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deep%20Learning%20Alchemy/dl_alchemy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deep Learning Alchemy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Math
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Math
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/background/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Math Background
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Abstract Algebra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Abstract Algebra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/Abstract_Algebra/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/Abstract_Algebra/groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/Abstract_Algebra/symmetry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Symmetry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/Abstract_Algebra/exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercises
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Information Geometry
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Information Geometry
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/Information_Geometry/fim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fisher Information Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linear Algebra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linear Algebra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/Linear_Algebra/qr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QR Decomposition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/Linear_Algebra/subspaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamental Subspaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stochastic Calculus
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Stochastic Calculus
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/Stochastic_Calculus/1_ito/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 - Itô Integral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math/Stochastic_Calculus/2_calc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 - New Calculus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Misc
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Misc
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/jepa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JEPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/typicality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding Typicality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probability
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Probability
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../probability/distributions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Statistics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Statistics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/hypothesis_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hypothesis Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Statistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/point_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point Estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/random_samples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Random Samples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../statistics/inference/useful_formulas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Useful Formulas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convexity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convex-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convex Sets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convexity-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convexity Conditions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Convexity Conditions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jensens-inequality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jensen's Inequality
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convex-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convex Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convexity-preserving-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Convexity Preserving Operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Convexity Preserving Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variational-lower-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variational Lower Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#density-parameterization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Density Parameterization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Density Parameterization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#canonical-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Canonical Form
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-distribution-modeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Distribution Modeling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#members-of-exponential-family" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Members of Exponential Family
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-partitions-mle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log Partitions, MLE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sampling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sampling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motivation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monte-carlo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monte Carlo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Sampling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Sampling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inverse-probability-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inverse Probability Transform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rejection-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rejection Sampling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#importance-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Importance Sampling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ancestral-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ancestral Sampling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcmc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCMC
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MCMC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metropolis-hastings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metropolis Hastings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gibbs-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gibbs Sampling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slice-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slice Sampling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+  
+    <div class="page-dates">
+      Created <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 28, 2026 11:16:29 UTC">2026-11-28</span>
+        · Updated <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 28, 2026 11:16:29 UTC">2026-11-28</span>
+    </div>
+  
+  
+                  
+
+
+
+<h1 id="background-knowledge">Background Knowledge<a class="headerlink" href="#background-knowledge" title="Permanent link">&para;</a></h1>
+<div class="toc">
+<ul>
+<li><a href="#background-knowledge">Background Knowledge</a><ul>
+<li><a href="#optimization">Optimization</a><ul>
+<li><a href="#convexity">Convexity</a></li>
+<li><a href="#convex-sets">Convex Sets</a></li>
+<li><a href="#convexity-conditions">Convexity Conditions</a><ul>
+<li><a href="#jensens-inequality">Jensen's Inequality</a></li>
+</ul>
+</li>
+<li><a href="#convex-functions">Convex Functions</a></li>
+<li><a href="#convexity-preserving-operations">Convexity Preserving Operations</a><ul>
+<li><a href="#variational-lower-bound">Variational Lower Bound</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#density-parameterization">Density Parameterization</a><ul>
+<li><a href="#canonical-form">Canonical Form</a></li>
+<li><a href="#conditional-distribution-modeling">Conditional Distribution Modeling</a></li>
+<li><a href="#members-of-exponential-family">Members of Exponential Family</a></li>
+<li><a href="#log-partitions-mle">Log Partitions, MLE</a></li>
+</ul>
+</li>
+<li><a href="#sampling">Sampling</a><ul>
+<li><a href="#motivation">Motivation</a></li>
+<li><a href="#monte-carlo">Monte Carlo</a></li>
+<li><a href="#basic-sampling">Basic Sampling</a><ul>
+<li><a href="#inverse-probability-transform">Inverse Probability Transform</a></li>
+<li><a href="#rejection-sampling">Rejection Sampling</a></li>
+<li><a href="#importance-sampling">Importance Sampling</a></li>
+<li><a href="#ancestral-sampling">Ancestral Sampling</a></li>
+</ul>
+</li>
+<li><a href="#mcmc">MCMC</a><ul>
+<li><a href="#metropolis-hastings">Metropolis Hastings</a></li>
+<li><a href="#gibbs-sampling">Gibbs Sampling</a></li>
+<li><a href="#slice-sampling">Slice Sampling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="optimization">Optimization<a class="headerlink" href="#optimization" title="Permanent link">&para;</a></h2>
+<h3 id="convexity">Convexity<a class="headerlink" href="#convexity" title="Permanent link">&para;</a></h3>
+<p>Optimization problems are frequently of the form:</p>
+<div class="arithmatex">\[
+\min_{x \in \Omega} f(x) \text{ s.t. } g(x) \geq 0
+\]</div>
+<p>where <span class="arithmatex">\(f(x)\)</span> is a loss function subject to (optional) constraint <span class="arithmatex">\(g(x) \geq 0\)</span>. <span class="arithmatex">\(f(x)\)</span> is convex, <span class="arithmatex">\(\Omega\)</span> is some convex set and <span class="arithmatex">\(g(x)\)</span> is a convex function.</p>
+<p>For example, regression tasks can be framed as follows: for <span class="arithmatex">\(y \in \R\)</span>, find <span class="arithmatex">\(f: X \to \R\)</span> s.t. <span class="arithmatex">\(f = \argmin_f \frac{1}{n} \sum_{i = 1}^n (y_i - f(x_i))^2\)</span>.</p>
+<p>It is possible to take discrete, intractable problems to continuous space and optimize them there.</p>
+<div class="admonition info">
+<p class="admonition-title">Definition 1.1.1: Convex Set</p>
+<p><span class="arithmatex">\(\Omega\)</span> denotes a convex set if <span class="arithmatex">\(\forall x, y \in \Omega\)</span> and for any <span class="arithmatex">\(t \in [0, 1], tx + (1 - t)y \in \Omega\)</span>. The line between two points in a convex set must also exist entirely in the convex set.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Definition 1.1.2: Convex Function</p>
+<p><span class="arithmatex">\(f: \Omega \to \R\)</span> is a convex function iff <span class="arithmatex">\(\Omega\)</span> is a convex set and <span class="arithmatex">\(\forall x, y \in \Omega\)</span> where <span class="arithmatex">\(t \in [0, 1]\)</span>, <span class="arithmatex">\(f(tx + (1 - t)y) \leq tf(x) + (1 - t) f(y)\)</span>. Every point on the interpolation passed through <span class="arithmatex">\(f\)</span> lies below or on the interpolation of the end-points passed through <span class="arithmatex">\(f\)</span>.</p>
+</div>
+<p>Equivalent characterizations - the function between two end-points lies beneath the secant line or the <em>epigraph</em> (set of points above the function) is a convex set.</p>
+<div class="admonition info">
+<p class="admonition-title">Definition 1.1.3: Local Minima</p>
+<p><span class="arithmatex">\(\omega \in \Omega\)</span> is a local minimum for convex function <span class="arithmatex">\(f\)</span> if <span class="arithmatex">\(\forall u, ||\omega - u|| \leq \rho\)</span> and <span class="arithmatex">\(f(u) \geq f(\omega)\)</span>. Here, <span class="arithmatex">\(\rho\)</span> is a small threshold distance which defines a region around <span class="arithmatex">\(\omega\)</span>. <span class="arithmatex">\(u\)</span> represents the set of points in the convex domain which fall inside that region.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Proposition 1.1.4: Every Local Minima is a Global Minima for a Convex Function</p>
+<p>Suppose <span class="arithmatex">\(f\)</span> is convex and <span class="arithmatex">\(\omega^*\)</span> is a local minima. Then, <span class="arithmatex">\(\omega^*\)</span> is a global minima for <span class="arithmatex">\(f\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Let <span class="arithmatex">\(\omega_0\)</span> be the global minima such that <span class="arithmatex">\(f(\omega_0) &lt; f(\omega^*)\)</span>. By convexity of <span class="arithmatex">\(f\)</span>, we have that:</p>
+<div class="arithmatex">\[
+f(t \omega_0 + (1 - t) \omega^*) \leq t f(\omega_0) + (1 - t) f(\omega^*)
+\]</div>
+<p>Since <span class="arithmatex">\(f(\omega_0) &lt; f(\omega^*)\)</span>,</p>
+<div class="arithmatex">\[
+t f(\omega_0) + (1 - t) f(\omega^*) &lt; t f(\omega^*) + (1 - t) f(\omega^*) = f(\omega^*)
+\]</div>
+<p>Since <span class="arithmatex">\(\omega^*\)</span> is a local minimum, there exists some region where <span class="arithmatex">\(f(\omega^*) \leq f(u)\)</span> for all <span class="arithmatex">\(u\)</span> where <span class="arithmatex">\(||\omega^* - u || \leq \rho\)</span>. However, we also know that <span class="arithmatex">\(f(t \omega_0 + (1 - t) \omega^*) \leq f(\omega^*)\)</span>.</p>
+<p>This is a contradiction. With a sufficiently high <span class="arithmatex">\(t\)</span>, the point <span class="arithmatex">\(u(t) = t \omega_0 + (1 - t) \omega^*\)</span> can get arbitrarily close to <span class="arithmatex">\(\omega^*\)</span> meaning that for any <span class="arithmatex">\(\rho\)</span>, we can find <span class="arithmatex">\(t\)</span> where <span class="arithmatex">\(||\omega^* - u(t)|| \leq \rho\)</span>. By convexity, we know that <span class="arithmatex">\(f(u(t)) &lt; f(\omega^*)\)</span>. However, by the definition of local-minima, we know that <span class="arithmatex">\(f(u(t)) \geq f(\omega^*)\)</span>. Therefore, the assumption that there must exist some <span class="arithmatex">\(\omega_0\)</span> where <span class="arithmatex">\(f(\omega_0) &lt; f(\omega^*)\)</span> is false. The local minimum of a convex function must also be a global minimum.</p>
+</div>
+<p>Intuitively, there can be no purely local minima in a convex function. In order for a point to be in a local minima, it must be surrounded by some kind of valley. We could draw a chord between the local and global minima and the walls of the valley would exist above the chord violating the convexity assumption. This chord is called the <strong>secant line</strong>.</p>
+<div class="admonition success">
+<p class="admonition-title">Proposition 1.1.5: First Order Conditions for Local Minima</p>
+<ul>
+<li><span class="arithmatex">\(x\)</span> is a local minima iff <span class="arithmatex">\(\nabla f(x) = 0\)</span> and there are no other constraints. This is a necessary and sufficient condition for local minima under the assumption that <span class="arithmatex">\(f(x)\)</span> is convex. If <span class="arithmatex">\(f(x)\)</span> isn't convex, this is just a necessary condition.</li>
+<li><span class="arithmatex">\(x\)</span> is a local minima if for all <span class="arithmatex">\(y \in \Omega\)</span>, <span class="arithmatex">\(\nabla f(y)^T (y - x) \geq 0\)</span>. Moving from <span class="arithmatex">\(x\)</span> to any other feasible point does not decrease the value of the function.</li>
+</ul>
+</div>
+<p>The second condition - pick any point. Look at the gradient of <span class="arithmatex">\(f\)</span> evaluated at that point and the difference vector with the local minima. The two will point in the same direction.</p>
+<h3 id="convex-sets">Convex Sets<a class="headerlink" href="#convex-sets" title="Permanent link">&para;</a></h3>
+<p>Recall that we say a set is convex if the line segment between any two points <span class="arithmatex">\(x, y \in \Omega\)</span> lies within <span class="arithmatex">\(\Omega\)</span>.</p>
+<p><img alt="" src="../../../images/convex_set.png" /></p>
+<p>In the right set, you can draw a chord which goes outside the set so the set is not convex.</p>
+<p>Formally, <span class="arithmatex">\(\Omega\)</span> is convex if <span class="arithmatex">\(\forall x, y \in \Omega\)</span> and for any <span class="arithmatex">\(t \in [0, 1], tx + (1 - t)y \in \Omega\)</span>.</p>
+<div class="admonition info">
+<p class="admonition-title">Definition 1.2.1: Convex Hull</p>
+<p>The convex hull is the set of all convex combinations of points in a set <span class="arithmatex">\(C\)</span>.</p>
+<div class="arithmatex">\[
+\text{conv } C = \left \{ a_1 x_1 + \dots + a_k x_k \mid x_i \in C, a_i \geq 0, \sum_{i = 1}^k a_i = 1 \right \}
+\]</div>
+</div>
+<p>Naturally, the convex hull is always convex and it is the smallest convex set that contains <span class="arithmatex">\(C\)</span>.</p>
+<p>We list examples of convex sets.</p>
+<div class="admonition example">
+<p class="admonition-title">Example 1.2.1: Convex Sets</p>
+<ul>
+<li>
+<p>The <span class="arithmatex">\(l_2\)</span>-Ball. Formally, <span class="arithmatex">\(B(r) = \{x: ||x||_2 \leq r\}\)</span>.</p>
+</li>
+<li>
+<p>The Half-space in <span class="arithmatex">\(d = 2\)</span>. <span class="arithmatex">\(\{Ax + b \leq 0\} \in \R^d\)</span>.</p>
+</li>
+<li>
+<p>The Simplex. <span class="arithmatex">\(\Delta = \{P \mid P \geq 0, \sum_{i = 1}^d P_i = 1\}\)</span>.</p>
+</li>
+</ul>
+</div>
+<p>Convexity is preserved under intersection. If <span class="arithmatex">\(S_1, S_2\)</span> are convex then <span class="arithmatex">\(S_1 \cap S_2\)</span> is convex.</p>
+<p>Affine functions preserve convexity. <span class="arithmatex">\(C = A \Omega + b\)</span>.</p>
+<p>Linear fractions preserve convexity.</p>
+<p>Unions however do not preserve convexity.</p>
+<p><img alt="" src="../../../images/union.png" /></p>
+<h3 id="convexity-conditions">Convexity Conditions<a class="headerlink" href="#convexity-conditions" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 1.3.1: First Order Conditions</p>
+<p>Recall that <span class="arithmatex">\(f\)</span> is convex iff <span class="arithmatex">\(\forall x, y \in \Omega\)</span>,</p>
+<div class="arithmatex">\[
+f(x) \geq f(y) + \nabla f(y)^T (x - y)
+\]</div>
+</div>
+<p><span class="arithmatex">\(f(x) \geq f(y) + \nabla f(y)^T (x - y)\)</span> is just saying that a convex function is bounded below by its tangent line (while it is bounded above by its secant line) as the RHS is the first-order Taylor approximation of <span class="arithmatex">\(f\)</span> around <span class="arithmatex">\(y\)</span> evaluated at <span class="arithmatex">\(x\)</span>.</p>
+<p><img alt="" class="center" src="../../../images/secant_tangent.png" /></p>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Suppose <span class="arithmatex">\(x_0 = tx + (1 - t)y\)</span>. We know that <span class="arithmatex">\(f(x) \geq f(x_0) + \nabla f(x_0)^T (x - x_0)\)</span> and <span class="arithmatex">\(f(y) \geq f(x_0) + \nabla f(x_0)^T (y - x_0)\)</span>. WTS <span class="arithmatex">\(f\)</span> is convex.</p>
+<p>Then (the following three equations are independent),</p>
+<div class="arithmatex">\[
+t f(x) + (1 - t) f(y) \geq t (f(x_0) + \nabla f(x_0)^T (x - x_0)) + (1 - t) (f(x_0) + \nabla f(x_0)^T (y - x_0))
+\]</div>
+<div class="arithmatex">\[
+t f(x_0) + (1 - t) f(x_0) = f(x_0)
+\]</div>
+<div class="arithmatex">\[
+t(x - x_0) + (1 - t)(y - x_0) = tx + (1 - t)y - x_0
+\]</div>
+<p>However, note that <span class="arithmatex">\(x_0 = tx + (1 - t)y\)</span> so the vector being multiplied against the inner-product is <span class="arithmatex">\(0\)</span>. Therefore,</p>
+<div class="arithmatex">\[
+t f(x) + (1 - t) f(y) \geq f(tx + (1 - t)y)
+\]</div>
+<p>Therefore, <span class="arithmatex">\(f\)</span> is convex.</p>
+<p>Next, we prove the other direction. Suppose that <span class="arithmatex">\(f(tx + (1 - t)y) \leq t f(x) + (1 - t) f(y)\)</span>. WTS that <span class="arithmatex">\(f(x) \geq f(y) + \nabla f(y)^T (x - y)\)</span>.</p>
+<p>Then,</p>
+<div class="arithmatex">\[
+\frac{f(tx + (1 - t)y)}{t} \leq f(x) - f(y) + \frac{f(y)}{t}
+\]</div>
+<div class="arithmatex">\[
+f(x) \geq f(y) + \frac{f(tx + (1 - t)y) - f(y)}{t}
+\]</div>
+<p>In the limit as <span class="arithmatex">\(t \to 0\)</span>, this becomes:</p>
+<div class="arithmatex">\[
+f(x) \geq f(y) + \nabla f(y)^T(x - y)
+\]</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 1.3.2: Second Order Condition</p>
+<p>Given <span class="arithmatex">\(\Omega \in \R^d\)</span>, <span class="arithmatex">\(f\)</span> is convex iff <span class="arithmatex">\(\forall x \in \Omega\)</span>,</p>
+<div class="arithmatex">\[
+\nabla^2 f(x) \geq 0
+\]</div>
+<p>or for all <span class="arithmatex">\(h \in \R^d, x \in \Omega\)</span>,</p>
+<div class="arithmatex">\[
+h^T \nabla^2 f(x) h \geq 0
+\]</div>
+<p>where <span class="arithmatex">\(\nabla^2 f\)</span> is the Hessian of <span class="arithmatex">\(f\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Suppose <span class="arithmatex">\(\nabla f(x)\)</span> is PSD. Then, Taylor's approximation yields</p>
+<div class="arithmatex">\[
+f(x + h) \approx f(x) + h^T \nabla f(x) + \frac{1}{2} h^T \nabla^2 f(x) h
+\]</div>
+<p>Since <span class="arithmatex">\(\nabla^2 f(x)\)</span> is PSD, it follows that the last term is larger than <span class="arithmatex">\(0\)</span>. So:</p>
+<div class="arithmatex">\[
+f(x + h) \geq f(x) + h^T \nabla f(x)
+\]</div>
+</div>
+<h4 id="jensens-inequality">Jensen's Inequality<a class="headerlink" href="#jensens-inequality" title="Permanent link">&para;</a></h4>
+<p>Jensen's Inequality is an incredibly useful inequality.</p>
+<div class="admonition info">
+<p class="admonition-title">Definition 1.3.3: Jensen's Inequality</p>
+<p>Let <span class="arithmatex">\(f\)</span> be convex. Then,</p>
+<div class="arithmatex">\[
+f(\E_p[x]) \leq \E_p[f(x)]
+\]</div>
+</div>
+<p>If <span class="arithmatex">\(f\)</span> is linear, clearly, the two would be identical. However, since <span class="arithmatex">\(f\)</span> is convex, it <em>pulls</em> upwards meaning that the average of the outputs is greater than the output of the average.</p>
+<p><img alt="" class="center" src="../../../images/jensen.png" /></p>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>Jensen's inequality is the generalization of convexity to convex combinations. We proceed via induction.</p>
+<p>The base case is simply the definition of convexity.</p>
+<p>Now suppose Jensen's inequality holds for <span class="arithmatex">\(n - 1\)</span> points. Then,</p>
+<div class="arithmatex">\[
+p_1 x_1 + \dots + p_n x_n = p_n x_n + (1 - p_n) \hat{x}
+\]</div>
+<p>where <span class="arithmatex">\(\hat{x} = \sum_{i = 1}^{n - 1} \frac{p_i}{1 - p_n} x_i\)</span>. By convexity,</p>
+<div class="arithmatex">\[
+f(p_n x_n + (1 - p_n) \hat{x}) \leq p_n f(x_n) + (1 - p_n) f(\hat{x})
+\]</div>
+<p>Now, we can apply our induction hypothesis to <span class="arithmatex">\(f(\hat{x})\)</span>.</p>
+<div class="arithmatex">\[
+f(\hat{x}) \leq \sum_{i = 1}^{n - 1} \frac{p_i}{1 - p_n} f(x_i)
+\]</div>
+<p>Therefore,</p>
+<div class="arithmatex">\[
+f(\sum_{i = 1}^n p_i x_i) \leq \sum_{i = 1}^n p_i f(x_i)
+\]</div>
+</div>
+<h3 id="convex-functions">Convex Functions<a class="headerlink" href="#convex-functions" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Affine Functions, <span class="arithmatex">\(f(x) = a^T x + b\)</span> can be shown to be convex using the second-order condition.</p>
+</li>
+<li>
+<p>Quadratic functions, <span class="arithmatex">\(f(x) = x^T Q x + b^T x + c\)</span> where <span class="arithmatex">\(Q\)</span> is symmetric PSD. Can also be shown to be convex using the 2nd order condition.</p>
+</li>
+<li>
+<p>Vector norms, $<span class="arithmatex">\(||x||_p = \left ( \sum_{i = 1}^d |x_i|^p \right )^{1/p}\)</span> where <span class="arithmatex">\(p \geq 1\)</span>. Proof is given below.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\text{Tr}(Ax)\)</span> where <span class="arithmatex">\(A \in \R^{p \times d}, x \in \R^{d \times p}\)</span>. This is convex since the trace is a linear function.</p>
+</li>
+<li>
+<p>Matrix norms: <span class="arithmatex">\(||x||_{\text{op}} = \lambda_{\text{max}}(x)\)</span>.</p>
+</li>
+<li>
+<p>Frobenius Norm: <span class="arithmatex">\(||A||_F = \sqrt{\text{Tr}(A^T A)}\)</span>.</p>
+</li>
+<li>
+<p>LogSumExp: <span class="arithmatex">\(f(x) = \log \sum_{i = 0}^n \exp(x_i)\)</span>.</p>
+</li>
+</ol>
+<p>We prove vector norms are convex.</p>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<p>By the triangle inequality and zeroth order convexity condition (definition of convexity),</p>
+<div class="arithmatex">\[
+||tx + (1 - t)y||_p \leq ||tx||_p + ||(1 - t)y||_p = t ||x||_p + (1 - t) ||y||_p
+\]</div>
+<p>Therefore,</p>
+<div class="arithmatex">\[
+||tx + (1 - t)y||_p \leq t ||x||_p + (1 - t) ||y||_p
+\]</div>
+</div>
+<p>We prove that LogSumExp is convex.</p>
+<div class="admonition quote">
+<p class="admonition-title">Proof</p>
+<div class="arithmatex">\[
+\nabla f(x) = \left [  \frac{\exp(x_i)}{\sum_{i = 1}^n \exp(x_i)}    \right ]
+\]</div>
+<p>The gradient is a probability distribution. Let <span class="arithmatex">\(p_i = \nabla f(x_i)\)</span>. Then, use the quotient rule to find that:</p>
+<div class="arithmatex">\[
+\frac{\partial^2 f}{\partial x_i \partial x_i} = p_i - p_i^2
+\]</div>
+<div class="arithmatex">\[
+\frac{\partial^2 f}{\partial x_j \partial x_i} = - p_i p_j
+\]</div>
+<p>Element-wise, <span class="arithmatex">\(H(f(x)) = \text{diag}(p) - pp^T\)</span>.</p>
+<p>This is a covariance matrix of a one-hot vector that equals <span class="arithmatex">\(e_i\)</span> with probability <span class="arithmatex">\(p_i\)</span>. Covariance matrices are PSD so <span class="arithmatex">\(f(x)\)</span> is convex.</p>
+</div>
+<h3 id="convexity-preserving-operations">Convexity Preserving Operations<a class="headerlink" href="#convexity-preserving-operations" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Non-negative weighted sum of convex functions: <span class="arithmatex">\(f(x) = \sum_{i = 1}^n \alpha_i f_i(x)\)</span> where <span class="arithmatex">\(\alpha_i \geq 0, f_i\)</span> is convex.</p>
+</li>
+<li>
+<p>Letting <span class="arithmatex">\(n \to \infty\)</span> and <span class="arithmatex">\(\sum_i \alpha_i = 1\)</span>, this becomes an expectation function, <span class="arithmatex">\(g(x) = \E_{\alpha}[f(x_i)]\)</span>.</p>
+</li>
+<li>
+<p>The max operation is convex.</p>
+</li>
+<li>
+<p>Composite functions. <span class="arithmatex">\(g(x) = f(h(x))\)</span>. If <span class="arithmatex">\(f\)</span> is convex, strictly increasing and <span class="arithmatex">\(h\)</span> is convex, then <span class="arithmatex">\(g\)</span> is convex. If <span class="arithmatex">\(f\)</span> is convex, strictly decreasing and <span class="arithmatex">\(h\)</span> is concave, then <span class="arithmatex">\(g(x)\)</span> is convex.</p>
+</li>
+</ol>
+<p>As an application, we derive the variational lower-bound for maximum likelihood estimation.</p>
+<h4 id="variational-lower-bound">Variational Lower Bound<a class="headerlink" href="#variational-lower-bound" title="Permanent link">&para;</a></h4>
+<p>Suppose <span class="arithmatex">\(p(x, z) = p(x \mid z) p(z)\)</span>. We wantn to use MLE to maximize <span class="arithmatex">\(\log p(x)\)</span>.</p>
+<div class="arithmatex">\[
+L(z) = - \sum_{i = 1}^n \log p(x)
+\]</div>
+<div class="arithmatex">\[
+= - \sum_{i = 1}^n \log \int_z p(x, y) dz
+\]</div>
+<div class="arithmatex">\[
+= - \sum_{i = 1}^n \log \int_z \frac{p(x_i, z)}{q(z \mid x_i)} q(z \mid x_i) dz
+\]</div>
+<p>A log function is concave so negative log is convex. By Jensen's inequality, we know that <span class="arithmatex">\(f(\E[x]) \leq \E[f(x)]\)</span>. Therefore,</p>
+<div class="arithmatex">\[
+L(z) \leq \min_q \sum_{i = 1}^n - \E_{q(z \mid x)} \log p(x_i, z) - \log q(z \mid x_i)
+\]</div>
+<h2 id="density-parameterization">Density Parameterization<a class="headerlink" href="#density-parameterization" title="Permanent link">&para;</a></h2>
+<p>Convex optimization via methods like gradient descent are <em>solvers</em> for Machine Learning but <em>density parameterization</em> is a <em>modeler</em> for Machine Learning.</p>
+<h3 id="canonical-form">Canonical Form<a class="headerlink" href="#canonical-form" title="Permanent link">&para;</a></h3>
+<p>We introduce a base measure <span class="arithmatex">\(h(x)\)</span>. Then, we introduce a sufficient statistic <span class="arithmatex">\(T(x)\)</span> which is used in conjunction with the partition function to express the density. The following form is called the <em>canonical form</em> of an <em>exponential family</em>.</p>
+<div class="admonition info">
+<p class="admonition-title">Definition 2.1.1: Exponential Family</p>
+<div class="arithmatex">\[
+p(x) = h(x) \exp(\eta^T T(x) - A(\eta))
+\]</div>
+<p>Here <span class="arithmatex">\(\eta\)</span> parameterizes the distribution, <span class="arithmatex">\(T(x)\)</span> is the sufficient statistic, and <span class="arithmatex">\(h(x)\)</span> is the base measure.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Definition 2.1.2: Log Partition</p>
+<p><span class="arithmatex">\(A(\eta)\)</span> is the log partition function defined as:</p>
+<div class="arithmatex">\[
+A(\eta) = \log \int \exp(\eta^T T(x)) dx
+\]</div>
+<p>Then,</p>
+<div class="arithmatex">\[
+\int p(x) dx = \int h(x) \exp(\eta^T T(x)) \cdot \exp(- A(\eta)) dx
+\]</div>
+<p><span class="arithmatex">\(\exp(\eta^T T(x))\)</span> and <span class="arithmatex">\(\exp(-A(\eta))\)</span> cancel out so the integrand becomes <span class="arithmatex">\(h(x)\)</span> and the density integrates to <span class="arithmatex">\(1\)</span>.</p>
+<p>Since,</p>
+<div class="arithmatex">\[
+\int p(x) dx = 1 = \left [ \int h(x) \exp(\eta^T T(x)) dx \right ] \exp(A (\eta))
+\]</div>
+<p>Then,</p>
+<div class="arithmatex">\[
+\int h(x) \exp(\eta^T T(x)) dx  = \exp(A(\eta))
+\]</div>
+</div>
+<h3 id="conditional-distribution-modeling">Conditional Distribution Modeling<a class="headerlink" href="#conditional-distribution-modeling" title="Permanent link">&para;</a></h3>
+<p>We now give some examples of distributions. We model the conditional Gaussian for regression:</p>
+<div class="arithmatex">\[
+y \mid x, \omega \sim \mathcal{N}(\omega^T x, \sigma^2)
+\]</div>
+<p>Then,</p>
+<div class="arithmatex">\[
+P(y \mid x, \omega) = \frac{1}{\sqrt{2 \pi \sigma}} \exp \left ( - \frac{1}{2 \sigma^2} (y - \omega^T x)^2 \right )
+\]</div>
+<p>Then, maximizing the log-likelihood becomes:</p>
+<div class="arithmatex">\[
+\text{MLE} = \min_{\omega} \sum_{i = 1}^n ||y_i - \omega^T x_i||^2
+\]</div>
+<p>We can also model classification using a Bernoulli distribution:</p>
+<div class="arithmatex">\[
+y \mid x, \omega \sim \text{ Bernoulli}(p)
+\]</div>
+<div class="arithmatex">\[
+p = \frac{1}{1 + \exp(\omega^T x)}
+\]</div>
+<p>Then,</p>
+<div class="arithmatex">\[
+P(y \mid p) = p^y (1 - p)^{1 - y}
+\]</div>
+<h3 id="members-of-exponential-family">Members of Exponential Family<a class="headerlink" href="#members-of-exponential-family" title="Permanent link">&para;</a></h3>
+<p>We now show that the Bernoulli distribution is in the exponential family.</p>
+<div class="arithmatex">\[
+p(x) = \pi^x (1 - \pi)^{1 - x}, / \pi \in \{0, 1\}
+\]</div>
+<p>Then,</p>
+<div class="arithmatex">\[
+p(x) = \exp(x \log \pi + (1 - x) \log (1 - \pi))
+\]</div>
+<div class="arithmatex">\[
+p(x) = \exp \left ( x \log \frac{\pi}{1 - \pi} + \log (1 - \pi) \right )
+\]</div>
+<p>Here, <span class="arithmatex">\(T(x) = x, \eta = \log(\pi / (1 - \pi)), h(x) = 1\)</span>.</p>
+<p>Now, the Gaussian.</p>
+<div class="arithmatex">\[
+p(x) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp( - \frac{(x - \mu)^2}{2 \sigma^2})
+\]</div>
+<div class="arithmatex">\[
+p(x) = \exp \log \left ( \frac{1}{\sqrt{2 \pi \sigma^2}} \exp( - \frac{(x - \mu)^2}{2 \sigma^2}) \right )
+\]</div>
+<div class="arithmatex">\[
+p(x) = \exp \left ( - \frac{(x - \mu)^2}{2 \sigma^2} - \log \sqrt{2 \pi \sigma^2} \right )
+\]</div>
+<div class="arithmatex">\[
+p(x) = \exp \left ( - \frac{x^2 - 2 x \mu + \mu^2}{2 \sigma^2} - \log \sqrt{2 \pi \sigma^2} \right )
+\]</div>
+<p>Here, <span class="arithmatex">\(h(x) = 1, T(x) = [x^2, x], \eta = [- \frac{1}{2 \sigma^2}, \frac{\mu^2}{\sigma^2}]\)</span>. Then,</p>
+<div class="arithmatex">\[
+A(\eta) = -\frac{\mu^2}{2 \sigma^2} - \log \sqrt{2 \pi \sigma^2}
+\]</div>
+<h3 id="log-partitions-mle">Log Partitions, MLE<a class="headerlink" href="#log-partitions-mle" title="Permanent link">&para;</a></h3>
+<p>The log partition function <span class="arithmatex">\(A(\eta)\)</span> has important properties. Let's first take its derivative:</p>
+<div class="arithmatex">\[
+\frac{dA(\eta)}{d\eta} = \frac{d}{d\eta} \log \int \exp(\eta^T T(x)) dx
+\]</div>
+<p>Let's assume that differentiating through the integral is allowed (dominated convergence theorem). Then,</p>
+<div class="arithmatex">\[
+\frac{dA(\eta)}{d\eta} = \frac{\int \frac{d}{d\eta} \exp(\eta^T T(x)) dx}{\int \exp(\eta^T T(x)) dx}
+\]</div>
+<div class="arithmatex">\[
+= \frac{\int T(x) \exp(\eta^T T(x)) dx}{\exp(A(\eta))}
+\]</div>
+<div class="arithmatex">\[
+= \int T(x) \frac{\exp(\eta^T T(x))}{\int \exp(\eta^T T(x)) dx}
+\]</div>
+<div class="arithmatex">\[
+= \E_{\eta}[T(x)] = \int p_{\eta}(x) T(x) dx
+\]</div>
+<p>where</p>
+<div class="arithmatex">\[
+p_{\eta}(x) = \exp(\eta^T T(x) - A(\eta))
+\]</div>
+<p>Taking the second derivative provides:</p>
+<div class="arithmatex">\[
+\frac{d^2A(\eta)}{d\eta_a d\eta_b} = \int \frac{d}{d\eta_b} p_{\eta}(x) T_a(x) dx
+\]</div>
+<p>Then,</p>
+<div class="arithmatex">\[
+\frac{d}{d \eta_b} p_{\eta}(x) = p_{\eta}(x) (T_b(x) - \E_{\eta}[T_b(x)])
+\]</div>
+<div class="arithmatex">\[
+\frac{d^2A(\eta)}{d\eta_a d\eta_n} = \int T_a(x) p_{\eta}(x) (T_b(x) - \E_{\eta}[T_b(x)]) dx
+\]</div>
+<div class="arithmatex">\[
+= \int p_{\eta}(x) T_b(x) T_a(x) - p_{\eta}(x) T_a(x) \E_{\eta}[T_b(x)]
+\]</div>
+<div class="arithmatex">\[
+= \E_{\eta}[T_a(x) T_b(x)] - \E_{\eta}[T_a(x)] \E_{\eta}[T_b(x)]
+\]</div>
+<div class="arithmatex">\[
+= \text{Cov}(T_a(x), T_b(x))
+\]</div>
+<p>Thus, we can infer two important properties.</p>
+<p>First, since the 2nd-order derivatives form a covariance matrix, the Hessian of the log-partition function is PSD (the second-order condition for convexity). Therefore,the log-partition function is convex w.r.t. the natural parameter <span class="arithmatex">\(\eta\)</span>.</p>
+<div class="arithmatex">\[
+A(t \eta_1 + (1 - t)\eta_2) \leq t A(\eta_1) + (1 - t) A(\eta_2)
+\]</div>
+<p>Second, the <span class="arithmatex">\(k\)</span>'th order derivative of the log partition function is the <span class="arithmatex">\(k\)</span>'th cumulant of the partition function.</p>
+<h2 id="sampling">Sampling<a class="headerlink" href="#sampling" title="Permanent link">&para;</a></h2>
+<p>We review sampling very briefly.</p>
+<h3 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h3>
+<p>Consider the supervised learning setting. Bayes rule states that:</p>
+<div class="arithmatex">\[
+p(\theta \mid D) = \frac{p(D \mid \theta) p(\theta)}{p(D)}
+\]</div>
+<p>where <span class="arithmatex">\(\theta\)</span> is our parameter set and <span class="arithmatex">\(D\)</span> is a dataset. <span class="arithmatex">\(p(\theta)\)</span> is a prior over <span class="arithmatex">\(\theta\)</span>, <span class="arithmatex">\(p(D)\)</span> is the marginal likelihood / partition function, <span class="arithmatex">\(p(D \mid \theta)\)</span> is the likelihood and <span class="arithmatex">\(p(\theta \mid D)\)</span> is the posterior distribution.</p>
+<p>Assuming i.i.d.'ness of the dataset <span class="arithmatex">\(D\)</span>, the likelihood is:</p>
+<div class="arithmatex">\[
+p(D) = \prod_{i = 1}^n p(y_i \mid x_i, \theta)
+\]</div>
+<p>Then,</p>
+<div class="arithmatex">\[
+p(D) = \int_{\theta} p(D, \theta) d\theta = \int \prod_{i = 1}^n p(y_i \mid x_i, \theta) p(\theta) d\theta
+\]</div>
+<p>The posterior probability for <span class="arithmatex">\(\theta\)</span> is:</p>
+<div class="arithmatex">\[
+p(\theta \mid \{x_i, y_i\}_{i = 1}^n) = \frac{\prod_{i = 1}^n p(y_i \mid x_i, \theta)}{\int \prod_{i = 1}^n p(y_i \mid x_i, \theta) p(\theta) d\theta}
+\]</div>
+<p>Given some <span class="arithmatex">\(x_{\text{test}}\)</span>, we can derive the <em>posterior predictive distribution</em> as:</p>
+<div class="arithmatex">\[
+p(y_{\text{test}} \mid x_{\text{test}}, D) = \int_{\Theta} p(y_{\text{test}}, \theta \mid x_{\text{test}}, D) d\theta
+\]</div>
+<div class="arithmatex">\[
+= \int_{\Theta} p(y_{\text{test}} \mid \theta, x_{\text{test}}, D) p(\theta \mid x_{\text{test}}, D) d\theta
+\]</div>
+<div class="arithmatex">\[
+= \int_{\Theta} p(y_{\text{test}} \mid \theta, x_{\text{test}}) p(\theta \mid D) d\theta
+\]</div>
+<p>This integral is very hard to compute since for modern models, we have billions or even trillions of parameters. Thus, we need to find some way to sample <span class="arithmatex">\(\theta \mid D\)</span> to compute an estimate of the expected posterior prediction.</p>
+<h3 id="monte-carlo">Monte Carlo<a class="headerlink" href="#monte-carlo" title="Permanent link">&para;</a></h3>
+<p>We want to estimate <span class="arithmatex">\(\E_p[f(x)] = \int f(x) p(x) dx\)</span>.</p>
+<div class="admonition info">
+<p class="admonition-title">Definition 3.2.1: Monte Carlo Approximation</p>
+<p>Sample points <span class="arithmatex">\(x_i \sim p(x)\)</span> such that <span class="arithmatex">\(\sum_{i = 1}^n f(x_i) \approx \E_p[f(x)]\)</span>.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Important: Properties</p>
+<p>The Monte Carlo estimator has good properties. Specifically, it is</p>
+<ol>
+<li>
+<p><strong>Unbiased</strong></p>
+<div class="arithmatex">\[
+\E[\frac{1}{k} \sum_{i = 1}^k f(x_i)] = \frac{1}{k} \sum_{i = 1}^k \E[f(x_i)] = \E_p[f(x)]
+\]</div>
+<p>All that we require for unbiasedness is identically distributed <span class="arithmatex">\(x\)</span>'s, i.e. each <span class="arithmatex">\(x_i \sim p(x)\)</span>.</p>
+</li>
+<li>
+<p><strong>Adheres to LLN</strong></p>
+<div class="arithmatex">\[
+\lim_{k \to \infty} \frac{1}{k} \sum_{i = 1}^k f(x_i) =^{\text{a.s.}} \E_p[f(x)]
+\]</div>
+<p>This requires <em>almost sure convergence</em>.</p>
+</li>
+<li>
+<p><strong>Variance tends to <span class="arithmatex">\(0\)</span></strong></p>
+<div class="arithmatex">\[
+\text{Var}[\frac{1}{k} \sum_{i = 1}^k f(x_i)] = \frac{1}{k^2} \sum_{i = 1}^K \text{Var}(f(x_i)) = \frac{1}{k} \text{Var}(f(x))
+\]</div>
+<p>This requires that the <span class="arithmatex">\(x\)</span>'s are identically <em>and</em> independently distributed.</p>
+</li>
+</ol>
+</div>
+<h3 id="basic-sampling">Basic Sampling<a class="headerlink" href="#basic-sampling" title="Permanent link">&para;</a></h3>
+<p>I have learned about sampling techniques in a previous machine learning course so I have copied-and-pasted my notes here.</p>
+<h4 id="inverse-probability-transform">Inverse Probability Transform<a class="headerlink" href="#inverse-probability-transform" title="Permanent link">&para;</a></h4>
+<p>If we know the inverse CDF of some distribution, then we can sample randomly from that distribution by using transformed samples from a uniform distribution.</p>
+<p>If we think of the CDF of a Gaussian distribution, most of the probability density is concentrated around the mean. So the CDF will "jump" near the mean, going from a low value to a high value. Say we we sample uniformly from <span class="arithmatex">\([0, 1]\)</span> on the y-axis and walk rightwards until we hit the CDF curve, and then go straight down. We're most likely to hit the CDF curve along the mostly vertical span which, on the <span class="arithmatex">\(x\)</span>-axis, constitutes sample points near the mean.</p>
+<p>This is nice but requires knowing <span class="arithmatex">\(F^{-1}\)</span> of the distribution we wish to sample from which is burdensome.</p>
+<h4 id="rejection-sampling">Rejection Sampling<a class="headerlink" href="#rejection-sampling" title="Permanent link">&para;</a></h4>
+<p><strong>Rejection sampling</strong> is essentially sampling from some easy-to-sample-from <strong>proposal distribution</strong> <span class="arithmatex">\(q(x)\)</span> which "covers" our target distribution <span class="arithmatex">\(\tilde{p}(x)\)</span>. Specifically, we want <span class="arithmatex">\(\tilde{p}(x) \leq k q(x)\)</span> for all <span class="arithmatex">\(x\)</span>.</p>
+<ul>
+<li>Sample <span class="arithmatex">\(x_0 \sim k q(x)\)</span>.</li>
+<li>Sample <span class="arithmatex">\(y_0 \sim \text{Uniform}[0, kq(x_0)]\)</span>.</li>
+<li>Accept <span class="arithmatex">\(x_0\)</span> if <span class="arithmatex">\(y_0 \leq \tilde{p}(x_0)\)</span></li>
+</ul>
+<p>Basically, we know and can sample from <span class="arithmatex">\(k q(x)\)</span>. By only sampling from the subset of <span class="arithmatex">\(k q(x)\)</span> corresponding to <span class="arithmatex">\(\tilde{p}(x)\)</span> in proportion to the height of <span class="arithmatex">\(\tilde{p}(x)\)</span>, we can drawn samples proportionally to <span class="arithmatex">\(p(x)\)</span>.</p>
+<p>Rejection Sampling is a <strong>exact-sampling procedure</strong> which means the samples it draws exactly follow the target probability distribution.</p>
+<p>Naturally, the proposal distribution must be chosen well and the constant <span class="arithmatex">\(k\)</span> must be chosen well. However, this method suffers from the curse of dimensionality in that the reject rate increases with the dimension. The accept rate can be computed as the fraction of the area occupied by <span class="arithmatex">\(\tilde{p}(x)\)</span> divided by the total are from which we are sampling. So we have</p>
+<div class="arithmatex">\[
+    p(\text{Accept}) = \frac{\int \tilde{p}(x) \ dx}{\int k q(x) \ dx} = \frac{\int \tilde{p}(x)}{k}
+\]</div>
+<p>Now assume that <span class="arithmatex">\(\tilde{p}(x)\)</span> is normalized and that both distributions are multi-variate Gaussians, i.e. <span class="arithmatex">\(q(x) \sim \mathcal{N}(\mu, \sigma_q^{\frac{d}{2}} I ), p(x) \sim \mathcal{N}(\mu, \sigma_p^{\frac{d}{2}} I)\)</span> and <span class="arithmatex">\(\sigma_q^{\frac{d}{2}} \geq \sigma_p^{\frac{d}{2}}\)</span>. Then, we have:</p>
+<div class="arithmatex">\[
+    p(\text{Accept}) = \frac{\int p(x)}{\int q(x)} = \frac{(2 \pi \sigma_p^2)^d}{(2 \pi \sigma_q^2)^d} = \frac{\sigma_p^{2d}}{\sigma_q^{2d}} \implies k = \left ( \frac{\sigma_q}{\sigma_p} \right )^D
+\]</div>
+<p>As <span class="arithmatex">\(D\)</span> increases to many dimensions (i.e. if we want to sample from the posterior distribution of some neural network), the probability of acceptance decreases very quickly.</p>
+<h4 id="importance-sampling">Importance Sampling<a class="headerlink" href="#importance-sampling" title="Permanent link">&para;</a></h4>
+<p>One could view rejection sampling as wasteful given that it discards many samples. <strong>Importance sampling</strong> gives us a very flexible method for dealing with this problem by essentially assigning weights to samples.</p>
+<p>We can write:</p>
+<div class="arithmatex">\[
+\begin{align}
+    \int f(x) p(x) \ dx &amp;= \int f(x) \frac{p(x)}{q(x)} q(x) \ dx \\
+    &amp;\approx \frac{1}{J} \sum_{j = 1}^J \frac{p(x^{(j)})}{q^{(j)}} f(x^{(j)}) \\
+    E_p[f(x)] &amp;\approx E_q[f(x) w(x)], w(x) = \frac{p(x)}{q(x)}
+\end{align}
+\]</div>
+<p>Basically, the weights are related to how far the sample's probability density is from the boundary between <span class="arithmatex">\(p(x)\)</span> and <span class="arithmatex">\(q(x)\)</span>.</p>
+<p>It is not necessary that <span class="arithmatex">\(q(x)\)</span> be bigger than <span class="arithmatex">\(p(x)\)</span> for all <span class="arithmatex">\(x\)</span>.</p>
+<p>The weakness of this method is that the <strong>proposal distribution</strong> must be chosen extremely carefully.</p>
+<h4 id="ancestral-sampling">Ancestral Sampling<a class="headerlink" href="#ancestral-sampling" title="Permanent link">&para;</a></h4>
+<p><strong>Ancestral Sampling</strong> is essentially sampling from a Bayes net. We have some joint distribution which we specify a partial ordering on.</p>
+<div class="arithmatex">\[
+p(a, b, c, d) = p(a) p(b) p(c \mid a, b) p(d \mid c)
+\]</div>
+<p>The algorithm is extremely simple:</p>
+<ul>
+<li>Sample from the marginal distributions.</li>
+<li>Conditioned on the nodes parent, sample from the nodes</li>
+</ul>
+<p>This eventually gives us a sample from the joint distribution.</p>
+<h3 id="mcmc">MCMC<a class="headerlink" href="#mcmc" title="Permanent link">&para;</a></h3>
+<p>I didn't write down notes for this but I don't want to do it again. But here are 3 techniques.</p>
+<h4 id="metropolis-hastings">Metropolis Hastings<a class="headerlink" href="#metropolis-hastings" title="Permanent link">&para;</a></h4>
+<h4 id="gibbs-sampling">Gibbs Sampling<a class="headerlink" href="#gibbs-sampling" title="Permanent link">&para;</a></h4>
+<h4 id="slice-sampling">Slice Sampling<a class="headerlink" href="#slice-sampling" title="Permanent link">&para;</a></h4>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 28, 2026 11:16:29 UTC">2026-11-28</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 28, 2026 11:16:29 UTC">2026-11-28</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="../../../javascripts/nav-toggle.js"></script>
+      
+        <script src="../../../javascripts/mathjax/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
